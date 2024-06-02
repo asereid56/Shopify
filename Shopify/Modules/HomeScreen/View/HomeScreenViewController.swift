@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeScreenViewController: UIViewController {
+    
+    var coordinator : MainCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()

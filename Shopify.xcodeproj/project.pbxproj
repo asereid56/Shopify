@@ -9,13 +9,23 @@
 /* Begin PBXBuildFile section */
 		4AD192A02C0CEAFA00EF34D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1929F2C0CEAFA00EF34D0 /* AppDelegate.swift */; };
 		4AD192A22C0CEAFA00EF34D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192A12C0CEAFA00EF34D0 /* SceneDelegate.swift */; };
-		4AD192A42C0CEAFA00EF34D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192A32C0CEAFA00EF34D0 /* ViewController.swift */; };
+		4AD192A42C0CEAFA00EF34D0 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192A32C0CEAFA00EF34D0 /* HomeScreenViewController.swift */; };
 		4AD192A72C0CEAFA00EF34D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AD192A52C0CEAFA00EF34D0 /* Main.storyboard */; };
 		4AD192A92C0CEAFE00EF34D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AD192A82C0CEAFE00EF34D0 /* Assets.xcassets */; };
 		4AD192AC2C0CEAFE00EF34D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AD192AA2C0CEAFE00EF34D0 /* LaunchScreen.storyboard */; };
 		4AD192B72C0CEB0000EF34D0 /* ShopifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192B62C0CEB0000EF34D0 /* ShopifyTests.swift */; };
 		4AD192C12C0CEB0000EF34D0 /* ShopifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192C02C0CEB0000EF34D0 /* ShopifyUITests.swift */; };
 		4AD192C32C0CEB0000EF34D0 /* ShopifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192C22C0CEB0000EF34D0 /* ShopifyUITestsLaunchTests.swift */; };
+		4AD192D12C0CEDD300EF34D0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD192D02C0CEDD300EF34D0 /* RealmSwift */; };
+		4AD192D42C0CF04200EF34D0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD192D32C0CF04200EF34D0 /* Kingfisher */; };
+		4AD192D72C0CF40700EF34D0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD192D62C0CF40700EF34D0 /* Lottie */; };
+		4AD192DA2C0CF43000EF34D0 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD192D92C0CF43000EF34D0 /* RxAlamofire */; };
+		4AD192DD2C0CF53900EF34D0 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD192DC2C0CF53900EF34D0 /* Reachability */; };
+		4AD192E02C0CF55B00EF34D0 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD192DF2C0CF55B00EF34D0 /* Cosmos */; };
+		4AD192EF2C0CF6EA00EF34D0 /* NadaStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AD192EE2C0CF6EA00EF34D0 /* NadaStoryboard.storyboard */; };
+		4AD192F12C0CF6FD00EF34D0 /* MinaStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AD192F02C0CF6FD00EF34D0 /* MinaStoryboard.storyboard */; };
+		4AD192F42C0CF73400EF34D0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192F32C0CF73400EF34D0 /* Constant.swift */; };
+		4AD192F72C0CF76B00EF34D0 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192F62C0CF76B00EF34D0 /* MainCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +49,7 @@
 		4AD1929C2C0CEAFA00EF34D0 /* Shopify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD1929F2C0CEAFA00EF34D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AD192A12C0CEAFA00EF34D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4AD192A32C0CEAFA00EF34D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4AD192A32C0CEAFA00EF34D0 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		4AD192A62C0CEAFA00EF34D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4AD192A82C0CEAFE00EF34D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AD192AB2C0CEAFE00EF34D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +59,10 @@
 		4AD192BC2C0CEB0000EF34D0 /* ShopifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD192C02C0CEB0000EF34D0 /* ShopifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITests.swift; sourceTree = "<group>"; };
 		4AD192C22C0CEB0000EF34D0 /* ShopifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4AD192EE2C0CF6EA00EF34D0 /* NadaStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NadaStoryboard.storyboard; sourceTree = "<group>"; };
+		4AD192F02C0CF6FD00EF34D0 /* MinaStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MinaStoryboard.storyboard; sourceTree = "<group>"; };
+		4AD192F32C0CF73400EF34D0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		4AD192F62C0CF76B00EF34D0 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD192E02C0CF55B00EF34D0 /* Cosmos in Frameworks */,
+				4AD192D42C0CF04200EF34D0 /* Kingfisher in Frameworks */,
+				4AD192DA2C0CF43000EF34D0 /* RxAlamofire in Frameworks */,
+				4AD192DD2C0CF53900EF34D0 /* Reachability in Frameworks */,
+				4AD192D12C0CEDD300EF34D0 /* RealmSwift in Frameworks */,
+				4AD192D72C0CF40700EF34D0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,12 +119,14 @@
 		4AD1929E2C0CEAFA00EF34D0 /* Shopify */ = {
 			isa = PBXGroup;
 			children = (
+				4AD192E22C0CF5B300EF34D0 /* Modules */,
+				4AD192E52C0CF62E00EF34D0 /* Models */,
+				4AD192EA2C0CF66800EF34D0 /* View */,
+				4AD192F22C0CF71100EF34D0 /* Utils */,
+				4AD192F52C0CF74D00EF34D0 /* Coordinator */,
 				4AD1929F2C0CEAFA00EF34D0 /* AppDelegate.swift */,
 				4AD192A12C0CEAFA00EF34D0 /* SceneDelegate.swift */,
-				4AD192A32C0CEAFA00EF34D0 /* ViewController.swift */,
-				4AD192A52C0CEAFA00EF34D0 /* Main.storyboard */,
 				4AD192A82C0CEAFE00EF34D0 /* Assets.xcassets */,
-				4AD192AA2C0CEAFE00EF34D0 /* LaunchScreen.storyboard */,
 				4AD192AD2C0CEAFE00EF34D0 /* Info.plist */,
 			);
 			path = Shopify;
@@ -127,6 +149,120 @@
 			path = ShopifyUITests;
 			sourceTree = "<group>";
 		};
+		4AD192E22C0CF5B300EF34D0 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192E32C0CF5BD00EF34D0 /* HomeScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4AD192E32C0CF5BD00EF34D0 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192E42C0CF5EE00EF34D0 /* View */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		4AD192E42C0CF5EE00EF34D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192A32C0CEAFA00EF34D0 /* HomeScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AD192E52C0CF62E00EF34D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192E62C0CF63500EF34D0 /* Services */,
+				4AD192E92C0CF64C00EF34D0 /* Model */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4AD192E62C0CF63500EF34D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192E82C0CF64200EF34D0 /* Network */,
+				4AD192E72C0CF63C00EF34D0 /* DB */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4AD192E72C0CF63C00EF34D0 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		4AD192E82C0CF64200EF34D0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4AD192E92C0CF64C00EF34D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AD192EA2C0CF66800EF34D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192EB2C0CF67B00EF34D0 /* AserStoryboard */,
+				4AD192ED2C0CF69200EF34D0 /* NadaStoryboard */,
+				4AD192EC2C0CF68600EF34D0 /* MinaStoryboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AD192EB2C0CF67B00EF34D0 /* AserStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192A52C0CEAFA00EF34D0 /* Main.storyboard */,
+				4AD192AA2C0CEAFE00EF34D0 /* LaunchScreen.storyboard */,
+			);
+			path = AserStoryboard;
+			sourceTree = "<group>";
+		};
+		4AD192EC2C0CF68600EF34D0 /* MinaStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192F02C0CF6FD00EF34D0 /* MinaStoryboard.storyboard */,
+			);
+			path = MinaStoryboard;
+			sourceTree = "<group>";
+		};
+		4AD192ED2C0CF69200EF34D0 /* NadaStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192EE2C0CF6EA00EF34D0 /* NadaStoryboard.storyboard */,
+			);
+			path = NadaStoryboard;
+			sourceTree = "<group>";
+		};
+		4AD192F22C0CF71100EF34D0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192F32C0CF73400EF34D0 /* Constant.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4AD192F52C0CF74D00EF34D0 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4AD192F62C0CF76B00EF34D0 /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +279,14 @@
 			dependencies = (
 			);
 			name = Shopify;
+			packageProductDependencies = (
+				4AD192D02C0CEDD300EF34D0 /* RealmSwift */,
+				4AD192D32C0CF04200EF34D0 /* Kingfisher */,
+				4AD192D62C0CF40700EF34D0 /* Lottie */,
+				4AD192D92C0CF43000EF34D0 /* RxAlamofire */,
+				4AD192DC2C0CF53900EF34D0 /* Reachability */,
+				4AD192DF2C0CF55B00EF34D0 /* Cosmos */,
+			);
 			productName = Shopify;
 			productReference = 4AD1929C2C0CEAFA00EF34D0 /* Shopify.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +359,14 @@
 				Base,
 			);
 			mainGroup = 4AD192932C0CEAFA00EF34D0;
+			packageReferences = (
+				4AD192CF2C0CEDD300EF34D0 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				4AD192D22C0CF04200EF34D0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				4AD192D52C0CF40700EF34D0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				4AD192D82C0CF43000EF34D0 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				4AD192DB2C0CF53900EF34D0 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				4AD192DE2C0CF55B00EF34D0 /* XCRemoteSwiftPackageReference "Cosmos" */,
+			);
 			productRefGroup = 4AD1929D2C0CEAFA00EF34D0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,6 +384,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD192AC2C0CEAFE00EF34D0 /* LaunchScreen.storyboard in Resources */,
+				4AD192EF2C0CF6EA00EF34D0 /* NadaStoryboard.storyboard in Resources */,
+				4AD192F12C0CF6FD00EF34D0 /* MinaStoryboard.storyboard in Resources */,
 				4AD192A92C0CEAFE00EF34D0 /* Assets.xcassets in Resources */,
 				4AD192A72C0CEAFA00EF34D0 /* Main.storyboard in Resources */,
 			);
@@ -258,9 +412,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AD192A42C0CEAFA00EF34D0 /* ViewController.swift in Sources */,
+				4AD192A42C0CEAFA00EF34D0 /* HomeScreenViewController.swift in Sources */,
 				4AD192A02C0CEAFA00EF34D0 /* AppDelegate.swift in Sources */,
 				4AD192A22C0CEAFA00EF34D0 /* SceneDelegate.swift in Sources */,
+				4AD192F72C0CF76B00EF34D0 /* MainCoordinator.swift in Sources */,
+				4AD192F42C0CF73400EF34D0 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +763,90 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4AD192CF2C0CEDD300EF34D0 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		4AD192D22C0CF04200EF34D0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		4AD192D52C0CF40700EF34D0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
+		4AD192D82C0CF43000EF34D0 /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		4AD192DB2C0CF53900EF34D0 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		4AD192DE2C0CF55B00EF34D0 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 25.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4AD192D02C0CEDD300EF34D0 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AD192CF2C0CEDD300EF34D0 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		4AD192D32C0CF04200EF34D0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AD192D22C0CF04200EF34D0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		4AD192D62C0CF40700EF34D0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AD192D52C0CF40700EF34D0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		4AD192D92C0CF43000EF34D0 /* RxAlamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AD192D82C0CF43000EF34D0 /* XCRemoteSwiftPackageReference "RxAlamofire" */;
+			productName = RxAlamofire;
+		};
+		4AD192DC2C0CF53900EF34D0 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AD192DB2C0CF53900EF34D0 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			productName = Reachability;
+		};
+		4AD192DF2C0CF55B00EF34D0 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AD192DE2C0CF55B00EF34D0 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4AD192942C0CEAFA00EF34D0 /* Project object */;
 }
