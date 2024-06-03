@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39280C632C0E711B00C12A23 /* ProductsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39280C622C0E711B00C12A23 /* ProductsInfoViewController.swift */; };
+		39280C672C0E71A700C12A23 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39280C652C0E71A700C12A23 /* ReviewTableViewCell.swift */; };
+		39280C682C0E71A700C12A23 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39280C662C0E71A700C12A23 /* ReviewTableViewCell.xib */; };
+		39280C6B2C0E71CE00C12A23 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39280C6A2C0E71CE00C12A23 /* Review.swift */; };
+		39280C702C0E726600C12A23 /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39280C6F2C0E726600C12A23 /* ReviewsViewController.swift */; };
 		4AD192A02C0CEAFA00EF34D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1929F2C0CEAFA00EF34D0 /* AppDelegate.swift */; };
 		4AD192A22C0CEAFA00EF34D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192A12C0CEAFA00EF34D0 /* SceneDelegate.swift */; };
 		4AD192A42C0CEAFA00EF34D0 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192A32C0CEAFA00EF34D0 /* HomeScreenViewController.swift */; };
@@ -46,6 +51,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		39280C622C0E711B00C12A23 /* ProductsInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsInfoViewController.swift; sourceTree = "<group>"; };
+		39280C652C0E71A700C12A23 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		39280C662C0E71A700C12A23 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
+		39280C6A2C0E71CE00C12A23 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		39280C6F2C0E726600C12A23 /* ReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		4AD1929C2C0CEAFA00EF34D0 /* Shopify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD1929F2C0CEAFA00EF34D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AD192A12C0CEAFA00EF34D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +106,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39280C612C0E709E00C12A23 /* ProductInfo */ = {
+			isa = PBXGroup;
+			children = (
+				39280C642C0E718E00C12A23 /* View */,
+			);
+			path = ProductInfo;
+			sourceTree = "<group>";
+		};
+		39280C642C0E718E00C12A23 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39280C622C0E711B00C12A23 /* ProductsInfoViewController.swift */,
+				39280C652C0E71A700C12A23 /* ReviewTableViewCell.swift */,
+				39280C662C0E71A700C12A23 /* ReviewTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		39280C692C0E71BF00C12A23 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				39280C6A2C0E71CE00C12A23 /* Review.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		39280C6C2C0E71E800C12A23 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				39280C6E2C0E725C00C12A23 /* View */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		39280C6D2C0E721B00C12A23 /* ProductInfo-Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				39280C6C2C0E71E800C12A23 /* Reviews */,
+				39280C612C0E709E00C12A23 /* ProductInfo */,
+				39280C692C0E71BF00C12A23 /* Models */,
+			);
+			path = "ProductInfo-Reviews";
+			sourceTree = "<group>";
+		};
+		39280C6E2C0E725C00C12A23 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39280C6F2C0E726600C12A23 /* ReviewsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4AD192932C0CEAFA00EF34D0 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +214,7 @@
 		4AD192E22C0CF5B300EF34D0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				39280C6D2C0E721B00C12A23 /* ProductInfo-Reviews */,
 				4AD192E32C0CF5BD00EF34D0 /* HomeScreen */,
 			);
 			path = Modules;
@@ -386,6 +449,7 @@
 				4AD192AC2C0CEAFE00EF34D0 /* LaunchScreen.storyboard in Resources */,
 				4AD192EF2C0CF6EA00EF34D0 /* NadaStoryboard.storyboard in Resources */,
 				4AD192F12C0CF6FD00EF34D0 /* MinaStoryboard.storyboard in Resources */,
+				39280C682C0E71A700C12A23 /* ReviewTableViewCell.xib in Resources */,
 				4AD192A92C0CEAFE00EF34D0 /* Assets.xcassets in Resources */,
 				4AD192A72C0CEAFA00EF34D0 /* Main.storyboard in Resources */,
 			);
@@ -412,10 +476,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39280C632C0E711B00C12A23 /* ProductsInfoViewController.swift in Sources */,
+				39280C6B2C0E71CE00C12A23 /* Review.swift in Sources */,
 				4AD192A42C0CEAFA00EF34D0 /* HomeScreenViewController.swift in Sources */,
 				4AD192A02C0CEAFA00EF34D0 /* AppDelegate.swift in Sources */,
+				39280C702C0E726600C12A23 /* ReviewsViewController.swift in Sources */,
 				4AD192A22C0CEAFA00EF34D0 /* SceneDelegate.swift in Sources */,
 				4AD192F72C0CF76B00EF34D0 /* MainCoordinator.swift in Sources */,
+				39280C672C0E71A700C12A23 /* ReviewTableViewCell.swift in Sources */,
 				4AD192F42C0CF73400EF34D0 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
