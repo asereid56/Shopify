@@ -8,5 +8,7 @@
 import UIKit
 
 class BrandsCollectionCell: UICollectionViewCell {
+   
+    @IBOutlet weak var brandImage: UIImageView!
     
 }

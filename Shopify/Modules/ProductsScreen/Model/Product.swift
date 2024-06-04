@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Product {
+    var image : String
+    var name : String
+    var salary : Int
+}

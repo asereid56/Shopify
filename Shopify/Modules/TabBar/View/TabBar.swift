@@ -17,10 +17,13 @@ class TabBar : UITabBarController {
         
         let categoryScreen = storyboard?.instantiateViewController(withIdentifier: "CategoryScreenViewController") as! CategoryScreenViewController
         
+        let profileScreen = storyboard?.instantiateViewController(identifier: "ProfileScreenViewController") as! ProfileScreenViewController
+        
         homeScreen.coordinator = coordinator
         categoryScreen.coordinator = coordinator
+        profileScreen.coordinator = coordinator
         
-        viewControllers = [homeScreen , categoryScreen]
+        viewControllers = [homeScreen , categoryScreen , profileScreen]
     
     }
     

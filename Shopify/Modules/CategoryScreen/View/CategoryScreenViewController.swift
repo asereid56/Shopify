@@ -8,6 +8,7 @@
 import UIKit
 
 class CategoryScreenViewController: UIViewController {
+    var coordinator : MainCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()

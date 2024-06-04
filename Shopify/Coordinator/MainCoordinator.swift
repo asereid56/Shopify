@@ -26,10 +26,14 @@ class MainCoordinator : Coordinator {
     
     func start() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+        let tabBar = storyboard.instantiateViewController(withIdentifier: "TabBar") as! TabBar
         
-        homeScreenVC.coordinator = self
-        navigationController.pushViewController(homeScreenVC, animated: false)
+        tabBar.coordinator = self
+        navigationController.pushViewController(tabBar, animated: false)
+           
+    //    let products = storyboard.instantiateViewController(withIdentifier: "ProductsScreenViewController") as! ProductsScreenViewController
+    //    productScreen.coordinator = self
+    //    navigationController.pushViewController(products, animated: false)
     }
     
 }
