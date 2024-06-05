@@ -6,16 +6,17 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeScreenViewController: UIViewController {
     
     var coordinator : MainCoordinator?
-
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
+    
+    
 }
 
