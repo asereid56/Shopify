@@ -25,10 +25,10 @@ class MainCoordinator : Coordinator {
     }
     
     func start() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
         
-        homeScreenVC.coordinator = self
+        //homeScreenVC.coordinator = self
         navigationController.pushViewController(homeScreenVC, animated: false)
     }
     
