@@ -52,6 +52,8 @@ class MainCoordinator : Coordinator {
     
     func goToAddresses(){
         let addressesVC = AddressesViewController.instantiate(storyboardName:"Setting")
+        let viewModel = AddressesViewModel(networkService: NetworkService(), customerId: "7484134097049")
+        addressesVC.viewModel = viewModel
         addressesVC.coordinator = self
         navigationController.pushViewController(addressesVC, animated: false)
     }

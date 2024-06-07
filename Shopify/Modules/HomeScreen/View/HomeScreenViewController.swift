@@ -7,16 +7,18 @@
 
 import UIKit
 import RxSwift
+import Alamofire
 
 class HomeScreenViewController: UIViewController {
     
     var coordinator : MainCoordinator?
-    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    
 }
+    
+    
+
 
