@@ -18,7 +18,7 @@ class AddressesViewController: UIViewController ,Storyboarded {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         tableView.delegate = self
-        
+        setUpSelectTableViewCell()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,12 +49,22 @@ class AddressesViewController: UIViewController ,Storyboarded {
                 self?.setConfirmationAlert(indexPath: indexPath)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setUpSelectTableViewCell() {
+        tableView.rx
+            .itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                print("Selected row: \(indexPath.row)")
+                do {
+                    let selectedItem: Address = try self.tableView.rx.model(at: indexPath)
+                    coordinator?.goToEditAddress(address: selectedItem)
+                } catch {
+                    print("Error getting model at \(indexPath): \(error)")
+                }
+            }).disposed(by: disposeBag)
         
-        // Handle cell selection if needed
-//        tableView.rx.modelSelected(AddressList.self)
-//            .subscribe(onNext: { model in
-//                print("Selected model: \(model)")
-//            })
     }
     
     func setConfirmationAlert(indexPath : IndexPath){

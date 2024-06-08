@@ -2,12 +2,13 @@
 //  AddressesTableViewCell.swift
 //  Shopify
 //
-//  Created by Apple on 05/06/2024.
+//  Created by Apple on 07/06/2024.
 //
 
 import UIKit
 
 class AddressesTableViewCell: UITableViewCell {
+
     @IBOutlet weak var address: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -16,5 +17,5 @@ class AddressesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
        // super.setSelected(selected, animated: animated)
     }
-    
+
 }

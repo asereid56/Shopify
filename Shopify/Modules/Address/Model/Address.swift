@@ -1,12 +1,3 @@
-//
-//  Address.swift
-//  Shopify
-//
-//  Created by Apple on 05/06/2024.
-//
-
-import Foundation
-
 struct Address: Codable {
     var id: Int?
     var customerId: Int?
