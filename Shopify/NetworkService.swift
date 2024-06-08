@@ -4,7 +4,6 @@
 //
 //  Created by Apple on 04/06/2024.
 //
-
 import Foundation
 import RxSwift
 import RxAlamofire
@@ -14,12 +13,19 @@ enum APIEndpoint: String {
     case postUserAddress = "/api/user/address"
     case createCustomer  = "/customers.json"
     case address = "/customers/{customer_id}/addresses.json"
+    case editOrDeleteAddress = "/customers/{customer_id}/addresses/{address_id}.json"
 }
 
 // Define a protocol for NetworkService
 protocol NetworkServiceProtocol {
-    func request<T: Decodable>(url : String , endpoint: String, method: HTTPMethod, parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<T>
-    func post<T: Codable>(url : String ,endpoint: String, body: T, headers: HTTPHeaders?) -> Observable<(HTTPURLResponse, Data)>
+    func get<T: Decodable>(url : String , endpoint: String,  parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<T>
+    func post<T: Encodable, U: Decodable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?, responseType: U.Type) -> Observable<(Bool, String?, U?)>
+    func delete(url: String, endpoint: String, parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<Int>
+    func put<T: Codable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?) -> Observable<(HTTPURLResponse, Data)>
+}
+
+enum NetworkError: Error {
+    case invalidStatusCode(message: String)
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -29,16 +35,18 @@ class NetworkService: NetworkServiceProtocol {
     private func createRequestDetails(url : String ,endpoint: String, headers: HTTPHeaders?) -> (String, HTTPHeaders) {
         let url = "\(NetworkConstants.baseURL)\(endpoint)"
         var combinedHeaders = headers ?? HTTPHeaders()
-        combinedHeaders.add(name: "Authorization", value: NetworkConstants.apiKey)
+       // combinedHeaders.add(name: "Authorization", value: NetworkConstants.apiKey)
+        combinedHeaders.add(name: "X-Shopify-Access-Token", value: Constant.adminApiAccessToken)
+        combinedHeaders.add(name: "Content", value: "application/json")
         return (url, combinedHeaders)
     }
 
-    // Generic function to make network requests
-    func request<T: Decodable>(url : String ,endpoint: String, method: HTTPMethod = .get, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<T> {
+    // Generic function to get data
+    func get<T: Decodable>(url : String = NetworkConstants.baseURL ,endpoint: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<T> {
         let (url, combinedHeaders) = createRequestDetails(url : url ,endpoint: endpoint, headers: headers)
 
         return RxAlamofire
-            .requestData(method, url, parameters: parameters, encoding: URLEncoding.default, headers: combinedHeaders)
+            .requestData(.get, url, parameters: parameters, encoding: URLEncoding.default, headers: combinedHeaders)
             .flatMap { response, data -> Observable<T> in
                 do {
                     let decodedObject = try JSONDecoder().decode(T.self, from: data)
@@ -50,17 +58,56 @@ class NetworkService: NetworkServiceProtocol {
     }
 
     // Generic function to post data
-    func post<T: Codable>(url: String, endpoint: String, body: T, headers: HTTPHeaders? = nil) ->Observable<(HTTPURLResponse, Data)>  {
+    func post<T: Encodable, U: Decodable>(url: String = NetworkConstants.baseURL, endpoint: String, body: T, headers: HTTPHeaders? = nil, responseType: U.Type) -> Observable<(Bool, String?, U?)> {
         let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
-        
+        print(completeURL)
+        return RxAlamofire
+            .requestDecodable(.post, completeURL, parameters: body.dictionary, encoding: JSONEncoding.default, headers: combinedHeaders)
+            .flatMap { (response, value) -> Observable<(Bool, String?, U?)> in
+                let statusCode = response.statusCode
+                if (200...299).contains(statusCode) {
+                    return Observable.just((true, "Succeeded with status code: \(statusCode)", value))
+                } else {
+                    return Observable.just((false, "Request failed with status code: \(statusCode)", nil))
+                }
+            }
+            .catchError { error in
+                Observable.just((false, "Request error: \(error.localizedDescription)", nil))
+            }
+    }
+
+
+    //Generic function to delete data
+    func delete(url: String = NetworkConstants.baseURL, endpoint: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<Int> {
+        let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
+
+        return Observable.create { observer in
+            let disposable = RxAlamofire.requestData(.delete, completeURL, parameters: parameters, encoding: URLEncoding.default, headers: combinedHeaders)
+                .subscribe(onNext: { (response, _) in
+                    observer.onNext(response.statusCode)
+                    observer.onCompleted()
+                }, onError: { error in
+                    observer.onError(error)
+                })
+
+            return Disposables.create {
+                disposable.dispose()
+            }
+        }
+    }
+    
+    //Generic function to put data
+    func put<T: Codable>(url: String = NetworkConstants.baseURL, endpoint: String, body: T, headers: HTTPHeaders? = nil) -> Observable<(HTTPURLResponse, Data)> {
+        let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
+
         do {
             let jsonData = try JSONEncoder().encode(body)
             return Observable.create { observer in
                 var request = URLRequest(url: URL(string: completeURL)!)
-                request.httpMethod = HTTPMethod.post.rawValue
+                request.httpMethod = HTTPMethod.put.rawValue
                 request.headers = combinedHeaders
                 request.httpBody = jsonData
-                
+
                 let disposable = RxAlamofire.request(request)
                     .responseData()
                     .subscribe(onNext: { (response, data) in
@@ -69,7 +116,7 @@ class NetworkService: NetworkServiceProtocol {
                     }, onError: { error in
                         observer.onError(error)
                     })
-                
+
                 return Disposables.create {
                     disposable.dispose()
                 }
@@ -78,64 +125,14 @@ class NetworkService: NetworkServiceProtocol {
             return Observable.error(error)
         }
     }
+
 }
 
-
-class Address: Codable {
-    var id: Int?
-    var customerId: Int?
-    var firstName: String?
-    var lastName: String?
-    var company: String?
-    var address1: String?
-    var address2: String?
-    var city: String?
-    var province: String?
-    var country: String?
-    var zip: String?
-    var phone: String?
-    var name: String?
-    var provinceCode: String?
-    var countryCode: String?
-    var countryName: String?
-    var `default`: Bool?
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case customerId = "customer_id"
-        case firstName = "first_name"
-        case lastName = "last_name"
-        case company
-        case address1
-        case address2
-        case city
-        case province
-        case country
-        case zip
-        case phone
-        case name
-        case provinceCode = "province_code"
-        case countryCode = "country_code"
-        case countryName = "country_name"
-        case `default`
+extension Encodable {
+    var dictionary: [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
 }
 
-class AddressList: Codable {
-    var addresses: [Address]?
 
-    enum CodingKeys: String, CodingKey {
-        case addresses = "addresses"
-    }
-}
-
-struct Customer: Codable {
-    let customer: CustomerDetails
-}
-
-struct CustomerDetails: Codable {
-    let firstName: String
-    let lastName: String
-    let email: String
-    // Add other customer attributes as needed
-}

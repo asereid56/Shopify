@@ -30,6 +30,13 @@ class MainCoordinator : Coordinator {
         
         //homeScreenVC.coordinator = self
         navigationController.pushViewController(homeScreenVC, animated: false)
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+//        
+//        homeScreenVC.coordinator = self
+//        navigationController.pushViewController(homeScreenVC, animated: false)
+        
+        goToSettings()
     }
     
     func goToSettings(){
@@ -52,8 +59,18 @@ class MainCoordinator : Coordinator {
     
     func goToAddresses(){
         let addressesVC = AddressesViewController.instantiate(storyboardName:"Setting")
+        let viewModel = AddressesViewModel(networkService: NetworkService(), customerId: "7484134097049")
+        addressesVC.viewModel = viewModel
         addressesVC.coordinator = self
         navigationController.pushViewController(addressesVC, animated: false)
+    }
+    
+    func goToEditAddress(address : Address){
+        let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
+        let viewModel = NewAddressViewModel(address: address, networkService: NetworkService(), customerId: "7484134097049")
+        newAddressVC.viewModel = viewModel
+        newAddressVC.coordinator = self
+        navigationController.pushViewController(newAddressVC, animated: false)
     }
     
     func goToNewAddress(){
