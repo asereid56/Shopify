@@ -37,13 +37,20 @@ class AddressesViewModel : AddressesViewModelProtocol{
         let endpoint = APIEndpoint.address.rawValue.replacingOccurrences(of: "{customer_id}", with:customerId )
          //Call
          networkService.get(endpoint: endpoint)
-            .subscribe(onNext: {  (data: AddressList) in
-                self.dataSubject.onNext(data.addresses!)
-            }, onError: { error in
-                print("Enter3")
-                print(error)
-            })
-            .disposed(by: disposeBag)
+             .map { (addressList: AddressList) -> [Address] in
+                 var addresses = addressList.addresses ?? []
+                 if let defaultIndex = addresses.firstIndex(where: { $0.default == true }) {
+                     let defaultAddress = addresses.remove(at: defaultIndex)
+                     addresses.insert(defaultAddress, at: 0)
+                 }
+                 return addresses
+             }
+             .subscribe(onNext: { addresses in
+                 self.dataSubject.onNext(addresses)
+             }, onError: { error in
+                 print("Error fetching addresses: \(error)")
+             })
+             .disposed(by: disposeBag)
     }
     
     func deleteItem(at index: Int) -> Bool {

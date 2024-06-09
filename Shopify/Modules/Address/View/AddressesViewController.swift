@@ -41,6 +41,12 @@ class AddressesViewController: UIViewController ,Storyboarded {
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: AddressesTableViewCell.self)) { (row, model, cell) in
                 print(model.address1!)
                 cell.address.text = model.address1
+                if row == 0 {
+                    cell.checkMark.isHidden = false
+                } else {
+                    cell.checkMark.isHidden = true
+
+                }
             }
             .disposed(by: disposeBag)
         

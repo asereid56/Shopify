@@ -10,7 +10,6 @@ import RxAlamofire
 import Alamofire
 
 enum APIEndpoint: String {
-    case postUserAddress = "/api/user/address"
     case createCustomer  = "/customers.json"
     case address = "/customers/{customer_id}/addresses.json"
     case editOrDeleteAddress = "/customers/{customer_id}/addresses/{address_id}.json"
@@ -21,7 +20,8 @@ protocol NetworkServiceProtocol {
     func get<T: Decodable>(url : String , endpoint: String,  parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<T>
     func post<T: Encodable, U: Decodable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?, responseType: U.Type) -> Observable<(Bool, String?, U?)>
     func delete(url: String, endpoint: String, parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<Int>
-    func put<T: Codable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?) -> Observable<(HTTPURLResponse, Data)>
+//    func put<T: Codable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?) -> Observable<(HTTPURLResponse, Data)>
+    func put<T: Encodable, U: Decodable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?, responseType: U.Type) -> Observable<(Bool, String?, U?)>
 }
 
 enum NetworkError: Error {
@@ -95,35 +95,51 @@ class NetworkService: NetworkServiceProtocol {
             }
         }
     }
-    
     //Generic function to put data
-    func put<T: Codable>(url: String = NetworkConstants.baseURL, endpoint: String, body: T, headers: HTTPHeaders? = nil) -> Observable<(HTTPURLResponse, Data)> {
+//    func put<T: Codable>(url: String = NetworkConstants.baseURL, endpoint: String, body: T, headers: HTTPHeaders? = nil) -> Observable<(HTTPURLResponse, Data)> {
+//        let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
+//        print(completeURL)
+//        do {
+//            let jsonData = try JSONEncoder().encode(body)
+//            return Observable.create { observer in
+//                var request = URLRequest(url: URL(string: completeURL)!)
+//                request.httpMethod = HTTPMethod.put.rawValue
+//                request.headers = combinedHeaders
+//                request.httpBody = jsonData
+//
+//                let disposable = RxAlamofire.request(request)
+//                    .responseData()
+//                    .subscribe(onNext: { (response, data) in
+//                        observer.onNext((response , data))
+//                        observer.onCompleted()
+//                    }, onError: { error in
+//                        observer.onError(error)
+//                    })
+//
+//                return Disposables.create {
+//                    disposable.dispose()
+//                }
+//            }
+//        } catch {
+//            return Observable.error(error)
+//        }
+//    }
+    func put<T: Encodable, U: Decodable>(url: String = NetworkConstants.baseURL, endpoint: String, body: T, headers: HTTPHeaders? = nil, responseType: U.Type) -> Observable<(Bool, String?, U?)> {
         let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
-
-        do {
-            let jsonData = try JSONEncoder().encode(body)
-            return Observable.create { observer in
-                var request = URLRequest(url: URL(string: completeURL)!)
-                request.httpMethod = HTTPMethod.put.rawValue
-                request.headers = combinedHeaders
-                request.httpBody = jsonData
-
-                let disposable = RxAlamofire.request(request)
-                    .responseData()
-                    .subscribe(onNext: { (response, data) in
-                        observer.onNext((response , data))
-                        observer.onCompleted()
-                    }, onError: { error in
-                        observer.onError(error)
-                    })
-
-                return Disposables.create {
-                    disposable.dispose()
+        print(completeURL)
+        return RxAlamofire
+            .requestDecodable(.put, completeURL, parameters: body.dictionary, encoding: JSONEncoding.default, headers: combinedHeaders)
+            .flatMap { (response, value) -> Observable<(Bool, String?, U?)> in
+                let statusCode = response.statusCode
+                if (200...299).contains(statusCode) {
+                    return Observable.just((true, "Succeeded with status code: \(statusCode)", value))
+                } else {
+                    return Observable.just((false, "Request failed with status code: \(statusCode)", nil))
                 }
             }
-        } catch {
-            return Observable.error(error)
-        }
+            .catchError { error in
+                Observable.just((false, "Request error: \(error.localizedDescription)", nil))
+            }
     }
 
 }

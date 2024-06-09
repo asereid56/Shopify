@@ -9,6 +9,7 @@ import UIKit
 
 class AddressesTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var checkMark: UIImageView!
     @IBOutlet weak var address: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

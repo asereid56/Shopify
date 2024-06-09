@@ -25,11 +25,11 @@ class MainCoordinator : Coordinator {
     }
     
     func start() {
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
+  //     let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+//        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
         
         //homeScreenVC.coordinator = self
-        navigationController.pushViewController(homeScreenVC, animated: false)
+      //  navigationController.pushViewController(homeScreenVC, animated: false)
 //        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 //        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
 //        
@@ -59,7 +59,7 @@ class MainCoordinator : Coordinator {
     
     func goToAddresses(){
         let addressesVC = AddressesViewController.instantiate(storyboardName:"Setting")
-        let viewModel = AddressesViewModel(networkService: NetworkService(), customerId: "7484134097049")
+        let viewModel = AddressesViewModel(networkService: NetworkService(), customerId: "7504328687769")
         addressesVC.viewModel = viewModel
         addressesVC.coordinator = self
         navigationController.pushViewController(addressesVC, animated: false)
@@ -67,7 +67,7 @@ class MainCoordinator : Coordinator {
     
     func goToEditAddress(address : Address){
         let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
-        let viewModel = NewAddressViewModel(address: address, networkService: NetworkService(), customerId: "7484134097049")
+        let viewModel = NewAddressViewModel(address: address, networkService: NetworkService(), customerId: "7504328687769",dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
         newAddressVC.coordinator = self
         navigationController.pushViewController(newAddressVC, animated: false)
@@ -75,8 +75,18 @@ class MainCoordinator : Coordinator {
     
     func goToNewAddress(){
         let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
+        let viewModel = NewAddressViewModel(networkService: NetworkService(), customerId: "7504328687769",dataLoader: DataLoader())
+        newAddressVC.viewModel = viewModel
         newAddressVC.coordinator = self
         navigationController.pushViewController(newAddressVC, animated: false)
+    }
+    
+    func goToAddressMeunList(from viewController: NewAddressViewController, type : ListType , viewModel : NewAddressViewModelProtocol){
+        let menuListVC = MenuListViewController.instantiate(storyboardName:"Setting")
+        menuListVC.viewModel = viewModel
+        menuListVC.type = type
+        menuListVC.delegate = viewController
+        navigationController.present(menuListVC, animated: true)
     }
     
     func back() {
