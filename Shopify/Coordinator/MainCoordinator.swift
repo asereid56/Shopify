@@ -25,23 +25,13 @@ class MainCoordinator : Coordinator {
     }
     
     func start() {
-        //        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        //        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
-        //
-        //        navigationController.pushViewController(homeScreenVC, animated: false)
-        //        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        //        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
-        //        let homeViewModel = HomeScreenViewModel(network: NetworkService())
-        //
-        //        homeScreenVC.viewModel = homeViewModel
-        //        homeScreenVC.coordinator = self
-        //        navigationController.pushViewController(homeScreenVC, animated: false)
+        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let tabBar = storyboard.instantiateViewController(withIdentifier: "TabBar") as! TabBar
         
         tabBar.coordinator = self
         navigationController.pushViewController(tabBar, animated: false)
-        // goToSettings()
+        
     }
     
     func goToSettings(){
@@ -85,7 +75,7 @@ class MainCoordinator : Coordinator {
     }
     
     func back() {
-        navigationController.popToRootViewController(animated: true)
+        navigationController.popViewController(animated: true)
     }
     
     func gotoProductsScreen(with brandId: String) {

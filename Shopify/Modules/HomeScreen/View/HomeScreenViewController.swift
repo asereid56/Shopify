@@ -21,13 +21,13 @@ class HomeScreenViewController: UIViewController  {
     private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
     var adsArray : [AdsItems] = []
-    var brandsArray: [SmartCollection] = []
+    
     var timer : Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: false);
+        self.navigationController?.setNavigationBarHidden(true, animated: false);
         let nib = UINib(nibName: "BrandsCollectionXIBCell", bundle: nil)
         brandsCollection.register(nib, forCellWithReuseIdentifier: "brandCell")
         
@@ -44,8 +44,8 @@ class HomeScreenViewController: UIViewController  {
         
         brandsCollection.collectionViewLayout = createBrandsLayout()
         adsCollection.collectionViewLayout = createAdsLayout()
-        adsCollection.isPagingEnabled = true
-        
+       
+      selectBrandToNavigate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,11 +72,8 @@ class HomeScreenViewController: UIViewController  {
     }
     
     func setUpBrandsBinding() {
-        viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ [weak self] index , brand , cell in
-            
-            guard let self = self else { return }
-            self.brandsArray.append(brand)
-            
+        viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
+        
             cell.brandImage.kf.setImage(with: URL(string: brand.image.src))
             cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.borderWidth = 1.0
@@ -86,16 +83,17 @@ class HomeScreenViewController: UIViewController  {
         }
         .disposed(by: disposeBag)
         
-        brandsCollection.rx.itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
-                guard let self = self else { return }
-                let selectedBrand = self.brandsArray[indexPath.row]
-                self.coordinator?.gotoProductsScreen(with: String(selectedBrand.id))
-            })
-            .disposed(by: disposeBag)
-        
     }
     
+    func selectBrandToNavigate(){
+        brandsCollection.rx.modelSelected(SmartCollection.self)
+                   .subscribe(onNext: { [weak self] brand in
+                       guard let self = self else { return }
+                       self.coordinator?.gotoProductsScreen(with: String(brand.id))
+                   })
+                   .disposed(by: disposeBag)
+    }
+  
     func configurePageController(){
         self.pageController.numberOfPages = self.adsArray.count
         self.pageController.currentPage = 0
@@ -135,10 +133,10 @@ class HomeScreenViewController: UIViewController  {
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)
         )
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 1)
         
         let section = NSCollectionLayoutSection(group: group)
-        
+        section.orthogonalScrollingBehavior = .groupPagingCentered
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
@@ -146,16 +144,16 @@ class HomeScreenViewController: UIViewController  {
     
     func createBrandsLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(0.95)
+            widthDimension: .fractionalWidth(0.5),
+            heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0 / 2.0)
+            heightDimension: .fractionalHeight(1.0 / 2.1)
         )
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
         group.interItemSpacing = .fixed(5)
         
         let section = NSCollectionLayoutSection(group: group)

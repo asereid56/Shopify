@@ -19,15 +19,15 @@ class TabBar : UITabBarController {
         
         let profileScreen = storyboard?.instantiateViewController(identifier: "ProfileScreenViewController") as! ProfileScreenViewController
         
-        let homeViewModel = HomeScreenViewModel(network: NetworkService())
-        homeScreen.viewModel = homeViewModel
-        
         homeScreen.coordinator = coordinator
         categoryScreen.coordinator = coordinator
         profileScreen.coordinator = coordinator
         
-        viewControllers = [homeScreen , categoryScreen , profileScreen]
+        let homeScreenViewModel = HomeScreenViewModel(network: NetworkService())
+        homeScreen.viewModel = homeScreenViewModel
         
+        viewControllers = [homeScreen , categoryScreen , profileScreen]
+    
     }
     
 }
