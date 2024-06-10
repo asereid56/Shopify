@@ -85,7 +85,7 @@ class MainCoordinator : Coordinator {
     }
     
     func back() {
-        navigationController.popViewController(animated: true)
+        navigationController.popToRootViewController(animated: true)
     }
     
     func gotoProductsScreen(with brandId: String) {

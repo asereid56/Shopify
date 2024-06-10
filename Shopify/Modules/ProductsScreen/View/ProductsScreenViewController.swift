@@ -60,8 +60,7 @@ class ProductsScreenViewController: UIViewController, UICollectionViewDelegateFl
             .bind(to: numOfItems.rx.text)
             .disposed(by: disposeBag)
         
-        productsCollectionView.rx.setDelegate(self)
-                  .disposed(by: disposeBag)
+        productsCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -88,7 +87,7 @@ class ProductsScreenViewController: UIViewController, UICollectionViewDelegateFl
     
     
     @IBAction func backBtn(_ sender: Any) {
-        coordinator?.gotoHomeScreen()
+        coordinator?.back()
     }
     
     

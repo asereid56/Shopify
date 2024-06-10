@@ -195,7 +195,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2fW-df-dR9">
-                                <rect key="frame" x="16" y="439" width="358" height="304"/>
+                                <rect key="frame" x="16" y="439" width="358" height="405"/>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3iI-zy-cOx">
                                     <size key="itemSize" width="179" height="161"/>
@@ -271,10 +271,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="qdN-Qn-QZD"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="UaA-mJ-cY6"/>
-                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-Bd-ei6">
                                 <rect key="frame" x="333.66666666666669" y="45.666666666666657" width="40.333333333333314" height="40"/>
@@ -309,7 +305,7 @@
                             <constraint firstItem="f6f-cy-d6R" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="48" id="T4O-vZ-Foo"/>
                             <constraint firstItem="vz5-ar-09d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-8" id="VW6-7M-0pL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KDu-tr-wx4" secondAttribute="trailing" constant="16" id="XXM-Rz-GyH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2fW-df-dR9" secondAttribute="bottom" constant="18" id="ZV5-Jk-kGU"/>
+                            <constraint firstAttribute="bottom" secondItem="2fW-df-dR9" secondAttribute="bottom" id="ZV5-Jk-kGU"/>
                             <constraint firstItem="vz5-ar-09d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="efF-TW-JtA"/>
                             <constraint firstItem="2fW-df-dR9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="kwe-7b-MK9"/>
                             <constraint firstItem="FFY-s6-zCs" firstAttribute="top" secondItem="rzz-XL-fjt" secondAttribute="bottom" constant="8" id="o0a-Ot-BA6"/>

@@ -10,7 +10,7 @@ import RxSwift
 import Kingfisher
 import RxCocoa
 
-class HomeScreenViewController: UIViewController , UICollectionViewDelegateFlowLayout {
+class HomeScreenViewController: UIViewController  {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var adsCollection: UICollectionView!
@@ -39,21 +39,39 @@ class HomeScreenViewController: UIViewController , UICollectionViewDelegateFlowL
             AdsItems(image: "filaAds")
         ]
         
-        adsCollection.layer.cornerRadius = 15
         configurePageController()
         startAutoScrollingToAdsCollection()
-        brandsCollection.delegate = self
-        brandsCollection.dataSource = nil
+        
+        brandsCollection.collectionViewLayout = createBrandsLayout()
+        adsCollection.collectionViewLayout = createAdsLayout()
+        adsCollection.isPagingEnabled = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        adsCollection.delegate = nil
+        adsCollection.dataSource = nil
+        brandsCollection.delegate = nil
+        brandsCollection.dataSource = nil
         viewModel?.fetchBranchs()
-        setUpBinding()
+        setUpBrandsBinding()
+        setUpAdsBinding()
     }
     
-    func setUpBinding() {
+    func setUpAdsBinding() {
+        Observable.just(adsArray)
+            .bind(to: adsCollection.rx.items(cellIdentifier: "adsCell", cellType: AdsCollectionCell.self)) { index, adsItem, cell in
+                
+                cell.adsImage.image = UIImage(named: adsItem.image)
+                cell.layer.cornerRadius = 15
+                cell.layer.masksToBounds = true
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    func setUpBrandsBinding() {
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ [weak self] index , brand , cell in
             
             guard let self = self else { return }
@@ -64,7 +82,7 @@ class HomeScreenViewController: UIViewController , UICollectionViewDelegateFlowL
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 15
             cell.layer.masksToBounds = true
-      
+            
         }
         .disposed(by: disposeBag)
         
@@ -106,59 +124,48 @@ class HomeScreenViewController: UIViewController , UICollectionViewDelegateFlowL
         pageController.currentPage = nextItem
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == brandsCollection {
-            let width = (collectionView.frame.width - 15) / 3
-            let height = (collectionView.frame.height - 10) / 3
-            return CGSize(width: width, height: height)
-        }else {
-            let width = collectionView.frame.width
-            let height = collectionView.frame.height
-            return CGSize(width: width, height: height)
-        }
+    func createAdsLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+    
+    
+    func createBrandsLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(0.95)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0 / 2.0)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        group.interItemSpacing = .fixed(5)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 5
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
     
     @IBAction func cartBtn(_ sender: Any) {
         
     }
-}
-
-extension HomeScreenViewController : UICollectionViewDelegate , UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == adsCollection {
-            return adsArray.count
-        }else{
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == adsCollection {
-            let selectedAds = adsArray[indexPath.row]
-            let cell = adsCollection.dequeueReusableCell(withReuseIdentifier: "adsCell", for: indexPath) as! AdsCollectionCell
-            cell.adsImage.image = UIImage(named: selectedAds.image)
-            cell.layer.cornerRadius = 15
-            cell.layer.masksToBounds = true
-            return cell
-        }else {
-            //            let selectedBrand = brandsArray[indexPath.row]
-            //            let cell = brandsCollection.dequeueReusableCell(withReuseIdentifier: "brandCell", for: indexPath) as! BrandsCollectionCell
-            //            cell.brandImage.image = UIImage(named: selectedBrand.image)
-            //
-            //            cell.layer.borderColor = UIColor.black.cgColor
-            //            cell.layer.borderWidth = 1.0
-            //            cell.layer.cornerRadius = 15
-            //            cell.layer.masksToBounds = true
-            //            return cell
-            fatalError("brands will appear in binding")
-            
-        }
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.1
-    }
-    
 }
