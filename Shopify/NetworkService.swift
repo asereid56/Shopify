@@ -14,6 +14,8 @@ enum APIEndpoint: String {
     case createCustomer  = "/customers.json"
     case address = "/customers/{customer_id}/addresses.json"
     case editOrDeleteAddress = "/customers/{customer_id}/addresses/{address_id}.json"
+    case brands = "/smart_collections.json"
+    case products = "/products.json?collection_id={brand_id}"
 }
 
 // Define a protocol for NetworkService
@@ -44,7 +46,7 @@ class NetworkService: NetworkServiceProtocol {
     // Generic function to get data
     func get<T: Decodable>(url : String = NetworkConstants.baseURL ,endpoint: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<T> {
         let (url, combinedHeaders) = createRequestDetails(url : url ,endpoint: endpoint, headers: headers)
-
+print(url)
         return RxAlamofire
             .requestData(.get, url, parameters: parameters, encoding: URLEncoding.default, headers: combinedHeaders)
             .flatMap { response, data -> Observable<T> in

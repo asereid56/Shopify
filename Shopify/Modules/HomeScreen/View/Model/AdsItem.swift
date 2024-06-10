@@ -10,6 +10,4 @@ import Foundation
 struct AdsItems {
     var image : String
 }
-struct Brands{
-    var image : String
-}
+

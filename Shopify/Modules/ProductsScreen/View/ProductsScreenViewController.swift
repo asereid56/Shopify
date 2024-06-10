@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import Kingfisher
 
 class ProductsScreenViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
@@ -13,11 +16,11 @@ class ProductsScreenViewController: UIViewController, UICollectionViewDelegateFl
     @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var brandName: UILabel!
     @IBOutlet weak var sortView: UIView!
-    
     @IBOutlet weak var sortViewHeightConstraint: NSLayoutConstraint!
     
-    
-    var products : [Product] = []
+    var viewModel : ProductScreenViewModelProtocol?
+    private let disposeBag = DisposeBag()
+    var coordinator : MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +28,40 @@ class ProductsScreenViewController: UIViewController, UICollectionViewDelegateFl
         // Do any additional setup after loading the view.
         let nib = UINib(nibName: "ProductCollectionXIBCell", bundle: nil)
         productsCollectionView.register(nib, forCellWithReuseIdentifier: "ProductCell")
-        products = [
-            Product(image: "nike", name: "ADIDAS | CLASSIC BACKPACK", salary: 100),
-            Product(image: "addidas", name: "ADIDAS | CLASSIC BACKPACK", salary: 250),
-            Product(image: "puma", name: "ADIDAS | CLASSIC BACKPACK", salary: 300),
-            Product(image: "nike", name: "ADIDAS | CLASSIC BACKPACK", salary: 200),
-            Product(image: "addidas", name: "CLASSIC BACKPACK | LEGEND INK MULTICOLOUR", salary: 100),
-            Product(image: "nike", name: "CLASSIC BACKPACK | LEGEND INK MULTICOLOUR", salary: 150),
-            Product(image: "addidas", name: "ADIDAS | CLASSIC BACKPACK", salary: 120),
-            Product(image: "nike", name: "Puma", salary: 126),
-            Product(image: "puma", name: "Puma", salary: 121),
-            Product(image: "nike", name: "Puma", salary: 150),
-        ]
         
+        productsCollectionView.delegate = nil
+        productsCollectionView.dataSource = nil
+
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel?.fetchProducts()
+        setUpBinding()
+       
+    }
+    
+    func setUpBinding(){
+        viewModel?.data.drive(productsCollectionView.rx.items(cellIdentifier: "ProductCell", cellType: ProductCollectionXIBCell.self)){ [weak self] index , product , cell in
+            
+            cell.productCost.text = String(product.variants.first??.price ?? "")
+            cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
+            cell.productName.text = product.title
+            cell.layer.cornerRadius = 15
+            cell.layer.masksToBounds = true
+            
+            self?.brandName.text = product.vendor
+        }.disposed(by: disposeBag)
+        
+        viewModel?.productsCount
+            .map { "\($0) items"}
+            .bind(to: numOfItems.rx.text)
+            .disposed(by: disposeBag)
+        
+        productsCollectionView.rx.setDelegate(self)
+                  .disposed(by: disposeBag)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -64,6 +88,7 @@ class ProductsScreenViewController: UIViewController, UICollectionViewDelegateFl
     
     
     @IBAction func backBtn(_ sender: Any) {
+        coordinator?.gotoHomeScreen()
     }
     
     
@@ -73,20 +98,11 @@ class ProductsScreenViewController: UIViewController, UICollectionViewDelegateFl
 extension ProductsScreenViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let selectedAds = products[indexPath.row]
-        let cell = productsCollectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCollectionXIBCell
-        
-        cell.productCost.text = String(selectedAds.salary)
-        cell.productImage.image = UIImage(named: selectedAds.image)
-        cell.productName.text = selectedAds.name
-        cell.layer.cornerRadius = 15
-        cell.layer.masksToBounds = true
-        return cell
+        fatalError("brands will appear in binding")
     }
     
     

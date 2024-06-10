@@ -16,7 +16,7 @@ protocol Coordinator {
 }
 
 class MainCoordinator : Coordinator {
-   
+    
     var childCoordinators = [Coordinator]()
     var navigationController : UINavigationController
     
@@ -25,18 +25,23 @@ class MainCoordinator : Coordinator {
     }
     
     func start() {
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
+        //        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        //        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
+        //
+        //        navigationController.pushViewController(homeScreenVC, animated: false)
+        //        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        //        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+        //        let homeViewModel = HomeScreenViewModel(network: NetworkService())
+        //
+        //        homeScreenVC.viewModel = homeViewModel
+        //        homeScreenVC.coordinator = self
+        //        navigationController.pushViewController(homeScreenVC, animated: false)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let tabBar = storyboard.instantiateViewController(withIdentifier: "TabBar") as! TabBar
         
-        //homeScreenVC.coordinator = self
-        navigationController.pushViewController(homeScreenVC, animated: false)
-//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
-//        
-//        homeScreenVC.coordinator = self
-//        navigationController.pushViewController(homeScreenVC, animated: false)
-        
-        goToSettings()
+        tabBar.coordinator = self
+        navigationController.pushViewController(tabBar, animated: false)
+        // goToSettings()
     }
     
     func goToSettings(){
@@ -81,6 +86,28 @@ class MainCoordinator : Coordinator {
     
     func back() {
         navigationController.popViewController(animated: true)
+    }
+    
+    func gotoProductsScreen(with brandId: String) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let productScreenVC = storyboard.instantiateViewController(withIdentifier: "ProductsScreenViewController") as! ProductsScreenViewController
+        
+        let productViewModel = ProductScreenViewModel(network: NetworkService(), brandId: brandId)
+        
+        productScreenVC.viewModel = productViewModel
+        productScreenVC.coordinator = self
+        navigationController.pushViewController(productScreenVC, animated: true)
+    }
+    
+    func gotoHomeScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+        let homeViewModel = HomeScreenViewModel(network: NetworkService())
+        
+        homeScreenVC.viewModel = homeViewModel
+        homeScreenVC.coordinator = self
+        navigationController.pushViewController(homeScreenVC, animated: true)
     }
     
 }

@@ -7,7 +7,8 @@
 
 import UIKit
 import RxSwift
-import Alamofire
+import Kingfisher
+import RxCocoa
 
 class HomeScreenViewController: UIViewController , UICollectionViewDelegateFlowLayout {
     
@@ -16,15 +17,20 @@ class HomeScreenViewController: UIViewController , UICollectionViewDelegateFlowL
     @IBOutlet weak var brandsCollection: UICollectionView!
     @IBOutlet weak var pageController: UIPageControl!
     
+    var viewModel : HomeScreenViewModelProtocol?
+    private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
     var adsArray : [AdsItems] = []
-    var brandsArray : [Brands] = []
+    var brandsArray: [SmartCollection] = []
     var timer : Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.setNavigationBarHidden(true, animated: false);
-
+        let nib = UINib(nibName: "BrandsCollectionXIBCell", bundle: nil)
+        brandsCollection.register(nib, forCellWithReuseIdentifier: "brandCell")
+        
         adsArray = [
             AdsItems(image: "addidasAds"),
             AdsItems(image: "pumaAds"),
@@ -32,21 +38,44 @@ class HomeScreenViewController: UIViewController , UICollectionViewDelegateFlowL
             AdsItems(image: "reebokAds"),
             AdsItems(image: "filaAds")
         ]
-        brandsArray = [
-            Brands(image: "nike"),
-            Brands(image: "addidas"),
-            Brands(image: "fila"),
-            Brands(image: "puma"),
-            Brands(image: "reebok"),
-            Brands(image: "nike"),
-            Brands(image: "addidas"),
-            Brands(image: "nike"),
-            Brands(image: "addidas"),
-            Brands(image: "nike")
-        ]
+        
         adsCollection.layer.cornerRadius = 15
         configurePageController()
         startAutoScrollingToAdsCollection()
+        brandsCollection.delegate = self
+        brandsCollection.dataSource = nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel?.fetchBranchs()
+        setUpBinding()
+    }
+    
+    func setUpBinding() {
+        viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ [weak self] index , brand , cell in
+            
+            guard let self = self else { return }
+            self.brandsArray.append(brand)
+            
+            cell.brandImage.kf.setImage(with: URL(string: brand.image.src))
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderWidth = 1.0
+            cell.layer.cornerRadius = 15
+            cell.layer.masksToBounds = true
+      
+        }
+        .disposed(by: disposeBag)
+        
+        brandsCollection.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                let selectedBrand = self.brandsArray[indexPath.row]
+                self.coordinator?.gotoProductsScreen(with: String(selectedBrand.id))
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     func configurePageController(){
@@ -79,8 +108,8 @@ class HomeScreenViewController: UIViewController , UICollectionViewDelegateFlowL
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == brandsCollection {
-            let width = (collectionView.frame.width - 10) / 2
-            let height = (collectionView.frame.height - 10) / 2
+            let width = (collectionView.frame.width - 15) / 3
+            let height = (collectionView.frame.height - 10) / 3
             return CGSize(width: width, height: height)
         }else {
             let width = collectionView.frame.width
@@ -100,7 +129,7 @@ extension HomeScreenViewController : UICollectionViewDelegate , UICollectionView
         if collectionView == adsCollection {
             return adsArray.count
         }else{
-            return brandsArray.count
+            return 0
         }
     }
     
@@ -113,15 +142,17 @@ extension HomeScreenViewController : UICollectionViewDelegate , UICollectionView
             cell.layer.masksToBounds = true
             return cell
         }else {
-            let selectedBrand = brandsArray[indexPath.row]
-            let cell = brandsCollection.dequeueReusableCell(withReuseIdentifier: "brandCell", for: indexPath) as! BrandsCollectionCell
-            cell.brandImage.image = UIImage(named: selectedBrand.image)
+            //            let selectedBrand = brandsArray[indexPath.row]
+            //            let cell = brandsCollection.dequeueReusableCell(withReuseIdentifier: "brandCell", for: indexPath) as! BrandsCollectionCell
+            //            cell.brandImage.image = UIImage(named: selectedBrand.image)
+            //
+            //            cell.layer.borderColor = UIColor.black.cgColor
+            //            cell.layer.borderWidth = 1.0
+            //            cell.layer.cornerRadius = 15
+            //            cell.layer.masksToBounds = true
+            //            return cell
+            fatalError("brands will appear in binding")
             
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.borderWidth = 1.0 
-            cell.layer.cornerRadius = 15
-            cell.layer.masksToBounds = true
-            return cell
         }
     }
     
