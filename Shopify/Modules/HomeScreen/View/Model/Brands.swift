@@ -32,7 +32,7 @@ struct SmartCollection: Codable {
     let rules: [Rule]
     let publishedScope: String
     let adminGraphqlApiID: String
-    let image: Image
+    let image: BrandImage
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -51,8 +51,8 @@ struct SmartCollection: Codable {
     }
 }
 
-// MARK: - Image
-struct Image: Codable {
+ //MARK: - Image
+struct BrandImage: Codable {
     let createdAt: String
     let alt: String?
     let width: Int

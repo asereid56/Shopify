@@ -20,12 +20,11 @@ class ProductsScreenViewController: UIViewController {
     @IBOutlet weak var priceTxt: UILabel!
     @IBOutlet weak var priceSlider: UISlider!
     
-    
-    var viewModel : ProductScreenViewModelProtocol?
     private let disposeBag = DisposeBag()
-    var coordinator : MainCoordinator?
     private var isSortViewHidden = true
     private var sortViewHeight : CGFloat = 0
+    var viewModel : ProductScreenViewModelProtocol?
+    var coordinator : MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +37,10 @@ class ProductsScreenViewController: UIViewController {
         upperConstraintforCollectionView.constant = 8
         
         productsCollectionView.collectionViewLayout = createLayout()
+        
+        priceSlider.rx.value.subscribe { [weak self] _ in
+            self?.viewModel?.filteredTheProducts(price: self?.priceSlider.value ?? 0)
+        }.disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,16 +62,27 @@ class ProductsScreenViewController: UIViewController {
     
     func setUpBinding(){
         
-        viewModel?.data.drive(productsCollectionView.rx.items(cellIdentifier: "ProductCell", cellType: ProductCollectionXIBCell.self)){ [weak self] index , product , cell in
-            
-            cell.productCost.text = String(product.variants.first??.price ?? "")
-            cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
-            cell.productName.text = product.title
-            cell.layer.cornerRadius = 15
-            cell.layer.masksToBounds = true
-            
-            self?.brandName.text = product.vendor
-        }.disposed(by: disposeBag)
+        viewModel?.data
+//               .compactMap { [weak self] products -> [Product]? in
+//                   let prices = products.compactMap { product in
+//                       Float(product.variants?.first??.price ?? "0")
+//                   }
+//                   self?.priceSlider.maximumValue = prices.max() ?? 0
+//                   self?.priceSlider.minimumValue = prices.min() ?? 0
+//                   print(self?.priceSlider.maximumValue ?? 0)
+//                   print(self?.priceSlider.minimumValue ?? 0)
+//                   return products
+//               }
+               .drive(productsCollectionView.rx.items(cellIdentifier: "ProductCell", cellType: ProductCollectionXIBCell.self)) { [weak self] index, product, cell in
+                   cell.productCost.text = String(product.variants?.first??.price ?? "0")
+                   cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
+                   cell.productName.text = product.title
+                   cell.layer.cornerRadius = 15
+                   cell.layer.masksToBounds = true
+                   self?.brandName.text = product.vendor
+               }
+               .disposed(by: disposeBag)
+
         
         viewModel?.productsCount
             .map { "\($0) items"}
@@ -104,8 +118,6 @@ class ProductsScreenViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
-
-    
     
     @IBAction func sliderDidChanged(_ sender: UISlider) {
         let intValue = Int(sender.value)
@@ -119,22 +131,17 @@ class ProductsScreenViewController: UIViewController {
             self.upperConstraintforCollectionView.constant = self.isSortViewHidden ? 8 : self.sortViewHeight
             self.view.layoutIfNeeded()
         }
-       
     }
-    
     
     @IBAction func cartBtn(_ sender: Any) {
     }
     
-    
     @IBAction func favBtn(_ sender: Any) {
     }
-    
     
     @IBAction func backBtn(_ sender: Any) {
         coordinator?.back()
     }
-    
     
 }
 

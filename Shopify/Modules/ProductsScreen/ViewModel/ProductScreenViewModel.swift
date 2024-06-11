@@ -14,10 +14,12 @@ protocol ProductScreenViewModelProtocol {
     var productsCount : Observable<Int>{ get }
     
     func fetchProducts()
+    func filteredTheProducts(price : Float)
 }
 
 class ProductScreenViewModel : ProductScreenViewModelProtocol {
     
+    private var filteredProducts : [Product] = []
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorSubject<[Product]>(value: [])
     var network : NetworkService
@@ -37,12 +39,13 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
     func fetchProducts() {
         let endpoint = APIEndpoint.products.rawValue.replacingOccurrences(of: "{brand_id}", with: brandId)
         network.get(endpoint: endpoint)
-            .subscribe(onNext: { (response: ProductsResponse) in
-                self.dataSubject.onNext(response.products)
+            .subscribe(onNext: { [weak self] (response: ProductsResponse) in
+                
+                self?.filteredProducts = response.products ?? []
+                self?.dataSubject.onNext(response.products ?? [])
             },
             onError: {error in
                 print(error)
-                
             },
             onCompleted: {
                 print("Fetch Products Complete")
@@ -50,5 +53,11 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
             .disposed(by: disposeBag)
     }
     
+    func filteredTheProducts(price : Float) {
+        let filteredProduct = filteredProducts.filter{ products in
+            Float(products.variants?.first??.price ?? "0") ?? 0 <= price
+        }
+        dataSubject.onNext(filteredProduct)
+    }
     
 }

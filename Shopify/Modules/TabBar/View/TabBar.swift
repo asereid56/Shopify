@@ -26,6 +26,9 @@ class TabBar : UITabBarController {
         let homeScreenViewModel = HomeScreenViewModel(network: NetworkService())
         homeScreen.viewModel = homeScreenViewModel
         
+        let categoryScreenViewModel = CategoryScreenViewModel(network: NetworkService())
+        categoryScreen.viewModel = categoryScreenViewModel
+        
         viewControllers = [homeScreen , categoryScreen , profileScreen]
     
     }

@@ -74,7 +74,7 @@ class HomeScreenViewController: UIViewController  {
     func setUpBrandsBinding() {
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
         
-            cell.brandImage.kf.setImage(with: URL(string: brand.image.src))
+            cell.brandImage.kf.setImage(with: URL(string: brand.image.src ?? ""))
             cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 15
@@ -166,4 +166,8 @@ class HomeScreenViewController: UIViewController  {
     @IBAction func cartBtn(_ sender: Any) {
         
     }
+    
+    @IBAction func wishListBtn(_ sender: Any) {
+    }
+    
 }

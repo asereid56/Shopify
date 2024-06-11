@@ -23,4 +23,8 @@ class ProductCollectionXIBCell: UICollectionViewCell {
         productImage.layer.borderWidth = 1.0
         
     }
+    
+    @IBAction func favBtn(_ sender: Any) {
+    }
+    
 }
