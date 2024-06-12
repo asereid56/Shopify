@@ -32,7 +32,6 @@ class MainCoordinator : Coordinator {
         tabBar.coordinator = self
         navigationController.pushViewController(tabBar, animated: false)
 
-        
     }
     
     func goToSettings(){
@@ -83,6 +82,14 @@ class MainCoordinator : Coordinator {
         menuListVC.type = type
         menuListVC.delegate = viewController
         navigationController.present(menuListVC, animated: true)
+    }
+    
+    func goToShoppingCart() {
+        let ShoppingCarVC = ShoppingCartViewController.instantiate(storyboardName:"Setting")
+        let viewModel = ShoppingCartViewModel(networkService: NetworkService(), draftOrderId: "1110462660761")
+        ShoppingCarVC.viewModel = viewModel
+        ShoppingCarVC.coordinator = self
+        navigationController.pushViewController(ShoppingCarVC, animated: false)
     }
     
     func back() {

@@ -17,7 +17,7 @@ protocol  AddressesViewModelProtocol{
 
 class AddressesViewModel : AddressesViewModelProtocol{
     private let disposeBag = DisposeBag()
-    private let networkService: NetworkService
+    private let networkService: NetworkServiceProtocol
     private let customerId : String
     private let dataSubject = BehaviorSubject<[Address]>(value: [])
     
@@ -26,7 +26,7 @@ class AddressesViewModel : AddressesViewModelProtocol{
         return dataSubject.asDriver(onErrorJustReturn: [])
     }
     
-    init(networkService: NetworkService , customerId : String) {
+    init(networkService: NetworkServiceProtocol , customerId : String) {
         self.networkService = networkService
         self.customerId = customerId
         //fetchData()
@@ -36,7 +36,7 @@ class AddressesViewModel : AddressesViewModelProtocol{
          //Endpoint
         let endpoint = APIEndpoint.address.rawValue.replacingOccurrences(of: "{customer_id}", with:customerId )
          //Call
-         networkService.get(endpoint: endpoint)
+         networkService.get(url: NetworkConstants.baseURL,endpoint: endpoint, parameters: nil, headers: nil)
              .map { (addressList: AddressList) -> [Address] in
                  var addresses = addressList.addresses ?? []
                  if let defaultIndex = addresses.firstIndex(where: { $0.default == true }) {
@@ -76,7 +76,7 @@ class AddressesViewModel : AddressesViewModelProtocol{
         //Endpoint
         let deleteEndpoint = APIEndpoint.editOrDeleteAddress.rawValue.replacingOccurrences(of: "{customer_id}", with: customerId).replacingOccurrences(of: "{address_id}", with: String(currentAddresses.id!))
         //Call
-        networkService.delete(endpoint: deleteEndpoint)
+        networkService.delete(url: NetworkConstants.baseURL ,endpoint: deleteEndpoint, parameters: nil, headers: nil)
             .subscribe(onNext: {statusCode in
                 if statusCode == 200 {
                     print("Deleted Successfully")

@@ -22,6 +22,8 @@ enum APIEndpoint: String {
     case CategorySale = "/products.json?collection_id=330332536985"
     case getDraftOrder = "/draft_orders/{darft_order_id}.json"
     case createDraftOrder = "/draft_orders.json"
+    case getDraftOrder = "/draft_orders/{darft_order_id}.json"
+    case productVariant = "/variants/{variant_id}.json"
 }
 
 // Define a protocol for NetworkService
