@@ -13,6 +13,8 @@ enum APIEndpoint: String {
     case createCustomer  = "/customers.json"
     case address = "/customers/{customer_id}/addresses.json"
     case editOrDeleteAddress = "/customers/{customer_id}/addresses/{address_id}.json"
+    case getDraftOrder = "/draft_orders/{darft_order_id}.json"
+    case productVariant = "/variants/{variant_id}.json"
 }
 
 // Define a protocol for NetworkService

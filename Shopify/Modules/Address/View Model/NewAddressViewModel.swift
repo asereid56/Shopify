@@ -27,7 +27,7 @@ class NewAddressViewModel : NewAddressViewModelProtocol{
     
     var address: Address?
     private let disposeBag = DisposeBag()
-    private let networkService: NetworkService
+    private let networkService: NetworkServiceProtocol
     private let customerId : String
     
     var countries = BehaviorRelay<[Country]>(value: [])
@@ -35,7 +35,7 @@ class NewAddressViewModel : NewAddressViewModelProtocol{
     var selectedCity = BehaviorRelay<String?>(value: nil)
     var cities = BehaviorRelay<[String]>(value: [])
     
-    init(address: Address? = nil, networkService: NetworkService, customerId: String, dataLoader: DataLoader) {
+    init(address: Address? = nil, networkService: NetworkServiceProtocol, customerId: String, dataLoader: DataLoader) {
         self.address = address
         self.networkService = networkService
         self.customerId = customerId
@@ -58,7 +58,7 @@ class NewAddressViewModel : NewAddressViewModelProtocol{
     func addNewAddress(address: Address) {
         let endpoint = APIEndpoint.address.rawValue.replacingOccurrences(of: "{customer_id}", with: customerId)
         let addressRequest = AddressRequestRoot(address: address)
-        networkService.post(endpoint: endpoint, body: addressRequest, responseType: AddressResponseRoot.self)
+        networkService.post(url: NetworkConstants.baseURL ,endpoint: endpoint, body: addressRequest, headers: nil, responseType: AddressResponseRoot.self)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { [weak self] (success, message, response) in
                 self?.postAddress.onNext((success, message, response))
@@ -69,7 +69,7 @@ class NewAddressViewModel : NewAddressViewModelProtocol{
     func updateAddress(address: Address) {
         let endpoint = APIEndpoint.editOrDeleteAddress.rawValue.replacingOccurrences(of: "{customer_id}", with: customerId).replacingOccurrences(of: "{address_id}", with: String(self.address?.id ?? 0))
         let addressRequest = AddressRequestRoot(address: address)
-        networkService.put(endpoint: endpoint, body: addressRequest, responseType: AddressResponseRoot.self)
+        networkService.put(url: NetworkConstants.baseURL ,endpoint: endpoint, body: addressRequest, headers: nil, responseType: AddressResponseRoot.self)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { [weak self] (success, message, response) in
                 self?.putAddress.onNext((success, message, response))
