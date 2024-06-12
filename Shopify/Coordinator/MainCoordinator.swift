@@ -26,17 +26,17 @@ class MainCoordinator : Coordinator {
     
     func start() {
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
-        
+        let mainLogin = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
+        mainLogin.coordinator = self
         //homeScreenVC.coordinator = self
-        navigationController.pushViewController(homeScreenVC, animated: false)
+        navigationController.pushViewController(mainLogin, animated: false)
 //        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 //        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
 //        
 //        homeScreenVC.coordinator = self
 //        navigationController.pushViewController(homeScreenVC, animated: false)
         
-        goToSettings()
+        //goToSettings()
     }
     
     func goToSettings(){
@@ -83,4 +83,63 @@ class MainCoordinator : Coordinator {
         navigationController.popViewController(animated: true)
     }
     
+    func goToMainLogin(){
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let mainLogin = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
+        mainLogin.coordinator = self
+        mainLogin.viewModel = GeneralLoginViewModel()
+        mainLogin.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(mainLogin, animated: true)
+    }
+    func goToLoginWithEmail(){
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let emailLogin = storyboard.instantiateViewController(withIdentifier: "LoginWithEmailViewController") as! LoginWithEmailViewController
+        emailLogin.coordinator = self
+        let viewModel = LoginWithEmailViewModel()
+        emailLogin.viewModel = viewModel
+        emailLogin.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(emailLogin, animated: true)
+    }
+    func goToSignUp(){
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let signUp = storyboard.instantiateViewController(withIdentifier: "signUpViewController") as! SignUpViewController
+        signUp.coordinator = self
+        let viewModel = SignUpViewModel()
+        signUp.viewModel = viewModel
+        signUp.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(signUp, animated: true)
+    }
+    func goToProductInfo(product: Product){
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let productInfo = storyboard.instantiateViewController(withIdentifier: "pinfo") as! ProductInfoViewController
+        productInfo.coordinator = self
+        let viewModel = ProductInfoViewModel(product: product)
+        productInfo.viewModel = viewModel
+        productInfo.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(productInfo, animated: true)
+    }
+    func goToReviews(vc: UIViewController){
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let reviewsVC = storyboard.instantiateViewController(withIdentifier: "reviews") as! ReviewsViewController
+        let viewModel = ReviewsViewModel()
+        reviewsVC.viewModel = viewModel
+        vc.present(reviewsVC, animated: true)
+    }
+    func goToHomeScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+        homeScreenVC.coordinator = self
+        homeScreenVC.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(homeScreenVC, animated: true)
+    }
+    func goToWishList() {
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let wishList = storyboard.instantiateViewController(withIdentifier: "WishlistViewController") as! WishlistViewController
+        wishList.coordinator = self
+        let viewModel = WishListViewModel()
+        wishList.viewModel = viewModel
+        wishList.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(wishList, animated: true)
+        
+    }
 }
