@@ -24,7 +24,5 @@ class ProductCollectionXIBCell: UICollectionViewCell {
         
     }
     
-    @IBAction func favBtn(_ sender: Any) {
-    }
     
 }

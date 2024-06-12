@@ -41,17 +41,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrd-Ox-4Ri">
-                        <rect key="frame" x="191" y="10" width="35" height="35"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="gray" image="heart" catalog="system" cornerStyle="capsule">
-                            <color key="baseForegroundColor" name="PrimColor"/>
-                            <color key="baseBackgroundColor" name="heartBg"/>
-                        </buttonConfiguration>
-                        <connections>
-                            <action selector="favBtn:" destination="gTV-IL-0wX" eventType="touchUpInside" id="8OK-gd-7Wh"/>
-                        </connections>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -61,12 +50,10 @@
                 <constraint firstItem="Opi-o0-dmA" firstAttribute="leading" secondItem="2EK-dj-YMu" secondAttribute="trailing" id="5Qk-o0-G8s"/>
                 <constraint firstItem="vrj-gB-w3C" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="95u-OS-nkm"/>
                 <constraint firstAttribute="trailing" secondItem="vrj-gB-w3C" secondAttribute="trailing" id="JLk-Dw-bWE"/>
-                <constraint firstAttribute="trailing" secondItem="xrd-Ox-4Ri" secondAttribute="trailing" constant="8" id="Mur-Ka-M7I"/>
                 <constraint firstItem="Opi-o0-dmA" firstAttribute="top" secondItem="vrj-gB-w3C" secondAttribute="bottom" id="Ouj-Ih-K9Q"/>
                 <constraint firstAttribute="trailing" secondItem="MUY-v7-7Dh" secondAttribute="trailing" id="Pok-uG-sTz"/>
                 <constraint firstItem="2EK-dj-YMu" firstAttribute="top" secondItem="vrj-gB-w3C" secondAttribute="bottom" id="Q4g-WG-S1x"/>
                 <constraint firstItem="2EK-dj-YMu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="RgT-EH-FMJ"/>
-                <constraint firstItem="xrd-Ox-4Ri" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="SlV-Qo-VCv"/>
                 <constraint firstItem="MUY-v7-7Dh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ZRv-TO-DhY"/>
                 <constraint firstItem="vrj-gB-w3C" firstAttribute="top" secondItem="MUY-v7-7Dh" secondAttribute="bottom" id="cGw-5o-HpY"/>
                 <constraint firstItem="MUY-v7-7Dh" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.75" id="fzP-TE-7I9"/>
@@ -85,15 +72,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="heart" catalog="system" width="128" height="107"/>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="PrimColor">
-            <color red="0.59215686274509804" green="0.45882352941176469" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="heartBg">
-            <color red="0.83529411764705885" green="0.83921568627450982" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
