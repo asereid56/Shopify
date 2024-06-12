@@ -10,6 +10,10 @@
 		1829BFB62C0E8AC3004FA5D4 /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829BFB52C0E8AC3004FA5D4 /* AddressesViewController.swift */; };
 		1829BFB82C0E8AD3004FA5D4 /* NewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829BFB72C0E8AD3004FA5D4 /* NewAddressViewController.swift */; };
 		1829BFBE2C0E8F09004FA5D4 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829BFBD2C0E8F09004FA5D4 /* NetworkService.swift */; };
+		1866D8092C14AEFD00E7C47C /* MenuListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866D8082C14AEFD00E7C47C /* MenuListViewController.swift */; };
+		1866D80B2C14AF3F00E7C47C /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866D80A2C14AF3F00E7C47C /* Country.swift */; };
+		1866D80D2C14B0E000E7C47C /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866D80C2C14B0E000E7C47C /* DataLoader.swift */; };
+		1866D80F2C14B83200E7C47C /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 1866D80E2C14B83200E7C47C /* countries.json */; };
 		1877DC3D2C138BC0002F709E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1877DC3C2C138BC0002F709E /* Address.swift */; };
 		1877DC3F2C138C2B002F709E /* AddressesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1877DC3E2C138C2B002F709E /* AddressesTableViewCell.swift */; };
 		1877DC412C13A4F9002F709E /* NewAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1877DC402C13A4F9002F709E /* NewAddressViewModel.swift */; };
@@ -107,6 +111,10 @@
 		1829BFB52C0E8AC3004FA5D4 /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
 		1829BFB72C0E8AD3004FA5D4 /* NewAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAddressViewController.swift; sourceTree = "<group>"; };
 		1829BFBD2C0E8F09004FA5D4 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1866D8082C14AEFD00E7C47C /* MenuListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListViewController.swift; sourceTree = "<group>"; };
+		1866D80A2C14AF3F00E7C47C /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		1866D80C2C14B0E000E7C47C /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		1866D80E2C14B83200E7C47C /* countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		1877DC3C2C138BC0002F709E /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		1877DC3E2C138C2B002F709E /* AddressesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesTableViewCell.swift; sourceTree = "<group>"; };
 		1877DC402C13A4F9002F709E /* NewAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAddressViewModel.swift; sourceTree = "<group>"; };
@@ -217,6 +225,7 @@
 				1877DC422C13A517002F709E /* Model */,
 				1829BFB42C0E8A9B004FA5D4 /* View Model */,
 				1829BFB32C0E8A83004FA5D4 /* View */,
+				1866D80C2C14B0E000E7C47C /* DataLoader.swift */,
 			);
 			path = Address;
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 				1829BFB52C0E8AC3004FA5D4 /* AddressesViewController.swift */,
 				1829BFB72C0E8AD3004FA5D4 /* NewAddressViewController.swift */,
 				1877DC3E2C138C2B002F709E /* AddressesTableViewCell.swift */,
+				1866D8082C14AEFD00E7C47C /* MenuListViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				1877DC3C2C138BC0002F709E /* Address.swift */,
+				1866D80A2C14AF3F00E7C47C /* Country.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -721,6 +732,7 @@
 			isa = PBXGroup;
 			children = (
 				4AD192F32C0CF73400EF34D0 /* Constant.swift */,
+				1866D80E2C14B83200E7C47C /* countries.json */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -867,6 +879,7 @@
 				4AD192AC2C0CEAFE00EF34D0 /* LaunchScreen.storyboard in Resources */,
 				397FAC332C13537B005499BA /* ProductCollectionXIBCell.xib in Resources */,
 				4AD192EF2C0CF6EA00EF34D0 /* Setting.storyboard in Resources */,
+				1866D80F2C14B83200E7C47C /* countries.json in Resources */,
 				4AD192F12C0CF6FD00EF34D0 /* MinaStoryboard.storyboard in Resources */,
 				397B60522C1875AA00ED6BAF /* WishListCollectionViewCell.xib in Resources */,
 				4AD192A92C0CEAFE00EF34D0 /* Assets.xcassets in Resources */,
@@ -906,11 +919,13 @@
 				4AA8E19A2C149EBE00F5F07B /* Brands.swift in Sources */,
 				4AAD6C2F2C186C6F00237FE2 /* CategoryScreenViewModel.swift in Sources */,
 				4AD192A42C0CEAFA00EF34D0 /* HomeScreenViewController.swift in Sources */,
+				1866D8092C14AEFD00E7C47C /* MenuListViewController.swift in Sources */,
 				4A5E44432C135E8900695AA9 /* CategoryScreenViewController.swift in Sources */,
 				397B60552C18770300ED6BAF /* Item.swift in Sources */,
 				18DA18DD2C0E6BE700D82C46 /* AboutUsViewController.swift in Sources */,
 				4AD192A02C0CEAFA00EF34D0 /* AppDelegate.swift in Sources */,
 				39D20DFB2C1348160093AC66 /* ProductsScreenViewController.swift in Sources */,
+				1866D80D2C14B0E000E7C47C /* DataLoader.swift in Sources */,
 				4AD192A22C0CEAFA00EF34D0 /* SceneDelegate.swift in Sources */,
 				18DA18DB2C0E6BCE00D82C46 /* ContactUsViewController.swift in Sources */,
 				1877DC3D2C138BC0002F709E /* Address.swift in Sources */,
@@ -937,6 +952,7 @@
 				4AD192F42C0CF73400EF34D0 /* Constant.swift in Sources */,
 				397FAC322C13537B005499BA /* ProductCollectionXIBCell.swift in Sources */,
 				399564D82C1353F400AD4AC4 /* BrandsCollectionCell.swift in Sources */,
+				1866D80B2C14AF3F00E7C47C /* Country.swift in Sources */,
 				395870902C10DE9300016FA0 /* GeneralLoginViewController.swift in Sources */,
 				39F211652C13522400ECFA41 /* ProfileScreenViewController.swift in Sources */,
 				397B604F2C18757200ED6BAF /* WishListViewController.swift in Sources */,
