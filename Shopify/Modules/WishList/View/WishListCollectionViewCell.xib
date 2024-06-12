@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="wishlistCell" id="hjr-7h-Hna" customClass="WishlistCollectionViewCell" customModule="Shopify_Screens" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="549"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="403" height="549"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forth" translatesAutoresizingMaskIntoConstraints="NO" id="2my-eG-sXR">
+                        <rect key="frame" x="0.0" y="0.0" width="403" height="439.33333333333331"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Men's Orange Summer Tshirt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOa-VI-tuV">
+                        <rect key="frame" x="8" y="449.33333333333331" width="180" height="16.333333333333314"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="180" id="8Sh-Xw-C04"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Gp-v4-7tk">
+                        <rect key="frame" x="8" y="467.66666666666669" width="21" height="17.333333333333314"/>
+                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMf-4r-1iD">
+                        <rect key="frame" x="335" y="20.000000000000004" width="48" height="34.333333333333343"/>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                        <connections>
+                            <action selector="removeFromWishlist:" destination="hjr-7h-Hna" eventType="touchUpInside" id="Iqk-PL-qqk"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="feU-xv-5Di"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="2my-eG-sXR" firstAttribute="height" secondItem="hjr-7h-Hna" secondAttribute="height" multiplier="0.8" id="0RI-Yg-mW7"/>
+                <constraint firstItem="1Gp-v4-7tk" firstAttribute="top" secondItem="gOa-VI-tuV" secondAttribute="bottom" constant="2" id="8HL-rN-xdX"/>
+                <constraint firstAttribute="trailing" secondItem="2my-eG-sXR" secondAttribute="trailing" id="DFS-Iv-cld"/>
+                <constraint firstItem="ZMf-4r-1iD" firstAttribute="top" secondItem="2my-eG-sXR" secondAttribute="top" constant="20" id="FTz-fF-pna"/>
+                <constraint firstItem="gOa-VI-tuV" firstAttribute="top" secondItem="2my-eG-sXR" secondAttribute="bottom" constant="10" id="Klf-fs-hcp"/>
+                <constraint firstItem="gOa-VI-tuV" firstAttribute="leading" secondItem="2my-eG-sXR" secondAttribute="leading" constant="8" id="Mj5-tr-kkh"/>
+                <constraint firstItem="ZMf-4r-1iD" firstAttribute="trailing" secondItem="2my-eG-sXR" secondAttribute="trailing" constant="-20" id="NaO-QB-Ry8"/>
+                <constraint firstItem="2my-eG-sXR" firstAttribute="top" secondItem="hjr-7h-Hna" secondAttribute="top" id="Uol-U6-6YN"/>
+                <constraint firstItem="2my-eG-sXR" firstAttribute="leading" secondItem="hjr-7h-Hna" secondAttribute="leading" id="bxx-iC-fEb"/>
+                <constraint firstItem="1Gp-v4-7tk" firstAttribute="leading" secondItem="gOa-VI-tuV" secondAttribute="leading" id="yps-NV-DZn"/>
+                <constraint firstItem="2my-eG-sXR" firstAttribute="width" secondItem="hjr-7h-Hna" secondAttribute="width" id="zem-kX-mb9"/>
+            </constraints>
+            <size key="customSize" width="403" height="549"/>
+            <connections>
+                <outlet property="faveButton" destination="ZMf-4r-1iD" id="G2Q-OQ-f28"/>
+                <outlet property="itemImage" destination="2my-eG-sXR" id="Fee-xU-uiY"/>
+                <outlet property="itemName" destination="gOa-VI-tuV" id="mX8-DO-Icg"/>
+                <outlet property="itemPrice" destination="1Gp-v4-7tk" id="G6y-m6-P3e"/>
+            </connections>
+            <point key="canvasLocation" x="344.27480916030532" y="163.02816901408451"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="forth" width="385" height="385"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -32,12 +32,18 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="Back"/>
+                                        <connections>
+                                            <action selector="backTapped:" destination="9C6-0T-sqS" eventType="touchUpInside" id="VyZ-n9-bXt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mav-eY-Ol5">
                                         <rect key="frame" x="318" y="4" width="69" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="Favorite"/>
+                                        <connections>
+                                            <action selector="addToWishList:" destination="9C6-0T-sqS" eventType="touchUpInside" id="gOQ-5k-X4W"/>
+                                        </connections>
                                     </button>
                                     <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="hlt-P3-sEh">
                                         <rect key="frame" x="113" y="244" width="166" height="26"/>
@@ -153,7 +159,7 @@
                                         <rect key="frame" x="16" y="539" width="361" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" name="background"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</string>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -195,6 +201,9 @@
                                         <buttonConfiguration key="configuration" style="filled" title="Add to cart">
                                             <color key="baseBackgroundColor" name="PrimColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="addToCart:" destination="9C6-0T-sqS" eventType="touchUpInside" id="A99-1h-dB6"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQm-4Q-UnL">
                                         <rect key="frame" x="304" y="673" width="75" height="32"/>
@@ -218,15 +227,19 @@
                         <color key="backgroundColor" name="background"/>
                     </view>
                     <connections>
+                        <outlet property="descriptionTxt" destination="3Ht-gK-o55" id="gYq-C6-YLQ"/>
                         <outlet property="mainScrollView" destination="pFj-Uv-fhQ" id="flT-LU-SB1"/>
                         <outlet property="pageControl" destination="hlt-P3-sEh" id="LPd-eJ-YJm"/>
+                        <outlet property="productName" destination="eOl-Ce-OSN" id="5sl-XN-aWP"/>
+                        <outlet property="productPrice" destination="dRv-Jb-ADc" id="AaS-Jf-PGM"/>
+                        <outlet property="rating" destination="Kxp-3Q-T1E" id="QH3-1M-IkP"/>
                         <outlet property="reviewsTableView" destination="4t0-9g-SgP" id="K0L-17-cCC"/>
                         <outlet property="scrollView" destination="aRt-ZW-0Wo" id="iP0-z6-W4c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESQ-P5-9WM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3933.5877862595416" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="3570" y="-335"/>
         </scene>
         <!--Reviews View Controller-->
         <scene sceneID="J0L-0c-EAP">
@@ -271,7 +284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRT-Bo-Y1J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4770" y="-35"/>
+            <point key="canvasLocation" x="4376" y="-335"/>
         </scene>
         <!--Login With Email View Controller-->
         <scene sceneID="FlV-Pk-fxL">
@@ -577,7 +590,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGV-8k-fpK">
-                                <rect key="frame" x="68.666666666666671" y="447.66666666666669" width="255.66666666666657" height="50"/>
+                                <rect key="frame" x="68.666666666666671" y="447.66666666666669" width="255.66666666666663" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gwL-2X-GX0"/>
                                 </constraints>
@@ -612,7 +625,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNK-Oi-Wrh">
-                                <rect key="frame" x="68.666666666666671" y="373.66666666666669" width="255.66666666666657" height="50"/>
+                                <rect key="frame" x="68.666666666666671" y="373.66666666666669" width="255.66666666666663" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ZZs-mw-T59"/>
                                 </constraints>
@@ -649,9 +662,68 @@
             </objects>
             <point key="canvasLocation" x="950.38167938931292" y="-34.507042253521128"/>
         </scene>
+        <!--Wishlist View Controller-->
+        <scene sceneID="Afj-fI-ald">
+            <objects>
+                <viewController storyboardIdentifier="WishlistViewController" id="hF9-tO-VyV" customClass="WishlistViewController" customModule="Shopify_Screens" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cPO-5f-zaL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9OB-yx-HuC">
+                                <rect key="frame" x="0.0" y="127" width="393" height="725"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="background"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GZD-b2-7uA">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hF9-tO-VyV" id="0b7-BX-9eo"/>
+                                    <outlet property="delegate" destination="hF9-tO-VyV" id="vYr-Vs-Ebn"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4k-82-Tp1">
+                                <rect key="frame" x="16" y="60" width="69" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Back"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUd-wf-8YH">
+                                <rect key="frame" x="308" y="60" width="69" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Cart"/>
+                                <connections>
+                                    <action selector="goToCart:" destination="hF9-tO-VyV" eventType="touchUpInside" id="VlB-IG-Ud8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wishlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJG-at-X7L">
+                                <rect key="frame" x="175" y="79" width="58" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6I9-Su-GZC"/>
+                        <color key="backgroundColor" name="background"/>
+                    </view>
+                    <connections>
+                        <outlet property="wishlistCollectionView" destination="9OB-yx-HuC" id="03C-Vi-7Hj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I0J-Np-yVk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3569" y="308"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Back" width="45" height="45"/>
+        <image name="Cart" width="45" height="45"/>
         <image name="Favorite" width="45" height="46"/>
         <image name="google copy" width="36" height="36"/>
         <namedColor name="BackgroundColor">
