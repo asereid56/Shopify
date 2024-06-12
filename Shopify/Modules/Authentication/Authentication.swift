@@ -15,7 +15,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class AuthenticationManager {
-    static func signIn(email: String, password: String, vc: UIViewController) {
+    static func signIn(email: String, password: String, vc: UIViewController , mainCoordinator : MainCoordinator) {
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
             if let error = error as? NSError {
                 switch AuthErrorCode.Code(rawValue: error.code) {
@@ -45,6 +45,7 @@ class AuthenticationManager {
                         }
                     }
                 }
+                mainCoordinator.gotoTab()
                 showWelcomeAlert(vc: vc)
                 
             }
@@ -142,7 +143,7 @@ class AuthenticationManager {
 
 func setupCustomer(firstName: String, lastName: String, email: String) {
     
-    let network = NetworkService()
+    let network = NetworkService.shared
     let customer = Customer(firstName: firstName, lastName: lastName, email: email)
     let customerResponse = CustomerResponse(customer: customer)
     let endpoint = APIEndpoint.createCustomer.rawValue
@@ -224,11 +225,12 @@ func createTwoDraftOrders(email: String, completion: @escaping ([Int]) -> Void) 
         completion(draftOrdersIds)
     }
 }
+
 func createDraftOrder(name: String, email: String, completion: @escaping (Int) -> Void) {
-    let network = NetworkService()
+    let network = NetworkService.shared
     let endpoint = APIEndpoint.createDraftOrder.rawValue
     let lineItem = LineItem(title: "dummy", price: "12", quantity: 1)
-    let draftOrderWrapper = DraftOrderWrapper(draftOrder: DraftOrder(note: name, lineItems: [lineItem], email: email))
+    let draftOrderWrapper = DraftOrderWrapper(draftOrder: DraftOrder(name: name, lineItems: [lineItem], email: email))
     _ = network.post(endpoint: endpoint, body: draftOrderWrapper, responseType: DraftOrderWrapper.self)
         .subscribe(onNext: { success, message, response in
             if success {
@@ -282,7 +284,7 @@ func getLastNameFromUserDefaults() -> String? {
 }
 
 func getCustomerDraftOrdersIds(customerId: String, completion: @escaping (String) -> Void) {
-    let network = NetworkService()
+    let network = NetworkService.shared
     _ = network.get(endpoint: "/customers/\(customerId).json")
         .subscribe{ (customerResponse: CustomerResponse) in
             print(customerResponse.customer?.tags! as Any)
@@ -292,7 +294,7 @@ func getCustomerDraftOrdersIds(customerId: String, completion: @escaping (String
         }
 }
 func getCustomerFirstAndLastName(customerId: String, completion: @escaping (String, String) -> Void) {
-    let network = NetworkService()
+    let network = NetworkService.shared
     _ = network.get(endpoint: "/customers/\(customerId).json")
         .subscribe{ (customerResponse: CustomerResponse) in
             completion(customerResponse.customer!.firstName!, customerResponse.customer!.lastName!)

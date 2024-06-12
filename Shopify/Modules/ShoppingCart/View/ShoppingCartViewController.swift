@@ -110,7 +110,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
     }
     
     @IBAction func btnBack(_ sender: Any) {
-        coordinator?.back()
+        coordinator?.goBack()
     }
     
 }

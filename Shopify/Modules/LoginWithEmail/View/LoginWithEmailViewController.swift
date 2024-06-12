@@ -20,7 +20,7 @@ class LoginWithEmailViewController: UIViewController {
     }
     
     @IBAction func loginTapped(_ sender: Any) {
-        viewModel?.signInWithEmail(email: emailTxt.text ?? "", password: passwordTxt.text ?? "", vc: self)
+        viewModel?.signInWithEmail(email: emailTxt.text ?? "", password: passwordTxt.text ?? "", vc: self, mainCoordinator: coordinator!)
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
@@ -29,6 +29,6 @@ class LoginWithEmailViewController: UIViewController {
     
 
     @IBAction func backTapped(_ sender: Any) {
-        coordinator?.back()
+        coordinator?.goBack()
     }
 }

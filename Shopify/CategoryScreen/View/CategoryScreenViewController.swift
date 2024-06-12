@@ -38,6 +38,7 @@ class CategoryScreenViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        selectProductToNavigate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,8 +76,18 @@ class CategoryScreenViewController: UIViewController {
             cell.productName.text = product.title
             cell.layer.cornerRadius = 15
             cell.layer.masksToBounds = true
+            cell.deletebtn.isHidden = true
             
         }.disposed(by: disposeBag)
+    }
+    
+    func selectProductToNavigate(){
+        categoryCollectionView.rx.modelSelected(Product.self)
+                   .subscribe(onNext: { [weak self] product in
+                       guard let self = self else { return }
+                       self.coordinator?.goToProductInfo(product: product)
+                   })
+                   .disposed(by: disposeBag)
     }
     
     @IBAction func favBtn(_ sender: Any) {

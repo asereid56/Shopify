@@ -16,7 +16,7 @@ class ContactUsViewController: UIViewController , Storyboarded {
         addAnnotation()
     }
     @IBAction func btnBack(_ sender: Any) {
-        coordinator?.back()
+        coordinator?.goBack()
     }
     
     func addAnnotation() {

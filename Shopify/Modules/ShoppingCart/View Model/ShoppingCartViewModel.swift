@@ -48,14 +48,14 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     
     private func setupBindings() {
         plusAction
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] row, currentQuantity , inventoryQuantity in
                 self?.incrementItem(at: row, currentQuantity: currentQuantity , inventoryQuantity: inventoryQuantity)
             })
             .disposed(by: disposeBag)
         
         minusAction
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] row, currentQuantity in
                 self?.decrementItem(at: row, currentQuantity: currentQuantity)
             })

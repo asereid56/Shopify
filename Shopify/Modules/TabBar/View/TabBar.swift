@@ -23,10 +23,10 @@ class TabBar : UITabBarController {
         categoryScreen.coordinator = coordinator
         profileScreen.coordinator = coordinator
         
-        let homeScreenViewModel = HomeScreenViewModel(network: NetworkService())
+        let homeScreenViewModel = HomeScreenViewModel(network: NetworkService.shared)
         homeScreen.viewModel = homeScreenViewModel
         
-        let categoryScreenViewModel = CategoryScreenViewModel(network: NetworkService())
+        let categoryScreenViewModel = CategoryScreenViewModel(network: NetworkService.shared)
         categoryScreen.viewModel = categoryScreenViewModel
         
         viewControllers = [homeScreen , categoryScreen , profileScreen]

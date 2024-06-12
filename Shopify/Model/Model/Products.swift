@@ -28,7 +28,7 @@ struct Product: Codable {
     let tags: String?
     let status: String?
     let adminGraphqlAPIID: String?
-    let variants: [Variant?]?
+    let variants: [Variantt?]?
     let options: [Option?]?
     let images: [ProductImage?]?
     let image: ProductImage?
@@ -94,7 +94,7 @@ struct Option: Codable {
 
 // MARK: - Variant
 
-struct Variant: Codable {
+struct Variantt: Codable {
     let id: Int64?
     let productID: Int64?
     let title: String?

@@ -16,4 +16,18 @@ class ProfileScreenViewController: UIViewController {
 
     }
     
+    
+    @IBAction func settingBtn(_ sender: Any) {
+        coordinator?.goToSettings()
+    }
+    
+    
+    @IBAction func ordersBtn(_ sender: Any) {
+        
+    }
+    
+    @IBAction func wishListBtn(_ sender: Any) {
+        coordinator?.goToWishList()
+    }
+    
 }

@@ -7,11 +7,14 @@
 
 import Foundation
 class CustomerResponse: Codable {
+    
     var customer: Customer?
+    
     init(customer: Customer? = nil) {
         self.customer = customer
     }
 }
+
 class Customer: Codable {
     var id: Int?
     var email: String?

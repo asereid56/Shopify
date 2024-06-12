@@ -8,14 +8,22 @@
 import UIKit
 
 class WishlistViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionViewDelegate {
+  
+    @IBOutlet weak var wishlistCollectionView: UICollectionView!
+    
     var coordinator: MainCoordinator?
     var viewModel: WishListViewModel?
     
-    @IBOutlet weak var wishlistCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureNib()
         setup()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        wishlistCollectionView.delegate = nil
+        wishlistCollectionView.dataSource = nil
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -26,8 +34,14 @@ class WishlistViewController: UIViewController, UICollectionViewDelegate, UIColl
         configureCell(indexPath)
     }
     @IBAction func goToCart(_ sender: Any) {
-        //coordinator.goToCart()
+        coordinator?.goToShoppingCart()
     }
+    
+    
+    @IBAction func backBtn(_ sender: Any) {
+        coordinator?.goBack()
+    }
+    
 }
 
 extension WishlistViewController {
@@ -38,13 +52,14 @@ extension WishlistViewController {
     }
     
     func configureNib() {
-        let nib = UINib(nibName: "WishlistCollectionViewCell", bundle: .main)
-        wishlistCollectionView.register(nib, forCellWithReuseIdentifier: "wishlistCell")
+        let nib = UINib(nibName: "ProductCollectionXIBCell", bundle: nil)
+        wishlistCollectionView.register(nib, forCellWithReuseIdentifier: "ProductCell")
     }
     
-    func configureCell(_ indexPath: IndexPath) -> WishListCollectionViewCell {
-        let cell = wishlistCollectionView.dequeueReusableCell(withReuseIdentifier: "wishlistCell", for: indexPath) as! WishListCollectionViewCell
-        cell.configure(id: viewModel?.getItems()[indexPath.row].id ?? 0, index: indexPath.row)
+    func configureCell(_ indexPath: IndexPath) -> ProductCollectionXIBCell {
+        let cell = wishlistCollectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCollectionXIBCell
+        cell.configure(id: viewModel?.getItems()[indexPath.row].id ?? 0, index: indexPath.row, isBtnHidden: false)
+        self.view.layoutIfNeeded()
         cell.delegate = self
         return cell
     }

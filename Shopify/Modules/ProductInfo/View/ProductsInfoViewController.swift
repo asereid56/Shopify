@@ -20,6 +20,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     let images = ["second", "first", "third", "forth"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNib()
@@ -36,6 +37,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.getReviews()?.count ?? 0
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
@@ -46,9 +48,11 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         reviewCell.reviewBody.text = viewModel?.getReviews()?[indexPath.row].reviewBody ?? ""
         return reviewCell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         140
     }
+    
     @IBAction func viewAll(_ sender: Any) {
         coordinator?.goToReviews(vc: self)
     }
@@ -61,12 +65,14 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     
     
     @IBAction func backTapped(_ sender: Any) {
+        coordinator?.goBack()
     }
     
     func configureNib() {
         let nib = UINib(nibName: "ReviewTableViewCell", bundle: .main)
         reviewsTableView.register(nib, forCellReuseIdentifier: "reviewCell")
     }
+    
     func configureScrollView() {
         mainScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height+680)
         reviewsTableView.frame.size.height = 420
@@ -81,6 +87,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         pageControl.numberOfPages = images.count
         pageControl.addTarget(self, action: #selector(pageControlDidChange(_:)), for: .valueChanged)
     }
+    
     func setupScrollView() {
         scrollView.subviews.forEach { $0.removeFromSuperview() }
         
@@ -98,6 +105,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         
         scrollView.contentSize = CGSize(width: scrollViewWidth * CGFloat(images.count), height: scrollViewHeight)
     }
+    
     @objc func pageControlDidChange(_ sender: UIPageControl) {
         let currentPage = sender.currentPage
         let scrollViewWidth = scrollView.frame.size.width

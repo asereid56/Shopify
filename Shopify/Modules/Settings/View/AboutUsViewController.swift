@@ -19,7 +19,7 @@ class AboutUsViewController: UIViewController  , Storyboarded {
     }
     
     @IBAction func btnBack(_ sender: Any) {
-        coordinator?.back()
+        coordinator?.goBack()
     }
     
     private func setUpImages() {

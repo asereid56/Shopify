@@ -7,7 +7,7 @@
 
 import UIKit
 class LoginWithEmailViewModel {
-    func signInWithEmail(email: String, password: String, vc: UIViewController) {
-        AuthenticationManager.signIn(email: email, password: password, vc: vc)
+    func signInWithEmail(email: String, password: String, vc: UIViewController ,mainCoordinator : MainCoordinator ) {
+        AuthenticationManager.signIn(email: email, password: password, vc: vc, mainCoordinator: mainCoordinator)
     }
 }

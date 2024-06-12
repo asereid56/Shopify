@@ -6,9 +6,9 @@
 //
 
 import UIKit
-protocol CollectionViewDelegate: AnyObject {
-    func removeItem(id: Int, index: Int)
-}
+//protocol CollectionViewDelegate: AnyObject {
+//    func removeItem(id: Int, index: Int)
+//}
 class WishListCollectionViewCell: UICollectionViewCell {
     weak var delegate: CollectionViewDelegate?
     var id: Int?

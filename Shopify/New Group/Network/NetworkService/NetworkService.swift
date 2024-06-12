@@ -22,8 +22,11 @@ enum APIEndpoint: String {
     case CategorySale = "/products.json?collection_id=330332536985"
     case getDraftOrder = "/draft_orders/{darft_order_id}.json"
     case createDraftOrder = "/draft_orders.json"
-    case getDraftOrder = "/draft_orders/{darft_order_id}.json"
     case productVariant = "/variants/{variant_id}.json"
+}
+
+enum NetworkError: Error {
+    case invalidStatusCode(message: String)
 }
 
 // Define a protocol for NetworkService
@@ -33,15 +36,15 @@ protocol NetworkServiceProtocol {
     func delete(url: String, endpoint: String, parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<Int>
 //    func put<T: Codable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?) -> Observable<(HTTPURLResponse, Data)>
     func put<T: Encodable, U: Decodable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?, responseType: U.Type) -> Observable<(Bool, String?, U?)>
-}
-
-enum NetworkError: Error {
-    case invalidStatusCode(message: String)
+    
 }
 
 class NetworkService: NetworkServiceProtocol {
+    static let shared = NetworkService()
+    
     private let disposeBag = DisposeBag()
 
+    private init(){}
     // Helper function to create full URL and default headers
     private func createRequestDetails(url : String ,endpoint: String, headers: HTTPHeaders?) -> (String, HTTPHeaders) {
         let url = "\(NetworkConstants.baseURL)\(endpoint)"

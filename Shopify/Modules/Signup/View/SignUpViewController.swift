@@ -31,6 +31,6 @@ class SignUpViewController: UIViewController{
     }
     
     @IBAction func backTapped(_ sender: Any) {
-        coordinator?.back()
+        coordinator?.goBack()
     }
 }

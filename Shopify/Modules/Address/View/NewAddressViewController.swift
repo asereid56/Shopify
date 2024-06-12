@@ -70,7 +70,7 @@ class NewAddressViewController: UIViewController ,Storyboarded {
     
     
     @IBAction func btnBack(_ sender: Any) {
-        coordinator?.back()
+        coordinator?.goBack()
     }
     
     @IBAction func btnCountryTextField(_ sender: Any) {
@@ -99,7 +99,7 @@ class NewAddressViewController: UIViewController ,Storyboarded {
                 viewModel?.putAddress
                     .subscribe(onNext: { [weak self] (success, message, response) in
                         if success {
-                            self?.coordinator?.back()
+                            self?.coordinator?.goBack()
                         } else {
                             self?.setErrorMessageAlert()
                         }
@@ -110,7 +110,7 @@ class NewAddressViewController: UIViewController ,Storyboarded {
                 viewModel?.postAddress
                     .subscribe(onNext: { [weak self] (success, message, response) in
                         if success {
-                            self?.coordinator?.back()
+                            self?.coordinator?.goBack()
                         } else {
                             self?.setErrorMessageAlert()
                         }

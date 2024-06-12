@@ -41,6 +41,8 @@ class ProductsScreenViewController: UIViewController {
         priceSlider.rx.value.subscribe { [weak self] _ in
             self?.viewModel?.filteredTheProducts(price: self?.priceSlider.value ?? 0)
         }.disposed(by: disposeBag)
+        
+        selectProductToNavigate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +99,15 @@ class ProductsScreenViewController: UIViewController {
         
     }
     
+    func selectProductToNavigate(){
+        productsCollectionView.rx.modelSelected(Product.self)
+                   .subscribe(onNext: { [weak self] product in
+                       guard let self = self else { return }
+                       self.coordinator?.goToProductInfo(product: product)
+                   })
+                   .disposed(by: disposeBag)
+    }
+    
     func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.5),
@@ -137,10 +148,11 @@ class ProductsScreenViewController: UIViewController {
     }
     
     @IBAction func favBtn(_ sender: Any) {
+        coordinator?.goToMainLogin()
     }
     
     @IBAction func backBtn(_ sender: Any) {
-        coordinator?.back()
+        coordinator?.goBack()
     }
     
 }
