@@ -57,10 +57,29 @@ struct LineItem: Codable {
         self.price = price
         self.quantity = quantity
     }
+    init(productId: Int?, title: String?, price: String?, img: String?, quantity: Int? = 1, variantId: String? = nil, variantTitle: String?) {
+        self.variantTitle = variantTitle
+        self.productId = productId
+        self.title = title
+        self.price = price
+        self.quantity = quantity
+        self.sku = img!+" "+String(productId!)
+        taxable = false
+        requiresShipping = false
+    }
 }
 struct Property: Codable {
-    let name: String
-    let value: String
+    var name: String? = nil
+    var value: String?
+    
+    init(value: String?) {
+        self.value = value
+    }
+    init(name: String, value: String?) {
+        self.value = value
+        self.name = name
+    }
+    
 }
 struct TaxLine: Codable {
     let rate: Double?

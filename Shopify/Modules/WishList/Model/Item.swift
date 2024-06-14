@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Item {
-    let photo: String
-    let id: Int
+struct MyLineItem: Codable {
+    var productId: String?
+    var title: String?
+    var quantity = 1
+    var img: String?
+    var price: String?
+    
 }

@@ -164,7 +164,7 @@ class HomeScreenViewController: UIViewController  {
     }
     
     @IBAction func cartBtn(_ sender: Any) {
-        coordinator?.goToShoppingCart()
+        coordinator?.goToWishList()
     }
     
     @IBAction func wishListBtn(_ sender: Any) {

@@ -58,6 +58,8 @@
 		399564D82C1353F400AD4AC4 /* BrandsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399564D62C1353F400AD4AC4 /* BrandsCollectionCell.swift */; };
 		399564D92C1353F400AD4AC4 /* AdsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399564D72C1353F400AD4AC4 /* AdsCollectionCell.swift */; };
 		39A0774E2C14EB3B00472C38 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0774D2C14EB3B00472C38 /* Customer.swift */; };
+		39A6C5E22C1B8127006A399E /* WishCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A6C5E12C1B8127006A399E /* WishCollectionViewCell.xib */; };
+		39A6C5E32C1B8127006A399E /* WishCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6C5E02C1B8127006A399E /* WishCollectionViewCell.swift */; };
 		39D20DDA2C133D050093AC66 /* AdsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D20DD92C133D050093AC66 /* AdsItem.swift */; };
 		39D20DFB2C1348160093AC66 /* ProductsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D20DFA2C1348160093AC66 /* ProductsScreenViewController.swift */; };
 		39E1F7AB2C16117600C00575 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 39E1F7AA2C16117600C00575 /* FirebaseFirestore */; };
@@ -157,6 +159,8 @@
 		399564D62C1353F400AD4AC4 /* BrandsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandsCollectionCell.swift; sourceTree = "<group>"; };
 		399564D72C1353F400AD4AC4 /* AdsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsCollectionCell.swift; sourceTree = "<group>"; };
 		39A0774D2C14EB3B00472C38 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		39A6C5E02C1B8127006A399E /* WishCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishCollectionViewCell.swift; sourceTree = "<group>"; };
+		39A6C5E12C1B8127006A399E /* WishCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishCollectionViewCell.xib; sourceTree = "<group>"; };
 		39D20DD92C133D050093AC66 /* AdsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsItem.swift; sourceTree = "<group>"; };
 		39D20DDB2C133D2C0093AC66 /* CategoryScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenViewController.swift; sourceTree = "<group>"; };
 		39D20DFA2C1348160093AC66 /* ProductsScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsScreenViewController.swift; sourceTree = "<group>"; };
@@ -507,6 +511,8 @@
 				397FAC312C13537B005499BA /* ProductCollectionXIBCell.xib */,
 				4AA8E19B2C14C75E00F5F07B /* BrandsCollectionXIBCell.swift */,
 				4AA8E19C2C14C75E00F5F07B /* BrandsCollectionXIBCell.xib */,
+				39A6C5E02C1B8127006A399E /* WishCollectionViewCell.swift */,
+				39A6C5E12C1B8127006A399E /* WishCollectionViewCell.xib */,
 			);
 			path = Nibfiles;
 			sourceTree = "<group>";
@@ -945,6 +951,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AA8E19E2C14C75E00F5F07B /* BrandsCollectionXIBCell.xib in Resources */,
+				39A6C5E22C1B8127006A399E /* WishCollectionViewCell.xib in Resources */,
 				4AD192AC2C0CEAFE00EF34D0 /* LaunchScreen.storyboard in Resources */,
 				397FAC332C13537B005499BA /* ProductCollectionXIBCell.xib in Resources */,
 				4AD192EF2C0CF6EA00EF34D0 /* Setting.storyboard in Resources */,
@@ -1014,6 +1021,7 @@
 				397B603A2C18501100ED6BAF /* ProductInfoViewModel.swift in Sources */,
 				1851C0D42C1679A500849BB6 /* ShoppingCartViewModel.swift in Sources */,
 				395870952C10DEE000016FA0 /* SignUpViewController.swift in Sources */,
+				39A6C5E32C1B8127006A399E /* WishCollectionViewCell.swift in Sources */,
 				4AA8E1982C14949700F5F07B /* HomeScreenViewModel.swift in Sources */,
 				1829BFB62C0E8AC3004FA5D4 /* AddressesViewController.swift in Sources */,
 				1829BFBE2C0E8F09004FA5D4 /* NetworkService.swift in Sources */,

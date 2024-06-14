@@ -20,12 +20,15 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     let images = ["second", "first", "third", "forth"]
-    
+    var imgs: [ProductImage?]?
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(viewModel?.product?.id)
+        imgs = viewModel?.product?.images
         configureNib()
         configureScrollView()
         setupScrollView()
+        setProductInfo()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -61,6 +64,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     @IBAction func addToWishList(_ sender: Any) {
+        viewModel?.addToWishList(product: viewModel?.product)
     }
     
     
@@ -84,7 +88,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         scrollView.showsVerticalScrollIndicator = false
         scrollView.alwaysBounceVertical = false
         scrollView.alwaysBounceHorizontal = false
-        pageControl.numberOfPages = images.count
+        pageControl.numberOfPages = imgs?.count ?? 0
         pageControl.addTarget(self, action: #selector(pageControlDidChange(_:)), for: .valueChanged)
     }
     
@@ -94,16 +98,16 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         let scrollViewWidth = scrollView.frame.size.width
         let scrollViewHeight = scrollView.frame.size.height
         
-        for i in 0..<images.count {
+        for i in 0..<(imgs?.count ?? 0) {
             let imageView = UIImageView()
             imageView.contentMode = .scaleToFill
-            imageView.image = UIImage(named: images[i])
+            imageView.kf.setImage(with: URL(string: imgs?[i]?.src ?? ""))
             let xPosition = CGFloat(i) * scrollViewWidth
             imageView.frame = CGRect(x: xPosition, y: 0, width: scrollViewWidth, height: scrollViewHeight)
             scrollView.addSubview(imageView)
         }
         
-        scrollView.contentSize = CGSize(width: scrollViewWidth * CGFloat(images.count), height: scrollViewHeight)
+        scrollView.contentSize = CGSize(width: scrollViewWidth * CGFloat(imgs?.count ?? 0), height: scrollViewHeight)
     }
     
     @objc func pageControlDidChange(_ sender: UIPageControl) {
@@ -111,6 +115,11 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         let scrollViewWidth = scrollView.frame.size.width
         let offset = CGPoint(x: CGFloat(currentPage) * scrollViewWidth, y: 0)
         scrollView.setContentOffset(offset, animated: true)
+    }
+    func setProductInfo(){
+        productName.text = viewModel?.product?.title
+        productPrice.text = viewModel?.product?.variants?.first??.price
+        descriptionTxt.text = viewModel?.product?.bodyHTML
     }
 }
 

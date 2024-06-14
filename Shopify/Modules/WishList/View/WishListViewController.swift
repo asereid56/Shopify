@@ -6,33 +6,38 @@
 //
 
 import UIKit
-
-class WishlistViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CollectionViewDelegate {
-  
+import RxCocoa
+import RxSwift
+class WishlistViewController: UIViewController {
+    
+    
+    
     @IBOutlet weak var wishlistCollectionView: UICollectionView!
     
     var coordinator: MainCoordinator?
     var viewModel: WishListViewModel?
-    
+    private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNib()
-        setup()
+        wishlistCollectionView.collectionViewLayout = createLayout()
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel?.fetchData()
+        setUpBinding()
+        
+    }
+    
     
     override func viewDidDisappear(_ animated: Bool) {
         wishlistCollectionView.delegate = nil
         wishlistCollectionView.dataSource = nil
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.getItems().count ?? 0
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        configureCell(indexPath)
-    }
     @IBAction func goToCart(_ sender: Any) {
         coordinator?.goToShoppingCart()
     }
@@ -45,24 +50,18 @@ class WishlistViewController: UIViewController, UICollectionViewDelegate, UIColl
 }
 
 extension WishlistViewController {
-    func removeItem(id: Int, index: Int) {
-        print("id: \(id)")
-        viewModel?.items?.remove(at: index)
-        self.wishlistCollectionView.reloadData()
-    }
     
     func configureNib() {
-        let nib = UINib(nibName: "ProductCollectionXIBCell", bundle: nil)
-        wishlistCollectionView.register(nib, forCellWithReuseIdentifier: "ProductCell")
+        let nib = UINib(nibName: "WishCollectionViewCell", bundle: nil)
+        wishlistCollectionView.register(nib, forCellWithReuseIdentifier: "wishCell")
     }
     
-    func configureCell(_ indexPath: IndexPath) -> ProductCollectionXIBCell {
-        let cell = wishlistCollectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCollectionXIBCell
-        cell.configure(id: viewModel?.getItems()[indexPath.row].id ?? 0, index: indexPath.row, isBtnHidden: false)
-        self.view.layoutIfNeeded()
-        cell.delegate = self
-        return cell
-    }
+    //    func configureCell(_ index: Int) -> WishCollectionViewCell {
+    //        let cell = wishlistCollectionView.dequeueReusableCell(withReuseIdentifier: "wishCell", for: indexPath) as! WishCollectionViewCell
+    //        cell.configure(id: viewModel?.getItems()[index].id ?? 0, index: index)
+    //        cell.delegate = self
+    //        return cell
+    //    }
     
     func setup() {
         let itemWidth = (wishlistCollectionView.frame.width / 2 ) - 10
@@ -71,5 +70,52 @@ extension WishlistViewController {
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth + 80)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         wishlistCollectionView.collectionViewLayout = layout
+    }
+    
+    func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.5),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(0.7)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 5
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+    
+    func setUpBinding() {
+        viewModel?.items
+            .bind(to: wishlistCollectionView.rx.items(cellIdentifier: "wishCell", cellType: WishCollectionViewCell.self)) { index, item, cell in
+                cell.configure(with: item)
+                guard let deleteItem = self.viewModel?.deleteItem else { return }
+                cell.removeButton.rx.tap
+                    .subscribe(onNext: { [weak self] in
+                        self?.showDeleteConfirmationAlert(for: index)
+                    })
+                    .disposed(by: cell.disposeBag)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func showDeleteConfirmationAlert(for index: Int) {
+        let alertController = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.viewModel?.requestDeleteItem(at: index)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

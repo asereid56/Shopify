@@ -187,7 +187,7 @@ class MainCoordinator : Coordinator {
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
         let wishList = storyboard.instantiateViewController(withIdentifier: "WishlistViewController") as! WishlistViewController
         wishList.coordinator = self
-        let viewModel = WishListViewModel()
+        let viewModel = WishListViewModel(network: NetworkService.shared)
         wishList.viewModel = viewModel
         wishList.navigationItem.hidesBackButton = true
         navigationController.pushViewController(wishList, animated: true)
