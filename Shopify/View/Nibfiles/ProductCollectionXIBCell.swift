@@ -30,7 +30,7 @@ class ProductCollectionXIBCell: UICollectionViewCell {
     
         productImage.layer.cornerRadius = 15
         productImage.layer.masksToBounds = true
-        productImage.layer.borderColor = UIColor.black.cgColor
+        productImage.layer.borderColor = UIColor.lightGray.cgColor
         productImage.layer.borderWidth = 1.0
         deletebtn.isHidden = isBtnHidden
         

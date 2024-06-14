@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-class CategoryScreenViewController: UIViewController {
+class CategoryScreenViewController: UIViewController , Storyboarded{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!

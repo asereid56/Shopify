@@ -289,7 +289,6 @@
                                     <color key="baseBackgroundColor" name="ViewBgColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="cartBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wcm-GN-5OO"/>
                                     <action selector="wishListBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sej-z1-pNJ"/>
                                 </connections>
                             </button>
@@ -531,9 +530,220 @@
             </objects>
             <point key="canvasLocation" x="1178" y="-405"/>
         </scene>
+        <!--On Boarding Two View Controller-->
+        <scene sceneID="7B9-ig-awN">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingTwoViewController" id="uYc-ux-gm0" customClass="OnBoardingTwoViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="glG-oA-2Yz">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="onboard2" translatesAutoresizingMaskIntoConstraints="NO" id="hvx-Oz-Im5">
+                                <rect key="frame" x="0.0" y="95.666666666666686" width="390" height="375"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxe-g8-07F">
+                                <rect key="frame" x="165" y="676" width="60" height="60"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="arrow.right" catalog="system" cornerStyle="capsule">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" name="PrimColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="nextBtn:" destination="uYc-ux-gm0" eventType="touchUpInside" id="ka3-8I-h6E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1C-Ca-NrM">
+                                <rect key="frame" x="317.66666666666669" y="47" width="56.333333333333314" height="32.666666666666657"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Skip">
+                                    <fontDescription key="titleFontDescription" name="Cochin-Bold" family="Cochin" pointSize="16"/>
+                                    <color key="baseForegroundColor" name="PrimColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="skipBtn:" destination="uYc-ux-gm0" eventType="touchUpInside" id="4do-eB-Z6t"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Easy and Secure Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQo-DP-srU">
+                                <rect key="frame" x="36.666666666666657" y="520.66666666666663" width="317" height="25"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" text="Pay for the product you buy safely and easily." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dpb-2j-xiQ">
+                                <rect key="frame" x="46" y="566" width="298" height="90"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m4w-6j-St4"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Kxe-g8-07F" firstAttribute="centerX" secondItem="m4w-6j-St4" secondAttribute="centerX" id="4QR-2s-GGY"/>
+                            <constraint firstItem="Kxe-g8-07F" firstAttribute="top" secondItem="dpb-2j-xiQ" secondAttribute="bottom" constant="20" id="92k-Eh-bMr"/>
+                            <constraint firstItem="zQo-DP-srU" firstAttribute="top" secondItem="hvx-Oz-Im5" secondAttribute="bottom" constant="50" id="DfX-Us-QHU"/>
+                            <constraint firstItem="Kxe-g8-07F" firstAttribute="height" secondItem="glG-oA-2Yz" secondAttribute="height" multiplier="0.07109" id="F4d-Wl-NUl"/>
+                            <constraint firstItem="hvx-Oz-Im5" firstAttribute="leading" secondItem="m4w-6j-St4" secondAttribute="leading" id="KUW-oc-1ac"/>
+                            <constraint firstItem="m4w-6j-St4" firstAttribute="bottom" secondItem="Kxe-g8-07F" secondAttribute="bottom" constant="74" id="PMM-vI-5aP"/>
+                            <constraint firstItem="R1C-Ca-NrM" firstAttribute="top" secondItem="m4w-6j-St4" secondAttribute="top" id="PSD-V8-D6V"/>
+                            <constraint firstItem="dpb-2j-xiQ" firstAttribute="height" secondItem="glG-oA-2Yz" secondAttribute="height" multiplier="0.106635" id="ZYo-yr-8zH"/>
+                            <constraint firstItem="m4w-6j-St4" firstAttribute="trailing" secondItem="dpb-2j-xiQ" secondAttribute="trailing" constant="46" id="c3W-hE-QAw"/>
+                            <constraint firstItem="hvx-Oz-Im5" firstAttribute="top" secondItem="R1C-Ca-NrM" secondAttribute="bottom" constant="16" id="lLt-a9-tyl"/>
+                            <constraint firstItem="hvx-Oz-Im5" firstAttribute="trailing" secondItem="m4w-6j-St4" secondAttribute="trailing" id="mVK-d0-ZZw"/>
+                            <constraint firstItem="Kxe-g8-07F" firstAttribute="width" secondItem="glG-oA-2Yz" secondAttribute="width" multiplier="0.153846" id="pAb-7S-3gf"/>
+                            <constraint firstItem="dpb-2j-xiQ" firstAttribute="centerX" secondItem="m4w-6j-St4" secondAttribute="centerX" id="vP5-D0-s0y"/>
+                            <constraint firstItem="dpb-2j-xiQ" firstAttribute="top" secondItem="zQo-DP-srU" secondAttribute="bottom" constant="20.329999999999998" id="xyk-iY-4yX"/>
+                            <constraint firstItem="m4w-6j-St4" firstAttribute="trailing" secondItem="R1C-Ca-NrM" secondAttribute="trailing" constant="16" id="yWt-Da-fH0"/>
+                            <constraint firstItem="zQo-DP-srU" firstAttribute="centerX" secondItem="m4w-6j-St4" secondAttribute="centerX" id="zZe-sN-f9e"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iwL-RD-PVQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1531" y="1065"/>
+        </scene>
+        <!--On Boarding Three View Controller-->
+        <scene sceneID="y2C-ub-ZW9">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingThreeViewController" id="UrS-OW-2tN" customClass="OnBoardingThreeViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jtb-H6-xJd">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="onboard3" translatesAutoresizingMaskIntoConstraints="NO" id="ZhN-Tc-EQv">
+                                <rect key="frame" x="0.0" y="95.666666666666686" width="390" height="375"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2N-Ak-ZvQ">
+                                <rect key="frame" x="117" y="676" width="156" height="60"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Get Started" cornerStyle="capsule">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" name="PrimColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="getStartedBtn:" destination="UrS-OW-2tN" eventType="touchUpInside" id="URD-vB-Axe"/>
+                                    <action selector="startBtn:" destination="UrS-OW-2tN" eventType="touchUpInside" id="H3l-bZ-k2C"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Quick and Free Local Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAJ-1b-pBA">
+                                <rect key="frame" x="52" y="520.66666666666663" width="286" height="25"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" text="Your product is delivered in your place quickly and free among locals." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BNw-rB-01Y">
+                                <rect key="frame" x="46" y="566" width="298" height="90"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KJO-ig-ekF"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="C2N-Ak-ZvQ" firstAttribute="centerX" secondItem="KJO-ig-ekF" secondAttribute="centerX" id="4ch-PH-kjy"/>
+                            <constraint firstItem="ZhN-Tc-EQv" firstAttribute="trailing" secondItem="KJO-ig-ekF" secondAttribute="trailing" id="8pB-qb-3p7"/>
+                            <constraint firstItem="KJO-ig-ekF" firstAttribute="trailing" secondItem="BNw-rB-01Y" secondAttribute="trailing" constant="46" id="DpZ-qT-3RI"/>
+                            <constraint firstItem="C2N-Ak-ZvQ" firstAttribute="width" secondItem="jtb-H6-xJd" secondAttribute="width" multiplier="0.4" id="GdY-jJ-VBe"/>
+                            <constraint firstItem="BNw-rB-01Y" firstAttribute="height" secondItem="jtb-H6-xJd" secondAttribute="height" multiplier="0.106635" id="HEx-vR-mux"/>
+                            <constraint firstItem="BNw-rB-01Y" firstAttribute="centerX" secondItem="KJO-ig-ekF" secondAttribute="centerX" id="RN7-ex-pcc"/>
+                            <constraint firstItem="ZhN-Tc-EQv" firstAttribute="top" secondItem="KJO-ig-ekF" secondAttribute="top" constant="48.670000000000002" id="TyS-0N-zse"/>
+                            <constraint firstItem="kAJ-1b-pBA" firstAttribute="top" secondItem="ZhN-Tc-EQv" secondAttribute="bottom" constant="50" id="dCF-c6-gXv"/>
+                            <constraint firstItem="C2N-Ak-ZvQ" firstAttribute="height" secondItem="jtb-H6-xJd" secondAttribute="height" multiplier="0.07109" id="dJU-nt-v0Q"/>
+                            <constraint firstItem="BNw-rB-01Y" firstAttribute="top" secondItem="kAJ-1b-pBA" secondAttribute="bottom" constant="20.329999999999998" id="eZ3-Lh-JWN"/>
+                            <constraint firstItem="kAJ-1b-pBA" firstAttribute="centerX" secondItem="KJO-ig-ekF" secondAttribute="centerX" id="gG6-hc-csQ"/>
+                            <constraint firstItem="ZhN-Tc-EQv" firstAttribute="leading" secondItem="KJO-ig-ekF" secondAttribute="leading" id="h6n-kl-OtH"/>
+                            <constraint firstItem="C2N-Ak-ZvQ" firstAttribute="top" secondItem="BNw-rB-01Y" secondAttribute="bottom" constant="20" id="kXh-Dv-Wfj"/>
+                            <constraint firstItem="KJO-ig-ekF" firstAttribute="bottom" secondItem="C2N-Ak-ZvQ" secondAttribute="bottom" constant="74" id="nM9-2e-mbx"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tqi-Ff-5lc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2335" y="1065"/>
+        </scene>
+        <!--On Boarding One View Controller-->
+        <scene sceneID="p3g-DD-3kx">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingOneViewController" id="kBz-nD-GTC" customClass="OnBoardingOneViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hoB-sT-XpR">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="onBoard1" translatesAutoresizingMaskIntoConstraints="NO" id="o2k-TR-tQU">
+                                <rect key="frame" x="0.0" y="95.666666666666686" width="390" height="375"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpd-lR-l32">
+                                <rect key="frame" x="165" y="676" width="60" height="60"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="arrow.right" catalog="system" cornerStyle="capsule">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" name="PrimColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="nextBtn:" destination="kBz-nD-GTC" eventType="touchUpInside" id="wWV-rH-kP9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0H-Fd-JPm">
+                                <rect key="frame" x="317.66666666666669" y="47" width="56.333333333333314" height="32.666666666666657"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Skip">
+                                    <fontDescription key="titleFontDescription" name="Cochin-Bold" family="Cochin" pointSize="16"/>
+                                    <color key="baseForegroundColor" name="PrimColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="skipBtn:" destination="kBz-nD-GTC" eventType="touchUpInside" id="4pM-kd-Pfo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Explore Best Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEx-fB-C0V">
+                                <rect key="frame" x="91.666666666666686" y="520.66666666666663" width="207" height="25"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" text="Browse the brands and find your desire product. " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z7h-rv-Kip">
+                                <rect key="frame" x="46" y="566" width="298" height="90"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0xx-5z-q5G"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cpd-lR-l32" firstAttribute="centerX" secondItem="0xx-5z-q5G" secondAttribute="centerX" id="1yF-s9-alq"/>
+                            <constraint firstItem="0xx-5z-q5G" firstAttribute="trailing" secondItem="Z7h-rv-Kip" secondAttribute="trailing" constant="46" id="2ct-Kq-k3b"/>
+                            <constraint firstItem="Z7h-rv-Kip" firstAttribute="centerX" secondItem="0xx-5z-q5G" secondAttribute="centerX" id="32Q-Ik-gRv"/>
+                            <constraint firstItem="0xx-5z-q5G" firstAttribute="trailing" secondItem="M0H-Fd-JPm" secondAttribute="trailing" constant="16" id="3wz-O4-h7i"/>
+                            <constraint firstItem="kEx-fB-C0V" firstAttribute="centerX" secondItem="0xx-5z-q5G" secondAttribute="centerX" id="4ZG-wb-9oR"/>
+                            <constraint firstItem="kEx-fB-C0V" firstAttribute="top" secondItem="o2k-TR-tQU" secondAttribute="bottom" constant="50" id="8Hc-hV-q45"/>
+                            <constraint firstItem="cpd-lR-l32" firstAttribute="height" secondItem="hoB-sT-XpR" secondAttribute="height" multiplier="0.07109" id="Ais-cJ-RZR"/>
+                            <constraint firstItem="o2k-TR-tQU" firstAttribute="leading" secondItem="0xx-5z-q5G" secondAttribute="leading" id="BLJ-fA-HEW"/>
+                            <constraint firstItem="Z7h-rv-Kip" firstAttribute="height" secondItem="hoB-sT-XpR" secondAttribute="height" multiplier="0.106635" id="BaL-Tx-U3x"/>
+                            <constraint firstItem="M0H-Fd-JPm" firstAttribute="top" secondItem="0xx-5z-q5G" secondAttribute="top" id="Gu3-nJ-oRo"/>
+                            <constraint firstItem="cpd-lR-l32" firstAttribute="top" secondItem="Z7h-rv-Kip" secondAttribute="bottom" constant="20" id="OQ7-JU-yWb"/>
+                            <constraint firstItem="Z7h-rv-Kip" firstAttribute="top" secondItem="kEx-fB-C0V" secondAttribute="bottom" constant="20.329999999999998" id="Qm7-pv-NF9"/>
+                            <constraint firstItem="o2k-TR-tQU" firstAttribute="trailing" secondItem="0xx-5z-q5G" secondAttribute="trailing" id="Vzb-tD-dUV"/>
+                            <constraint firstItem="o2k-TR-tQU" firstAttribute="top" secondItem="M0H-Fd-JPm" secondAttribute="bottom" constant="16" id="a1L-P0-yJK"/>
+                            <constraint firstItem="0xx-5z-q5G" firstAttribute="bottom" secondItem="cpd-lR-l32" secondAttribute="bottom" constant="74" id="t8a-2H-Iix"/>
+                            <constraint firstItem="cpd-lR-l32" firstAttribute="width" secondItem="hoB-sT-XpR" secondAttribute="width" multiplier="0.153846" id="um8-4Q-IoW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K8Y-Z6-mcL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="671" y="1065"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="arrowtriangle.down.circle" catalog="system" width="128" height="123"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="circle.grid.3x3" catalog="system" width="128" height="110"/>
@@ -543,6 +753,9 @@
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
         <image name="nikaAds" width="360" height="203"/>
+        <image name="onBoard1" width="666" height="375"/>
+        <image name="onboard2" width="577" height="432"/>
+        <image name="onboard3" width="612" height="407"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="ph_pants" width="24" height="24"/>
         <image name="shoe" catalog="system" width="128" height="61"/>
@@ -560,7 +773,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

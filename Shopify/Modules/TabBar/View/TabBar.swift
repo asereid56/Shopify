@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-class TabBar : UITabBarController {
+class TabBar : UITabBarController , Storyboarded {
+    
     var coordinator : MainCoordinator?
     
     override func viewDidLoad() {
