@@ -19,7 +19,7 @@ class OnBoardingThreeViewController: UIViewController , Storyboarded{
     
 
     @IBAction func getStartedBtn(_ sender: Any) {
-        coordinator?.gotoTab()
+        coordinator?.goToSignOrGuestScreen()
     }
     
 

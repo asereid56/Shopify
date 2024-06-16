@@ -275,7 +275,7 @@
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="rzz-XL-fjt">
                                 <rect key="frame" x="137" y="366.33333333333331" width="116" height="26"/>
-                                <color key="backgroundColor" name="ViewBgColor"/>
+                                <color key="backgroundColor" name="heartBg"/>
                                 <color key="tintColor" name="PrimColor"/>
                                 <color key="pageIndicatorTintColor" systemColor="systemGray6Color"/>
                                 <color key="currentPageIndicatorTintColor" name="PrimColor"/>
@@ -624,8 +624,7 @@
                                     <color key="baseBackgroundColor" name="PrimColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="getStartedBtn:" destination="UrS-OW-2tN" eventType="touchUpInside" id="URD-vB-Axe"/>
-                                    <action selector="startBtn:" destination="UrS-OW-2tN" eventType="touchUpInside" id="H3l-bZ-k2C"/>
+                                    <action selector="getStartedBtn:" destination="UrS-OW-2tN" eventType="touchUpInside" id="Dhs-x8-9Qx"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Quick and Free Local Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAJ-1b-pBA">
@@ -740,6 +739,82 @@
             </objects>
             <point key="canvasLocation" x="671" y="1065"/>
         </scene>
+        <!--Sign In Or Guest View Controller-->
+        <scene sceneID="ksv-mg-Rew">
+            <objects>
+                <viewController storyboardIdentifier="SignInOrGuestViewController" id="D2M-LF-47J" customClass="SignInOrGuestViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V5F-fW-y8s">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="signin" translatesAutoresizingMaskIntoConstraints="NO" id="Hrk-2g-rfK">
+                                <rect key="frame" x="0.0" y="87" width="390" height="428"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JF9-HS-9E4">
+                                <rect key="frame" x="97.666666666666686" y="668.66666666666663" width="195" height="50.666666666666629"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Sign in" cornerStyle="capsule">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" name="PrimColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="signInBtn:" destination="D2M-LF-47J" eventType="touchUpInside" id="Hmq-Ui-ifg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-To-yd4">
+                                <rect key="frame" x="149.66666666666666" y="535" width="91" height="32.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" text="Shop Brands, Order Fast, Pay Your Way!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XsG-2C-GQy">
+                                <rect key="frame" x="46" y="587.66666666666663" width="298" height="76"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yK1-ny-khy">
+                                <rect key="frame" x="97.666666666666686" y="739.33333333333337" width="195" height="50.666666666666629"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="As Guest" cornerStyle="capsule">
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                    <color key="baseBackgroundColor" name="ViewBgColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="guestBtn:" destination="D2M-LF-47J" eventType="touchUpInside" id="Dxc-Ep-Paj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RMg-8u-h9l"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JF9-HS-9E4" firstAttribute="top" secondItem="XsG-2C-GQy" secondAttribute="bottom" constant="5" id="20a-5b-fUl"/>
+                            <constraint firstItem="RMg-8u-h9l" firstAttribute="trailing" secondItem="XsG-2C-GQy" secondAttribute="trailing" constant="46" id="4F7-xf-rVx"/>
+                            <constraint firstItem="XsG-2C-GQy" firstAttribute="centerX" secondItem="RMg-8u-h9l" secondAttribute="centerX" id="9Pz-AS-rYL"/>
+                            <constraint firstItem="Hrk-2g-rfK" firstAttribute="trailing" secondItem="RMg-8u-h9l" secondAttribute="trailing" id="Gi3-4M-q0b"/>
+                            <constraint firstItem="yK1-ny-khy" firstAttribute="bottom" secondItem="RMg-8u-h9l" secondAttribute="bottom" constant="-20" id="H31-vj-ekL"/>
+                            <constraint firstItem="cTq-To-yd4" firstAttribute="centerX" secondItem="RMg-8u-h9l" secondAttribute="centerX" id="J1P-N9-nbo"/>
+                            <constraint firstItem="cTq-To-yd4" firstAttribute="top" secondItem="Hrk-2g-rfK" secondAttribute="bottom" constant="20" id="Kdf-Jg-9Gp"/>
+                            <constraint firstItem="yK1-ny-khy" firstAttribute="height" secondItem="V5F-fW-y8s" secondAttribute="height" multiplier="0.06" id="Ogt-XI-9zB"/>
+                            <constraint firstItem="yK1-ny-khy" firstAttribute="top" secondItem="JF9-HS-9E4" secondAttribute="bottom" constant="20" id="PHg-Qw-fiw"/>
+                            <constraint firstItem="XsG-2C-GQy" firstAttribute="top" secondItem="cTq-To-yd4" secondAttribute="bottom" constant="20.329999999999998" id="hbc-Qg-d9c"/>
+                            <constraint firstItem="yK1-ny-khy" firstAttribute="width" secondItem="V5F-fW-y8s" secondAttribute="width" multiplier="0.5" id="jSp-48-YUh"/>
+                            <constraint firstItem="Hrk-2g-rfK" firstAttribute="leading" secondItem="RMg-8u-h9l" secondAttribute="leading" id="jwU-In-xWr"/>
+                            <constraint firstItem="JF9-HS-9E4" firstAttribute="centerX" secondItem="RMg-8u-h9l" secondAttribute="centerX" id="lgE-By-c2g"/>
+                            <constraint firstItem="XsG-2C-GQy" firstAttribute="height" secondItem="V5F-fW-y8s" secondAttribute="height" multiplier="0.09" id="mTs-1V-S0L"/>
+                            <constraint firstItem="JF9-HS-9E4" firstAttribute="height" secondItem="V5F-fW-y8s" secondAttribute="height" multiplier="0.06" id="mcN-UM-ola"/>
+                            <constraint firstItem="Hrk-2g-rfK" firstAttribute="top" secondItem="RMg-8u-h9l" secondAttribute="top" constant="40" id="pCp-am-Wl2"/>
+                            <constraint firstItem="yK1-ny-khy" firstAttribute="centerX" secondItem="RMg-8u-h9l" secondAttribute="centerX" id="peg-g0-OlA"/>
+                            <constraint firstItem="JF9-HS-9E4" firstAttribute="width" secondItem="V5F-fW-y8s" secondAttribute="width" multiplier="0.5" id="sjp-Mh-Ha9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sap-bf-0bw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3255" y="1065"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
@@ -759,6 +834,7 @@
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="ph_pants" width="24" height="24"/>
         <image name="shoe" catalog="system" width="128" height="61"/>
+        <image name="signin" width="559" height="447"/>
         <image name="tshirt" catalog="system" width="128" height="98"/>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -769,11 +845,14 @@
         <namedColor name="ViewBgColor">
             <color red="0.96078431372549022" green="0.96470588235294119" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="heartBg">
+            <color red="0.83529411764705885" green="0.83921568627450982" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

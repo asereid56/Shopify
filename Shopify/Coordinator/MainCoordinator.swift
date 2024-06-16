@@ -53,6 +53,12 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(onBoardingOneScreen, animated: true)
     }
     
+    func goToSignOrGuestScreen() {
+            let signOrGuestVC = SignInOrGuestViewController.instantiate(storyboardName: "Main")
+            signOrGuestVC.coordinator = self
+            navigationController.pushViewController(signOrGuestVC, animated: true)
+        }
+    
     func goToOnBoardingThirdScreen(){
         let onBoardingThreeScreen = OnBoardingThreeViewController.instantiate(storyboardName: "Main")
         onBoardingThreeScreen.coordinator = self
