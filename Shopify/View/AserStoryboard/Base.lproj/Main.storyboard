@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v8N-WW-pPR">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -45,8 +45,8 @@
                                     <action selector="cartBtn:" destination="Jel-1i-RZI" eventType="touchUpInside" id="Vjl-tG-phl"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01J-C4-ltE">
-                                <rect key="frame" x="63" y="66.666666666666671" width="210" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Addidas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01J-C4-ltE">
+                                <rect key="frame" x="63" y="53.666666666666664" width="210" height="25.666666666666664"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="22"/>
                                 <nil key="textColor"/>
@@ -182,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dR3-0N-mew" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-97" y="1065"/>
+            <point key="canvasLocation" x="-752" y="1065"/>
         </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
@@ -602,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwL-RD-PVQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1531" y="1065"/>
+            <point key="canvasLocation" x="1706" y="1065"/>
         </scene>
         <!--On Boarding Three View Controller-->
         <scene sceneID="y2C-ub-ZW9">
@@ -663,7 +663,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tqi-Ff-5lc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2335" y="1065"/>
+            <point key="canvasLocation" x="2523" y="1065"/>
+        </scene>
+        <!--Orders Screen View Controller-->
+        <scene sceneID="Ned-Ql-FKj">
+            <objects>
+                <viewController storyboardIdentifier="OrdersScreenViewController" id="j34-JV-sUp" customClass="OrdersScreenViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="adF-ol-ZNn">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJn-4U-ehW">
+                                <rect key="frame" x="16" y="47" width="39" height="39"/>
+                                <buttonConfiguration key="configuration" style="gray" image="arrow.backward" catalog="system" cornerStyle="capsule">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                    <color key="baseBackgroundColor" name="ViewBgColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="backBtn:" destination="j34-JV-sUp" eventType="touchUpInside" id="X53-gG-VCj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEI-r6-1ac">
+                                <rect key="frame" x="160.66666666666666" y="53.666666666666664" width="69" height="25.666666666666664"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0Ta-3j-zHQ">
+                                <rect key="frame" x="0.0" y="94" width="390" height="750"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="j34-JV-sUp" id="luH-u6-WEu"/>
+                                    <outlet property="delegate" destination="j34-JV-sUp" id="oEm-C7-4Jl"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="c1S-kj-oPh"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hJn-4U-ehW" firstAttribute="top" secondItem="c1S-kj-oPh" secondAttribute="top" id="ET4-lq-grd"/>
+                            <constraint firstItem="0Ta-3j-zHQ" firstAttribute="leading" secondItem="c1S-kj-oPh" secondAttribute="leading" id="Gp3-mu-rgx"/>
+                            <constraint firstItem="0Ta-3j-zHQ" firstAttribute="trailing" secondItem="c1S-kj-oPh" secondAttribute="trailing" id="Nev-aa-H58"/>
+                            <constraint firstItem="TEI-r6-1ac" firstAttribute="centerX" secondItem="c1S-kj-oPh" secondAttribute="centerX" id="UWz-0V-Cd4"/>
+                            <constraint firstItem="0Ta-3j-zHQ" firstAttribute="top" secondItem="hJn-4U-ehW" secondAttribute="bottom" constant="8" id="Ued-DS-cwN"/>
+                            <constraint firstAttribute="bottom" secondItem="0Ta-3j-zHQ" secondAttribute="bottom" id="kvw-yN-Gsy"/>
+                            <constraint firstItem="hJn-4U-ehW" firstAttribute="leading" secondItem="c1S-kj-oPh" secondAttribute="leading" constant="16" id="liX-Ve-kRO"/>
+                            <constraint firstItem="TEI-r6-1ac" firstAttribute="centerY" secondItem="hJn-4U-ehW" secondAttribute="centerY" id="pNH-QK-Byn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ordersTable" destination="0Ta-3j-zHQ" id="KJe-2m-GDl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t0r-3c-lI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="36.92307692307692" y="1064.9289099526065"/>
         </scene>
         <!--On Boarding One View Controller-->
         <scene sceneID="p3g-DD-3kx">
@@ -737,7 +793,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K8Y-Z6-mcL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="671" y="1065"/>
+            <point key="canvasLocation" x="828" y="1065"/>
         </scene>
         <!--Sign In Or Guest View Controller-->
         <scene sceneID="ksv-mg-Rew">
@@ -813,7 +869,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sap-bf-0bw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="1065"/>
+            <point key="canvasLocation" x="3377" y="1065"/>
         </scene>
     </scenes>
     <resources>
@@ -852,7 +908,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var myOrdersLabel: UILabel!
-    private var ordersArr : [Order] = []
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImage.layer.cornerRadius = 12
@@ -51,9 +51,7 @@ class ProfileViewController: UIViewController {
             profileName.text = fullName
             
             _ = viewModel?.data.drive(onNext: { [weak self] orders in
-                self?.ordersArr.append(contentsOf: orders)
-                print(orders.last)
-                print("Orders count \(orders.count)")
+               
                 if !orders.isEmpty {
                     
                     self?.ordersView.isHidden = false
@@ -101,8 +99,9 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func showAllOrders(_ sender: Any) {
-        print(ordersArr.count)
-       // coordinator.goToOrdersScreen(orders : )
+      viewModel?.fetchOrders(completion: { orders in
+            self.coordinator?.gotoOrdersScreen(orders: orders)
+        })
     }
     @IBAction func showWishlist(_ sender: Any) {
         coordinator?.goToWishList()

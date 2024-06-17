@@ -671,7 +671,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Okm-oh-ok9">
-                                                            <rect key="frame" x="321" y="31.000000000000004" width="24" height="25.333333333333339"/>
+                                                            <rect key="frame" x="321" y="31.000000000000007" width="24" height="25.333333333333336"/>
                                                             <color key="tintColor" red="0.29019607843137252" green="0.7803921568627451" blue="0.42745098039215684" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="2Fe-al-ggG"/>
@@ -1153,7 +1153,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="Rdb-LN-Bfb" secondAttribute="trailing" constant="16" id="w4p-In-eTT"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" name="ViewBgColor"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
                                         <connections>
                                             <outlet property="btnDelete" destination="26K-Rt-69I" id="Dkr-A4-MtQ"/>
                                             <outlet property="btnMinus" destination="hLT-tw-966" id="hul-Xf-btS"/>

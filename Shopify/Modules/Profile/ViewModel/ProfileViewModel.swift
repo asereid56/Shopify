@@ -45,4 +45,14 @@ class ProfileViewModel {
             print("Error fetching orders \(error)")
         })
     }
+    
+    func fetchOrders(completion: @escaping ([Order]) -> Void) {
+            do {
+                let orders = try dataSubject.value()
+                completion(orders)
+            } catch {
+                print("Error fetching orders from dataSubject: \(error)")
+                completion([])
+            }
+        }
 }

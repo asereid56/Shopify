@@ -47,3 +47,20 @@ func checkInternetAndShowToast(vc: UIViewController) -> Bool{
         return false
     }
 }
+
+func formateTheDate(date : String) -> String{
+    var formattedDate : String = ""
+
+    let inputFormatter = DateFormatter()
+    inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXX"
+    
+    if let date = inputFormatter.date(from: date) {
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd-MM-yyyy"
+        
+        formattedDate = outputFormatter.string(from: date)
+        
+    }
+    return formattedDate
+  
+}
