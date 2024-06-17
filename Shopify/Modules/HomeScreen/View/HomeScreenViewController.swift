@@ -43,8 +43,9 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         
         brandsCollection.collectionViewLayout = createBrandsLayout()
         adsCollection.collectionViewLayout = createAdsLayout()
-       
-      selectBrandToNavigate()
+        
+        selectBrandToNavigate()
+        viewModel?.fetchCurrencyRate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,8 +74,9 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     func setUpBrandsBinding() {
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
         
-            cell.brandImage.kf.setImage(with: URL(string: brand.image.src ))
             cell.layer.borderColor = UIColor.lightGray.cgColor
+            
+            cell.brandImage.kf.setImage(with: URL(string: brand.image.src ?? ""))
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 15
             cell.layer.masksToBounds = true
@@ -86,13 +88,13 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     func selectBrandToNavigate(){
         brandsCollection.rx.modelSelected(SmartCollection.self)
-                   .subscribe(onNext: { [weak self] brand in
-                       guard let self = self else { return }
-                       self.coordinator?.gotoProductsScreen(with: String(brand.id))
-                   })
-                   .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] brand in
+                guard let self = self else { return }
+                self.coordinator?.gotoProductsScreen(with: String(brand.id))
+            })
+            .disposed(by: disposeBag)
     }
-  
+    
     func configurePageController(){
         self.pageController.numberOfPages = self.adsArray.count
         self.pageController.currentPage = 0
@@ -163,7 +165,8 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     @IBAction func cartBtn(_ sender: Any) {
-        coordinator?.goToWishList()
+        
+        coordinator?.goToShoppingCart()
     }
     
     @IBAction func wishListBtn(_ sender: Any) {

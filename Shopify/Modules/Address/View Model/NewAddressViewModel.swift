@@ -80,13 +80,4 @@ class NewAddressViewModel : NewAddressViewModelProtocol{
     
  }
 
-extension NewAddressViewController : MenuListViewControllerDelegate{
-    func didSelectCountry(_ country: Country) {
-        viewModel?.selectedCountry.accept(country)
-        viewModel?.selectedCity.accept(nil)
-    }
-    
-    func didSelectCity(_ city: String) {
-        viewModel?.selectedCity.accept(city)
-    }
-}
+

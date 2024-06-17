@@ -24,6 +24,8 @@ enum APIEndpoint: String {
     case createDraftOrder = "/draft_orders.json"
     case productVariant = "/variants/{variant_id}.json"
     case ordersByCustomer = "/orders.json?customer_id={customer_id}"
+    case currencyRate = "?apikey={apikey}&currencies={currencies}&base_currency={base_currency}"
+    case createOrder = "/orders.json"
 }
 
 enum NetworkError: Error {
@@ -48,19 +50,20 @@ class NetworkService: NetworkServiceProtocol {
     private init(){}
     // Helper function to create full URL and default headers
     private func createRequestDetails(url : String ,endpoint: String, headers: HTTPHeaders?) -> (String, HTTPHeaders) {
-        let url = "\(NetworkConstants.baseURL)\(endpoint)"
-        print("url: \(url)")
+        let url = "\(url)\(endpoint)"
+        print("url-------------: \(url)")
         var combinedHeaders = headers ?? HTTPHeaders()
        // combinedHeaders.add(name: "Authorization", value: NetworkConstants.apiKey)
-        combinedHeaders.add(name: "X-Shopify-Access-Token", value: Constant.adminApiAccessToken)
-        combinedHeaders.add(name: "Content", value: "application/json")
+        if headers == nil{
+            combinedHeaders.add(name: "X-Shopify-Access-Token", value: Constant.adminApiAccessToken)
+            combinedHeaders.add(name: "Content", value: "application/json")
+        }
         return (url, combinedHeaders)
     }
 
     // Generic function to get data
     func get<T: Decodable>(url : String = NetworkConstants.baseURL ,endpoint: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<T> {
         let (url, combinedHeaders) = createRequestDetails(url : url ,endpoint: endpoint, headers: headers)
-print(url)
         return RxAlamofire
             .requestData(.get, url, parameters: parameters, encoding: URLEncoding.default, headers: combinedHeaders)
             .flatMap { response, data -> Observable<T> in

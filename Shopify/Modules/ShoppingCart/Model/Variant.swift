@@ -38,6 +38,11 @@ struct Variant: Codable {
     var requiresShipping: Bool?
     var adminGraphqlApiId: String?
     var imageId: String?
+    
+    init(id : Int , productId: Int) {
+        self.id = id
+        self.productId = id
+    }
 
     enum CodingKeys: String, CodingKey {
         case id

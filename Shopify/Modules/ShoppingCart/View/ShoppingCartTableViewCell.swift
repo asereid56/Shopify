@@ -60,9 +60,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
         let url  = URL(string: (model.properties?.first?.value)!)
         productTitle.text = model.title
         productVendor.text = model.vendor
-        productPrice.text = model.price
+        productPrice.text = CurrencyService.calculatePriceAccordingToCurrency(price: model.price ?? "0.0")
         productQuantity.text = String(model.quantity ?? 0)
         productImage.kf.setImage(with: url)
+        soldOutImage.isHidden = true
     }
     
     @objc private func plusButtonTapped() {

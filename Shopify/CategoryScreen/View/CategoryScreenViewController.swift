@@ -71,7 +71,7 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             }
         }).drive(categoryCollectionView.rx.items(cellIdentifier: "ProductCell", cellType: ProductCollectionXIBCell.self)){ index , product , cell in
             
-            cell.productCost.text = String(product.variants?.first??.price ?? "0")
+            cell.productCost.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(product.variants?.first??.price ?? "0"))
             cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
             cell.productName.text = product.title
             cell.layer.masksToBounds = true

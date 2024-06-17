@@ -13,15 +13,17 @@ protocol HomeScreenViewModelProtocol {
     var data : Driver<[SmartCollection]>{ get }
     
     func fetchBranchs()
+    func fetchCurrencyRate()
 }
 
 class HomeScreenViewModel : HomeScreenViewModelProtocol{
-    
+    let currencyService : CurrencyServiceProtocol
     private let disposeBag = DisposeBag()
     private let network : NetworkService
     private let dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
     
-    init(network: NetworkService) {
+    init(currencyService: CurrencyServiceProtocol, network: NetworkService) {
+        self.currencyService = currencyService
         self.network = network
     }
     
@@ -41,5 +43,9 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
                     print("Fetch completed")
                 }
             ).disposed(by: disposeBag)
+    }
+    
+    func fetchCurrencyRate(){
+        currencyService.fetchCurrencyRate()
     }
 }

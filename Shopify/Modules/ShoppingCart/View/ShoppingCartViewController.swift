@@ -24,9 +24,11 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         tableView.delegate = self
-        viewModel?.fetchCartItems()
+       // viewModel?.fetchCartItems()
+        viewModel?.fetchCartItemsFromRealm()
     }
     override func viewWillAppear(_ animated: Bool) {
+        tableView.dataSource = nil
         bindTableView()
     }
     
@@ -34,18 +36,20 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
         viewModel?.data
             .map{ data in
                 var newData = data
+                
                 if !newData.isEmpty {
                     newData.removeFirst()
+                    self.total.text = CurrencyService.calculatePriceAccordingToCurrency(price: self.viewModel?.getDratOrder().subtotalPrice ?? "-1")
                 }
                 return newData
             }
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: ShoppingCartTableViewCell.self)){ [weak self](row, model, cell) in
-                let inventoryQuantity = Int((model.properties?[1].value)!) ?? 0
-
+                    let inventoryQuantity = Int((model.properties?[1].value) ?? "-1") ?? 0
+                
                 cell.setUpCell(model: model)
-                self?.total.text = self?.viewModel?.getDratOrder().subtotalPrice
+                                self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price: self?.viewModel?.getDratOrder().subtotalPrice ?? "-1")
                 
-                
+    
                 cell.deleteAction = {
                     self?.setConfirmationAlert(index: row + 1)
                 }
@@ -56,8 +60,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                         if currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)) {
                             self?.notAvailableAlert(title: "Sold out!")
                         } else {
-                            print("----\(currentQuantity + 1)")
-                            cell.updateQuantity(currentQuantity + 1) // Update UI immediately
+                            cell.updateQuantity(currentQuantity + 1)
                             self?.viewModel?.plusAction.onNext((row +  1, currentQuantity, inventoryQuantity ))
                         }
                     })
@@ -66,20 +69,20 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                 cell.minusBtnTapped
                     .subscribe(onNext: {
                         guard let currentQuantity = Int(cell.productQuantity.text!), currentQuantity > 1 else { return }
-                        cell.updateQuantity(currentQuantity - 1) // Update UI immediately
-                        print(currentQuantity - 1)
+                        cell.updateQuantity(currentQuantity - 1)
                         self?.viewModel?.minusAction.onNext((row +  1, currentQuantity))
                     })
                     .disposed(by: cell.disposeBag)
-
+                
                 if self?.viewModel?.isSoldOut(inventoryQuantity: inventoryQuantity, productQuantity: Int(model.quantity!)) ?? false{
                     cell.soldOutImage.isHidden = false
-                    self?.viewModel?.canCheckOut = false
-                    cell.productQuantity.text = "0"
+                    print(model.variantId)
                 }
                 
             }
             .disposed(by: disposeBag)
+        
+        
     }
     
     func setConfirmationAlert(index : Int){
@@ -102,8 +105,8 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
     }
     
     @IBAction func btnCheckout(_ sender: Any) {
-        if viewModel?.canCheckOut ?? false{
-            
+        if viewModel?.canCheckOut() ?? false{
+            coordinator?.goToPayment(draftOrder: (viewModel?.getDratOrder())!)
         }else{
             notAvailableAlert(title: "Oops! Some items in your cart are sold out. Please decrement or remove them.")
         }
@@ -113,12 +116,16 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
         coordinator?.goBack()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        viewModel?.updateRealm()
+    }
+    
 }
 
 extension ShoppingCartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let screenHeight = UIScreen.main.bounds.height
-        let cellHeight = screenHeight * 0.15
+        let cellHeight = screenHeight * 0.18
         return cellHeight
     }
 }

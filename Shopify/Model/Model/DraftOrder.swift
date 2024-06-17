@@ -8,7 +8,7 @@
 import Foundation
 
 struct LineItem: Codable {
-    var id: Int? = nil
+    var id: Int? = 0
     var variantId: Int? = nil
     var productId: Int? = nil
     var title: String? = nil
@@ -29,7 +29,7 @@ struct LineItem: Codable {
     var price: String? = nil
     var adminGraphqlApiId: String? = nil
     
-   
+    
     enum CodingKeys: String, CodingKey {
         case id
         case variantId = "variant_id"
@@ -57,6 +57,7 @@ struct LineItem: Codable {
         self.price = price
         self.quantity = quantity
     }
+    
     init(productId: Int?, title: String?, price: String?, img: String?, quantity: Int? = 1, variantId: String? = nil, variantTitle: String?) {
         self.variantTitle = variantTitle
         self.productId = productId
@@ -66,6 +67,33 @@ struct LineItem: Codable {
         self.sku = img!+" "+String(productId!)
         taxable = false
         requiresShipping = false
+    
+    init(variantId : Int , productId: Int , quantity: Int = 1 , properties: [Property]) {
+        self.variantId = variantId
+        self.productId = productId
+        self.quantity = quantity
+        self.properties = properties
+    }
+    
+    init(from realmLineItem: RealmLineItem) {
+        self.variantId = realmLineItem.variantId
+        self.productId = realmLineItem.productId
+        self.title = realmLineItem.title
+        self.variantTitle = realmLineItem.variantTitle
+        self.sku = realmLineItem.sku
+        self.vendor = realmLineItem.vendor
+        self.quantity = realmLineItem.quantity
+        self.requiresShipping = realmLineItem.requiresShipping
+        self.taxable = realmLineItem.taxable
+        self.giftCard = realmLineItem.giftCard
+        self.fulfillmentService = realmLineItem.fulfillmentService
+        self.grams = realmLineItem.grams
+        self.name = realmLineItem.name
+        self.custom = realmLineItem.custom
+        self.price = realmLineItem.price
+        self.adminGraphqlApiId = realmLineItem.adminGraphqlApiId
+        
+        self.properties = realmLineItem.properties.map { Property(name: $0.name, value: $0.value) }
     }
 }
 struct Property: Codable {
@@ -165,6 +193,13 @@ struct DraftOrder: Codable {
         case totalTax = "total_tax"
         case paymentTerms = "payment_terms"
         case adminGraphqlApiId = "admin_graphql_api_id"
+    }
+    
+    init(from realmDraftOrder: RealmDraftOrder) {
+        self.lineItems = realmDraftOrder.lineItems.map { LineItem(from: $0) }
+        self.totalPrice = realmDraftOrder.totalPrice
+        self.subtotalPrice = realmDraftOrder.subtotalPrice
+        self.totalTax = realmDraftOrder.totalTax
     }
 }
 

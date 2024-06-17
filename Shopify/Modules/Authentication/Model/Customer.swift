@@ -34,9 +34,15 @@ class Customer: Codable {
         self.lastName = lastName
         self.email = email
     }
+    
     init(firstName: String) {
         self.firstName = firstName
     }
+    
+    init(id : Int) {
+        self.id = id
+    }
+    
     enum CodingKeys: String, CodingKey {
             case id, email, note, tags
             case firstName = "first_name"

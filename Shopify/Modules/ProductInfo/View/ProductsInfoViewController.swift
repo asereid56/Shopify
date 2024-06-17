@@ -102,9 +102,12 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     @IBAction func addToCart(_ sender: Any) {
+        
         print(getVariantTitle())
         let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
         print(variant ?? "")
+        
+        viewModel?.fetchDraftOrder()
     }
     
     @IBAction func addToWishList(_ sender: Any) {
