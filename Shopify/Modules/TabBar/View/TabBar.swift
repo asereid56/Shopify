@@ -17,7 +17,8 @@ class TabBar : UITabBarController {
         
         let categoryScreen = storyboard?.instantiateViewController(withIdentifier: "CategoryScreenViewController") as! CategoryScreenViewController
         
-        let profileScreen = storyboard?.instantiateViewController(identifier: "ProfileScreenViewController") as! ProfileScreenViewController
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let profileScreen = storyboard.instantiateViewController(identifier: "profileViewController") as! ProfileViewController
         
         homeScreen.coordinator = coordinator
         categoryScreen.coordinator = coordinator
@@ -29,6 +30,8 @@ class TabBar : UITabBarController {
         let categoryScreenViewModel = CategoryScreenViewModel(network: NetworkService.shared)
         categoryScreen.viewModel = categoryScreenViewModel
         
+        let profileViewModel = ProfileViewModel(network: NetworkService.shared)
+        profileScreen.viewModel = profileViewModel
         viewControllers = [homeScreen , categoryScreen , profileScreen]
     
     }

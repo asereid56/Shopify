@@ -17,10 +17,20 @@ class LoginWithEmailViewController: UIViewController {
         passwordTxt.isSecureTextEntry = true 
     }
     override func viewDidAppear(_ animated: Bool) {
+        
+        checkonUserDefaultsValues()
     }
     
     @IBAction func loginTapped(_ sender: Any) {
-        viewModel?.signInWithEmail(email: emailTxt.text ?? "", password: passwordTxt.text ?? "", vc: self, mainCoordinator: coordinator!)
+        viewModel?.signInWithEmail(email: emailTxt.text ?? "", password: passwordTxt.text ?? "") { [weak self] success, title, message in
+            if success {
+                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
+                self?.coordinator?.gotoTab()
+                showToast(message: "Welcome back \(name ?? "")!", vc: self ?? UIViewController())
+            } else {
+                showToast(message: "Something went wrong", vc: self ?? UIViewController())
+            }
+        }
     }
     
     @IBAction func signUpTapped(_ sender: Any) {

@@ -5,11 +5,12 @@
 //  Created by Mina on 11/06/2024.
 //
 
-import Foundation
+import UIKit
 import RxSwift
-import RxAlamofire
+import RxCocoa
 class ProductInfoViewModel {
     var network: NetworkService?
+    let isLoading = BehaviorRelay<Bool>(value: false)
     var reviews: [Review]?
     var product: Product?
     let reviewText = "Lorem ipsum dolor sit amet, consectetur ire adipiscing elit. Pellentesque malesuada eget vitae amet."
@@ -26,7 +27,8 @@ class ProductInfoViewModel {
         reviews
     }
     
-    func addToWishList(product: Product?) {
+    func addToWishList(product: Product?, vc: UIViewController, completion: @escaping (Bool) -> Void) {
+        isLoading.accept(true)
         guard let product = product,
               let productId = product.id,
               let title = product.title,
@@ -35,12 +37,17 @@ class ProductInfoViewModel {
             print("Error: Incomplete product information")
             return
         }
-        let draftOrderId = "1110462660761"
-        let endpoint = APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId)
+        let draftOrderId = UserDefaultsManager.shared.getWishListIdFromUserDefaults()
+        let endpoint = APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId ?? "")
 
         _ = network?.get(endpoint: endpoint)
             .flatMap { (data: DraftOrderWrapper) -> Observable<(Bool, String?, DraftOrderWrapper?)> in
                 var workingData = data
+                if ((workingData.draftOrder!.lineItems!.contains(where: { $0.title == product.title }))) {
+                    self.isLoading.accept(false)
+                    completion(false)
+                    return Observable.just((false, nil, nil))
+                }
                 let lineItem = LineItem(productId: productId, title: title, price: price, img: imageSrc, quantity: 1, variantTitle: String(productId))
                 print("LINE ITEM: \(lineItem)")
                 workingData.draftOrder?.lineItems?.append(lineItem)
@@ -50,6 +57,8 @@ class ProductInfoViewModel {
             .subscribe(
                 onNext: { success, response, updatedDraftOrder in
                     if success {
+                        self.isLoading.accept(false)
+                        completion(true)
                         print("Added to wishlist: \(response ?? "Unknown response")")
                     } else {
                         print("Failed to add to wishlist: \(response ?? "Unknown response")")
@@ -61,6 +70,9 @@ class ProductInfoViewModel {
             )
     }
 
-
+    func getSelectedVariant(title: String) -> Variantt? {
+        let variants = product?.variants?.filter{ $0?.title == title }
+        return variants?[0]
+    }
 
 }

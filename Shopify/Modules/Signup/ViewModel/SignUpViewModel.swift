@@ -7,19 +7,29 @@
 
 import UIKit
 class SignUpViewModel {
-    func signOut() {
-        
-    }
-    func validateEntries(passTxt: String, confirmPassTxt: String, firstNameTxt: String, lastNameTxt: String, emailTxt: String, vc: UIViewController) {
+    
+    func validateEntries(passTxt: String, confirmPassTxt: String, firstNameTxt: String, lastNameTxt: String, emailTxt: String, coordinator: MainCoordinator, vc: UIViewController, completion: @escaping (Bool) -> Void) {
         if !passTxt.isEmpty && !confirmPassTxt.isEmpty && !firstNameTxt.isEmpty && !lastNameTxt.isEmpty {
             if passTxt == confirmPassTxt {
-                AuthenticationManager.signUp(firstname: firstNameTxt, lastName: lastNameTxt, email: emailTxt, password: passTxt, vc: vc)
+                AuthenticationManager.shared.signUp(firstname: firstNameTxt, lastName: lastNameTxt, email: emailTxt, password: passTxt) { success, title, message in
+                    if success {
+                        completion(true)
+                    }
+                    else {
+                        completion(false)
+                        showToast(message: message ?? "", vc: vc)
+                    }
+                }
             } else {
-                AuthenticationManager.showAlert(vc: vc, title: "", message: "Passwords Don't Match")
+                AuthenticationManager.shared.showAlert(vc: vc, title: "", message: "Passwords Don't Match")
             }
         }
         else {
-            AuthenticationManager.showAlert(vc: vc, title: "Empty Fields", message: "Please fill in all the fields")
+            AuthenticationManager.shared.showAlert(vc: vc, title: "Empty Fields", message: "Please fill in all the fields")
         }
+    }
+    
+    func showWelcomeAlert(vc: UIViewController) {
+        AuthenticationManager.shared.showWelcomeAlert(vc: vc)
     }
 }
