@@ -413,6 +413,10 @@
 			isa = PBXGroup;
 			children = (
 				390BD40E2C1EF682007D4609 /* ProfileViewController.swift */,
+            );
+            path = View;
+            sourceTree = "<group>";
+        };
 		18F0AC252C1CA98900BDE7C0 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +450,8 @@
 				390BD4132C1F0106007D4609 /* OrdersModel.swift */,
 			);
 			path = Model;
+            sourceTree = "<group>";
+        };
 		18F0AC272C1CA9AA00BDE7C0 /* View Model */ = {
 			isa = PBXGroup;
 			children = (

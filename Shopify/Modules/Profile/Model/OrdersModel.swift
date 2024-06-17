@@ -10,32 +10,32 @@ struct OrdersWrapper: Codable {
     let orders: [Order]
 }
 
-struct Order: Codable {
-    let id: Int?
-    let contactEmail: String?
-    let createdAt: String?
-    let currency, currentSubtotalPrice: String?
-    let currentSubtotalPriceSet: CurrentSet?
-    let currentTotalDiscounts: String?
-    let currentTotalDiscountsSet: CurrentSet?
-    let currentTotalPrice: String?
-    let province: String?
-    let country: String?
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case contactEmail = "contact_email"
-        case createdAt = "created_at"
-        case currency
-        case currentSubtotalPrice = "current_subtotal_price"
-        case currentSubtotalPriceSet = "current_subtotal_price_set"
-        case currentTotalDiscounts = "current_total_discounts"
-        case currentTotalDiscountsSet = "current_total_discounts_set"
-        case currentTotalPrice = "current_total_price"
-        case province
-        case country
-    }
-}
+//struct Order: Codable {
+//    let id: Int?
+//    let contactEmail: String?
+//    let createdAt: String?
+//    let currency, currentSubtotalPrice: String?
+//    let currentSubtotalPriceSet: CurrentSet?
+//    let currentTotalDiscounts: String?
+//    let currentTotalDiscountsSet: CurrentSet?
+//    let currentTotalPrice: String?
+//    let province: String?
+//    let country: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case id
+//        case contactEmail = "contact_email"
+//        case createdAt = "created_at"
+//        case currency
+//        case currentSubtotalPrice = "current_subtotal_price"
+//        case currentSubtotalPriceSet = "current_subtotal_price_set"
+//        case currentTotalDiscounts = "current_total_discounts"
+//        case currentTotalDiscountsSet = "current_total_discounts_set"
+//        case currentTotalPrice = "current_total_price"
+//        case province
+//        case country
+//    }
+//}
 
 struct CurrentSet: Codable {
     let shopMoney, presentmentMoney: Money

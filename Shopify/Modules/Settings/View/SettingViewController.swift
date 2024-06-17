@@ -66,4 +66,9 @@ class SettingViewController: UIViewController, Storyboarded {
         
     }
     
+    
+    @IBAction func logOutBtn(_ sender: Any) {
+        AuthenticationManager.shared.signOut()
+    }
+    
 }

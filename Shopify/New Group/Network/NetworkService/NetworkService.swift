@@ -34,7 +34,7 @@ enum NetworkError: Error {
 
 // Define a protocol for NetworkService
 protocol NetworkServiceProtocol {
-    func get<T: Decodable>(url : String , endpoint: String,  parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<T>
+    func get<T: Decodable>(url : String? , endpoint: String,  parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<T>
     func post<T: Encodable, U: Decodable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?, responseType: U.Type) -> Observable<(Bool, String?, U?)>
     func delete(url: String, endpoint: String, parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<Int>
 //    func put<T: Codable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?) -> Observable<(HTTPURLResponse, Data)>
@@ -43,6 +43,7 @@ protocol NetworkServiceProtocol {
 }
 
 class NetworkService: NetworkServiceProtocol {
+ 
     static let shared = NetworkService()
     
     private let disposeBag = DisposeBag()
@@ -62,8 +63,8 @@ class NetworkService: NetworkServiceProtocol {
     }
 
     // Generic function to get data
-    func get<T: Decodable>(url : String = NetworkConstants.baseURL ,endpoint: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<T> {
-        let (url, combinedHeaders) = createRequestDetails(url : url ,endpoint: endpoint, headers: headers)
+    func get<T: Decodable>(url : String? = NetworkConstants.baseURL ,endpoint: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<T> {
+        let (url, combinedHeaders) = createRequestDetails(url : url ?? "" ,endpoint: endpoint, headers: headers)
         return RxAlamofire
             .requestData(.get, url, parameters: parameters, encoding: URLEncoding.default, headers: combinedHeaders)
             .flatMap { response, data -> Observable<T> in

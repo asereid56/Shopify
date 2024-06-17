@@ -51,11 +51,14 @@ class ProfileViewController: UIViewController {
             profileName.text = fullName
             
             _ = viewModel?.data.drive(onNext: { [weak self] orders in
+                print(orders)
+                print("Orders count \(orders.count)")
                 if !orders.isEmpty {
+                    
                     self?.ordersView.isHidden = false
                     self?.totalAmount.text = orders.first?.currentTotalPrice
                     self?.createdAt.text = orders.first?.createdAt
-                    self?.address.text = (orders.first?.province ?? "") + ", " + (orders.first?.province ?? "")
+                    self?.address.text = (orders.first?.country ?? "") + ", " + (orders.first?.country ?? "")
                 }
                 else {
                     self?.ordersView.isHidden = true
@@ -73,7 +76,7 @@ class ProfileViewController: UIViewController {
                 if wishlist.count > 1 {
                     self?.wishItem1.isHidden = false
                     self?.firstItemLabel.text = wishlist[1].title
-                    self?.firstItemPrice.text = wishlist[1].price
+                    self?.firstItemPrice.text =  CurrencyService.calculatePriceAccordingToCurrency(price: String(wishlist[1].price ?? "0"))
                     let components = wishlist[1].sku?.components(separatedBy: " ")
                     self?.firstItemImage.kf.setImage(with: URL(string: components?[0] ?? ""))
                 }
@@ -83,7 +86,7 @@ class ProfileViewController: UIViewController {
                 if wishlist.count > 2 {
                     self?.wishItem2.isHidden = false
                     self?.secondItemLabel.text = wishlist[2].title
-                    self?.secondItemPrice.text = wishlist[2].price
+                    self?.secondItemPrice.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(wishlist[2].price ?? "0"))
                     let components = wishlist[2].sku?.components(separatedBy: " ")
                     self?.secondItemImage.kf.setImage(with: URL(string: components?[0] ?? ""))
                 }

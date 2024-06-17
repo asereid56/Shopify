@@ -56,7 +56,7 @@ class RealmLineItem: Object {
             self.adminGraphqlApiId = lineItem.adminGraphqlApiId ?? ""
             
             if let properties = lineItem.properties {
-                self.properties.append(objectsIn: properties.map { RealmProperty(name: $0.name, value: $0.value) })
+                self.properties.append(objectsIn: properties.map { RealmProperty(name: $0.name ?? "", value: $0.value ?? "") })
             }
         }
     

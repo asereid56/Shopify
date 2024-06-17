@@ -170,7 +170,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     @IBAction func wishListBtn(_ sender: Any) {
-        coordinator?.goToSettings()
+        coordinator?.goToWishList()
     }
     
 }

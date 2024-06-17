@@ -18,7 +18,7 @@ class OnBoardingOneViewController: UIViewController , Storyboarded {
     }
     
     @IBAction func skipBtn(_ sender: Any) {
-        coordinator?.gotoTab()
+        coordinator?.goToMainLogin()
     }
     
     

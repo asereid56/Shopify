@@ -19,6 +19,8 @@ class MainCoordinator : Coordinator {
     
     private let defaults = UserDefaults.standard
     private let key = "isFirstTime"
+    private let customerID = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
+    private let cartID = UserDefaultsManager.shared.getCartIdFromUserDefaults()
     var childCoordinators = [Coordinator]()
     var navigationController : UINavigationController
     
@@ -93,7 +95,7 @@ class MainCoordinator : Coordinator {
     
     func goToAddresses(from viewController: PaymentViewController? = nil , source : String = "setting"){
         let addressesVC = AddressesViewController.instantiate(storyboardName:"Setting")
-        let viewModel = AddressesViewModel(networkService: NetworkService.shared, customerId: "7506651938969")
+        let viewModel = AddressesViewModel(networkService: NetworkService.shared, customerId: customerID ?? "")
         addressesVC.viewModel = viewModel
         addressesVC.coordinator = self
         addressesVC.source = source
@@ -103,7 +105,7 @@ class MainCoordinator : Coordinator {
     
     func goToEditAddress(address : Address){
         let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
-        let viewModel = NewAddressViewModel(address: address, networkService: NetworkService.shared, customerId: "7506651938969",dataLoader: DataLoader())
+        let viewModel = NewAddressViewModel(address: address, networkService: NetworkService.shared, customerId: customerID ?? "" ,dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
         newAddressVC.coordinator = self
         navigationController.pushViewController(newAddressVC, animated: false)
@@ -111,7 +113,7 @@ class MainCoordinator : Coordinator {
     
     func goToNewAddress(){
         let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
-        let viewModel = NewAddressViewModel(networkService: NetworkService.shared, customerId: "7506651938969",dataLoader: DataLoader())
+        let viewModel = NewAddressViewModel(networkService: NetworkService.shared, customerId: customerID ?? "" ,dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
         newAddressVC.coordinator = self
         navigationController.pushViewController(newAddressVC, animated: false)
@@ -127,7 +129,7 @@ class MainCoordinator : Coordinator {
     
     func goToShoppingCart() {
         let ShoppingCarVC = ShoppingCartViewController.instantiate(storyboardName:"Setting")
-        let viewModel = ShoppingCartViewModel(networkService: NetworkService.shared, draftOrderId: "1110462660761", realmManager: RealmManager.shared)
+        let viewModel = ShoppingCartViewModel(networkService: NetworkService.shared, draftOrderId: cartID ?? "" , realmManager: RealmManager.shared)
         ShoppingCarVC.viewModel = viewModel
         ShoppingCarVC.coordinator = self
         navigationController.pushViewController(ShoppingCarVC, animated: false)
@@ -135,7 +137,7 @@ class MainCoordinator : Coordinator {
     
     func goToPayment(draftOrder : DraftOrder){
         let PaymentVC = PaymentViewController.instantiate(storyboardName:"Setting")
-        let viewModel = PaymentViewModel(draftOrder: draftOrder, network: NetworkService.shared , customerId: "7506651938969",mockPaymentProcessor: MockPaymentProcessor(), draftOrderId: "1110462660761")
+        let viewModel = PaymentViewModel(draftOrder: draftOrder, network: NetworkService.shared , customerId: customerID ?? "" ,mockPaymentProcessor: MockPaymentProcessor(), draftOrderId: cartID ?? "")
         viewModel.delegate = PaymentVC
         PaymentVC.viewModel = viewModel
         PaymentVC.coordinator = self
@@ -221,7 +223,7 @@ class MainCoordinator : Coordinator {
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
         let productInfo = storyboard.instantiateViewController(withIdentifier: "pinfo") as! ProductInfoViewController
         productInfo.coordinator = self
-        let viewModel = ProductInfoViewModel(product: product, network: NetworkService.shared , draftOrderId: "1110462660761",realmManger: RealmManager.shared)
+        let viewModel = ProductInfoViewModel(product: product, network: NetworkService.shared , draftOrderId: cartID ?? "",realmManger: RealmManager.shared)
         productInfo.viewModel = viewModel
         productInfo.navigationController?.navigationBar.isHidden = true
         navigationController.pushViewController(productInfo, animated: true)

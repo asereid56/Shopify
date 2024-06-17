@@ -24,8 +24,8 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         tableView.delegate = self
-       // viewModel?.fetchCartItems()
-        viewModel?.fetchCartItemsFromRealm()
+        viewModel?.fetchCartItems()
+     //   viewModel?.fetchCartItemsFromRealm()
     }
     override func viewWillAppear(_ animated: Bool) {
         tableView.dataSource = nil

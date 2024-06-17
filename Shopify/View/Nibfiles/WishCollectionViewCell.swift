@@ -44,7 +44,7 @@ class WishCollectionViewCell: UICollectionViewCell {
     func configure(with item: LineItem) {
         let array = item.sku?.components(separatedBy: " ")
         itemImage.kf.setImage(with: URL(string: array?[0] ?? ""))
-        itemCost.text = item.price
+        itemCost.text =  CurrencyService.calculatePriceAccordingToCurrency(price: String(item.price ?? "0"))
         itemTitle.text = item.title
     }
 }

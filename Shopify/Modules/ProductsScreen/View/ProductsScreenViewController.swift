@@ -144,10 +144,11 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     }
     
     @IBAction func cartBtn(_ sender: Any) {
+        coordinator?.goToShoppingCart()
     }
     
     @IBAction func favBtn(_ sender: Any) {
-        coordinator?.goToMainLogin()
+        coordinator?.goToWishList()
     }
     
     @IBAction func backBtn(_ sender: Any) {

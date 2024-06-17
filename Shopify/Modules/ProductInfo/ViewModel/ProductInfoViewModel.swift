@@ -8,6 +8,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import UIKit
 
 class ProductInfoViewModel {
     
@@ -23,10 +24,10 @@ class ProductInfoViewModel {
     var product: Product?
     let reviewText = "Lorem ipsum dolor sit amet, consectetur ire adipiscing elit. Pellentesque malesuada eget vitae amet."
     
-    init(product: Product) {
-        self.network = NetworkService.shared
-        self.product = product
-    }
+//    init(product: Product) {
+//        self.network = NetworkService.shared
+//        self.product = product
+//    }
     
     init(product: Product , network : NetworkServiceProtocol , draftOrderId : String , realmManger : RealmManagerProtocol) {
 
@@ -58,7 +59,7 @@ class ProductInfoViewModel {
         let draftOrderId = UserDefaultsManager.shared.getWishListIdFromUserDefaults()
         let endpoint = APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId ?? "")
 
-        _ = network?.get(endpoint: endpoint)
+        _ = network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
             .flatMap { (data: DraftOrderWrapper) -> Observable<(Bool, String?, DraftOrderWrapper?)> in
                 var workingData = data
                 if ((workingData.draftOrder!.lineItems!.contains(where: { $0.title == product.title }))) {
@@ -69,8 +70,9 @@ class ProductInfoViewModel {
                 let lineItem = LineItem(productId: productId, title: title, price: price, img: imageSrc, quantity: 1, variantTitle: String(productId))
                 print("LINE ITEM: \(lineItem)")
                 workingData.draftOrder?.lineItems?.append(lineItem)
-                return self.network?.put(endpoint: endpoint, body: workingData, responseType: DraftOrderWrapper.self)
-                        ?? Observable.empty()
+                return self.network.put(url: NetworkConstants.baseURL, endpoint: endpoint, body: workingData, headers: nil, responseType: DraftOrderWrapper.self) ?? Observable.empty()
+//                return self.network?.put(endpoint: endpoint, body: workingData, responseType: DraftOrderWrapper.self)
+                        
             }
             .subscribe(
                 onNext: { success, response, updatedDraftOrder in
@@ -88,7 +90,7 @@ class ProductInfoViewModel {
             )
     }
 
-    func getSelectedVariant(title: String) -> Variantt? {
+    func getSelectedVariant(title: String) -> Variant? {
         let variants = product?.variants?.filter{ $0?.title == title }
         return variants?[0]
     }

@@ -67,6 +67,7 @@ struct LineItem: Codable {
         self.sku = img!+" "+String(productId!)
         taxable = false
         requiresShipping = false
+    }
     
     init(variantId : Int , productId: Int , quantity: Int = 1 , properties: [Property]) {
         self.variantId = variantId

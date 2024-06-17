@@ -90,9 +90,11 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
     }
     
     @IBAction func favBtn(_ sender: Any) {
+        coordinator?.goToWishList()
     }
     
     @IBAction func cartBtn(_ sender: Any) {
+        coordinator?.goToShoppingCart()
     }
     
     @IBAction func categoryBtn(_ sender: Any) {

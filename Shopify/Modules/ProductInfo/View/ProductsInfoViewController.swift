@@ -172,7 +172,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     func setProductInfo(){
         productName.text = viewModel?.product?.title
-        productPrice.text = viewModel?.product?.variants?.first??.price
+        productPrice.text =  CurrencyService.calculatePriceAccordingToCurrency(price: String(viewModel?.product?.variants?.first??.price ?? "0"))
         descriptionTxt.text = viewModel?.product?.bodyHTML
     }
 }

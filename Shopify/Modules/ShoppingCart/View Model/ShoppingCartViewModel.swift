@@ -21,7 +21,7 @@ protocol ShoppingCartViewModelProtocol {
     func incrementItem(at row: Int, currentQuantity: Int , inventoryQuantity : Int)
     func decrementItem(at row: Int, currentQuantity: Int)
     func updateRealm()
-    func fetchCartItemsFromRealm()
+   // func fetchCartItemsFromRealm()
 }
 
 class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
@@ -64,13 +64,13 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
             .disposed(by: disposeBag)
     }
     
-    func fetchCartItemsFromRealm()  {
-        let realmDraftOrders = realmManager.getAll(RealmDraftOrder.self)
-        print(realmDraftOrders.count)
-        let draftOrder = DraftOrder(from: realmDraftOrders.first!)
-        draftOrderWrapper.draftOrder = draftOrder
-        dataSubject.onNext(draftOrder.lineItems!)
-    }
+//    func fetchCartItemsFromRealm()  {
+//        let realmDraftOrders = realmManager.getAll(RealmDraftOrder.self)
+//        print(realmDraftOrders.count)
+//        let draftOrder = DraftOrder(from: realmDraftOrders.first ?? nil )
+//        draftOrderWrapper.draftOrder = draftOrder
+//        dataSubject.onNext(draftOrder.lineItems!)
+//    }
     
     func fetchCartItems() {
         networkService.get(url: NetworkConstants.baseURL, endpoint: endpoint ?? "", parameters: nil, headers: nil)
@@ -203,7 +203,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     
     func canCheckOut() -> Bool {
         for index in 1..<lineItems!.count{
-            if lineItems![index].quantity! >  Int(0.3 * Double(lineItems![index].properties![1].value)!){
+            if lineItems![index].quantity! >  Int(0.3 * Double(lineItems![index].properties![1].value ?? "")!){
                 return false
             }
         }

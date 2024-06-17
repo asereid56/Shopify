@@ -59,13 +59,6 @@ extension WishlistViewController {
         wishlistCollectionView.register(nib, forCellWithReuseIdentifier: "wishCell")
     }
     
-    //    func configureCell(_ index: Int) -> WishCollectionViewCell {
-    //        let cell = wishlistCollectionView.dequeueReusableCell(withReuseIdentifier: "wishCell", for: indexPath) as! WishCollectionViewCell
-    //        cell.configure(id: viewModel?.getItems()[index].id ?? 0, index: index)
-    //        cell.delegate = self
-    //        return cell
-    //    }
-    
     func setup() {
         let itemWidth = (wishlistCollectionView.frame.width / 2 ) - 10
         let layout = UICollectionViewFlowLayout()
