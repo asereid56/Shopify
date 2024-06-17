@@ -93,7 +93,7 @@ class NewAddressViewController: UIViewController ,Storyboarded {
             setValidationAlert()
         } else {
             let newAddress = Address(firstName: firstName.text, lastName: lastName.text, address1: address.text,  city: city.text, country: country.text, phone: phone.text, default: isPrimary.isOn)
-            if let address = viewModel?.address{
+            if (viewModel?.address) != nil{
                 
                 viewModel?.updateAddress(address: newAddress)
                 viewModel?.putAddress
@@ -136,4 +136,15 @@ class NewAddressViewController: UIViewController ,Storyboarded {
         }
     }
     
+}
+
+extension NewAddressViewController : MenuListViewControllerDelegate{
+    func didSelectCountry(_ country: Country) {
+        viewModel?.selectedCountry.accept(country)
+        viewModel?.selectedCity.accept(nil)
+    }
+    
+    func didSelectCity(_ city: String) {
+        viewModel?.selectedCity.accept(city)
+    }
 }

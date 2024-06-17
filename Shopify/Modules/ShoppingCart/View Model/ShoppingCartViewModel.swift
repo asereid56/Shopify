@@ -11,37 +11,39 @@ import RxCocoa
 
 protocol ShoppingCartViewModelProtocol {
     var data : Driver<[LineItem]> {get}
-    var canCheckOut : Bool {get set}
+    var plusAction : PublishSubject<(Int, Int, Int)> {set get}
+    var minusAction : PublishSubject<(Int, Int)>{set get}
+    func canCheckOut() -> Bool 
     func getDratOrder() -> DraftOrder
     func fetchCartItems()
     func deleteItem(at index: Int)
     func isSoldOut(inventoryQuantity : Int , productQuantity: Int) -> Bool
     func incrementItem(at row: Int, currentQuantity: Int , inventoryQuantity : Int)
     func decrementItem(at row: Int, currentQuantity: Int)
-    var plusAction : PublishSubject<(Int, Int, Int)> {set get}
-    var minusAction : PublishSubject<(Int, Int)>{set get}
-    
+    func updateRealm()
+    func fetchCartItemsFromRealm()
 }
 
 class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
-    
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorSubject<[LineItem]>(value: [])
     private let networkService: NetworkServiceProtocol
+    private let realmManager : RealmManagerProtocol
     private let draftOrderId : String
     private var endpoint : String?
-    private var draftOrderWrapper:DraftOrderWrapper?
+    private var draftOrderWrapper:DraftOrderWrapper = DraftOrderWrapper()
+    private var lineItems : [LineItem]?
     var data: Driver<[LineItem]>{
         return dataSubject.asDriver(onErrorJustReturn: [])
     }
-    var canCheckOut: Bool = true
     
-    var plusAction = PublishSubject<(Int, Int, Int)>() // (row, currentQuantity)
+    var plusAction = PublishSubject<(Int, Int, Int)>()
     var minusAction = PublishSubject<(Int, Int)>()
     
-    init(networkService: NetworkServiceProtocol, draftOrderId: String) {
+    init(networkService: NetworkServiceProtocol, draftOrderId: String , realmManager : RealmManagerProtocol) {
         self.networkService = networkService
         self.draftOrderId = draftOrderId
+        self.realmManager = realmManager
         endpoint = APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId)
         setupBindings()
     }
@@ -60,6 +62,14 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                 self?.decrementItem(at: row, currentQuantity: currentQuantity)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func fetchCartItemsFromRealm()  {
+        let realmDraftOrders = realmManager.getAll(RealmDraftOrder.self)
+        print(realmDraftOrders.count)
+        let draftOrder = DraftOrder(from: realmDraftOrders.first!)
+        draftOrderWrapper.draftOrder = draftOrder
+        dataSubject.onNext(draftOrder.lineItems!)
     }
     
     func fetchCartItems() {
@@ -112,6 +122,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                 }
             }
             .subscribe(onNext: { updatedLineItems in
+                self.lineItems = updatedLineItems
                 self.dataSubject.onNext(updatedLineItems)
             }, onError: { error in
                 print("Error fetching and processing cart items: \(error)")
@@ -120,7 +131,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     }
     
     func isSoldOut(inventoryQuantity : Int , productQuantity: Int) -> Bool{
-        if inventoryQuantity <= 0  || productQuantity > inventoryQuantity{
+        if inventoryQuantity <= 0  || productQuantity > Int(0.3 * Double(inventoryQuantity)){
             return true
         }
         return false
@@ -174,9 +185,9 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { [weak self] (success, message, response) in
                 guard let self = self, let response = response else { return }
-                
                 self.draftOrderWrapper = response
                 if let lineItems = response.draftOrder?.lineItems {
+                    self.lineItems = lineItems
                     self.dataSubject.onNext(lineItems)
                 }
             }, onError: { error in
@@ -187,7 +198,21 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     
     
     func getDratOrder() -> DraftOrder{
-        return (draftOrderWrapper?.draftOrder)!
+        return (draftOrderWrapper.draftOrder)!
+    }
+    
+    func canCheckOut() -> Bool {
+        for index in 1..<lineItems!.count{
+            if lineItems![index].quantity! >  Int(0.3 * Double(lineItems![index].properties![1].value)!){
+                return false
+            }
+        }
+        return true
+    }
+    
+    func updateRealm() {
+        let realmDraftOrder = draftOrderWrapper.draftOrder.map { RealmDraftOrder(draftOrder: $0)}
+        realmManager.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
     }
 }
 

@@ -44,8 +44,9 @@ class HomeScreenViewController: UIViewController  {
         
         brandsCollection.collectionViewLayout = createBrandsLayout()
         adsCollection.collectionViewLayout = createAdsLayout()
-       
-      selectBrandToNavigate()
+        
+        selectBrandToNavigate()
+        viewModel?.fetchCurrencyRate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +74,7 @@ class HomeScreenViewController: UIViewController  {
     
     func setUpBrandsBinding() {
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
-        
+            
             cell.brandImage.kf.setImage(with: URL(string: brand.image.src ?? ""))
             cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.borderWidth = 1.0
@@ -87,13 +88,13 @@ class HomeScreenViewController: UIViewController  {
     
     func selectBrandToNavigate(){
         brandsCollection.rx.modelSelected(SmartCollection.self)
-                   .subscribe(onNext: { [weak self] brand in
-                       guard let self = self else { return }
-                       self.coordinator?.gotoProductsScreen(with: String(brand.id))
-                   })
-                   .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] brand in
+                guard let self = self else { return }
+                self.coordinator?.gotoProductsScreen(with: String(brand.id))
+            })
+            .disposed(by: disposeBag)
     }
-  
+    
     func configurePageController(){
         self.pageController.numberOfPages = self.adsArray.count
         self.pageController.currentPage = 0
@@ -164,7 +165,7 @@ class HomeScreenViewController: UIViewController  {
     }
     
     @IBAction func cartBtn(_ sender: Any) {
-        coordinator?.goToShoppingCart()
+           coordinator?.goToShoppingCart()
     }
     
     @IBAction func wishListBtn(_ sender: Any) {

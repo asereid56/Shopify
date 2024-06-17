@@ -28,7 +28,7 @@ struct Product: Codable {
     let tags: String?
     let status: String?
     let adminGraphqlAPIID: String?
-    let variants: [Variantt?]?
+    let variants: [Variant?]?
     let options: [Option?]?
     let images: [ProductImage?]?
     let image: ProductImage?

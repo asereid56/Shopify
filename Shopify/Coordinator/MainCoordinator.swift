@@ -44,6 +44,8 @@ class MainCoordinator : Coordinator {
     
     func goToSettings(){
         let settingVC = SettingViewController.instantiate(storyboardName:"Setting")
+        let viewModel = SettingViewModel()
+        settingVC.viewModel = viewModel
         settingVC.coordinator = self
         navigationController.pushViewController(settingVC, animated: false)
     }
@@ -60,17 +62,19 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(abouttUsVC, animated: false)
     }
     
-    func goToAddresses(){
+    func goToAddresses(from viewController: PaymentViewController? = nil , source : String = "setting"){
         let addressesVC = AddressesViewController.instantiate(storyboardName:"Setting")
-        let viewModel = AddressesViewModel(networkService: NetworkService.shared, customerId: "7504328687769")
+        let viewModel = AddressesViewModel(networkService: NetworkService.shared, customerId: "7506651938969")
         addressesVC.viewModel = viewModel
         addressesVC.coordinator = self
+        addressesVC.source = source
+        addressesVC.delegate = viewController
         navigationController.pushViewController(addressesVC, animated: false)
     }
     
     func goToEditAddress(address : Address){
         let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
-        let viewModel = NewAddressViewModel(address: address, networkService: NetworkService.shared, customerId: "7504328687769",dataLoader: DataLoader())
+        let viewModel = NewAddressViewModel(address: address, networkService: NetworkService.shared, customerId: "7506651938969",dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
         newAddressVC.coordinator = self
         navigationController.pushViewController(newAddressVC, animated: false)
@@ -78,7 +82,7 @@ class MainCoordinator : Coordinator {
     
     func goToNewAddress(){
         let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
-        let viewModel = NewAddressViewModel(networkService: NetworkService.shared, customerId: "7504328687769",dataLoader: DataLoader())
+        let viewModel = NewAddressViewModel(networkService: NetworkService.shared, customerId: "7506651938969",dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
         newAddressVC.coordinator = self
         navigationController.pushViewController(newAddressVC, animated: false)
@@ -94,14 +98,38 @@ class MainCoordinator : Coordinator {
     
     func goToShoppingCart() {
         let ShoppingCarVC = ShoppingCartViewController.instantiate(storyboardName:"Setting")
-        let viewModel = ShoppingCartViewModel(networkService: NetworkService.shared, draftOrderId: "1110462660761")
+        let viewModel = ShoppingCartViewModel(networkService: NetworkService.shared, draftOrderId: "1110462660761", realmManager: RealmManager.shared)
         ShoppingCarVC.viewModel = viewModel
         ShoppingCarVC.coordinator = self
         navigationController.pushViewController(ShoppingCarVC, animated: false)
     }
     
+    func goToPayment(draftOrder : DraftOrder){
+        let PaymentVC = PaymentViewController.instantiate(storyboardName:"Setting")
+        let viewModel = PaymentViewModel(draftOrder: draftOrder, network: NetworkService.shared , customerId: "7506651938969",mockPaymentProcessor: MockPaymentProcessor(), draftOrderId: "1110462660761")
+        viewModel.delegate = PaymentVC
+        PaymentVC.viewModel = viewModel
+        PaymentVC.coordinator = self
+        navigationController.pushViewController(PaymentVC, animated: false)
+    }
+    
+    func goToPaymentMethd(from viewController : PaymentViewController){
+        let PaymentMethodVC = PaymentMethodViewController.instantiate(storyboardName:"Setting")
+        let viewModel = PaymentMethodViewModel()
+        PaymentMethodVC.viewModel = viewModel
+        PaymentMethodVC.delegate = viewController
+        navigationController.present(PaymentMethodVC, animated: true)
+    }
+    
+    func goToOrderConfirmed(){
+        let OrderConfirmedVC = OrderConfirmedViewController.instantiate(storyboardName: "Setting")
+        OrderConfirmedVC.coordinator = self
+        navigationController.pushViewController(OrderConfirmedVC, animated: false)
+    }
+    
     func goBack() {
         navigationController.popViewController(animated: true)
+        
     }
     
 
@@ -120,7 +148,9 @@ class MainCoordinator : Coordinator {
     func gotoHomeScreen() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
-        let homeViewModel = HomeScreenViewModel(network: NetworkService.shared)
+        let currencyService = CurrencyService.shared
+        currencyService.network = NetworkService.shared
+        let homeViewModel = HomeScreenViewModel(currencyService: currencyService, network: NetworkService.shared)
         
         homeScreenVC.viewModel = homeViewModel
         homeScreenVC.coordinator = self
@@ -161,7 +191,7 @@ class MainCoordinator : Coordinator {
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
         let productInfo = storyboard.instantiateViewController(withIdentifier: "pinfo") as! ProductInfoViewController
         productInfo.coordinator = self
-        let viewModel = ProductInfoViewModel(product: product)
+        let viewModel = ProductInfoViewModel(product: product, network: NetworkService.shared , draftOrderId: "1110462660761",realmManger: RealmManager.shared)
         productInfo.viewModel = viewModel
         productInfo.navigationController?.navigationBar.isHidden = true
         navigationController.pushViewController(productInfo, animated: true)
@@ -193,4 +223,6 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(wishList, animated: true)
         
     }
+    
+
 }

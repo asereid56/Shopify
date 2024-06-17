@@ -76,7 +76,7 @@ class ProductsScreenViewController: UIViewController {
 //                   return products
 //               }
                .drive(productsCollectionView.rx.items(cellIdentifier: "ProductCell", cellType: ProductCollectionXIBCell.self)) { [weak self] index, product, cell in
-                   cell.productCost.text = String(product.variants?.first??.price ?? "0")
+                   cell.productCost.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(product.variants?.first??.price ?? "0"))
                    cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
                    cell.productName.text = product.title
                    cell.layer.cornerRadius = 15

@@ -58,6 +58,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     @IBAction func addToCart(_ sender: Any) {
+        viewModel?.fetchDraftOrder()
     }
     
     @IBAction func addToWishList(_ sender: Any) {

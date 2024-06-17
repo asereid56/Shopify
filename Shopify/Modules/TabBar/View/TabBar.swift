@@ -22,8 +22,9 @@ class TabBar : UITabBarController {
         homeScreen.coordinator = coordinator
         categoryScreen.coordinator = coordinator
         profileScreen.coordinator = coordinator
-        
-        let homeScreenViewModel = HomeScreenViewModel(network: NetworkService.shared)
+        let currencyService = CurrencyService.shared
+        currencyService.network = NetworkService.shared
+        let homeScreenViewModel = HomeScreenViewModel(currencyService: currencyService, network: NetworkService.shared)
         homeScreen.viewModel = homeScreenViewModel
         
         let categoryScreenViewModel = CategoryScreenViewModel(network: NetworkService.shared)

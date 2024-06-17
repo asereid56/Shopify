@@ -13,13 +13,15 @@ protocol  AddressesViewModelProtocol{
     var data: Driver<[Address]> {get}
     func fetchData()
     func deleteItem(at index: Int) -> Bool
+    func setPrimaryAddress(defaultAddressID : Int)
 }
 
 class AddressesViewModel : AddressesViewModelProtocol{
     private let disposeBag = DisposeBag()
-    private let networkService: NetworkServiceProtocol
+       private let networkService: NetworkServiceProtocol
     private let customerId : String
     private let dataSubject = BehaviorSubject<[Address]>(value: [])
+    private let defualts = UserDefaults.standard
     
     // Observable that will emit the data
     var data: Driver<[Address]> {
@@ -85,6 +87,10 @@ class AddressesViewModel : AddressesViewModelProtocol{
                 print("Error deleting item:", error)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func setPrimaryAddress(defaultAddressID : Int){
+        defualts.set(defaultAddressID, forKey: Constant.PRIMARY_ADDRESS_ID)
     }
     
 }
