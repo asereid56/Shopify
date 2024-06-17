@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-class CategoryScreenViewController: UIViewController {
+class CategoryScreenViewController: UIViewController , Storyboarded{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -74,7 +74,6 @@ class CategoryScreenViewController: UIViewController {
             cell.productCost.text = String(product.variants?.first??.price ?? "0")
             cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
             cell.productName.text = product.title
-            cell.layer.cornerRadius = 15
             cell.layer.masksToBounds = true
             cell.deletebtn.isHidden = true
             
@@ -154,7 +153,7 @@ class CategoryScreenViewController: UIViewController {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(0.75)
+            heightDimension: .fractionalWidth(0.7)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         

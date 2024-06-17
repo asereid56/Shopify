@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-class ProductsScreenViewController: UIViewController {
+class ProductsScreenViewController: UIViewController , Storyboarded {
     
     @IBOutlet weak var numOfItems: UILabel!
     @IBOutlet weak var productsCollectionView: UICollectionView!
@@ -79,7 +79,6 @@ class ProductsScreenViewController: UIViewController {
                    cell.productCost.text = String(product.variants?.first??.price ?? "0")
                    cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
                    cell.productName.text = product.title
-                   cell.layer.cornerRadius = 15
                    cell.layer.masksToBounds = true
                    self?.brandName.text = product.vendor
                }
@@ -119,7 +118,7 @@ class ProductsScreenViewController: UIViewController {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(0.75)
+            heightDimension: .fractionalWidth(0.7)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         

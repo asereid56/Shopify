@@ -10,7 +10,7 @@ import RxSwift
 import Kingfisher
 import RxCocoa
 
-class HomeScreenViewController: UIViewController  {
+class HomeScreenViewController: UIViewController , Storyboarded {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var adsCollection: UICollectionView!
@@ -73,8 +73,8 @@ class HomeScreenViewController: UIViewController  {
     func setUpBrandsBinding() {
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
         
-            cell.brandImage.kf.setImage(with: URL(string: brand.image.src ?? ""))
-            cell.layer.borderColor = UIColor.black.cgColor
+            cell.brandImage.kf.setImage(with: URL(string: brand.image.src ))
+            cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 15
             cell.layer.masksToBounds = true
@@ -150,7 +150,7 @@ class HomeScreenViewController: UIViewController  {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0 / 2.1)
+            heightDimension: .fractionalHeight(1.0 / 2.3)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
         group.interItemSpacing = .fixed(5)

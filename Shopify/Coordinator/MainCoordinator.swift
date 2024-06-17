@@ -17,6 +17,8 @@ protocol Coordinator {
 
 class MainCoordinator : Coordinator {
     
+    private let defaults = UserDefaults.standard
+    private let key = "isFirstTime"
     var childCoordinators = [Coordinator]()
     var navigationController : UINavigationController
     
@@ -26,20 +28,47 @@ class MainCoordinator : Coordinator {
     
     func start() {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let tabBar = storyboard.instantiateViewController(withIdentifier: "TabBar") as! TabBar
+        if defaults.object(forKey: key) == nil {
+            defaults.setValue(true, forKey: key)
+        }
+        let isFirstTime = defaults.bool(forKey: key)
         
-        tabBar.coordinator = self
-        navigationController.pushViewController(tabBar, animated: false)
+        if isFirstTime == true {
+            goToOnBoardingFirstScreen()
+        }else{
+            gotoTab()
+        }
 
     }
     
+    func goToOnBoardingSecondScreen(){
+        let onBoardingTwoScreen = OnBoardingTwoViewController.instantiate(storyboardName: "Main")
+        onBoardingTwoScreen.coordinator = self
+        navigationController.pushViewController(onBoardingTwoScreen, animated: true)
+    }
+    
+    func goToOnBoardingFirstScreen(){
+        let onBoardingOneScreen = OnBoardingOneViewController.instantiate(storyboardName: "Main")
+        onBoardingOneScreen.coordinator = self
+        navigationController.pushViewController(onBoardingOneScreen, animated: true)
+    }
+    
+    func goToSignOrGuestScreen() {
+            let signOrGuestVC = SignInOrGuestViewController.instantiate(storyboardName: "Main")
+            signOrGuestVC.coordinator = self
+            navigationController.pushViewController(signOrGuestVC, animated: true)
+        }
+    
+    func goToOnBoardingThirdScreen(){
+        let onBoardingThreeScreen = OnBoardingThreeViewController.instantiate(storyboardName: "Main")
+        onBoardingThreeScreen.coordinator = self
+        navigationController.pushViewController(onBoardingThreeScreen, animated: true)
+    }
+    
     func gotoTab(){
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let tabBar = storyboard.instantiateViewController(withIdentifier: "TabBar") as! TabBar
-        
+        let tabBar = TabBar.instantiate(storyboardName: "Main")
         tabBar.coordinator = self
-        navigationController.pushViewController(tabBar, animated: true)
+        navigationController.pushViewController(tabBar, animated: false)
     }
     
     func goToSettings(){
@@ -107,8 +136,7 @@ class MainCoordinator : Coordinator {
 
     func gotoProductsScreen(with brandId: String) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let productScreenVC = storyboard.instantiateViewController(withIdentifier: "ProductsScreenViewController") as! ProductsScreenViewController
+        let productScreenVC = ProductsScreenViewController.instantiate(storyboardName: "Main")
         
         let productViewModel = ProductScreenViewModel(network: NetworkService.shared, brandId: brandId)
         
@@ -117,9 +145,9 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(productScreenVC, animated: true)
     }
     
-    func gotoHomeScreen() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+    func goToHomeScreen() {
+
+        let homeScreenVC = HomeScreenViewController.instantiate(storyboardName: "Main")
         let homeViewModel = HomeScreenViewModel(network: NetworkService.shared)
         
         homeScreenVC.viewModel = homeViewModel
@@ -127,7 +155,6 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(homeScreenVC, animated: true)
     }
     
-
     func goToMainLogin(){
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
         let mainLogin = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
@@ -175,13 +202,6 @@ class MainCoordinator : Coordinator {
         vc.present(reviewsVC, animated: true)
     }
     
-    func goToHomeScreen() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
-        homeScreenVC.coordinator = self
-        homeScreenVC.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(homeScreenVC, animated: true)
-    }
     
     func goToWishList() {
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)

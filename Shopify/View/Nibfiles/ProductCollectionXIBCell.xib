@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,22 +21,15 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MUY-v7-7Dh">
                         <rect key="frame" x="0.0" y="0.0" width="234" height="237"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Addidas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrj-gB-w3C">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="Addidas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrj-gB-w3C">
                         <rect key="frame" x="0.0" y="236.99999999999997" width="234" height="54.666666666666657"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="1000" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EK-dj-YMu">
-                        <rect key="frame" x="0.0" y="291.66666666666669" width="12.666666666666666" height="24.333333333333314"/>
-                        <color key="backgroundColor" name="BackgroundColor"/>
-                        <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="21"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opi-o0-dmA">
-                        <rect key="frame" x="12.666666666666671" y="291.66666666666669" width="221.33333333333331" height="24.333333333333314"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="$ 100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opi-o0-dmA">
+                        <rect key="frame" x="0.0" y="291.66666666666669" width="234" height="24.333333333333314"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                         <nil key="textColor"/>
@@ -57,15 +51,12 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" name="BackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="2EK-dj-YMu" secondAttribute="bottom" id="07X-zd-9Yr"/>
-                <constraint firstItem="Opi-o0-dmA" firstAttribute="leading" secondItem="2EK-dj-YMu" secondAttribute="trailing" id="5Qk-o0-G8s"/>
                 <constraint firstItem="vrj-gB-w3C" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="95u-OS-nkm"/>
                 <constraint firstAttribute="trailing" secondItem="vrj-gB-w3C" secondAttribute="trailing" id="JLk-Dw-bWE"/>
                 <constraint firstItem="Opi-o0-dmA" firstAttribute="top" secondItem="vrj-gB-w3C" secondAttribute="bottom" id="Ouj-Ih-K9Q"/>
                 <constraint firstAttribute="trailing" secondItem="MUY-v7-7Dh" secondAttribute="trailing" id="Pok-uG-sTz"/>
-                <constraint firstItem="2EK-dj-YMu" firstAttribute="top" secondItem="vrj-gB-w3C" secondAttribute="bottom" id="Q4g-WG-S1x"/>
-                <constraint firstItem="2EK-dj-YMu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="RgT-EH-FMJ"/>
                 <constraint firstItem="Pvm-gl-BE3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Ufz-LB-T5P"/>
+                <constraint firstItem="Opi-o0-dmA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="V0V-fz-po3"/>
                 <constraint firstItem="MUY-v7-7Dh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ZRv-TO-DhY"/>
                 <constraint firstItem="vrj-gB-w3C" firstAttribute="top" secondItem="MUY-v7-7Dh" secondAttribute="bottom" id="cGw-5o-HpY"/>
                 <constraint firstItem="MUY-v7-7Dh" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.75" id="fzP-TE-7I9"/>
@@ -76,7 +67,6 @@
             </constraints>
             <size key="customSize" width="234" height="316"/>
             <connections>
-                <outlet property="costSign" destination="2EK-dj-YMu" id="w8p-t9-bjh"/>
                 <outlet property="deletebtn" destination="Pvm-gl-BE3" id="75u-e0-2UM"/>
                 <outlet property="productCost" destination="Opi-o0-dmA" id="lZq-0P-Lk1"/>
                 <outlet property="productImage" destination="MUY-v7-7Dh" id="jef-pD-ciX"/>
@@ -94,7 +84,7 @@
             <color red="0.83529411764705885" green="0.83921568627450982" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
