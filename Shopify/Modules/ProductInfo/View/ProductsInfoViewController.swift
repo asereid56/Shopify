@@ -7,29 +7,70 @@
 
 import UIKit
 import Cosmos
+import RxSwift
 class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     var coordinator: MainCoordinator?
     var viewModel: ProductInfoViewModel?
-    
-    @IBOutlet weak var descriptionTxt: UITextView!
+    let disposeBag = DisposeBag()
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var colorButton: UIButton!
+    @IBOutlet weak var sizeButton: UIButton!
+    @IBOutlet weak var descriptionTxt: UILabel!
     @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var reviewsTableView: UITableView!
-    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     let images = ["second", "first", "third", "forth"]
     var imgs: [ProductImage?]?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(viewModel?.product?.id)
+        pageControl.layer.cornerRadius = 12
+        print(viewModel?.product?.id ?? "")
         imgs = viewModel?.product?.images
         configureNib()
         configureScrollView()
         setupScrollView()
         setProductInfo()
+        setupDropDownButton(sizeButton, options: viewModel?.product?.options?[0]?.values ?? [])
+        setupDropDownButton(colorButton, options: viewModel?.product?.options?[1]?.values ?? [])
+        viewModel?.isLoading
+                    .bind(to: loadingIndicator.rx.isAnimating)
+                    .disposed(by: disposeBag)
+        
+        viewModel?.isLoading
+                    .subscribe(onNext: { [weak self] isLoading in
+                        self?.loadingIndicator.isHidden = !isLoading
+                    })
+                    .disposed(by: disposeBag)
     }
+    
+    func setupDropDownButton(_ button: UIButton, options: [String]) {
+        let menuClosure = { (action: UIAction) in
+            self.update(number: action.title)
+        }
+        var children = [UIMenuElement]()
+        for option in options {
+            children.append(UIAction(title: option, state: .on, handler: menuClosure))
+        }
+        button.menu = UIMenu(children: children)
+        button.showsMenuAsPrimaryAction = true
+        button.changesSelectionAsPrimaryAction = true
+        //print(button.menu?.children.first?.title)
+        
+    }
+    
+    func update(number:String) {
+        print("\(number) selected")
+    }
+    
+    func getVariantTitle() -> String {
+        sizeButton.currentTitle! + " / " + colorButton.currentTitle!
+        //viewModel?.product
+    }
+    
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
@@ -61,10 +102,20 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     @IBAction func addToCart(_ sender: Any) {
+        print(getVariantTitle())
+        let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
+        print(variant ?? "")
     }
     
     @IBAction func addToWishList(_ sender: Any) {
-        viewModel?.addToWishList(product: viewModel?.product)
+        viewModel?.addToWishList(product: viewModel?.product, vc: self) { success in
+            if success {
+                showToast(message: "Product added to wishlist", vc: self)
+            }
+            else {
+                showToast(message: "Product already exists in wishlist", vc: self)
+            }
+        }
     }
     
     
@@ -78,7 +129,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     func configureScrollView() {
-        mainScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height+680)
+//        mainScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height+680)
         reviewsTableView.frame.size.height = 420
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self

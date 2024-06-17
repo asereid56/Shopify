@@ -15,44 +15,48 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class AuthenticationManager {
-    static func signIn(email: String, password: String, vc: UIViewController , mainCoordinator : MainCoordinator) {
-        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+    static let shared = AuthenticationManager()
+//    private static let sharedInstance = AuthenticationManager()
+//    private var mainCoordinator: MainCoordinator?
+//    static func shared(coordinator: MainCoordinator) -> AuthenticationManager {
+//        sharedInstance.mainCoordinator = coordinator
+//        return sharedInstance
+//    }
+    
+    private init() {}
+    
+    func signIn(email: String, password: String, completion: @escaping (Bool, String?, String?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (authResult, error) in
             if let error = error as? NSError {
                 switch AuthErrorCode.Code(rawValue: error.code) {
                 case .operationNotAllowed:
                     print("")
-                case .userDisabled:
-                    print("user disabled")
                 case .invalidEmail:
-                    showAlert(vc: vc, title: "Invalid Email Format", message: "Enter a valid email")
+                    completion(false, "Invalid Email Format", "Enter a valid email")
                 case .accountExistsWithDifferentCredential:
-                    showAlert(vc: vc, title: "Wrong Password", message: "Check your password and try again")
+                    completion(false, "Wrong Password", "Check your password and try again")
                 case .invalidCredential:
-                    showAlert(vc: vc, title: "Invalid Credentials", message: "Check your email and password and try again")
+                    completion(false, "Invalid Credentials", "Check your email and password and try again")
                 case .wrongPassword:
-                    showAlert(vc: vc, title: "Empty Fields", message: "Please fill in email and password fields")
+                    completion(false, "Empty Fields", "Please fill in email and password fields")
                 default:
                     print("Error: \(error)")
                 }
             } else {
-                fetchUserDocumentFromFirebase(firebaseId: authResult!.user.uid){ customerId in
-                    getCustomerDraftOrdersIds(customerId: customerId) { ids in
-                        let idsArray = ids.components(separatedBy: ", ")
-                        print("from sign in after fetching draft orders ids \(idsArray)")
-                        getCustomerFirstAndLastName(customerId: customerId) { firstName, lastName in
-                            saveUserInfoToUserDefaults(customerId: customerId, ordersId: idsArray[0],
-                                                       wishListId: idsArray[1], firstName: firstName, lastName: lastName)
-                        }
+                self?.fetchExistingUserData(id: authResult!.user.uid) { success in
+                    if success {
+                        completion(true, nil, nil)
+                    }
+                    else {
+                        print("something went wrong fetching existing data")
+                        completion(false, nil, nil)
                     }
                 }
-                mainCoordinator.gotoTab()
-                showWelcomeAlert(vc: vc)
-                
             }
         }
     }
-    static func signUp(firstname: String, lastName: String, email: String, password: String, vc: UIViewController) {
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+    func signUp(firstname: String, lastName: String, email: String, password: String, completion: @escaping (Bool, String?, String?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) {authResult, error in
             if let error = error as? NSError {
                 switch AuthErrorCode.Code(rawValue: error.code) {
                 case .operationNotAllowed:
@@ -60,20 +64,27 @@ class AuthenticationManager {
                 case .userDisabled:
                     print("user disabled")
                 case .weakPassword:
-                    showAlert(vc: vc, title: "Weak Password", message: "Your password must be at least 6 characters")
+                    completion(false, "Weak Password", "Your password must be at least 6 characters")
                 case .invalidEmail:
-                    showAlert(vc: vc, title: "Invalid Email Format", message: "Enter a valid email")
+                    completion(false, "Invalid Email Format", "Enter a valid email")
                 case .emailAlreadyInUse:
-                    showAlert(vc: vc, title: "Registered Email", message: "The email address is already in use by another account.")
+                    completion(false, "Registered Email", "The email address is already in use by another account.")
                 case .missingEmail:
-                    showAlert(vc: vc, title: "Empty Email Field", message: "An email address must be provided")
+                    completion(false, "Empty Email Field", "An email address must be provided")
                     
                 default:
                     print("Error: \(error.localizedDescription)")
                 }
             } else {
-                print("User signs up successfully")
-                setupCustomer(firstName: firstname, lastName: lastName, email: email)
+                setupCustomer(firstName: firstname, lastName: lastName, email: email) { success in
+                    if success {
+                        completion(true, nil, nil)
+                        print("User signs up successfully")
+                    }
+                    else {
+                        completion(false, nil, nil)
+                    }
+                }
                 
                 
                 
@@ -81,7 +92,7 @@ class AuthenticationManager {
         }
     }
     
-    static func signInWithGoogle(vc: UIViewController, completion: @escaping (Bool) -> Void){
+    func signInWithGoogle(vc: UIViewController, completion: @escaping (Bool) -> Void){
         let signInConfig = GIDConfiguration(clientID: FirebaseApp.app()?.options.clientID ?? "")
         GIDSignIn.sharedInstance.configuration = signInConfig
         
@@ -93,55 +104,72 @@ class AuthenticationManager {
             }
             let accessToken = user?.accessToken
             let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken!.tokenString)
-            Auth.auth().signIn(with: credential){ _, error in
-                print("firstName: \(user!.profile!.givenName!), lastName: \(user!.profile!.familyName!), email: \(user!.profile!.email)")
-                setupCustomer(firstName: user!.profile!.givenName!, lastName: user!.profile!.familyName!, email: user!.profile!.email)
-                completion(true)
+            Auth.auth().signIn(with: credential){ [weak self] authResult, error in
+                if let isNewUser = authResult?.additionalUserInfo?.isNewUser {
+                    if isNewUser {
+                        print("New Google user: ")
+                        print("firstName: \(user!.profile!.givenName!), lastName: \(user!.profile!.familyName!), email: \(user!.profile!.email)")
+                        setupCustomer(firstName: user!.profile!.givenName!, lastName: user!.profile!.familyName!, email: user!.profile!.email) { success in
+                            completion(true)
+                        }
+                    }
+                    else {
+                        print("Old Google user: ")
+                        self?.fetchExistingUserData(id: authResult!.user.uid) { success in
+                            if success {
+                                completion(true)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
     
-    static func showWelcomeAlert(vc: UIViewController){
-        print("show welcome alert")
+    func showWelcomeAlert(vc: UIViewController){
         if let currentUser = Auth.auth().currentUser {
             print("user here")
-            let alert = UIAlertController(title: nil, message: "Welcome back \(currentUser.email ?? "")", preferredStyle: .actionSheet)
-            vc.present(alert, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                alert.dismiss(animated: true)
-            }
-        }
-        else {
-            print("no user")
-            let alert = UIAlertController(title: nil, message: "Please log in to make use of all features", preferredStyle: .actionSheet)
-            vc.present(alert, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                alert.dismiss(animated: true)
-            }
+            showToast(message: "Welcome back \(currentUser.email ?? "")", vc: vc)
         }
     }
-    static func showAlert(vc: UIViewController, title: String, message: String) {
+    
+    func showAlert(vc: UIViewController, title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         vc.present(alert, animated: true)
         
     }
-    static func isUserLoggedIn() -> Bool {
+    
+    func isUserLoggedIn() -> Bool {
         Auth.auth().currentUser != nil
     }
     
-    static func signOut() {
+    func signOut() {
         do {
             try Auth.auth().signOut()
         } catch {
             print(error.localizedDescription)
         }
     }
+    
+    private func fetchExistingUserData(id: String, completion: @escaping (Bool) -> Void) {
+        fetchUserDocumentFromFirebase(firebaseId: id){ customerId in
+            getCustomerDraftOrdersIds(customerId: customerId) { ids in
+                let idsArray = ids.components(separatedBy: ", ")
+                print("from sign in after fetching draft orders ids \(idsArray)")
+                getCustomerFirstAndLastName(customerId: customerId) { firstName, lastName in
+                    UserDefaultsManager.shared.saveUserInfoToUserDefaults(customerId: customerId,
+                                                                          ordersId: idsArray[0], wishListId: idsArray[1], firstName: firstName, lastName: lastName)
+                    completion(true)
+                }
+            }
+        }
+    }
+    
 }
 
 
-
-func setupCustomer(firstName: String, lastName: String, email: String) {
+fileprivate func setupCustomer(firstName: String, lastName: String, email: String, completion: @escaping (Bool) -> Void) {
     
     let network = NetworkService.shared
     let customer = Customer(firstName: firstName, lastName: lastName, email: email)
@@ -157,15 +185,23 @@ func setupCustomer(firstName: String, lastName: String, email: String) {
                     print("Response: \(response.customer?.id ?? 0000)")
                     createUserDocumentOverFirebase(firebaseId: Auth.auth().currentUser!.uid, APIId: customer_id, email: email) {
                         createTwoDraftOrders(email: email) { ids in
-                            attachIdsToCustomer(ids, customer_id, network)
-                            saveUserInfoToUserDefaults(customerId: customer_id, ordersId: String(ids[0]), wishListId: String(ids[1]), firstName: firstName, lastName: lastName)
+                            attachIdsToCustomer(ids, customer_id, network) { success in
+                                UserDefaultsManager.shared.saveUserInfoToUserDefaults(customerId: customer_id, ordersId: String(ids[0]), wishListId: String(ids[1]), firstName: firstName, lastName: lastName)
+                                if success {
+                                    completion(true)
+                                } else {
+                                    completion(false)
+                                }
+                            }
                         }
                     }
                 }
             } else {
+                completion(false)
                 print("Request failed: \(message ?? "")")
             }
         }, onError: { error in
+            completion(false)
             print("Request error: (error)")
         })
 }
@@ -250,38 +286,16 @@ func createDraftOrder(name: String, email: String, completion: @escaping (Int) -
         })
 }
 
-func attachIdsToCustomer(_ ids: [Int], _ customer_id: String, _ network: NetworkService) {
+func attachIdsToCustomer(_ ids: [Int], _ customer_id: String, _ network: NetworkService, completion: @escaping (Bool) -> Void) {
     let customer = Customer(tags: ids.map{String($0)}.joined(separator: ","))
-    _ = network.put(endpoint: "/customers/\(customer_id).json", body: CustomerResponse(customer: customer), responseType: CustomerResponse.self).subscribe(onNext: {_,_,_ in}, onError: { error in
+    _ = network.put(endpoint: "/customers/\(customer_id).json", body: CustomerResponse(customer: customer), responseType: CustomerResponse.self).subscribe(onNext: {_,_,_ in
+            completion(true)
+    }, onError: { error in
+        completion(false)
         print("Error: \(error)")
     })
 }
 
-func saveUserInfoToUserDefaults(customerId: String, ordersId: String, wishListId: String, firstName: String, lastName: String) {
-    let userDefaults = UserDefaults.standard
-    userDefaults.set(customerId, forKey: "customerId")
-    userDefaults.set(ordersId, forKey: "ordersId")
-    userDefaults.set(wishListId, forKey: "wishListId")
-    userDefaults.set(firstName, forKey: "firstName")
-    userDefaults.set(lastName, forKey: "lastName")
-    
-}
-
-func getCustomerIdFromUserDefaults() -> String? {
-    UserDefaults.standard.string(forKey: "customerId")
-}
-func getOrdersIdFromUserDefaults() -> String? {
-    UserDefaults.standard.string(forKey: "ordersId")
-}
-func getWishListIdFromUserDefaults() -> String? {
-    UserDefaults.standard.string(forKey: "wishListId")
-}
-func getFirstNameFromUserDefaults() -> String? {
-    UserDefaults.standard.string(forKey: "firstName")
-}
-func getLastNameFromUserDefaults() -> String? {
-    UserDefaults.standard.string(forKey: "lastName")
-}
 
 func getCustomerDraftOrdersIds(customerId: String, completion: @escaping (String) -> Void) {
     let network = NetworkService.shared

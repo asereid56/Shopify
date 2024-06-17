@@ -22,7 +22,16 @@ class SignUpViewController: UIViewController{
     }
     
     @IBAction func signupButton(_ sender: Any) {
-        viewModel?.validateEntries(passTxt: passwordTxt.text!, confirmPassTxt: confirmPasswordTxt.text!, firstNameTxt: firstNameTxt.text!, lastNameTxt: lastNameTxt.text!, emailTxt: emailTxt.text!, vc: self)
+        viewModel?.validateEntries(passTxt: passwordTxt.text!, confirmPassTxt: confirmPasswordTxt.text!, firstNameTxt: firstNameTxt.text!, lastNameTxt: lastNameTxt.text!, emailTxt: emailTxt.text!, coordinator: MainCoordinator(navigationController: UINavigationController()), vc: self) { [weak self] success in
+            if success {
+                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
+                self?.coordinator?.gotoTab()
+                showToast(message: "Welcome back \(name ?? "")!", vc: self ?? UIViewController())
+            }
+            else {
+                showToast(message: "Something is real wrong", vc: self ?? UIViewController())
+            }
+        }
     }
     
     

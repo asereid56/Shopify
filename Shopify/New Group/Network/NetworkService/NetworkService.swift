@@ -23,6 +23,7 @@ enum APIEndpoint: String {
     case getDraftOrder = "/draft_orders/{darft_order_id}.json"
     case createDraftOrder = "/draft_orders.json"
     case productVariant = "/variants/{variant_id}.json"
+    case ordersByCustomer = "/orders.json?customer_id={customer_id}"
 }
 
 enum NetworkError: Error {

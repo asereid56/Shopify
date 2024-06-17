@@ -12,6 +12,9 @@ class WishlistViewController: UIViewController {
     
     
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var emptyLabel: UILabel!
+    @IBOutlet weak var emptyImg: UIImageView!
     @IBOutlet weak var wishlistCollectionView: UICollectionView!
     
     var coordinator: MainCoordinator?
@@ -96,9 +99,8 @@ extension WishlistViewController {
     
     func setUpBinding() {
         viewModel?.items
-            .bind(to: wishlistCollectionView.rx.items(cellIdentifier: "wishCell", cellType: WishCollectionViewCell.self)) { index, item, cell in
+            .bind(to: wishlistCollectionView.rx.items(cellIdentifier: "wishCell", cellType: WishCollectionViewCell.self)) { [weak self] index, item, cell in
                 cell.configure(with: item)
-                guard let deleteItem = self.viewModel?.deleteItem else { return }
                 cell.removeButton.rx.tap
                     .subscribe(onNext: { [weak self] in
                         self?.showDeleteConfirmationAlert(for: index)
@@ -106,6 +108,29 @@ extension WishlistViewController {
                     .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
+        
+        viewModel?.isEmpty
+                    .map { !$0 }
+                    .bind(to: emptyImg.rx.isHidden)
+                    .disposed(by: disposeBag)
+        
+        viewModel?.isEmpty
+                    .map { !$0 }
+                    .bind(to: emptyLabel.rx.isHidden)
+                    .disposed(by: disposeBag)
+        
+        viewModel?.isLoading
+                    .bind(to: loadingIndicator.rx.isAnimating)
+                    .disposed(by: disposeBag)
+        
+        Observable.combineLatest(viewModel!.isLoading, viewModel!.isEmpty)
+                    .subscribe(onNext: { [weak self] isLoading, isEmpty in
+                        self?.loadingIndicator.isHidden = !isLoading
+                        self?.emptyImg.isHidden = isLoading || !isEmpty
+                        self?.emptyLabel.isHidden = isLoading || !isEmpty
+                        self?.wishlistCollectionView.isHidden = isLoading
+                    })
+                    .disposed(by: disposeBag)
     }
     
     func showDeleteConfirmationAlert(for index: Int) {

@@ -7,21 +7,14 @@
 
 import UIKit
 class GeneralLoginViewModel {
-    func signInWithGoogle(vc: UIViewController) {
-        AuthenticationManager.signInWithGoogle(vc: vc) {
+    func signInWithGoogle(vc: UIViewController, completion: @escaping (Bool) -> Void) {
+        AuthenticationManager.shared.signInWithGoogle(vc: vc) {
             isUserSignedIn in
-            if isUserSignedIn == true {
-                AuthenticationManager.showWelcomeAlert(vc: vc)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    vc.dismiss(animated: true)
-                }
+            if isUserSignedIn {
+                completion(true)
             }
             else {
-                AuthenticationManager.showWelcomeAlert(vc: vc)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    let castVC = vc as! GeneralLoginViewController
-                    castVC.coordinator?.goToHomeScreen()
-                }
+                completion(false)
             }
         }
     }

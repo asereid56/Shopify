@@ -30,8 +30,17 @@ class GeneralLoginViewController: UIViewController {
     }
     
     @IBAction func googleTapped(_ sender: Any) {
-            viewModel?.signInWithGoogle(vc: self)
+        viewModel?.signInWithGoogle(vc: self) { [weak self] success in
+            if success {
+                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
+                self?.coordinator?.gotoTab()
+                showToast(message: "Welcome back \(name ?? "")!", vc: self ?? UIViewController())
+            }
+            else {
+                showToast(message: "Something went wrong", vc: self ?? UIViewController())
+            }
         }
+    }
     
     @IBAction func signUpTapped(_ sender: Any) {
         coordinator?.goToSignUp()
