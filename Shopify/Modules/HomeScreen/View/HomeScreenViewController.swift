@@ -54,9 +54,14 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         adsCollection.dataSource = nil
         brandsCollection.delegate = nil
         brandsCollection.dataSource = nil
-        viewModel?.fetchBranchs()
-        setUpBrandsBinding()
-        setUpAdsBinding()
+        if checkInternetAndShowToast(vc: self) {
+            viewModel?.fetchBranchs()
+            setUpBrandsBinding()
+            setUpAdsBinding()
+        }else {
+            
+        }
+       
     }
     
     func setUpAdsBinding() {

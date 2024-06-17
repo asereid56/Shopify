@@ -27,10 +27,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var createdAt: UILabel!
     @IBOutlet weak var totalAmount: UILabel!
-    @IBOutlet weak var currency: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var myOrdersLabel: UILabel!
+    private var ordersArr : [Order] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImage.layer.cornerRadius = 12
@@ -51,14 +51,16 @@ class ProfileViewController: UIViewController {
             profileName.text = fullName
             
             _ = viewModel?.data.drive(onNext: { [weak self] orders in
-                print(orders)
+                self?.ordersArr.append(contentsOf: orders)
+                print(orders.last)
                 print("Orders count \(orders.count)")
                 if !orders.isEmpty {
                     
                     self?.ordersView.isHidden = false
-                    self?.totalAmount.text = orders.first?.currentTotalPrice
-                    self?.createdAt.text = orders.first?.createdAt
-                    self?.address.text = (orders.first?.country ?? "") + ", " + (orders.first?.country ?? "")
+                    self?.totalAmount.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(orders.last?.currentTotalPrice ?? "0"))
+                    self?.createdAt.text = orders.last?.createdAt
+                    self?.address.text = (orders.last?.shippingAddress?.city ?? "") + ", " + (orders.last?.shippingAddress?.country ?? "")
+                    self?.phoneNumber.text = orders.last?.shippingAddress?.phone
                 }
                 else {
                     self?.ordersView.isHidden = true
@@ -96,8 +98,11 @@ class ProfileViewController: UIViewController {
             })
         }
     }
+    
+    
     @IBAction func showAllOrders(_ sender: Any) {
-        //coordinator.goToOrders
+        print(ordersArr.count)
+       // coordinator.goToOrdersScreen(orders : )
     }
     @IBAction func showWishlist(_ sender: Any) {
         coordinator?.goToWishList()

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -106,10 +106,10 @@
                                         <color key="backgroundColor" name="BackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" id="ln4-At-yYp" customClass="ReviewTableViewCell" customModule="Shopify" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="50" width="361" height="47.666667938232422"/>
+                                                <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ln4-At-yYp" id="fD7-Vh-3N2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="47.666667938232422"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" name="ViewBgColor"/>
@@ -243,10 +243,10 @@
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewsCell" id="hwb-fc-dqB">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwb-fc-dqB" id="0wc-o3-KPW">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="ViewBgColor"/>
@@ -680,7 +680,7 @@
                                 <buttonConfiguration key="configuration" style="gray" image="cart" catalog="system" imagePadding="0.0" cornerStyle="capsule">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
-                                    <color key="baseBackgroundColor" name="BackgroundColor"/>
+                                    <color key="baseBackgroundColor" name="ViewBgColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="goToCart:" destination="hF9-tO-VyV" eventType="touchUpInside" id="cS2-V1-Khs"/>
@@ -691,7 +691,7 @@
                                 <buttonConfiguration key="configuration" style="gray" image="arrow.backward" catalog="system" cornerStyle="capsule">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
-                                    <color key="baseBackgroundColor" name="BackgroundColor"/>
+                                    <color key="baseBackgroundColor" name="ViewBgColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="backBtn:" destination="hF9-tO-VyV" eventType="touchUpInside" id="2pw-oJ-WOr"/>
@@ -1388,12 +1388,6 @@ Nike Sportswear</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbj-Wx-eFs">
-                                                <rect key="frame" x="330.66666666666669" y="36" width="8" height="18"/>
-                                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Mq-BI-Qck">
                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="20"/>
                                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
@@ -1411,7 +1405,6 @@ Nike Sportswear</string>
                                             <constraint firstItem="WMO-Td-igr" firstAttribute="top" secondItem="8Mq-BI-Qck" secondAttribute="bottom" constant="16" id="LvH-8X-5JE"/>
                                             <constraint firstAttribute="trailing" secondItem="Ko4-j1-uDf" secondAttribute="trailing" id="MGh-US-Gr8"/>
                                             <constraint firstItem="WMO-Td-igr" firstAttribute="leading" secondItem="4jP-He-6Mx" secondAttribute="leading" id="OWA-vI-2Su"/>
-                                            <constraint firstItem="wbj-Wx-eFs" firstAttribute="top" secondItem="4Sl-Fn-fPJ" secondAttribute="top" id="Uh1-36-BS8"/>
                                             <constraint firstItem="oTl-He-Bbn" firstAttribute="top" secondItem="WMO-Td-igr" secondAttribute="bottom" constant="14" id="bVz-ft-O6B"/>
                                             <constraint firstItem="FcP-Nm-ruq" firstAttribute="leading" secondItem="4jP-He-6Mx" secondAttribute="leading" id="fhN-XB-DaP"/>
                                             <constraint firstItem="D0x-93-VJd" firstAttribute="top" secondItem="oTl-He-Bbn" secondAttribute="bottom" constant="14" id="gj8-m2-fpJ"/>
@@ -1424,7 +1417,6 @@ Nike Sportswear</string>
                                             <constraint firstItem="4Sl-Fn-fPJ" firstAttribute="top" secondItem="WMO-Td-igr" secondAttribute="top" id="pWP-NB-XIy"/>
                                             <constraint firstAttribute="trailing" secondItem="4Sl-Fn-fPJ" secondAttribute="trailing" id="sTX-E8-ezd"/>
                                             <constraint firstItem="D0x-93-VJd" firstAttribute="leading" secondItem="4jP-He-6Mx" secondAttribute="leading" id="siF-BU-X5p"/>
-                                            <constraint firstItem="4Sl-Fn-fPJ" firstAttribute="leading" secondItem="wbj-Wx-eFs" secondAttribute="trailing" id="tA5-J0-Dan"/>
                                             <constraint firstItem="uTo-FG-hzm" firstAttribute="trailing" secondItem="d2M-AR-dgV" secondAttribute="trailing" constant="-4" id="wtD-hM-sOu"/>
                                         </constraints>
                                     </view>
@@ -1509,7 +1501,6 @@ Nike Sportswear</string>
                     <connections>
                         <outlet property="address" destination="UsS-r8-Jkr" id="VQR-HD-UId"/>
                         <outlet property="createdAt" destination="vsj-1H-jdG" id="AWu-2t-kDW"/>
-                        <outlet property="currency" destination="wbj-Wx-eFs" id="Shy-Hk-itc"/>
                         <outlet property="firstItemImage" destination="QdP-VB-z5L" id="XvJ-Rf-h0m"/>
                         <outlet property="firstItemLabel" destination="IAP-hS-PpW" id="G2f-ue-9Ue"/>
                         <outlet property="firstItemPrice" destination="Lxg-mD-95L" id="FxT-Dj-IlZ"/>

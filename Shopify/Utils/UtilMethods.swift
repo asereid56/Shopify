@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 func showToast(message: String, vc: UIViewController, actions: [UIAlertAction]? = nil) {
     let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
@@ -26,4 +27,23 @@ func checkonUserDefaultsValues() {
     print("customer last name: \(UserDefaultsManager.shared.getLastNameFromUserDefaults() ?? "")")
     print("wishlist id: \(UserDefaultsManager.shared.getWishListIdFromUserDefaults() ?? "")")
     print("cart id: \(UserDefaultsManager.shared.getCartIdFromUserDefaults() ?? "")")
+}
+
+func isInternetAvailable() -> Bool {
+    let reachability = try! Reachability()
+    switch reachability.connection {
+    case .wifi, .cellular:
+        return true
+    case .unavailable:
+        return false
+    }
+}
+
+func checkInternetAndShowToast(vc: UIViewController) -> Bool{
+    if isInternetAvailable() {
+        return true
+    } else {
+        showToast(message: "No internet connection", vc: vc)
+        return false
+    }
 }
