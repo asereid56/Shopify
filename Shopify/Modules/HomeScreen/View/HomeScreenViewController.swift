@@ -16,6 +16,10 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     @IBOutlet weak var adsCollection: UICollectionView!
     @IBOutlet weak var brandsCollection: UICollectionView!
     @IBOutlet weak var pageController: UIPageControl!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var noInternetImage: UIImageView!
+    @IBOutlet weak var chooseBrandTxt: UILabel!
+    
     
     var viewModel : HomeScreenViewModelProtocol?
     private let disposeBag = DisposeBag()
@@ -50,18 +54,29 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         adsCollection.delegate = nil
         adsCollection.dataSource = nil
         brandsCollection.delegate = nil
         brandsCollection.dataSource = nil
+        
         if checkInternetAndShowToast(vc: self) {
+            noInternetImage.isHidden = true
+            chooseBrandTxt.isHidden = false
+            activityIndicator.isHidden = false
+            adsCollection.isHidden = false
+            brandsCollection.isHidden = false
             viewModel?.fetchBranchs()
             setUpBrandsBinding()
             setUpAdsBinding()
         }else {
-            
+            adsCollection.isHidden = true
+            brandsCollection.isHidden = true
+            chooseBrandTxt.isHidden = true
+            activityIndicator.isHidden = true
+            noInternetImage.isHidden = false
         }
-       
+        
     }
     
     func setUpAdsBinding() {
@@ -78,16 +93,28 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     func setUpBrandsBinding() {
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
-        
+            
             cell.layer.borderColor = UIColor.lightGray.cgColor
             
-            cell.brandImage.kf.setImage(with: URL(string: brand.image.src ?? ""))
+            cell.brandImage.kf.setImage(with: URL(string: brand.image.src))
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 15
             cell.layer.masksToBounds = true
             
         }
         .disposed(by: disposeBag)
+        
+        viewModel?.isLoading
+            .map { !$0 }
+            .bind(to: activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        viewModel?.dataFetchCompleted
+            .subscribe(onNext: { [weak self] in
+                self?.activityIndicator.isHidden = true
+            })
+            .disposed(by: disposeBag)
+        
         
     }
     
@@ -170,12 +197,19 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     @IBAction func cartBtn(_ sender: Any) {
-        
-        coordinator?.goToShoppingCart()
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            coordinator?.goToShoppingCart()
+        }else {
+            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        }
     }
     
     @IBAction func wishListBtn(_ sender: Any) {
-        coordinator?.goToWishList()
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            coordinator?.goToWishList()
+        }else {
+            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        }
     }
     
 }

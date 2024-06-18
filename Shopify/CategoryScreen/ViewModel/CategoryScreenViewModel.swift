@@ -11,6 +11,8 @@ import RxCocoa
 
 protocol CategoryScreenViewModelProtocol {
     var data : Driver<[Product]> { get }
+    var isLoading : BehaviorRelay<Bool> { get }
+    var isEmpty : Observable<Bool> { get }
     
     func fetchData(with categoryID : APIEndpoint.RawValue)
     func filterData(selectedSegmentIndex: Int)
@@ -23,12 +25,18 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
     private let dataSubject = BehaviorSubject<[Product]>(value: [])
     var network : NetworkService
     
-    init(network: NetworkService) {
-        self.network = network
+    var isLoading =  BehaviorRelay<Bool>(value: false)
+    
+    var isEmpty: Observable<Bool> {
+        return dataSubject.map { $0.isEmpty }
     }
     
     var data: Driver<[Product]> {
         return dataSubject.asDriver(onErrorJustReturn: [])
+    }
+    
+    init(network: NetworkService) {
+        self.network = network
     }
     
     func fetchData(with categoryID: APIEndpoint.RawValue) {
@@ -36,12 +44,15 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
             .subscribe(onNext: { [weak self] (response : ProductsResponse) in
                 self?.productWillFiltered = response.products ?? []
                 self?.dataSubject.onNext(response.products ?? [])
+                self?.isLoading.accept(false)
             },
                        onError: { error in
                 print(error)
+                self.isLoading.accept(false)
             },
                        onCompleted: {
                 print("fetch product complete")
+                self.isLoading.accept(false)
             })
             .disposed(by: disposeBag)
     }
