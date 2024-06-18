@@ -8,7 +8,7 @@
 import UIKit
 
 class OrdersScreenViewController: UIViewController , Storyboarded {
-
+    
     
     @IBOutlet weak var ordersTable: UITableView!
     
@@ -17,11 +17,11 @@ class OrdersScreenViewController: UIViewController , Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let nib = UINib(nibName: "OrdrersTableViewCell", bundle: nil)
         ordersTable.register(nib, forCellReuseIdentifier: "orderCell")
     }
-
+    
     
     @IBAction func backBtn(_ sender: Any) {
         coordinator?.goBack()
@@ -53,6 +53,12 @@ extension OrdersScreenViewController : UITableViewDelegate , UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 107
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let selectedOrder = viewModel?.getOrders()[indexPath.row] {
+            coordinator?.gotoOrderDetailsScreen(order: selectedOrder)
+        }
     }
     
 }

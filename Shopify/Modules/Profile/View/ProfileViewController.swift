@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController {
             profileName.text = fullName
             
             _ = viewModel?.data.drive(onNext: { [weak self] orders in
-               
+                print(orders.last)
                 if !orders.isEmpty {
                     
                     self?.ordersView.isHidden = false

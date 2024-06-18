@@ -239,6 +239,16 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(ordersVC, animated: true)
     }
     
+    func gotoOrderDetailsScreen(order : Order){
+        
+        let orderDetailsVC = OrderDetailsViewController.instantiate(storyboardName: "Main")
+        let viewModel = OrderDetailsViewModel(orderDetails: order)
+        
+        orderDetailsVC.coordinator = self
+        orderDetailsVC.viewModel = viewModel
+        navigationController.pushViewController(orderDetailsVC, animated: true)
+    }
+    
     func goToReviews(vc: UIViewController){
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
         let reviewsVC = storyboard.instantiateViewController(withIdentifier: "reviews") as! ReviewsViewController

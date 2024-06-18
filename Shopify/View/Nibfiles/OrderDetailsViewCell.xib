@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderDetailsCell" rowHeight="120" id="KGk-i7-Jjw" customClass="OrderDetailsViewCell" customModule="Shopify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUm-G4-hUP">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqf-9n-xr0">
+                        <rect key="frame" x="139" y="6" width="223" height="57"/>
+                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Addidas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBo-Lu-oxe">
+                        <rect key="frame" x="139" y="77" width="51.666666666666657" height="33"/>
+                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
+                        <color key="textColor" systemColor="systemGrayColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="$ 50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebh-hk-Sdg">
+                        <rect key="frame" x="224" y="77" width="138" height="33"/>
+                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                        <color key="textColor" systemColor="systemGrayColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="ViewBgColor"/>
+                <constraints>
+                    <constraint firstItem="rqf-9n-xr0" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.474747" id="CL7-J9-nax"/>
+                    <constraint firstItem="uBo-Lu-oxe" firstAttribute="leading" secondItem="xUm-G4-hUP" secondAttribute="trailing" constant="8" id="EfL-DY-MGU"/>
+                    <constraint firstAttribute="bottom" secondItem="uBo-Lu-oxe" secondAttribute="bottom" constant="10" id="Gto-6a-ePi"/>
+                    <constraint firstItem="rqf-9n-xr0" firstAttribute="leading" secondItem="xUm-G4-hUP" secondAttribute="trailing" constant="8" id="HKu-Gu-Wpi"/>
+                    <constraint firstItem="uBo-Lu-oxe" firstAttribute="top" secondItem="rqf-9n-xr0" secondAttribute="bottom" constant="14" id="P81-YV-9Fz"/>
+                    <constraint firstItem="Ebh-hk-Sdg" firstAttribute="leading" secondItem="uBo-Lu-oxe" secondAttribute="trailing" constant="33.329999999999998" id="URy-Fz-M5X"/>
+                    <constraint firstItem="xUm-G4-hUP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UVl-IF-yGM"/>
+                    <constraint firstItem="Ebh-hk-Sdg" firstAttribute="top" secondItem="rqf-9n-xr0" secondAttribute="bottom" constant="14" id="XQ1-Hq-FdC"/>
+                    <constraint firstItem="rqf-9n-xr0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="ekE-OD-aJ2"/>
+                    <constraint firstAttribute="trailing" secondItem="Ebh-hk-Sdg" secondAttribute="trailing" constant="8" id="fD9-wz-CYa"/>
+                    <constraint firstAttribute="bottom" secondItem="xUm-G4-hUP" secondAttribute="bottom" id="fRF-IP-pkj"/>
+                    <constraint firstAttribute="trailing" secondItem="rqf-9n-xr0" secondAttribute="trailing" constant="8" id="fnT-7l-aSP"/>
+                    <constraint firstItem="xUm-G4-hUP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hN0-x3-HHn"/>
+                    <constraint firstAttribute="bottom" secondItem="Ebh-hk-Sdg" secondAttribute="bottom" constant="10" id="p86-87-8MC"/>
+                    <constraint firstItem="rqf-9n-xr0" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.603125" id="ycG-Wa-yeE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="productImage" destination="xUm-G4-hUP" id="VYK-DZ-vYd"/>
+                <outlet property="productPrice" destination="Ebh-hk-Sdg" id="Ch2-x6-gA7"/>
+                <outlet property="productTitle" destination="rqf-9n-xr0" id="HeB-Fy-IGH"/>
+                <outlet property="productVendor" destination="uBo-Lu-oxe" id="CfE-Ox-0KT"/>
+            </connections>
+            <point key="canvasLocation" x="-18.840579710144929" y="16.304347826086957"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="BackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ViewBgColor">
+            <color red="0.96078431372549022" green="0.96470588235294119" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
