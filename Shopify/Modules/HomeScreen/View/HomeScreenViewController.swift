@@ -74,6 +74,16 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             }
             .disposed(by: disposeBag)
         
+        adsCollection.rx.modelSelected(AdsItems.self)
+                .subscribe(onNext: { [weak self] adsItem in
+                    self?.handleCellSelection(for: adsItem)
+                })
+                .disposed(by: disposeBag)
+        
+    }
+    
+    func handleCellSelection(for adsItem: AdsItems) {
+        print("Selected ads item: \(adsItem)")
     }
     
     func setUpBrandsBinding() {

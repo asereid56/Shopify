@@ -23,7 +23,8 @@ class PaymentViewController: UIViewController, Storyboarded {
     @IBOutlet weak var deliveryCharge: UILabel!
     @IBOutlet weak var dicount: UILabel!
     @IBOutlet weak var total: UILabel!
-    @IBOutlet weak var validateCoupon: UILabel!
+    @IBOutlet weak var coupon: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -32,6 +33,20 @@ class PaymentViewController: UIViewController, Storyboarded {
         }else{
             shippingAddress.text = "Select Delivery Address"
         }
+        
+        viewModel?.priceRuleSubject.observeOn(MainScheduler.instance).subscribe(onNext:  { [weak self] (priceRule, error) in
+            if let error = error {
+                self?.showError(title: "Invalid Coupon!")
+            }else{
+                self?.coupon.isEnabled = false
+                if priceRule!.valueType == "fixed_amount" {
+                    self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price: priceRule!.value)
+                    let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) + (Double(priceRule!.value) ?? 0.0)
+                    self?.total.text = String(calcPrice)
+                }
+            }
+            
+        }).disposed(by: disposeBag)
     }
     
     private func setUpUI(){
@@ -74,15 +89,19 @@ class PaymentViewController: UIViewController, Storyboarded {
     }
     
     @IBAction func btnConfirmPayment(_ sender: Any) {
-        switch  viewModel?.getPaymentMethod(){
-        case Constant.COD:
-            if canPayUsingCOD() == true {
-                print("success")
-                viewModel?.placeOrder(financialStatus: Constant.PENDING)
-                coordinator?.goToOrderConfirmed()
+        if shippingAddress.text != "Select Delivery Address" {
+            switch  viewModel?.getPaymentMethod(){
+            case Constant.COD:
+                if canPayUsingCOD() == true {
+                    print("success")
+                    viewModel?.placeOrder(financialStatus: Constant.PENDING)
+                    coordinator?.goToOrderConfirmed()
+                }
+            default:
+                payUsingApplePay()
             }
-        default:
-            payUsingApplePay()
+        }else{
+            showError(title: "Select the shipping address")
         }
     }
     
@@ -106,7 +125,7 @@ class PaymentViewController: UIViewController, Storyboarded {
             showError(title: "Cash on Delivery is not available for orders exceeding certain amount. Please select a different payment method.")
             return false
         }
-      return true
+        return true
     }
     
     private func showError(title: String){
@@ -117,6 +136,20 @@ class PaymentViewController: UIViewController, Storyboarded {
             alert.dismiss(animated: true)
         }
     }
+    @IBAction func btnClick(_ sender: Any) {
+        if let coupon = coupon.text {
+            viewModel?.validateCoupon(coupon: coupon)
+        }
+    }
+    
+    //    @IBAction func btnValidate(_ sender: Any) {
+    //        print("clciked")
+    //        if let coupon = coupon.text {
+    //            viewModel?.validateCoupon(coupon: coupon)
+    //        }
+    //    }
+    
+    
     
     @IBAction func btnBack(_ sender: Any) {
         coordinator?.goBack()

@@ -19,17 +19,16 @@ class MainCoordinator : Coordinator {
     
     private let defaults = UserDefaults.standard
     private let key = "isFirstTime"
-    private let customerID = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
-    private let cartID = UserDefaultsManager.shared.getCartIdFromUserDefaults()
     var childCoordinators = [Coordinator]()
     var navigationController : UINavigationController
-    
+    var customerID = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
+    var cartID = UserDefaultsManager.shared.getCartIdFromUserDefaults()
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
-        
+        print(AuthenticationManager.shared.isUserLoggedIn())
         if defaults.object(forKey: key) == nil {
             defaults.setValue(true, forKey: key)
         }
@@ -40,7 +39,12 @@ class MainCoordinator : Coordinator {
         }else{
             gotoTab()
         }
-
+        
+    }
+    
+    private func getDefaults() {
+        customerID = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
+        cartID = UserDefaultsManager.shared.getCartIdFromUserDefaults()
     }
     
     func goToOnBoardingSecondScreen(){
@@ -56,10 +60,10 @@ class MainCoordinator : Coordinator {
     }
     
     func goToSignOrGuestScreen() {
-            let signOrGuestVC = SignInOrGuestViewController.instantiate(storyboardName: "Main")
-            signOrGuestVC.coordinator = self
-            navigationController.pushViewController(signOrGuestVC, animated: true)
-        }
+        let signOrGuestVC = SignInOrGuestViewController.instantiate(storyboardName: "Main")
+        signOrGuestVC.coordinator = self
+        navigationController.pushViewController(signOrGuestVC, animated: true)
+    }
     
     func goToOnBoardingThirdScreen(){
         let onBoardingThreeScreen = OnBoardingThreeViewController.instantiate(storyboardName: "Main")
@@ -70,10 +74,12 @@ class MainCoordinator : Coordinator {
     func gotoTab(){
         let tabBar = TabBar.instantiate(storyboardName: "Main")
         tabBar.coordinator = self
-        navigationController.pushViewController(tabBar, animated: false)
+        //  navigationController.pushViewController(tabBar, animated: false)
+        navigationController.setViewControllers([tabBar], animated: true)
     }
     
     func goToSettings(){
+        print(checkonUserDefaultsValues())
         let settingVC = SettingViewController.instantiate(storyboardName:"Setting")
         let viewModel = SettingViewModel()
         settingVC.viewModel = viewModel
@@ -94,6 +100,7 @@ class MainCoordinator : Coordinator {
     }
     
     func goToAddresses(from viewController: PaymentViewController? = nil , source : String = "setting"){
+        getDefaults()
         let addressesVC = AddressesViewController.instantiate(storyboardName:"Setting")
         let viewModel = AddressesViewModel(networkService: NetworkService.shared, customerId: customerID ?? "")
         addressesVC.viewModel = viewModel
@@ -104,6 +111,7 @@ class MainCoordinator : Coordinator {
     }
     
     func goToEditAddress(address : Address){
+        getDefaults()
         let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
         let viewModel = NewAddressViewModel(address: address, networkService: NetworkService.shared, customerId: customerID ?? "" ,dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
@@ -112,6 +120,7 @@ class MainCoordinator : Coordinator {
     }
     
     func goToNewAddress(){
+        getDefaults()
         let newAddressVC = NewAddressViewController.instantiate(storyboardName:"Setting")
         let viewModel = NewAddressViewModel(networkService: NetworkService.shared, customerId: customerID ?? "" ,dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
@@ -128,6 +137,7 @@ class MainCoordinator : Coordinator {
     }
     
     func goToShoppingCart() {
+        getDefaults()
         let ShoppingCarVC = ShoppingCartViewController.instantiate(storyboardName:"Setting")
         let viewModel = ShoppingCartViewModel(networkService: NetworkService.shared, draftOrderId: cartID ?? "" , realmManager: RealmManager.shared)
         ShoppingCarVC.viewModel = viewModel
@@ -136,8 +146,9 @@ class MainCoordinator : Coordinator {
     }
     
     func goToPayment(draftOrder : DraftOrder){
+        getDefaults()
         let PaymentVC = PaymentViewController.instantiate(storyboardName:"Setting")
-        let viewModel = PaymentViewModel(draftOrder: draftOrder, network: NetworkService.shared , customerId: customerID ?? "" ,mockPaymentProcessor: MockPaymentProcessor(), draftOrderId: cartID ?? "")
+        let viewModel = PaymentViewModel(draftOrder: draftOrder, network: NetworkService.shared , customerId: customerID ?? "" ,mockPaymentProcessor: MockPaymentProcessor(), draftOrderId: cartID ?? "", realmManager: RealmManager.shared)
         viewModel.delegate = PaymentVC
         PaymentVC.viewModel = viewModel
         PaymentVC.coordinator = self
@@ -163,7 +174,7 @@ class MainCoordinator : Coordinator {
         
     }
     
-
+    
     func gotoProductsScreen(with brandId: String) {
         
         let productScreenVC = ProductsScreenViewController.instantiate(storyboardName: "Main")
@@ -176,10 +187,10 @@ class MainCoordinator : Coordinator {
     }
     
     func goToHomeScreen() {
-
+        
         let homeScreenVC = HomeScreenViewController.instantiate(storyboardName: "Main")
         
-     
+        
         let currencyService = CurrencyService.shared
         currencyService.network = NetworkService.shared
         
@@ -220,6 +231,7 @@ class MainCoordinator : Coordinator {
     }
     
     func goToProductInfo(product: Product){
+        getDefaults()
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
         let productInfo = storyboard.instantiateViewController(withIdentifier: "pinfo") as! ProductInfoViewController
         productInfo.coordinator = self
@@ -269,5 +281,5 @@ class MainCoordinator : Coordinator {
         
     }
     
-
+    
 }

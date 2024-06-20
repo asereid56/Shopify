@@ -12,15 +12,29 @@ class SettingViewController: UIViewController, Storyboarded {
     var coordinator : MainCoordinator?
     var viewModel : SettingViewModelProtocol?
     @IBOutlet weak var currentCurrency: UILabel!
+    @IBOutlet weak var btnLogout: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         currentCurrency.text = viewModel?.getSelectedCurrency()
+        checkUserLoggedIn()
+    }
+    
+    private func checkUserLoggedIn() {
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            btnLogout.isHidden = false
+        }else{
+            btnLogout.isHidden = true
+        }
     }
     
     @IBAction func goToAddresses(_ sender: Any) {
-        coordinator?.goToAddresses()
+        if AuthenticationManager.shared.isUserLoggedIn(){
+            coordinator?.goToAddresses()
+        }else{
+            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        }
     }
     
     
@@ -65,10 +79,10 @@ class SettingViewController: UIViewController, Storyboarded {
         present(alert, animated: true)
         
     }
-    
-    
+  
     @IBAction func logOutBtn(_ sender: Any) {
         AuthenticationManager.shared.signOut()
+        coordinator?.gotoTab()
     }
     
 }

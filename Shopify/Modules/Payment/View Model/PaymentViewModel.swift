@@ -13,6 +13,7 @@ import RxSwift
 protocol PaymentViewModelProtocol{
     var selectedAddress: BehaviorRelay<String?>{get set}
     var primaryAddress: BehaviorRelay<String?>{get set}
+    var priceRuleSubject : PublishSubject<(PriceRule?, Error?)>{get}
     var paymentSuccess: PKPaymentAuthorizationStatus { get set }
     func setShippingAddress(address : Address)
     func getSubTotal() -> String
@@ -22,6 +23,7 @@ protocol PaymentViewModelProtocol{
     func getPaymentMethod() -> String
     func getSelectedCurrency() -> String
     func placeOrder(financialStatus : String)
+    func validateCoupon(coupon : String) 
 }
 
 protocol PaymentViewModelDelegate: AnyObject {
@@ -34,8 +36,9 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     weak var delegate: PaymentViewModelDelegate?
     private let mockPaymentProcessor: PaymentProcessing
     var paymentSuccess: PKPaymentAuthorizationStatus = .success
-    var selectedAddress = BehaviorRelay<String?>(value: "")
-    var primaryAddress = BehaviorRelay<String?>(value: "")
+    var selectedAddress = BehaviorRelay<String?>(value: "Select Delivery Address")
+    var primaryAddress = BehaviorRelay<String?>(value: "Select Delivery Address")
+    var priceRuleSubject = PublishSubject<(PriceRule?, Error?)>()
     var draftOrder : DraftOrder
     var network : NetworkServiceProtocol
     private let customerId : String
@@ -43,14 +46,16 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     private var shippingAddress: Address?
     private var billingAddress : Address?
     private let defaults = UserDefaults.standard
+    private let realmManager : RealmManagerProtocol
     
     
-    init( draftOrder: DraftOrder, network: NetworkServiceProtocol, customerId : String , mockPaymentProcessor : PaymentProcessing , draftOrderId : String) {
+    init( draftOrder: DraftOrder, network: NetworkServiceProtocol, customerId : String , mockPaymentProcessor : PaymentProcessing , draftOrderId : String, realmManager : RealmManagerProtocol) {
         self.draftOrder = draftOrder
         self.network = network
         self.customerId = customerId
         self.mockPaymentProcessor = mockPaymentProcessor
         self.draftOrderId = draftOrderId
+        self.realmManager = realmManager
     }
     
     func loadData() -> Bool{
@@ -80,7 +85,6 @@ class PaymentViewModel :  PaymentViewModelProtocol{
         network.post(url: NetworkConstants.baseURL, endpoint: endpoint, body: orderWrapper, headers: nil, responseType: OrderWrapper.self).subscribe { [weak self] (success, message , orderWrapper) in
             if success {
                 self?.updateDraftOrder()
-                print("success\(orderWrapper?.order.financialStatus)")
             }
         }.disposed(by: disposeBag)
         
@@ -94,14 +98,15 @@ class PaymentViewModel :  PaymentViewModelProtocol{
         let draftOrderWrapper = DraftOrderWrapper(draftOrder: draftOrder)
         network.put(url: NetworkConstants.baseURL, endpoint: endpoint, body: draftOrderWrapper, headers: nil, responseType: DraftOrderWrapper.self)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe(onNext: { (success, message, response) in
-                print("success\(response?.draftOrder?.id)")
+            .subscribe(onNext: { [weak self](success, message, response) in
+                let realmDraftOrder = response?.draftOrder.map { RealmDraftOrder(draftOrder: $0)}
+                self?.realmManager.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
             }, onError: { error in
                 print("Error updating draft order: \(error)")
             })
             .disposed(by: disposeBag)
     }
-    
+
     func setShippingAddress(address : Address){
         if address.default == true {
             billingAddress = address
@@ -130,4 +135,29 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     func getSelectedCurrency() -> String{
         return defaults.string(forKey: Constant.SELECTED_CURRENCY) ?? Constant.USD
     }
+    
+    func validateCoupon(coupon : String) {
+        let endpoint = APIEndpoint.validateDiscount.rawValue.replacingOccurrences(of: "{discount_code}", with: coupon)
+        network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
+            .subscribe(onNext: { [weak self](dicount : DiscountCodeWrapper) in
+                guard let priceRuleID  = dicount.discountCode.priceRuleId else{ return}
+                self?.getPriceRule(priceRuleID: priceRuleID)
+            },onError: { _ in
+                self.priceRuleSubject.onNext((nil ,CustomError.invalidCoupon))
+            }
+            
+            ).disposed(by: disposeBag)
+    }
+    
+   private func getPriceRule(priceRuleID : Int) {
+        let endpoint = APIEndpoint.priceRule.rawValue.replacingOccurrences(of: "{price_rule_id}", with: String(priceRuleID))
+        network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
+           .subscribe(onNext: { [weak self] (priceRuleWrapper : PriceRuleWrapper ) in
+               self?.priceRuleSubject.onNext((priceRuleWrapper.priceRule, nil))
+            }).disposed(by: disposeBag)
+    }
+}
+
+enum CustomError: Error {
+    case invalidCoupon
 }

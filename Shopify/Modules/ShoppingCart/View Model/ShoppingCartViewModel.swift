@@ -13,7 +13,8 @@ protocol ShoppingCartViewModelProtocol {
     var data : Driver<[LineItem]> {get}
     var plusAction : PublishSubject<(Int, Int, Int)> {set get}
     var minusAction : PublishSubject<(Int, Int)>{set get}
-    func canCheckOut() -> Bool 
+    var isLoading : BehaviorRelay<Bool>{get}
+    func canCheckOut() -> (Bool, String)
     func getDratOrder() -> DraftOrder
     func fetchCartItems()
     func deleteItem(at index: Int)
@@ -21,7 +22,8 @@ protocol ShoppingCartViewModelProtocol {
     func incrementItem(at row: Int, currentQuantity: Int , inventoryQuantity : Int)
     func decrementItem(at row: Int, currentQuantity: Int)
     func updateRealm()
-   // func fetchCartItemsFromRealm()
+    func getLineItemsCount() -> Int
+    func fetchCartItemsFromRealm()
 }
 
 class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
@@ -36,6 +38,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     var data: Driver<[LineItem]>{
         return dataSubject.asDriver(onErrorJustReturn: [])
     }
+    var isLoading = BehaviorRelay<Bool>(value: false)
     
     var plusAction = PublishSubject<(Int, Int, Int)>()
     var minusAction = PublishSubject<(Int, Int)>()
@@ -64,15 +67,21 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
             .disposed(by: disposeBag)
     }
     
-//    func fetchCartItemsFromRealm()  {
-//        let realmDraftOrders = realmManager.getAll(RealmDraftOrder.self)
-//        print(realmDraftOrders.count)
-//        let draftOrder = DraftOrder(from: realmDraftOrders.first ?? nil )
-//        draftOrderWrapper.draftOrder = draftOrder
-//        dataSubject.onNext(draftOrder.lineItems!)
-//    }
+    func fetchCartItemsFromRealm()  {
+        isLoading.accept(true)
+        let realmDraftOrders = realmManager.getAll(RealmDraftOrder.self)
+        print(realmDraftOrders.count)
+        let draftOrder = DraftOrder(from: realmDraftOrders.first!)
+        draftOrderWrapper.draftOrder = draftOrder
+         dataSubject.onNext(draftOrder.lineItems!)
+//        guard let lineItems = draftOrder.lineItems else{return}
+//        dataSubject.onNext(lineItems)
+        isLoading.accept(false)
+        
+    }
     
     func fetchCartItems() {
+        isLoading.accept(true)
         networkService.get(url: NetworkConstants.baseURL, endpoint: endpoint ?? "", parameters: nil, headers: nil)
             .flatMap { (draftOrderWrapper: DraftOrderWrapper) -> Observable<[LineItem]> in
                 self.draftOrderWrapper = draftOrderWrapper
@@ -114,6 +123,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                     }
                     
                     Observable.zip(observables).subscribe(onNext: { _ in
+                        
                         observer.onNext(mutableLineItems)
                         observer.onCompleted()
                     }).disposed(by: self.disposeBag)
@@ -121,25 +131,25 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                     return Disposables.create()
                 }
             }
-            .subscribe(onNext: { updatedLineItems in
-                self.lineItems = updatedLineItems
-                self.dataSubject.onNext(updatedLineItems)
+            .subscribe(onNext: { [weak self] updatedLineItems in
+                self?.lineItems = updatedLineItems
+                self?.isLoading.accept(false)
+                self?.dataSubject.onNext(updatedLineItems)
             }, onError: { error in
+                self.isLoading.accept(false)
                 print("Error fetching and processing cart items: \(error)")
             })
             .disposed(by: disposeBag)
     }
     
     func isSoldOut(inventoryQuantity : Int , productQuantity: Int) -> Bool{
-        if inventoryQuantity <= 0  || productQuantity > Int(0.3 * Double(inventoryQuantity)){
+        if  productQuantity > max(1, Int(0.3 * Double(inventoryQuantity))){
             return true
         }
         return false
     }
     
     func incrementItem(at row: Int, currentQuantity: Int , inventoryQuantity : Int) {
-        print(Int(0.3 * Double(inventoryQuantity)))
-        print(inventoryQuantity)
         if currentQuantity < Int(0.3 * Double(inventoryQuantity)) && currentQuantity > 0{
             do {
                 var currentProduct = try dataSubject.value()
@@ -161,7 +171,6 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                 print("Error deleting item:", error)
             }
         }
-        print("Decrement item at row \(row) to quantity \(currentQuantity - 1)")
     }
     
     
@@ -178,6 +187,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     }
     
     private  func updateDraftOrder(lineItems: [LineItem]) {
+        isLoading.accept(true)
         let draftOrder = DraftOrder(lineItems: lineItems)
         let draftOrderWrapper = DraftOrderWrapper(draftOrder: draftOrder)
         
@@ -188,6 +198,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                 self.draftOrderWrapper = response
                 if let lineItems = response.draftOrder?.lineItems {
                     self.lineItems = lineItems
+                    isLoading.accept(false)
                     self.dataSubject.onNext(lineItems)
                 }
             }, onError: { error in
@@ -201,18 +212,25 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
         return (draftOrderWrapper.draftOrder)!
     }
     
-    func canCheckOut() -> Bool {
+    func canCheckOut() -> (Bool, String){
+        if lineItems!.count <= 1 {
+            return (false,"Shopping cart is empty!")
+        }
         for index in 1..<lineItems!.count{
-            if lineItems![index].quantity! >  Int(0.3 * Double(lineItems![index].properties![1].value ?? "")!){
-                return false
+            if lineItems![index].quantity! >  max(1 , Int(0.3 * Double(lineItems![index].properties![1].value ?? "")!)){
+                return (false,"Oops! Some items in your cart are sold out. Please decrement or remove them.")
             }
         }
-        return true
+        return (true , "")
     }
     
     func updateRealm() {
         let realmDraftOrder = draftOrderWrapper.draftOrder.map { RealmDraftOrder(draftOrder: $0)}
         realmManager.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
+    }
+    
+    func getLineItemsCount() -> Int{
+        return lineItems?.count ?? 0
     }
 }
 

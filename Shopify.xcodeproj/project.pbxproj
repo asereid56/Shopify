@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181B77582C23C05E00A9D683 /* Discount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B77572C23C05E00A9D683 /* Discount.swift */; };
+		181B775A2C23C35300A9D683 /* PriceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B77592C23C35300A9D683 /* PriceRule.swift */; };
 		182772C02C1E6B75007428C0 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182772BF2C1E6B75007428C0 /* Order.swift */; };
 		182772C42C1E7303007428C0 /* OrderConfirmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182772C32C1E7303007428C0 /* OrderConfirmedViewController.swift */; };
 		1829BFB62C0E8AC3004FA5D4 /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829BFB52C0E8AC3004FA5D4 /* AddressesViewController.swift */; };
@@ -140,6 +142,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		181B77572C23C05E00A9D683 /* Discount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discount.swift; sourceTree = "<group>"; };
+		181B77592C23C35300A9D683 /* PriceRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRule.swift; sourceTree = "<group>"; };
 		182772BF2C1E6B75007428C0 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		182772C32C1E7303007428C0 /* OrderConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmedViewController.swift; sourceTree = "<group>"; };
 		1829BFB52C0E8AC3004FA5D4 /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
@@ -846,6 +850,8 @@
 				186303CB2C1ADCD900A33B58 /* Currency.swift */,
 				182772BF2C1E6B75007428C0 /* Order.swift */,
 				187029C72C1FF310004AF09B /* RealmDraftOrder.swift */,
+				181B77572C23C05E00A9D683 /* Discount.swift */,
+				181B77592C23C35300A9D683 /* PriceRule.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1288,10 +1294,12 @@
 				391098DE2C1355C1005CEE7B /* ReviewsViewController.swift in Sources */,
 				18FEA7322C13866500F16304 /* AddressesViewModel.swift in Sources */,
 				4AD192F42C0CF73400EF34D0 /* Constant.swift in Sources */,
+				181B77582C23C05E00A9D683 /* Discount.swift in Sources */,
 				4AC7C5142C1C87C700031AAF /* OnBoardingThreeViewController.swift in Sources */,
 				397FAC322C13537B005499BA /* ProductCollectionXIBCell.swift in Sources */,
 				399564D82C1353F400AD4AC4 /* BrandsCollectionCell.swift in Sources */,
 				1866D80B2C14AF3F00E7C47C /* Country.swift in Sources */,
+				181B775A2C23C35300A9D683 /* PriceRule.swift in Sources */,
 				187029C62C1FF237004AF09B /* RealmManager.swift in Sources */,
 				1851C0CE2C165DED00849BB6 /* ShoppingCartViewController.swift in Sources */,
 				395870902C10DE9300016FA0 /* GeneralLoginViewController.swift in Sources */,

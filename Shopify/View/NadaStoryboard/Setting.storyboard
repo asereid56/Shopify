@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -11,21 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="s0d-6b-0kx">
-            <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-63" y="4"/>
-        </scene>
         <!--Add Address-->
         <scene sceneID="HYf-xx-N21">
             <objects>
@@ -51,13 +36,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8p-LS-mvj">
-                                <rect key="frame" x="144" y="73" width="105.33333333333331" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <rect key="frame" x="135.66666666666666" y="70.666666666666671" width="121.66666666666666" height="24.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLJ-qE-CCe">
-                                <rect key="frame" x="16" y="734" width="361" height="68"/>
+                                <rect key="frame" x="16" y="742" width="361" height="68"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,119 +52,118 @@
                                     <action selector="btnSave:" destination="Vqb-o5-QK8" eventType="touchUpInside" id="fmx-Zq-zDB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXq-q0-tly">
-                                <rect key="frame" x="16" y="139" width="83" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXq-q0-tly">
+                                <rect key="frame" x="16" y="139" width="80.666666666666671" height="19.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbj-eu-V48">
-                                <rect key="frame" x="16" y="168" width="361" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbj-eu-V48">
+                                <rect key="frame" x="16" y="166.66666666666666" width="361" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQF-Mp-Rp7">
-                                <rect key="frame" x="16" y="297" width="61" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQF-Mp-Rp7">
+                                <rect key="frame" x="16.000000000000004" y="286.33333333333331" width="59.333333333333343" height="19.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKb-Bk-UQX">
-                                <rect key="frame" x="16" y="321" width="162.33333333333334" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKb-Bk-UQX">
+                                <rect key="frame" x="16" y="309" width="162.33333333333334" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <gestureRecognizers/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Gxi-Qm-Img" appends="YES" id="6eH-ML-BaO"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sga-hO-Jux">
-                                <rect key="frame" x="210.33333333333337" y="292" width="166.66666666666663" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sga-hO-Jux">
+                                <rect key="frame" x="210.33333333333337" y="281.33333333333331" width="166.66666666666663" height="19.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i0t-j9-ezt">
-                                <rect key="frame" x="210.33333333333337" y="321" width="166.66666666666663" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i0t-j9-ezt">
+                                <rect key="frame" x="210.33333333333337" y="309" width="166.66666666666663" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <gestureRecognizers/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Eni-Fv-pof" appends="YES" id="SOq-at-5Nh"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5p-hL-Fk1">
-                                <rect key="frame" x="16.000000000000007" y="371" width="114.66666666666669" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5p-hL-Fk1">
+                                <rect key="frame" x="16" y="355" width="109" height="19.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="56j-Ys-4Ql">
-                                <rect key="frame" x="16" y="405" width="361" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="56j-Ys-4Ql">
+                                <rect key="frame" x="16" y="382.66666666666669" width="361" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5o-cB-nHf">
-                                <rect key="frame" x="15.999999999999996" y="450" width="62.666666666666657" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5o-cB-nHf">
+                                <rect key="frame" x="15.999999999999996" y="428.66666666666669" width="57.666666666666657" height="19.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasdasd" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uko-2I-lYu">
-                                <rect key="frame" x="16" y="484" width="361" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uko-2I-lYu">
+                                <rect key="frame" x="16" y="456.33333333333331" width="361" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save as primary address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2D-m3-xFr">
-                                <rect key="frame" x="16" y="529" width="167.66666666666666" height="31"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save as primary address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2D-m3-xFr">
+                                <rect key="frame" x="16" y="508.66666666666669" width="161.33333333333334" height="18.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QJM-q3-ZyV">
-                                <rect key="frame" x="328" y="534" width="51" height="31"/>
+                                <rect key="frame" x="328" y="502.33333333333326" width="51" height="31"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh8-Sf-4DY">
-                                <rect key="frame" x="16" y="218" width="82" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh8-Sf-4DY">
+                                <rect key="frame" x="16" y="212.66666666666666" width="77.666666666666671" height="19.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IJe-89-AYz">
-                                <rect key="frame" x="16" y="247" width="361" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IJe-89-AYz">
+                                <rect key="frame" x="16" y="240.33333333333337" width="361" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fBy-bZ-iPg"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="y2D-m3-xFr" firstAttribute="centerY" secondItem="QJM-q3-ZyV" secondAttribute="centerY" constant="-5" id="3ZF-g3-1PB"/>
                             <constraint firstItem="t5p-hL-Fk1" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="7KR-bh-9eT"/>
                             <constraint firstItem="uko-2I-lYu" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="7pa-7q-Qhi"/>
                             <constraint firstItem="eh8-Sf-4DY" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="A3b-Mi-734"/>
+                            <constraint firstItem="QJM-q3-ZyV" firstAttribute="top" secondItem="uko-2I-lYu" secondAttribute="bottom" constant="12" id="BjM-Z1-d2B"/>
                             <constraint firstItem="BKb-Bk-UQX" firstAttribute="width" secondItem="Hbj-eu-V48" secondAttribute="width" multiplier="0.45" id="BvI-bW-IZd"/>
                             <constraint firstItem="IJe-89-AYz" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="Ckw-7W-hUw"/>
                             <constraint firstItem="Hbj-eu-V48" firstAttribute="top" secondItem="WXq-q0-tly" secondAttribute="bottom" constant="8" id="De2-Q8-8in"/>
                             <constraint firstItem="fBy-bZ-iPg" firstAttribute="trailing" secondItem="uko-2I-lYu" secondAttribute="trailing" constant="16" id="FQp-Pv-C6O"/>
                             <constraint firstItem="fBy-bZ-iPg" firstAttribute="trailing" secondItem="56j-Ys-4Ql" secondAttribute="trailing" constant="16" id="G2c-gT-YSn"/>
-                            <constraint firstItem="QJM-q3-ZyV" firstAttribute="top" secondItem="uko-2I-lYu" secondAttribute="bottom" constant="16" id="Lth-Ia-y3D"/>
-                            <constraint firstItem="t5p-hL-Fk1" firstAttribute="top" secondItem="BKb-Bk-UQX" secondAttribute="bottom" constant="16" id="MEO-Gy-O1x"/>
+                            <constraint firstItem="t5p-hL-Fk1" firstAttribute="top" secondItem="BKb-Bk-UQX" secondAttribute="bottom" constant="12" id="MEO-Gy-O1x"/>
                             <constraint firstItem="fBy-bZ-iPg" firstAttribute="trailing" secondItem="sga-hO-Jux" secondAttribute="trailing" constant="16" id="Mkx-ra-OCU"/>
                             <constraint firstItem="56j-Ys-4Ql" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="Pn8-jG-f2O"/>
-                            <constraint firstItem="u5o-cB-nHf" firstAttribute="top" secondItem="56j-Ys-4Ql" secondAttribute="bottom" constant="11" id="PvI-Fv-VW3"/>
+                            <constraint firstItem="u5o-cB-nHf" firstAttribute="top" secondItem="56j-Ys-4Ql" secondAttribute="bottom" constant="12" id="PvI-Fv-VW3"/>
                             <constraint firstItem="i0t-j9-ezt" firstAttribute="top" secondItem="sga-hO-Jux" secondAttribute="bottom" constant="8" id="QyE-lN-ZkC"/>
                             <constraint firstItem="Hbj-eu-V48" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="RPQ-mI-AgJ"/>
                             <constraint firstItem="vLJ-qE-CCe" firstAttribute="height" secondItem="0bF-bp-WgX" secondAttribute="height" multiplier="0.08" id="SW2-fA-a5z"/>
@@ -188,22 +172,22 @@
                             <constraint firstItem="WXq-q0-tly" firstAttribute="top" secondItem="09T-4Q-0M0" secondAttribute="bottom" constant="32" id="Xb5-pO-nCN"/>
                             <constraint firstItem="fBy-bZ-iPg" firstAttribute="trailing" secondItem="i0t-j9-ezt" secondAttribute="trailing" constant="16" id="XuL-i3-byh"/>
                             <constraint firstItem="BKb-Bk-UQX" firstAttribute="top" secondItem="AQF-Mp-Rp7" secondAttribute="bottom" constant="3" id="XvE-Ay-psw"/>
-                            <constraint firstItem="AQF-Mp-Rp7" firstAttribute="top" secondItem="IJe-89-AYz" secondAttribute="bottom" constant="16" id="YBs-oN-CVr"/>
-                            <constraint firstItem="56j-Ys-4Ql" firstAttribute="top" secondItem="t5p-hL-Fk1" secondAttribute="bottom" constant="13" id="ZGK-zB-j4g"/>
+                            <constraint firstItem="AQF-Mp-Rp7" firstAttribute="top" secondItem="IJe-89-AYz" secondAttribute="bottom" constant="12" id="YBs-oN-CVr"/>
+                            <constraint firstItem="56j-Ys-4Ql" firstAttribute="top" secondItem="t5p-hL-Fk1" secondAttribute="bottom" constant="8" id="ZGK-zB-j4g"/>
                             <constraint firstItem="C8p-LS-mvj" firstAttribute="centerY" secondItem="09T-4Q-0M0" secondAttribute="centerY" id="a1u-gq-pMR"/>
                             <constraint firstItem="AQF-Mp-Rp7" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="bK2-Oo-QrM"/>
                             <constraint firstItem="sga-hO-Jux" firstAttribute="leading" secondItem="i0t-j9-ezt" secondAttribute="leading" id="bdd-qE-Jj1"/>
-                            <constraint firstItem="eh8-Sf-4DY" firstAttribute="top" secondItem="Hbj-eu-V48" secondAttribute="bottom" constant="16" id="dUz-pX-3vH"/>
+                            <constraint firstItem="eh8-Sf-4DY" firstAttribute="top" secondItem="Hbj-eu-V48" secondAttribute="bottom" constant="12" id="dUz-pX-3vH"/>
                             <constraint firstItem="BKb-Bk-UQX" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="e98-DD-67y"/>
                             <constraint firstItem="fBy-bZ-iPg" firstAttribute="trailing" secondItem="vLJ-qE-CCe" secondAttribute="trailing" constant="16" id="eho-Nb-V9d"/>
                             <constraint firstItem="y2D-m3-xFr" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="fnc-s2-pXy"/>
-                            <constraint firstItem="uko-2I-lYu" firstAttribute="top" secondItem="u5o-cB-nHf" secondAttribute="bottom" constant="13" id="hTh-Xc-mqA"/>
+                            <constraint firstItem="uko-2I-lYu" firstAttribute="top" secondItem="u5o-cB-nHf" secondAttribute="bottom" constant="8" id="hTh-Xc-mqA"/>
                             <constraint firstItem="IJe-89-AYz" firstAttribute="top" secondItem="eh8-Sf-4DY" secondAttribute="bottom" constant="8" id="i2h-nr-xBV"/>
-                            <constraint firstItem="fBy-bZ-iPg" firstAttribute="bottom" secondItem="vLJ-qE-CCe" secondAttribute="bottom" constant="16" id="juy-xu-9Ot"/>
+                            <constraint firstItem="fBy-bZ-iPg" firstAttribute="bottom" secondItem="vLJ-qE-CCe" secondAttribute="bottom" constant="8" id="juy-xu-9Ot"/>
                             <constraint firstItem="sga-hO-Jux" firstAttribute="top" secondItem="AQF-Mp-Rp7" secondAttribute="top" constant="-5" id="kCk-Z7-mwI"/>
                             <constraint firstItem="09T-4Q-0M0" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="maB-wy-Wef"/>
-                            <constraint firstItem="y2D-m3-xFr" firstAttribute="top" secondItem="uko-2I-lYu" secondAttribute="bottom" constant="11" id="obY-FU-fPh"/>
                             <constraint firstItem="i0t-j9-ezt" firstAttribute="leading" secondItem="BKb-Bk-UQX" secondAttribute="trailing" constant="32" id="osf-zl-DCd"/>
+                            <constraint firstItem="y2D-m3-xFr" firstAttribute="centerY" secondItem="QJM-q3-ZyV" secondAttribute="centerY" id="pKG-7U-lj2"/>
                             <constraint firstItem="09T-4Q-0M0" firstAttribute="top" secondItem="fBy-bZ-iPg" secondAttribute="top" id="qAq-5p-vu5"/>
                             <constraint firstItem="fBy-bZ-iPg" firstAttribute="trailing" secondItem="IJe-89-AYz" secondAttribute="trailing" constant="16" id="s7a-fQ-SPg"/>
                             <constraint firstItem="vLJ-qE-CCe" firstAttribute="leading" secondItem="fBy-bZ-iPg" secondAttribute="leading" constant="16" id="ugI-0P-zqz"/>
@@ -247,21 +231,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Countries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfq-F5-Htp">
-                                <rect key="frame" x="157.66666666666666" y="71" width="78" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <rect key="frame" x="151.66666666666666" y="71" width="90" height="24.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Z-6I-1UV">
-                                <rect key="frame" x="0.0" y="108" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="111.66666666666669" width="393" height="706.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Mf1-YZ-7mG">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mf1-YZ-7mG" id="lua-b8-7xs">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="BackgroundColor"/>
@@ -289,7 +273,7 @@
             </objects>
             <point key="canvasLocation" x="4822" y="3"/>
         </scene>
-        <!--Contact Us-->
+        <!--Contact Us View Controller-->
         <scene sceneID="u8s-T1-3Wa">
             <objects>
                 <viewController storyboardIdentifier="ContactUsViewController" id="Crp-g5-jYd" customClass="ContactUsViewController" customModule="Shopify" sceneMemberID="viewController">
@@ -314,34 +298,34 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cN-k4-3BJ">
-                                <rect key="frame" x="152" y="72.666666666666671" width="89" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <rect key="frame" x="145" y="70.666666666666671" width="103" height="25"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get in touch " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Do-Og-dR6">
-                                <rect key="frame" x="16" y="139" width="97" height="20.666666666666657"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="139" width="92.666666666666671" height="20"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbe-GP-lTa">
-                                <rect key="frame" x="16" y="167.66666666666666" width="361" height="54"/>
+                                <rect key="frame" x="16" y="167" width="361" height="51.666666666666657"/>
                                 <string key="text">We value your feedback and are here to assist you with any questions or concerns. Please reach out to us through any of the following methods:</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                 <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ug-Cf-h37">
-                                <rect key="frame" x="16" y="245.66666666666663" width="361" height="50"/>
+                                <rect key="frame" x="16" y="242.66666666666663" width="361" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="K9C-Fe-tUU">
                                         <rect key="frame" x="15.999999999999998" y="9.6666666666666679" width="25.333333333333329" height="31.333333333333332"/>
                                         <color key="tintColor" name="PrimColor"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01112225512" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UF-VN-IKc">
-                                        <rect key="frame" x="49.333333333333329" y="14.666666666666657" width="99.999999999999986" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01112225512" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UF-VN-IKc">
+                                        <rect key="frame" x="49.333333333333321" y="15.333333333333343" width="93.666666666666686" height="19.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -358,15 +342,15 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cap-iC-OXU">
-                                <rect key="frame" x="16" y="311.66666666666669" width="361" height="50"/>
+                                <rect key="frame" x="16" y="308.66666666666669" width="361" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-by-RQ2">
-                                        <rect key="frame" x="15.999999999999998" y="10.333333333333334" width="25.333333333333329" height="29.999999999999993"/>
+                                        <rect key="frame" x="15.999999999999998" y="10.333333333333334" width="25.333333333333329" height="30"/>
                                         <color key="tintColor" name="PrimColor"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shopifySupport@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ij-7x-iYq">
-                                        <rect key="frame" x="49.333333333333314" y="15" width="211" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shopifySupport@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ij-7x-iYq">
+                                        <rect key="frame" x="49.333333333333329" y="15.333333333333314" width="195.33333333333337" height="19.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -382,7 +366,7 @@
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTY-Wp-EO2">
-                                <rect key="frame" x="16" y="393.66666666666674" width="361" height="408.33333333333326"/>
+                                <rect key="frame" x="16" y="390.66666666666674" width="361" height="411.33333333333326"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                         </subviews>
@@ -411,182 +395,180 @@
                             <constraint firstItem="1ug-Cf-h37" firstAttribute="leading" secondItem="urh-Zn-ePk" secondAttribute="leading" constant="16" id="zPz-YT-Z5Q"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Contact Us" id="TPV-39-f0g">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="TMA-f3-B0e">
-                            <button key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Yqk-A3-Ipy">
-                                <rect key="frame" x="16.000000000000004" y="0.0" width="49.333333333333343" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="arrow.left" catalog="system">
-                                    <backgroundConfiguration key="background" cornerRadius="23"/>
-                                    <color key="baseForegroundColor" red="0.1137254902" green="0.1176470588" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="baseBackgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="iTY-Wp-EO2" id="349-3c-M5R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qq5-9x-bC0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="947.32824427480909" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="945" y="3"/>
         </scene>
-        <!--About Us-->
-        <scene sceneID="5XV-lH-fSn">
+        <!--About Us View Controller-->
+        <scene sceneID="7jH-gI-Jdy">
             <objects>
-                <viewController storyboardIdentifier="AboutUsViewController" title="About Us" id="0zo-Og-w8b" customClass="AboutUsViewController" customModule="Shopify" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="IHo-cF-8ol">
+                <viewController storyboardIdentifier="AboutUsViewController" id="sTU-YF-OGc" customClass="AboutUsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V1l-Z6-B4t">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9c-Th-lQG">
-                                <rect key="frame" x="16" y="59" width="48" height="48"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFm-0i-6fw">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Twg-VW-gw9">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="608"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpw-pR-hwg">
+                                                <rect key="frame" x="16" y="108" width="361" height="92"/>
+                                                <string key="text">Shopify designed to transform your m-commerce business into a thriving marketplace. Our platform empowers businesses with cutting-edge tools and intuitive solutions for inventory management, sales optimization, and enhanced profitability.</string>
+                                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEk-hW-NJI">
+                                                <rect key="frame" x="16" y="439" width="110" height="20"/>
+                                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mina Thabet" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyG-Ej-Xza">
+                                                <rect key="frame" x="15.999999999999993" y="466.99999999999994" width="98.333333333333314" height="98.333333333333314"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="FyG-Ej-Xza" secondAttribute="height" multiplier="1:1" id="GDh-Vv-4Eh"/>
+                                                    <constraint firstAttribute="width" secondItem="FyG-Ej-Xza" secondAttribute="height" multiplier="1:1" id="hwU-Bn-hOs"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nada Mostafa 1" translatesAutoresizingMaskIntoConstraints="NO" id="1vQ-4D-F1n">
+                                                <rect key="frame" x="147.33333333333334" y="466.99999999999994" width="98.333333333333343" height="98.333333333333314"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Aser Eid" translatesAutoresizingMaskIntoConstraints="NO" id="iak-Or-Uta">
+                                                <rect key="frame" x="278.66666666666669" y="466.99999999999994" width="98.333333333333314" height="98.333333333333314"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aser Eid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWp-dC-Ydi">
+                                                <rect key="frame" x="298.33333333333331" y="573.33333333333337" width="59" height="18"/>
+                                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nada Mostafa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMo-bS-WnX">
+                                                <rect key="frame" x="149" y="573.33333333333337" width="95" height="18"/>
+                                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mina Thabet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89v-eo-Ttz">
+                                                <rect key="frame" x="21.666666666666664" y="573.33333333333337" width="86.666666666666686" height="18.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="iak-Or-Uta" secondAttribute="trailing" constant="16" id="114-5e-xPw"/>
+                                            <constraint firstItem="PMo-bS-WnX" firstAttribute="centerX" secondItem="1vQ-4D-F1n" secondAttribute="centerX" id="5Kc-I0-5wt"/>
+                                            <constraint firstItem="oEk-hW-NJI" firstAttribute="leading" secondItem="Twg-VW-gw9" secondAttribute="leading" constant="16" id="7TK-Ml-aAM"/>
+                                            <constraint firstItem="PMo-bS-WnX" firstAttribute="top" secondItem="1vQ-4D-F1n" secondAttribute="bottom" constant="8" id="Dr6-1o-bUb"/>
+                                            <constraint firstItem="89v-eo-Ttz" firstAttribute="top" secondItem="FyG-Ej-Xza" secondAttribute="bottom" constant="8" id="G3X-kb-rS0"/>
+                                            <constraint firstItem="1vQ-4D-F1n" firstAttribute="height" secondItem="FyG-Ej-Xza" secondAttribute="height" id="I22-qK-OGC"/>
+                                            <constraint firstItem="FyG-Ej-Xza" firstAttribute="width" secondItem="Twg-VW-gw9" secondAttribute="width" multiplier="0.25" id="Lyh-aE-Q35"/>
+                                            <constraint firstItem="FyG-Ej-Xza" firstAttribute="leading" secondItem="Twg-VW-gw9" secondAttribute="leading" constant="16" id="SUz-Z7-Nm2"/>
+                                            <constraint firstItem="iak-Or-Uta" firstAttribute="width" secondItem="FyG-Ej-Xza" secondAttribute="width" id="TB2-qh-HfW"/>
+                                            <constraint firstItem="nWp-dC-Ydi" firstAttribute="top" secondItem="iak-Or-Uta" secondAttribute="bottom" constant="8" id="VRl-xw-eYN"/>
+                                            <constraint firstItem="1vQ-4D-F1n" firstAttribute="centerX" secondItem="Twg-VW-gw9" secondAttribute="centerX" id="X6O-8E-rMp"/>
+                                            <constraint firstItem="Bpw-pR-hwg" firstAttribute="leading" secondItem="Twg-VW-gw9" secondAttribute="leading" constant="16" id="Xw7-HR-eoD"/>
+                                            <constraint firstItem="iak-Or-Uta" firstAttribute="height" secondItem="FyG-Ej-Xza" secondAttribute="height" id="dBx-ep-7uV"/>
+                                            <constraint firstAttribute="trailing" secondItem="Bpw-pR-hwg" secondAttribute="trailing" constant="16" id="dkT-3J-d6u"/>
+                                            <constraint firstItem="1vQ-4D-F1n" firstAttribute="width" secondItem="FyG-Ej-Xza" secondAttribute="width" id="fXf-Sg-IEo"/>
+                                            <constraint firstItem="nWp-dC-Ydi" firstAttribute="centerX" secondItem="iak-Or-Uta" secondAttribute="centerX" id="ffh-bA-Uly"/>
+                                            <constraint firstItem="89v-eo-Ttz" firstAttribute="centerX" secondItem="FyG-Ej-Xza" secondAttribute="centerX" id="gpd-a1-Dhe"/>
+                                            <constraint firstItem="FyG-Ej-Xza" firstAttribute="top" secondItem="oEk-hW-NJI" secondAttribute="bottom" constant="8" id="kcO-uk-miS"/>
+                                            <constraint firstAttribute="bottom" secondItem="89v-eo-Ttz" secondAttribute="bottom" constant="16" id="khx-El-iEe"/>
+                                            <constraint firstItem="iak-Or-Uta" firstAttribute="top" secondItem="FyG-Ej-Xza" secondAttribute="top" id="lyP-DT-1b0"/>
+                                            <constraint firstItem="1vQ-4D-F1n" firstAttribute="top" secondItem="FyG-Ej-Xza" secondAttribute="top" id="o2J-JS-tHE"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sId-pd-gzX">
+                                        <rect key="frame" x="16" y="260" width="361" height="147"/>
+                                        <string key="text">We empower m-commerce businesses with intuitive and efficient inventory management solutions that optimize operations, reduce waste, and enhance profitability. Our goal is to become the leading platform for e-commerce inventory management, renowned for our innovation, reliability, and unparalleled customer support, enabling businesses of all sizes to thrive in a dynamic market.</string>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our Mission &amp; Vission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-xp-Ejr">
+                                        <rect key="frame" x="16" y="232" width="162.66666666666666" height="20"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywq-k7-aGy">
+                                        <rect key="frame" x="16.000000000000007" y="80" width="103.66666666666669" height="20"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJS-6a-Aui">
+                                        <rect key="frame" x="153" y="11.666666666666671" width="87" height="25"/>
+                                        <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxd-Vg-reT">
+                                        <rect key="frame" x="16" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="C89-sY-amk"/>
+                                            <constraint firstAttribute="width" constant="48" id="b0g-qv-jwa"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="arrow.left" catalog="system">
+                                            <backgroundConfiguration key="background" cornerRadius="24"/>
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                            <color key="baseBackgroundColor" name="ViewBgColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="btnBack:" destination="sTU-YF-OGc" eventType="touchUpInside" id="DMO-X9-Win"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="68x-Vq-hBM"/>
-                                    <constraint firstAttribute="height" constant="48" id="fAo-Ag-Y6w"/>
+                                    <constraint firstAttribute="trailing" secondItem="Twg-VW-gw9" secondAttribute="trailing" id="3hH-oO-KR3"/>
+                                    <constraint firstItem="Cjr-xp-Ejr" firstAttribute="top" secondItem="Bpw-pR-hwg" secondAttribute="bottom" constant="32" id="Avd-H3-Tsn"/>
+                                    <constraint firstAttribute="bottom" secondItem="Twg-VW-gw9" secondAttribute="bottom" id="Bxt-lR-wXI"/>
+                                    <constraint firstItem="Yxd-Vg-reT" firstAttribute="leading" secondItem="CFm-0i-6fw" secondAttribute="leading" constant="16" id="KYM-3v-MmV"/>
+                                    <constraint firstItem="Cjr-xp-Ejr" firstAttribute="leading" secondItem="CFm-0i-6fw" secondAttribute="leading" constant="16" id="TEv-73-Es6"/>
+                                    <constraint firstItem="oEk-hW-NJI" firstAttribute="top" secondItem="sId-pd-gzX" secondAttribute="bottom" constant="32" id="WwN-Hm-OfB"/>
+                                    <constraint firstItem="Twg-VW-gw9" firstAttribute="leading" secondItem="CFm-0i-6fw" secondAttribute="leading" id="Xlf-to-XLp"/>
+                                    <constraint firstItem="Yxd-Vg-reT" firstAttribute="top" secondItem="CFm-0i-6fw" secondAttribute="top" id="YWB-t4-wJu"/>
+                                    <constraint firstItem="sId-pd-gzX" firstAttribute="leading" secondItem="CFm-0i-6fw" secondAttribute="leading" constant="16" id="aMa-4q-QAp"/>
+                                    <constraint firstItem="cJS-6a-Aui" firstAttribute="centerY" secondItem="Yxd-Vg-reT" secondAttribute="centerY" id="aRK-FL-QxU"/>
+                                    <constraint firstAttribute="trailing" secondItem="sId-pd-gzX" secondAttribute="trailing" constant="16" id="aUi-7n-rDf"/>
+                                    <constraint firstItem="cJS-6a-Aui" firstAttribute="centerX" secondItem="CFm-0i-6fw" secondAttribute="centerX" id="b2M-PZ-kmt"/>
+                                    <constraint firstItem="Twg-VW-gw9" firstAttribute="top" secondItem="CFm-0i-6fw" secondAttribute="top" id="deO-fo-ruy"/>
+                                    <constraint firstItem="sId-pd-gzX" firstAttribute="top" secondItem="Cjr-xp-Ejr" secondAttribute="bottom" constant="8" id="lZM-oW-FuL"/>
+                                    <constraint firstItem="Bpw-pR-hwg" firstAttribute="top" secondItem="Ywq-k7-aGy" secondAttribute="bottom" constant="8" id="vdF-JH-CT3"/>
+                                    <constraint firstItem="Ywq-k7-aGy" firstAttribute="leading" secondItem="CFm-0i-6fw" secondAttribute="leading" constant="16" id="xec-6Z-KNI"/>
+                                    <constraint firstItem="Ywq-k7-aGy" firstAttribute="top" secondItem="Yxd-Vg-reT" secondAttribute="bottom" constant="32" id="ztm-WS-tSa"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="arrow.left" catalog="system">
-                                    <backgroundConfiguration key="background" cornerRadius="24"/>
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                    <color key="baseBackgroundColor" name="ViewBgColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="btnBack:" destination="0zo-Og-w8b" eventType="touchUpInside" id="cQM-TU-BWK"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVv-xE-ijT">
-                                <rect key="frame" x="159.66666666666666" y="72.666666666666671" width="74" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROl-N9-vbz">
-                                <rect key="frame" x="16" y="139" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-ma-g4h">
-                                <rect key="frame" x="16" y="168" width="361" height="89.666666666666686"/>
-                                <string key="text"> Shopify designed to transform your m-commerce business into a thriving marketplace. Our platform empowers businesses with cutting-edge tools and intuitive solutions for inventory management, sales optimization, and enhanced profitability.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Re-K6-5QX">
-                                <rect key="frame" x="16" y="318.66666666666669" width="361" height="143.33333333333331"/>
-                                <string key="text">We empower m-commerce businesses with intuitive and efficient inventory management solutions that optimize operations, reduce waste, and enhance profitability. Our goal is to become the leading platform for e-commerce inventory management, renowned for our innovation, reliability, and unparalleled customer support, enabling businesses of all sizes to thrive in a dynamic market.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our Mission &amp; Vission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2L-VO-d83">
-                                <rect key="frame" x="16" y="289.66666666666669" width="165.66666666666666" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHO-tG-aKA">
-                                <rect key="frame" x="16.000000000000007" y="494" width="117.66666666666669" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mina Thabet" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x1G-yn-NtA">
-                                <rect key="frame" x="15.999999999999993" y="531" width="98.333333333333314" height="98.333333333333371"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="x1G-yn-NtA" secondAttribute="height" multiplier="1:1" id="OqJ-cH-YhG"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nada Mostafa 1" translatesAutoresizingMaskIntoConstraints="NO" id="r8f-n4-Tqn">
-                                <rect key="frame" x="147.33333333333334" y="531" width="98.333333333333343" height="98.333333333333371"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Aser Eid" translatesAutoresizingMaskIntoConstraints="NO" id="Yw4-3G-apP">
-                                <rect key="frame" x="278.66666666666669" y="531" width="98.333333333333314" height="98.333333333333371"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aser Eid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7r-ey-wl2">
-                                <rect key="frame" x="298" y="637.33333333333337" width="60" height="19.333333333333371"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nada Mostafa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO9-yW-92M">
-                                <rect key="frame" x="146" y="637.33333333333337" width="101" height="19.333333333333371"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mina Thabet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EQ-Vw-BOa">
-                                <rect key="frame" x="19.999999999999993" y="637.33333333333337" width="90.333333333333314" height="19.333333333333371"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </scrollView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="dC0-n8-rat"/>
-                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="5l0-XM-CrY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PHO-tG-aKA" firstAttribute="leading" secondItem="dC0-n8-rat" secondAttribute="leading" constant="16" id="AHa-Qv-KQd"/>
-                            <constraint firstItem="r8f-n4-Tqn" firstAttribute="centerX" secondItem="IHo-cF-8ol" secondAttribute="centerX" id="BwR-Lo-u9A"/>
-                            <constraint firstItem="X7r-ey-wl2" firstAttribute="centerX" secondItem="Yw4-3G-apP" secondAttribute="centerX" id="FQH-VW-BbA"/>
-                            <constraint firstItem="ROl-N9-vbz" firstAttribute="leading" secondItem="dC0-n8-rat" secondAttribute="leading" constant="16" id="FbC-mz-oBw"/>
-                            <constraint firstAttribute="trailing" secondItem="d7M-ma-g4h" secondAttribute="trailing" constant="16" id="HBz-LH-YZE"/>
-                            <constraint firstItem="cO9-yW-92M" firstAttribute="top" secondItem="r8f-n4-Tqn" secondAttribute="bottom" constant="8" id="Hmp-W7-dAe"/>
-                            <constraint firstItem="d7M-ma-g4h" firstAttribute="top" secondItem="ROl-N9-vbz" secondAttribute="bottom" constant="8" id="J8T-iQ-Eud"/>
-                            <constraint firstItem="x1G-yn-NtA" firstAttribute="leading" secondItem="dC0-n8-rat" secondAttribute="leading" constant="16" id="Lo1-gd-unt"/>
-                            <constraint firstItem="A2L-VO-d83" firstAttribute="leading" secondItem="dC0-n8-rat" secondAttribute="leading" constant="16" id="OUm-37-Ju0"/>
-                            <constraint firstItem="ROl-N9-vbz" firstAttribute="top" secondItem="x9c-Th-lQG" secondAttribute="bottom" constant="32" id="RDN-uE-SsB"/>
-                            <constraint firstItem="r8f-n4-Tqn" firstAttribute="width" secondItem="x1G-yn-NtA" secondAttribute="width" id="Sfb-EN-4oU"/>
-                            <constraint firstItem="9EQ-Vw-BOa" firstAttribute="top" secondItem="x1G-yn-NtA" secondAttribute="bottom" constant="8" id="TUC-Nn-hH6"/>
-                            <constraint firstItem="cO9-yW-92M" firstAttribute="centerX" secondItem="r8f-n4-Tqn" secondAttribute="centerX" id="Wji-fi-LCa"/>
-                            <constraint firstItem="x9c-Th-lQG" firstAttribute="top" secondItem="dC0-n8-rat" secondAttribute="top" id="X4X-zU-yrW"/>
-                            <constraint firstItem="X7r-ey-wl2" firstAttribute="top" secondItem="Yw4-3G-apP" secondAttribute="bottom" constant="8" id="XE2-gB-jcb"/>
-                            <constraint firstItem="1Re-K6-5QX" firstAttribute="top" secondItem="A2L-VO-d83" secondAttribute="bottom" constant="8" id="XvN-JR-9Tq"/>
-                            <constraint firstItem="dC0-n8-rat" firstAttribute="trailing" secondItem="1Re-K6-5QX" secondAttribute="trailing" constant="16" id="Z5M-NS-ec5"/>
-                            <constraint firstItem="x9c-Th-lQG" firstAttribute="leading" secondItem="dC0-n8-rat" secondAttribute="leading" constant="16" id="aLt-WV-eUO"/>
-                            <constraint firstItem="Yw4-3G-apP" firstAttribute="width" secondItem="x1G-yn-NtA" secondAttribute="width" id="aZB-NZ-ku8"/>
-                            <constraint firstItem="x1G-yn-NtA" firstAttribute="width" secondItem="IHo-cF-8ol" secondAttribute="width" multiplier="0.25" id="bhU-eD-wsO"/>
-                            <constraint firstItem="PHO-tG-aKA" firstAttribute="top" secondItem="1Re-K6-5QX" secondAttribute="bottom" constant="32" id="cdM-wN-e9E"/>
-                            <constraint firstItem="r8f-n4-Tqn" firstAttribute="top" secondItem="x1G-yn-NtA" secondAttribute="top" id="f3a-Tu-8CL"/>
-                            <constraint firstItem="r8f-n4-Tqn" firstAttribute="height" secondItem="x1G-yn-NtA" secondAttribute="height" id="h1n-s3-xAl"/>
-                            <constraint firstItem="dC0-n8-rat" firstAttribute="trailing" secondItem="Yw4-3G-apP" secondAttribute="trailing" constant="16" id="hTS-2q-sbR"/>
-                            <constraint firstItem="d7M-ma-g4h" firstAttribute="leading" secondItem="dC0-n8-rat" secondAttribute="leading" constant="16" id="kef-oF-tkA"/>
-                            <constraint firstItem="A2L-VO-d83" firstAttribute="top" secondItem="d7M-ma-g4h" secondAttribute="bottom" constant="32" id="n9x-tT-3y0"/>
-                            <constraint firstItem="9EQ-Vw-BOa" firstAttribute="centerX" secondItem="x1G-yn-NtA" secondAttribute="centerX" id="qz2-s0-vzV"/>
-                            <constraint firstItem="Yw4-3G-apP" firstAttribute="height" secondItem="x1G-yn-NtA" secondAttribute="height" id="tCw-xj-gnA"/>
-                            <constraint firstItem="VVv-xE-ijT" firstAttribute="centerX" secondItem="IHo-cF-8ol" secondAttribute="centerX" id="tmg-5j-rQ1"/>
-                            <constraint firstItem="VVv-xE-ijT" firstAttribute="centerY" secondItem="x9c-Th-lQG" secondAttribute="centerY" id="tng-xt-Aw4"/>
-                            <constraint firstItem="x1G-yn-NtA" firstAttribute="top" secondItem="PHO-tG-aKA" secondAttribute="bottom" constant="16" id="urg-VA-d1M"/>
-                            <constraint firstItem="Yw4-3G-apP" firstAttribute="top" secondItem="x1G-yn-NtA" secondAttribute="top" id="vl6-hh-LLP"/>
-                            <constraint firstItem="1Re-K6-5QX" firstAttribute="leading" secondItem="IHo-cF-8ol" secondAttribute="leading" constant="16" id="vyu-dW-fHw"/>
+                            <constraint firstItem="Twg-VW-gw9" firstAttribute="width" secondItem="V1l-Z6-B4t" secondAttribute="width" id="4pY-yy-k5y"/>
+                            <constraint firstItem="5l0-XM-CrY" firstAttribute="trailing" secondItem="CFm-0i-6fw" secondAttribute="trailing" id="akd-ZF-DVJ"/>
+                            <constraint firstItem="CFm-0i-6fw" firstAttribute="top" secondItem="5l0-XM-CrY" secondAttribute="top" id="gOv-Px-3aE"/>
+                            <constraint firstItem="5l0-XM-CrY" firstAttribute="bottom" secondItem="CFm-0i-6fw" secondAttribute="bottom" id="vDS-XQ-qrx"/>
+                            <constraint firstItem="CFm-0i-6fw" firstAttribute="leading" secondItem="5l0-XM-CrY" secondAttribute="leading" id="z4s-LA-h8h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Contact Us" id="zlT-HZ-5WJ">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="Y5M-Yt-hzt">
-                            <button key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="RbY-OY-3Oo">
-                                <rect key="frame" x="16.000000000000004" y="0.0" width="49.333333333333343" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="arrow.left" catalog="system">
-                                    <backgroundConfiguration key="background" cornerRadius="23"/>
-                                    <color key="baseForegroundColor" red="0.1137254902" green="0.1176470588" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="baseBackgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
-                        <outlet property="firstMemeberImg" destination="x1G-yn-NtA" id="Bj8-nY-IAC"/>
-                        <outlet property="secondMemberImg" destination="r8f-n4-Tqn" id="kOH-9b-oE1"/>
-                        <outlet property="thirdMemberImg" destination="Yw4-3G-apP" id="Gku-RS-kSk"/>
+                        <outlet property="firstMemeberImg" destination="FyG-Ej-Xza" id="L03-sc-i4o"/>
+                        <outlet property="secondMemberImg" destination="iak-Or-Uta" id="CSa-ik-8Hf"/>
+                        <outlet property="thirdMemberImg" destination="1vQ-4D-F1n" id="sTw-5r-SDM"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nzw-fv-9hC" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YDS-we-wka" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679" y="4"/>
+            <point key="canvasLocation" x="1667" y="4"/>
         </scene>
         <!--Addresses-->
         <scene sceneID="1Zv-g6-9ht">
@@ -613,13 +595,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Addresses" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13G-Zg-vo4">
-                                <rect key="frame" x="154.33333333333334" y="73" width="84.333333333333343" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <rect key="frame" x="150.33333333333334" y="70.666666666666671" width="92.333333333333343" height="24.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hh-RP-Dcq">
-                                <rect key="frame" x="16" y="734" width="361" height="68"/>
+                                <rect key="frame" x="16" y="742" width="361" height="68"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add New Address">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -630,7 +612,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c8U-MB-NDP">
-                                <rect key="frame" x="0.0" y="123" width="393" height="603"/>
+                                <rect key="frame" x="0.0" y="123" width="393" height="611"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
@@ -665,13 +647,13 @@
                                                             </buttonConfiguration>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G5-58-pHD">
-                                                            <rect key="frame" x="99" y="34" width="39.666666666666657" height="19.333333333333329"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <rect key="frame" x="99" y="34.333333333333336" width="37.666666666666657" height="18.666666666666664"/>
+                                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Okm-oh-ok9">
-                                                            <rect key="frame" x="321" y="31.000000000000007" width="24" height="25.333333333333336"/>
+                                                            <rect key="frame" x="321" y="31.000000000000004" width="24" height="25.333333333333339"/>
                                                             <color key="tintColor" red="0.29019607843137252" green="0.7803921568627451" blue="0.42745098039215684" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="2Fe-al-ggG"/>
@@ -707,31 +689,46 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty2" translatesAutoresizingMaskIntoConstraints="NO" id="uHz-SE-fgT">
+                                <rect key="frame" x="16" y="277" width="361" height="298"/>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kg0-NP-QJ9">
+                                <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bIm-ig-kXu"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="uHz-SE-fgT" firstAttribute="centerY" secondItem="jdY-T3-2ep" secondAttribute="centerY" id="3UD-fJ-POd"/>
                             <constraint firstItem="4hh-RP-Dcq" firstAttribute="top" secondItem="c8U-MB-NDP" secondAttribute="bottom" constant="8" id="Ai0-hf-MJZ"/>
                             <constraint firstItem="MVw-6d-rBq" firstAttribute="leading" secondItem="bIm-ig-kXu" secondAttribute="leading" constant="16" id="EAt-6b-wWr"/>
                             <constraint firstItem="13G-Zg-vo4" firstAttribute="centerY" secondItem="MVw-6d-rBq" secondAttribute="centerY" id="GDp-ha-PBn"/>
                             <constraint firstItem="13G-Zg-vo4" firstAttribute="centerX" secondItem="jdY-T3-2ep" secondAttribute="centerX" id="JxK-TQ-Xd8"/>
-                            <constraint firstItem="bIm-ig-kXu" firstAttribute="bottom" secondItem="4hh-RP-Dcq" secondAttribute="bottom" constant="16" id="ek3-ZX-Yv6"/>
+                            <constraint firstItem="bIm-ig-kXu" firstAttribute="trailing" secondItem="uHz-SE-fgT" secondAttribute="trailing" constant="16" id="Kea-7M-pN8"/>
+                            <constraint firstItem="uHz-SE-fgT" firstAttribute="centerX" secondItem="jdY-T3-2ep" secondAttribute="centerX" id="XLf-G6-COH"/>
+                            <constraint firstItem="kg0-NP-QJ9" firstAttribute="centerY" secondItem="jdY-T3-2ep" secondAttribute="centerY" id="dGs-qE-Qb7"/>
+                            <constraint firstItem="bIm-ig-kXu" firstAttribute="bottom" secondItem="4hh-RP-Dcq" secondAttribute="bottom" constant="8" id="ek3-ZX-Yv6"/>
                             <constraint firstItem="c8U-MB-NDP" firstAttribute="leading" secondItem="bIm-ig-kXu" secondAttribute="leading" id="gYD-ms-1W8"/>
+                            <constraint firstItem="uHz-SE-fgT" firstAttribute="leading" secondItem="bIm-ig-kXu" secondAttribute="leading" constant="16" id="iMo-Kt-DXz"/>
+                            <constraint firstItem="uHz-SE-fgT" firstAttribute="height" secondItem="jdY-T3-2ep" secondAttribute="height" multiplier="0.35" id="pN4-SL-jfI"/>
                             <constraint firstItem="bIm-ig-kXu" firstAttribute="trailing" secondItem="4hh-RP-Dcq" secondAttribute="trailing" constant="16" id="qGH-tA-xtx"/>
                             <constraint firstItem="c8U-MB-NDP" firstAttribute="top" secondItem="MVw-6d-rBq" secondAttribute="bottom" constant="16" id="tjg-hP-9I0"/>
                             <constraint firstItem="MVw-6d-rBq" firstAttribute="top" secondItem="bIm-ig-kXu" secondAttribute="top" id="wPN-Ml-BYM"/>
                             <constraint firstItem="4hh-RP-Dcq" firstAttribute="height" secondItem="jdY-T3-2ep" secondAttribute="height" multiplier="0.08" id="wXm-Nv-exa"/>
+                            <constraint firstItem="kg0-NP-QJ9" firstAttribute="centerX" secondItem="jdY-T3-2ep" secondAttribute="centerX" id="y64-sp-sGD"/>
                             <constraint firstItem="bIm-ig-kXu" firstAttribute="trailing" secondItem="c8U-MB-NDP" secondAttribute="trailing" id="yzi-mS-MG3"/>
                             <constraint firstItem="4hh-RP-Dcq" firstAttribute="leading" secondItem="bIm-ig-kXu" secondAttribute="leading" constant="16" id="zUI-ed-KYb"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyImage" destination="uHz-SE-fgT" id="KlR-GE-AF4"/>
+                        <outlet property="loadingIndicator" destination="kg0-NP-QJ9" id="rVI-Ac-Zna"/>
                         <outlet property="tableView" destination="c8U-MB-NDP" id="m2F-Os-6gw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFl-Dm-Pgl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2629.770992366412" y="2.8169014084507045"/>
+            <point key="canvasLocation" x="2428" y="3"/>
         </scene>
         <!--Seetings-->
         <scene sceneID="ZnD-rq-s0N">
@@ -757,14 +754,14 @@
                                     <action selector="backBtn:" destination="d4u-mF-6hT" eventType="touchUpInside" id="qp6-LE-38G"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0U-WN-brk">
-                                <rect key="frame" x="163" y="72.666666666666671" width="67" height="20.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0U-WN-brk">
+                                <rect key="frame" x="159.33333333333334" y="70.666666666666671" width="74.333333333333343" height="24.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HM-WY-qHh">
-                                <rect key="frame" x="16" y="734" width="361" height="68"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HM-WY-qHh">
+                                <rect key="frame" x="16" y="742" width="361" height="68"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Logout">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -777,8 +774,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ok-8d-gGB">
                                 <rect key="frame" x="16" y="139" width="361" height="59.666666666666657"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbf-4j-9r7">
-                                        <rect key="frame" x="7.9999999999999964" y="19.666666666666657" width="57.666666666666657" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbf-4j-9r7">
+                                        <rect key="frame" x="8" y="20" width="345" height="19.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -799,6 +796,7 @@
                                 </accessibility>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="Tbf-4j-9r7" firstAttribute="centerX" secondItem="7ok-8d-gGB" secondAttribute="centerX" id="2UE-C2-zkE"/>
                                     <constraint firstItem="Tbf-4j-9r7" firstAttribute="leading" secondItem="7ok-8d-gGB" secondAttribute="leading" constant="8" id="Hde-QG-qTb"/>
                                     <constraint firstItem="oDr-3b-5bH" firstAttribute="centerY" secondItem="7ok-8d-gGB" secondAttribute="centerY" id="QVG-Rj-vaO"/>
                                     <constraint firstAttribute="trailing" secondItem="oDr-3b-5bH" secondAttribute="trailing" constant="8" id="eqn-EZ-tuS"/>
@@ -811,10 +809,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIu-1B-2xi">
                                 <rect key="frame" x="16" y="210.66666666666666" width="361" height="59.666666666666657"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYb-Sf-ROs">
-                                        <rect key="frame" x="8" y="19.333333333333343" width="70" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYb-Sf-ROs">
+                                        <rect key="frame" x="8" y="20" width="345" height="19.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -828,8 +825,8 @@
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EGP" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX1-ay-fFC">
-                                        <rect key="frame" x="291.33333333333331" y="20.666666666666686" width="29.666666666666686" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <rect key="frame" x="289.33333333333331" y="21" width="31.666666666666686" height="17.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -841,9 +838,12 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="luh-Jd-H11" firstAttribute="leading" secondItem="UX1-ay-fFC" secondAttribute="trailing" constant="8" id="7OM-7d-ldE"/>
+                                    <constraint firstItem="wYb-Sf-ROs" firstAttribute="centerY" secondItem="WIu-1B-2xi" secondAttribute="centerY" id="7fS-Y7-q7R"/>
                                     <constraint firstItem="luh-Jd-H11" firstAttribute="centerY" secondItem="WIu-1B-2xi" secondAttribute="centerY" id="BbY-nr-H7Z"/>
                                     <constraint firstItem="UX1-ay-fFC" firstAttribute="centerY" secondItem="luh-Jd-H11" secondAttribute="centerY" id="DCg-Wv-mRP"/>
+                                    <constraint firstItem="wYb-Sf-ROs" firstAttribute="centerX" secondItem="WIu-1B-2xi" secondAttribute="centerX" id="Z5U-8K-EXB"/>
                                     <constraint firstAttribute="trailing" secondItem="luh-Jd-H11" secondAttribute="trailing" constant="8" id="up0-Yg-KZM"/>
+                                    <constraint firstItem="wYb-Sf-ROs" firstAttribute="leading" secondItem="WIu-1B-2xi" secondAttribute="leading" constant="8" id="vzm-s9-BdG"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="nF8-s7-Gpn" appends="YES" id="VLj-7V-1Li"/>
@@ -852,11 +852,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfX-Ni-7ha">
                                 <rect key="frame" x="16" y="282.33333333333331" width="361" height="59.666666666666686"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMf-kK-AyW">
-                                        <rect key="frame" x="8" y="19.333333333333343" width="86" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMf-kK-AyW">
+                                        <rect key="frame" x="8" y="19.666666666666686" width="345" height="20"/>
                                         <gestureRecognizers/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -877,7 +876,10 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="JfK-QO-a9d" firstAttribute="centerY" secondItem="tfX-Ni-7ha" secondAttribute="centerY" id="TF7-5K-qqf"/>
+                                    <constraint firstItem="hMf-kK-AyW" firstAttribute="centerY" secondItem="tfX-Ni-7ha" secondAttribute="centerY" id="VrL-gq-GaW"/>
+                                    <constraint firstItem="hMf-kK-AyW" firstAttribute="centerX" secondItem="tfX-Ni-7ha" secondAttribute="centerX" id="cbG-Td-jrM"/>
                                     <constraint firstAttribute="trailing" secondItem="JfK-QO-a9d" secondAttribute="trailing" constant="8" id="nHa-fW-rZy"/>
+                                    <constraint firstItem="hMf-kK-AyW" firstAttribute="leading" secondItem="tfX-Ni-7ha" secondAttribute="leading" constant="8" id="nnQ-Mn-kKD"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="RTZ-U3-Wg9" appends="YES" id="4AX-Ie-YmS"/>
@@ -886,10 +888,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSy-gg-N12">
                                 <rect key="frame" x="16" y="354" width="361" height="59.666666666666686"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xo-bA-gBa">
-                                        <rect key="frame" x="8" y="19.333333333333343" width="71" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xo-bA-gBa">
+                                        <rect key="frame" x="8" y="19.666666666666686" width="345" height="20"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -909,8 +910,11 @@
                                 </accessibility>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="5xo-bA-gBa" firstAttribute="centerX" secondItem="CSy-gg-N12" secondAttribute="centerX" id="Bew-Br-54e"/>
                                     <constraint firstItem="cW0-pI-prZ" firstAttribute="centerY" secondItem="CSy-gg-N12" secondAttribute="centerY" id="GnF-GP-Wrj"/>
+                                    <constraint firstItem="5xo-bA-gBa" firstAttribute="centerY" secondItem="CSy-gg-N12" secondAttribute="centerY" id="JOS-KI-dbd"/>
                                     <constraint firstAttribute="trailing" secondItem="cW0-pI-prZ" secondAttribute="trailing" constant="8" id="Tx0-Gk-Izw"/>
+                                    <constraint firstItem="5xo-bA-gBa" firstAttribute="leading" secondItem="CSy-gg-N12" secondAttribute="leading" constant="8" id="uID-FL-qLf"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="n8g-Hd-dte" appends="YES" id="Er7-eY-hCW"/>
@@ -935,9 +939,8 @@
                             <constraint firstItem="MeL-L8-4AE" firstAttribute="trailing" secondItem="7ok-8d-gGB" secondAttribute="trailing" constant="16" id="T3u-3E-PdL"/>
                             <constraint firstItem="7ok-8d-gGB" firstAttribute="leading" secondItem="MeL-L8-4AE" secondAttribute="leading" constant="16" id="Tgq-gg-oVQ"/>
                             <constraint firstItem="7ok-8d-gGB" firstAttribute="top" secondItem="Iig-fJ-58K" secondAttribute="bottom" constant="32" id="XHV-bz-JaB"/>
-                            <constraint firstItem="e0U-WN-brk" firstAttribute="top" secondItem="Iig-fJ-58K" secondAttribute="bottom" constant="-34.333333333333329" id="Z4W-Gb-B0U"/>
                             <constraint firstItem="MeL-L8-4AE" firstAttribute="trailing" secondItem="7HM-WY-qHh" secondAttribute="trailing" constant="16" id="c6U-We-IYi"/>
-                            <constraint firstItem="MeL-L8-4AE" firstAttribute="bottom" secondItem="7HM-WY-qHh" secondAttribute="bottom" constant="16" id="fYG-jg-Ykx"/>
+                            <constraint firstItem="MeL-L8-4AE" firstAttribute="bottom" secondItem="7HM-WY-qHh" secondAttribute="bottom" constant="8" id="fYG-jg-Ykx"/>
                             <constraint firstItem="WIu-1B-2xi" firstAttribute="leading" secondItem="MeL-L8-4AE" secondAttribute="leading" constant="16" id="jNB-fE-xGE"/>
                             <constraint firstItem="e0U-WN-brk" firstAttribute="centerX" secondItem="ZUC-c2-cvZ" secondAttribute="centerX" id="nzV-Cy-bnb"/>
                             <constraint firstItem="WIu-1B-2xi" firstAttribute="height" secondItem="7ok-8d-gGB" secondAttribute="height" id="oP4-co-bNv"/>
@@ -948,6 +951,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnLogout" destination="7HM-WY-qHh" id="njD-Ha-Qk4"/>
                         <outlet property="currentCurrency" destination="UX1-ay-fFC" id="N79-9Y-PL5"/>
                     </connections>
                 </viewController>
@@ -973,7 +977,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3368.7022900763359" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="3246" y="3"/>
         </scene>
         <!--Cart-->
         <scene sceneID="OKu-tk-9M7">
@@ -1013,13 +1017,13 @@
                                 </buttonConfiguration>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF6-7k-CxU">
-                                <rect key="frame" x="179" y="72.666666666666671" width="35" height="20.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <rect key="frame" x="175.66666666666666" y="72.666666666666671" width="42" height="20.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygW-WI-ri7">
-                                <rect key="frame" x="16" y="734" width="361" height="68"/>
+                                <rect key="frame" x="16" y="742" width="361" height="68"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Checkout">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1030,19 +1034,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI9-Q8-mUL">
-                                <rect key="frame" x="16" y="705" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="15.999999999999996" y="714" width="40.666666666666657" height="20"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="we9-ui-INt">
-                                <rect key="frame" x="366.66666666666669" y="705" width="10.333333333333314" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="368.66666666666669" y="714" width="8.3333333333333144" height="20"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GQh-BC-qti">
-                                <rect key="frame" x="0.0" y="125.33333333333331" width="393" height="571.66666666666674"/>
+                                <rect key="frame" x="0.0" y="125.33333333333331" width="393" height="580.66666666666674"/>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
@@ -1062,31 +1066,39 @@
                                                                 <constraint firstAttribute="width" secondItem="YmG-6z-RjI" secondAttribute="height" multiplier="1:1" constant="12" id="viK-S0-Uus"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Men's Tie-Dye T-Shirt Nike Sportswear" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7H-U6-xl5">
-                                                            <rect key="frame" x="142" y="12" width="215" height="38.333333333333336"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Men's Tie-Dye T-Shirt Nike Sportswear" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7H-U6-xl5">
+                                                            <rect key="frame" x="142" y="12" width="215" height="37"/>
+                                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FR1-hk-oKv">
-                                                            <rect key="frame" x="185" y="106.66666666666667" width="20" height="19"/>
+                                                            <rect key="frame" x="185.66666666666666" y="107" width="20" height="18.666666666666671"/>
                                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <accessibility key="accessibilityConfiguration">
                                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
                                                             </accessibility>
                                                             <gestureRecognizers/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="0Nq-vf-RuA"/>
+                                                                <constraint firstAttribute="width" constant="20" id="DTr-Pq-BhU"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hLT-tw-966">
-                                                            <rect key="frame" x="142" y="106.66666666666667" width="20" height="19"/>
+                                                            <rect key="frame" x="142" y="107" width="20" height="18.666666666666671"/>
                                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <accessibility key="accessibilityConfiguration">
                                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
                                                             </accessibility>
                                                             <gestureRecognizers/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="gAs-5z-83U"/>
+                                                                <constraint firstAttribute="width" constant="20" id="mb3-UQ-WAv"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ej-nu-Rt0">
-                                                            <rect key="frame" x="170" y="107" width="7" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <rect key="frame" x="170" y="107" width="7.6666666666666572" height="18"/>
+                                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1103,14 +1115,14 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adidas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQZ-uo-wAE">
-                                                            <rect key="frame" x="142" y="54.333333333333336" width="45.333333333333343" height="17.000000000000007"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <rect key="frame" x="142" y="53" width="42" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0x-Ic-3kR">
-                                                            <rect key="frame" x="142" y="75.333333333333329" width="26.666666666666657" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <rect key="frame" x="142" y="74" width="22" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1168,6 +1180,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty2" translatesAutoresizingMaskIntoConstraints="NO" id="KUP-qu-LZx">
+                                <rect key="frame" x="16" y="277" width="361" height="298"/>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-hE-RVX">
+                                <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gUs-gq-jQi"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
@@ -1178,6 +1196,10 @@
                             <constraint firstItem="gUs-gq-jQi" firstAttribute="trailing" secondItem="GQh-BC-qti" secondAttribute="trailing" id="6oN-Wa-GwV"/>
                             <constraint firstItem="294-Bj-WeJ" firstAttribute="top" secondItem="gUs-gq-jQi" secondAttribute="top" id="7WD-b4-1gO"/>
                             <constraint firstItem="wF6-7k-CxU" firstAttribute="centerX" secondItem="tZd-Pw-CzO" secondAttribute="centerX" id="Cp3-TY-Zhg"/>
+                            <constraint firstItem="KUP-qu-LZx" firstAttribute="centerX" secondItem="tZd-Pw-CzO" secondAttribute="centerX" id="Fkj-LE-o35"/>
+                            <constraint firstItem="KUP-qu-LZx" firstAttribute="centerY" secondItem="tZd-Pw-CzO" secondAttribute="centerY" id="Hn0-qb-Wt1"/>
+                            <constraint firstItem="hvk-hE-RVX" firstAttribute="centerY" secondItem="tZd-Pw-CzO" secondAttribute="centerY" id="Jaw-sF-QDI"/>
+                            <constraint firstItem="KUP-qu-LZx" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" constant="16" id="Lfr-Cp-sU9"/>
                             <constraint firstItem="MI9-Q8-mUL" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" constant="16" id="OLy-GD-xn4"/>
                             <constraint firstItem="wF6-7k-CxU" firstAttribute="top" secondItem="PSm-Js-kQd" secondAttribute="bottom" constant="-34.333333333333329" id="T7g-xb-4j1"/>
                             <constraint firstItem="MI9-Q8-mUL" firstAttribute="top" secondItem="GQh-BC-qti" secondAttribute="bottom" constant="8" id="TNU-BD-5AH"/>
@@ -1189,11 +1211,16 @@
                             <constraint firstItem="GQh-BC-qti" firstAttribute="top" secondItem="wF6-7k-CxU" secondAttribute="bottom" constant="32" id="nCu-PU-Kjg"/>
                             <constraint firstItem="PSm-Js-kQd" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" constant="16" id="rBO-lQ-NMI"/>
                             <constraint firstItem="PSm-Js-kQd" firstAttribute="top" secondItem="gUs-gq-jQi" secondAttribute="top" id="rvI-m9-1Zp"/>
+                            <constraint firstItem="gUs-gq-jQi" firstAttribute="trailing" secondItem="KUP-qu-LZx" secondAttribute="trailing" constant="16" id="sZ7-lj-fL0"/>
+                            <constraint firstItem="KUP-qu-LZx" firstAttribute="height" secondItem="tZd-Pw-CzO" secondAttribute="height" multiplier="0.35" id="t9X-DQ-Hi3"/>
+                            <constraint firstItem="hvk-hE-RVX" firstAttribute="centerX" secondItem="tZd-Pw-CzO" secondAttribute="centerX" id="uTa-Re-Jy1"/>
                             <constraint firstItem="wF6-7k-CxU" firstAttribute="centerY" secondItem="PSm-Js-kQd" secondAttribute="centerY" id="urR-ne-nRw"/>
-                            <constraint firstItem="gUs-gq-jQi" firstAttribute="bottom" secondItem="ygW-WI-ri7" secondAttribute="bottom" constant="16" id="yGm-VU-vi7"/>
+                            <constraint firstItem="gUs-gq-jQi" firstAttribute="bottom" secondItem="ygW-WI-ri7" secondAttribute="bottom" constant="8" id="yGm-VU-vi7"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyImage" destination="KUP-qu-LZx" id="KrS-Y3-f2A"/>
+                        <outlet property="loadingIndicator" destination="hvk-hE-RVX" id="R6a-zN-iAt"/>
                         <outlet property="tableView" destination="GQh-BC-qti" id="bav-p5-kNT"/>
                         <outlet property="total" destination="we9-ui-INt" id="jh6-4g-Zzr"/>
                     </connections>
@@ -1227,13 +1254,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hf-jN-4tq">
-                                <rect key="frame" x="161.66666666666666" y="72.666666666666671" width="70" height="20.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <rect key="frame" x="156" y="72.666666666666671" width="81" height="20.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoS-fY-j5F">
-                                <rect key="frame" x="16" y="734" width="361" height="68"/>
+                                <rect key="frame" x="16" y="742" width="361" height="68"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Confirm Payment">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1244,11 +1271,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcP-y0-zlf">
-                                <rect key="frame" x="16" y="125.33333333333334" width="361" height="102.33333333333334"/>
+                                <rect key="frame" x="16" y="125.33333333333331" width="361" height="100.66666666666669"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHq-0k-GLm">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHq-0k-GLm">
+                                        <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="19.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1262,13 +1289,13 @@
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="Iwh-Ms-T5l">
-                                        <rect key="frame" x="0.0" y="37.333333333333329" width="65" height="65"/>
+                                        <rect key="frame" x="0.0" y="35.666666666666671" width="65" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Iwh-Ms-T5l" secondAttribute="height" multiplier="1:1" id="LcE-50-RuF"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpJ-e8-9Zc">
-                                        <rect key="frame" x="20.333333333333336" y="57.666666666666671" width="24" height="24"/>
+                                        <rect key="frame" x="20.333333333333336" y="56.000000000000014" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Uxf-iS-wDy"/>
                                             <constraint firstAttribute="width" constant="24" id="ZX7-co-Eli"/>
@@ -1282,15 +1309,15 @@
                                         </buttonConfiguration>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LW-LP-dap">
-                                        <rect key="frame" x="73" y="51.666666666666671" width="256" height="36"/>
+                                        <rect key="frame" x="73" y="50.666666666666671" width="256" height="34.666666666666671"/>
                                         <string key="text">43, Electronics City Phase 1,
 Electronic City</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nkq-Bt-goM">
-                                        <rect key="frame" x="337" y="57" width="24" height="25.333333333333343"/>
+                                        <rect key="frame" x="337" y="55.333333333333343" width="24" height="25.333333333333343"/>
                                         <color key="tintColor" red="0.2901960784" green="0.78039215689999997" blue="0.42745098040000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="G4L-7b-jCv"/>
@@ -1307,6 +1334,7 @@ Electronic City</string>
                                     <constraint firstItem="bHq-0k-GLm" firstAttribute="top" secondItem="XcP-y0-zlf" secondAttribute="top" id="N9E-qT-LRE"/>
                                     <constraint firstAttribute="trailing" secondItem="Zsa-YO-9Ej" secondAttribute="trailing" id="Nbe-P8-8XA"/>
                                     <constraint firstAttribute="trailing" secondItem="Nkq-Bt-goM" secondAttribute="trailing" id="NjD-Bq-nqu"/>
+                                    <constraint firstItem="Iwh-Ms-T5l" firstAttribute="top" secondItem="bHq-0k-GLm" secondAttribute="bottom" constant="16" id="QAh-P3-oSg"/>
                                     <constraint firstItem="0LW-LP-dap" firstAttribute="centerY" secondItem="Iwh-Ms-T5l" secondAttribute="centerY" id="RGq-6b-4Yo"/>
                                     <constraint firstItem="Nkq-Bt-goM" firstAttribute="leading" secondItem="0LW-LP-dap" secondAttribute="trailing" constant="8" id="S3o-0l-Oxo"/>
                                     <constraint firstItem="WpJ-e8-9Zc" firstAttribute="centerY" secondItem="Iwh-Ms-T5l" secondAttribute="centerY" id="b5v-lV-esF"/>
@@ -1320,11 +1348,11 @@ Electronic City</string>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTA-4Z-gFT">
-                                <rect key="frame" x="16" y="239.66666666666663" width="361" height="102"/>
+                                <rect key="frame" x="16" y="237.99999999999997" width="361" height="100.66666666666666"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-rR-liR">
-                                        <rect key="frame" x="0.0" y="0.0" width="129.66666666666666" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-rR-liR">
+                                        <rect key="frame" x="0.0" y="0.0" width="122.66666666666667" height="19.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1338,19 +1366,19 @@ Electronic City</string>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay" translatesAutoresizingMaskIntoConstraints="NO" id="hRz-cg-2gO">
-                                        <rect key="frame" x="0.0" y="37.33333333333335" width="65" height="64.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="35.666666666666686" width="65" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hRz-cg-2gO" secondAttribute="height" multiplier="1:1" id="YTS-Rb-Mrj"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visa Classic" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6K-Z6-N2k">
-                                        <rect key="frame" x="73" y="60.666666666666657" width="256" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="73" y="59.333333333333321" width="256" height="17.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="E2c-DO-sfs">
-                                        <rect key="frame" x="337" y="56.999999999999986" width="24" height="25.333333333333329"/>
+                                        <rect key="frame" x="337" y="55.333333333333329" width="24" height="25.333333333333329"/>
                                         <color key="tintColor" red="0.2901960784" green="0.78039215689999997" blue="0.42745098040000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="fus-Ii-1sq"/>
@@ -1378,75 +1406,81 @@ Electronic City</string>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxp-VA-uxR">
-                                <rect key="frame" x="16" y="521.33333333333337" width="361" height="204.66666666666663"/>
+                                <rect key="frame" x="16" y="530" width="361" height="196"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9WQ-vi-Pq7">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20"/>
+                                        <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiF-DK-Bv1">
-                                        <rect key="frame" x="0.0" y="37" width="57.666666666666664" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiF-DK-Bv1">
+                                        <rect key="frame" x="0.0" y="36" width="53" height="17.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Charge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2D-fF-F50">
-                                        <rect key="frame" x="0.0" y="69" width="109.66666666666667" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="67.333333333333371" width="104" height="18"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Coupon" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="76w-QQ-VmQ">
-                                        <rect key="frame" x="0.0" y="101" width="252.66666666666666" height="39.666666666666657"/>
+                                        <rect key="frame" x="0.0" y="99.333333333333371" width="252.66666666666666" height="34"/>
                                         <color key="backgroundColor" name="ViewBgColor"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzL-rh-JCh">
-                                        <rect key="frame" x="0.0" y="186.66666666666663" width="33.666666666666664" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzL-rh-JCh">
+                                        <rect key="frame" x="0.0" y="178.66666666666663" width="31.666666666666668" height="17.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWO-A6-rZl">
-                                        <rect key="frame" x="333.33333333333331" y="37" width="27.666666666666686" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="338.33333333333331" y="36" width="22.666666666666686" height="17.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9G-O7-POq">
-                                        <rect key="frame" x="333.33333333333331" y="69" width="27.666666666666686" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="338.33333333333331" y="67.333333333333371" width="22.666666666666686" height="17.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2g-Ng-oN3">
-                                        <rect key="frame" x="333.33333333333331" y="186.66666666666663" width="27.666666666666686" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="338.33333333333331" y="178.66666666666663" width="22.666666666666686" height="17.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlW-uM-N1P">
-                                        <rect key="frame" x="351.66666666666669" y="154.66666666666663" width="9.3333333333333144" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="353.33333333333331" y="147.33333333333337" width="7.6666666666666856" height="17.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Validate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJG-tS-DXK">
-                                        <rect key="frame" x="306" y="111.66666666666663" width="55" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cL-zf-SR9">
+                                        <rect key="frame" x="0.0" y="147.33333333333337" width="57.333333333333336" height="17.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cL-zf-SR9">
-                                        <rect key="frame" x="0.0" y="154.66666666666663" width="61" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQh-Zi-n89">
+                                        <rect key="frame" x="310" y="107.66666666666663" width="51" height="17"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Validate">
+                                            <fontDescription key="titleFontDescription" name="Cochin" family="Cochin" pointSize="15"/>
+                                            <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="btnClick:" destination="3E5-UD-KXD" eventType="touchUpInside" id="s8T-j3-xg0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
@@ -1460,18 +1494,19 @@ Electronic City</string>
                                     <constraint firstItem="76w-QQ-VmQ" firstAttribute="top" secondItem="o2D-fF-F50" secondAttribute="bottom" constant="14" id="ODa-Ve-P07"/>
                                     <constraint firstItem="9WQ-vi-Pq7" firstAttribute="leading" secondItem="Qxp-VA-uxR" secondAttribute="leading" id="S2M-rb-Ycr"/>
                                     <constraint firstAttribute="trailing" secondItem="9WQ-vi-Pq7" secondAttribute="trailing" id="X7z-jS-dOx"/>
-                                    <constraint firstItem="SJG-tS-DXK" firstAttribute="centerY" secondItem="76w-QQ-VmQ" secondAttribute="centerY" id="Xb0-8f-JZ9"/>
                                     <constraint firstItem="YiF-DK-Bv1" firstAttribute="leading" secondItem="Qxp-VA-uxR" secondAttribute="leading" id="Xry-gi-qbZ"/>
                                     <constraint firstItem="9WQ-vi-Pq7" firstAttribute="top" secondItem="Qxp-VA-uxR" secondAttribute="top" id="aQh-61-5S1"/>
                                     <constraint firstAttribute="trailing" secondItem="dlW-uM-N1P" secondAttribute="trailing" id="cdv-4F-vYY"/>
                                     <constraint firstItem="76w-QQ-VmQ" firstAttribute="width" secondItem="Qxp-VA-uxR" secondAttribute="width" multiplier="0.7" id="eIg-j9-YLN"/>
                                     <constraint firstAttribute="trailing" secondItem="HWO-A6-rZl" secondAttribute="trailing" id="fb4-i8-aUz"/>
                                     <constraint firstItem="9cL-zf-SR9" firstAttribute="leading" secondItem="o2D-fF-F50" secondAttribute="leading" id="g9W-BX-Fbs"/>
-                                    <constraint firstAttribute="trailing" secondItem="SJG-tS-DXK" secondAttribute="trailing" id="gRk-cL-f3H"/>
                                     <constraint firstItem="9cL-zf-SR9" firstAttribute="top" secondItem="76w-QQ-VmQ" secondAttribute="bottom" constant="14" id="iOF-3w-567"/>
                                     <constraint firstItem="76w-QQ-VmQ" firstAttribute="leading" secondItem="Qxp-VA-uxR" secondAttribute="leading" id="j9j-O9-V6a"/>
                                     <constraint firstItem="e2g-Ng-oN3" firstAttribute="top" secondItem="dzL-rh-JCh" secondAttribute="top" id="lpa-A7-K3q"/>
+                                    <constraint firstItem="uQh-Zi-n89" firstAttribute="centerY" secondItem="76w-QQ-VmQ" secondAttribute="centerY" id="nee-wB-n0f"/>
+                                    <constraint firstAttribute="bottom" secondItem="dzL-rh-JCh" secondAttribute="bottom" id="pSl-eS-b3H"/>
                                     <constraint firstAttribute="trailing" secondItem="E9G-O7-POq" secondAttribute="trailing" id="r6M-EC-Vr3"/>
+                                    <constraint firstAttribute="trailing" secondItem="uQh-Zi-n89" secondAttribute="trailing" id="sve-vR-Xfd"/>
                                     <constraint firstItem="HWO-A6-rZl" firstAttribute="top" secondItem="YiF-DK-Bv1" secondAttribute="top" id="wcQ-s9-j1X"/>
                                     <constraint firstAttribute="trailing" secondItem="e2g-Ng-oN3" secondAttribute="trailing" id="xGM-02-nZb"/>
                                     <constraint firstItem="dlW-uM-N1P" firstAttribute="top" secondItem="9cL-zf-SR9" secondAttribute="top" id="z7u-DE-rFN"/>
@@ -1481,13 +1516,11 @@ Electronic City</string>
                         <viewLayoutGuide key="safeArea" id="ICr-2s-nbq"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="DoS-fY-j5F" firstAttribute="top" secondItem="Qxp-VA-uxR" secondAttribute="bottom" constant="8" id="3gU-kS-fGZ"/>
                             <constraint firstItem="XcP-y0-zlf" firstAttribute="top" secondItem="2hf-jN-4tq" secondAttribute="bottom" constant="32" id="B7K-0M-3Pw"/>
-                            <constraint firstItem="Qxp-VA-uxR" firstAttribute="height" secondItem="TMP-Lg-qHm" secondAttribute="height" multiplier="0.24" id="Bvr-z5-pFB"/>
+                            <constraint firstItem="DoS-fY-j5F" firstAttribute="top" secondItem="Qxp-VA-uxR" secondAttribute="bottom" constant="16" id="D45-ag-gFu"/>
                             <constraint firstItem="XcP-y0-zlf" firstAttribute="leading" secondItem="ICr-2s-nbq" secondAttribute="leading" constant="16" id="DEY-SZ-xRT"/>
                             <constraint firstItem="bb0-mR-gCx" firstAttribute="leading" secondItem="ICr-2s-nbq" secondAttribute="leading" constant="16" id="Eja-eG-qNm"/>
                             <constraint firstItem="2hf-jN-4tq" firstAttribute="top" secondItem="bb0-mR-gCx" secondAttribute="bottom" constant="-34.333333333333329" id="Fxn-w8-oMb"/>
-                            <constraint firstItem="XcP-y0-zlf" firstAttribute="height" secondItem="TMP-Lg-qHm" secondAttribute="height" multiplier="0.12" id="J5C-kU-8jy"/>
                             <constraint firstItem="DoS-fY-j5F" firstAttribute="leading" secondItem="ICr-2s-nbq" secondAttribute="leading" constant="16" id="JmC-og-9gx"/>
                             <constraint firstItem="DoS-fY-j5F" firstAttribute="height" secondItem="TMP-Lg-qHm" secondAttribute="height" multiplier="0.08" id="KA0-6s-RgK"/>
                             <constraint firstItem="Qxp-VA-uxR" firstAttribute="leading" secondItem="ICr-2s-nbq" secondAttribute="leading" constant="16" id="LAw-Kc-SIv"/>
@@ -1498,13 +1531,14 @@ Electronic City</string>
                             <constraint firstItem="ICr-2s-nbq" firstAttribute="trailing" secondItem="DoS-fY-j5F" secondAttribute="trailing" constant="16" id="UVt-K0-Tgy"/>
                             <constraint firstItem="bb0-mR-gCx" firstAttribute="top" secondItem="ICr-2s-nbq" secondAttribute="top" id="aVn-6l-LS9"/>
                             <constraint firstItem="ICr-2s-nbq" firstAttribute="trailing" secondItem="XcP-y0-zlf" secondAttribute="trailing" constant="16" id="gzK-My-PYg"/>
-                            <constraint firstItem="ICr-2s-nbq" firstAttribute="bottom" secondItem="DoS-fY-j5F" secondAttribute="bottom" constant="16" id="jjc-A5-Xh9"/>
+                            <constraint firstItem="ICr-2s-nbq" firstAttribute="bottom" secondItem="DoS-fY-j5F" secondAttribute="bottom" constant="8" id="jjc-A5-Xh9"/>
                             <constraint firstItem="vTA-4Z-gFT" firstAttribute="top" secondItem="XcP-y0-zlf" secondAttribute="bottom" constant="12" id="pNA-zu-kYR"/>
                             <constraint firstItem="2hf-jN-4tq" firstAttribute="centerX" secondItem="TMP-Lg-qHm" secondAttribute="centerX" id="qQp-uD-YZR"/>
                             <constraint firstItem="vTA-4Z-gFT" firstAttribute="height" secondItem="XcP-y0-zlf" secondAttribute="height" id="yfS-Nf-7fn"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="coupon" destination="76w-QQ-VmQ" id="5VV-d8-Yta"/>
                         <outlet property="deliveryCharge" destination="E9G-O7-POq" id="eVs-kl-i3c"/>
                         <outlet property="dicount" destination="dlW-uM-N1P" id="O6T-pk-NUc"/>
                         <outlet property="paymentMethod" destination="x6K-Z6-N2k" id="39K-8s-yB3"/>
@@ -1512,7 +1546,6 @@ Electronic City</string>
                         <outlet property="shippingAddress" destination="0LW-LP-dap" id="VMU-eq-Sel"/>
                         <outlet property="subTotal" destination="HWO-A6-rZl" id="1bB-ga-MlC"/>
                         <outlet property="total" destination="e2g-Ng-oN3" id="wFR-yy-22U"/>
-                        <outlet property="validateCoupon" destination="SJG-tS-DXK" id="Gph-0h-eju"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2H-l2-U7j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1842,14 +1875,14 @@ Nike Sportswear</string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kv-8t-Bl4">
-                                <rect key="frame" x="102.00000000000001" y="91" width="189.33333333333337" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kv-8t-Bl4">
+                                <rect key="frame" x="97.666666666666671" y="91" width="197.66666666666663" height="22.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6D3-4T-8cg">
-                                <rect key="frame" x="16" y="144" width="361" height="170.33333333333337"/>
+                                <rect key="frame" x="16" y="145.33333333333331" width="361" height="170.33333333333331"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applePay" translatesAutoresizingMaskIntoConstraints="NO" id="Ivs-aB-539">
                                         <rect key="frame" x="8" y="8" width="75.666666666666671" height="75.666666666666671"/>
@@ -1858,8 +1891,8 @@ Nike Sportswear</string>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hF-wW-rv7">
-                                        <rect key="frame" x="99.666666666666686" y="36.333333333333343" width="72.333333333333314" height="19.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <rect key="frame" x="99.666666666666686" y="36" width="74" height="20"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1888,7 +1921,7 @@ Nike Sportswear</string>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjU-gB-A7n">
-                                <rect key="frame" x="16" y="330.33333333333331" width="361" height="170.33333333333331"/>
+                                <rect key="frame" x="16" y="331.66666666666669" width="361" height="170.33333333333331"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay" translatesAutoresizingMaskIntoConstraints="NO" id="ycX-fc-v8L">
                                         <rect key="frame" x="8" y="8" width="75.666666666666671" height="76"/>
@@ -1897,8 +1930,8 @@ Nike Sportswear</string>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash on Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ky-or-3Jj">
-                                        <rect key="frame" x="99.666666666666686" y="36.333333333333371" width="122" height="19.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <rect key="frame" x="99.666666666666657" y="36.333333333333314" width="123.66666666666666" height="19.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1970,7 +2003,7 @@ Nike Sportswear</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ura-mS-Q6s">
-                                <rect key="frame" x="16" y="734" width="361" height="68"/>
+                                <rect key="frame" x="16" y="742" width="361" height="68"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Continue Shopping">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1981,7 +2014,7 @@ Nike Sportswear</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6d-HZ-9NN">
-                                <rect key="frame" x="16" y="649.66666666666663" width="361" height="68.333333333333371"/>
+                                <rect key="frame" x="16" y="665.66666666666663" width="361" height="68.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Go To Orders">
                                     <color key="baseForegroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1994,15 +2027,15 @@ Nike Sportswear</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confirm" translatesAutoresizingMaskIntoConstraints="NO" id="b3D-QM-U8S">
                                 <rect key="frame" x="16" y="139.00000000000003" width="361" height="340.66666666666674"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Confirmed!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVJ-aX-opu">
-                                <rect key="frame" x="121" y="495.66666666666669" width="151" height="22.000000000000057"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Confirmed!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVJ-aX-opu">
+                                <rect key="frame" x="121.33333333333333" y="495.66666666666669" width="150.33333333333337" height="22.333333333333314"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your order has been confirmed, we will send you confirmation email shortly." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Blh-eq-yiF">
-                                <rect key="frame" x="16" y="533.66666666666663" width="361" height="40.666666666666629"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="534" width="361" height="39"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2015,7 +2048,7 @@ Nike Sportswear</string>
                             <constraint firstItem="r6d-HZ-9NN" firstAttribute="height" secondItem="Ura-mS-Q6s" secondAttribute="height" id="794-o7-C8g"/>
                             <constraint firstItem="Blh-eq-yiF" firstAttribute="leading" secondItem="qLo-BO-Obs" secondAttribute="leading" constant="16" id="7PF-ys-DXV"/>
                             <constraint firstItem="LVJ-aX-opu" firstAttribute="top" secondItem="b3D-QM-U8S" secondAttribute="bottom" constant="16" id="EYy-M8-X2i"/>
-                            <constraint firstItem="qLo-BO-Obs" firstAttribute="bottom" secondItem="Ura-mS-Q6s" secondAttribute="bottom" constant="16" id="Guk-Ux-ttj"/>
+                            <constraint firstItem="qLo-BO-Obs" firstAttribute="bottom" secondItem="Ura-mS-Q6s" secondAttribute="bottom" constant="8" id="Guk-Ux-ttj"/>
                             <constraint firstItem="qLo-BO-Obs" firstAttribute="trailing" secondItem="r6d-HZ-9NN" secondAttribute="trailing" constant="16" id="KoG-0c-irJ"/>
                             <constraint firstAttribute="trailing" secondItem="Blh-eq-yiF" secondAttribute="trailing" constant="16" id="Kp6-Rz-K3y"/>
                             <constraint firstItem="Ura-mS-Q6s" firstAttribute="height" secondItem="71w-Zq-Yd5" secondAttribute="height" multiplier="0.08" id="NoW-Wh-rR8"/>
@@ -2023,7 +2056,7 @@ Nike Sportswear</string>
                             <constraint firstItem="Blh-eq-yiF" firstAttribute="top" secondItem="LVJ-aX-opu" secondAttribute="bottom" constant="16" id="SOE-OK-CvE"/>
                             <constraint firstItem="Ura-mS-Q6s" firstAttribute="leading" secondItem="qLo-BO-Obs" secondAttribute="leading" constant="16" id="SaK-xj-d81"/>
                             <constraint firstItem="qLo-BO-Obs" firstAttribute="trailing" secondItem="b3D-QM-U8S" secondAttribute="trailing" constant="16" id="d2Z-hw-4a9"/>
-                            <constraint firstItem="Ura-mS-Q6s" firstAttribute="top" secondItem="r6d-HZ-9NN" secondAttribute="bottom" constant="16" id="n9h-Is-MtD"/>
+                            <constraint firstItem="Ura-mS-Q6s" firstAttribute="top" secondItem="r6d-HZ-9NN" secondAttribute="bottom" constant="8" id="n9h-Is-MtD"/>
                             <constraint firstItem="r6d-HZ-9NN" firstAttribute="leading" secondItem="qLo-BO-Obs" secondAttribute="leading" constant="16" id="oot-Lf-RoO"/>
                             <constraint firstItem="LVJ-aX-opu" firstAttribute="centerX" secondItem="71w-Zq-Yd5" secondAttribute="centerX" id="q8V-VV-gpu"/>
                             <constraint firstItem="b3D-QM-U8S" firstAttribute="height" secondItem="71w-Zq-Yd5" secondAttribute="height" multiplier="0.4" id="tA8-QM-YNd"/>
@@ -2045,6 +2078,7 @@ Nike Sportswear</string>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="124"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="confirm" width="546" height="457"/>
+        <image name="empty2" width="2000" height="2000"/>
         <image name="envelope.fill" catalog="system" width="128" height="85"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="map" width="625" height="573"/>

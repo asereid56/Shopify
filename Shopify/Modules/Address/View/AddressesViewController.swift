@@ -21,11 +21,15 @@ class AddressesViewController: UIViewController ,Storyboarded {
     weak var delegate: AddressesViewControllerDelegate?
     private let editSubject = PublishSubject<IndexPath>()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyImage: UIImageView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         tableView.delegate = self
         editSelectedAddress()
+        setUpIndicator()
         if source == "payment" {
             setUpSelectTableViewCell()
         }
@@ -35,6 +39,22 @@ class AddressesViewController: UIViewController ,Storyboarded {
         tableView.dataSource = nil
         viewModel?.fetchData()
         bindTableView()
+    }
+    
+    private func setUpIndicator() {
+        viewModel?.isLoading
+            .bind(to: loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        viewModel?.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
+                self?.loadingIndicator.isHidden = !isLoading
+                if (self?.loadingIndicator.isHidden)! && self?.viewModel?.getAddressesCount() == 0{
+                   // print((self?.loadingIndicator.isHidden)! && self?.viewModel?.getAddressesCount() == 0)
+                    self?.emptyImage.isHidden = false
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     @IBAction func goToNewAddress(_ sender: Any) {
@@ -49,7 +69,7 @@ class AddressesViewController: UIViewController ,Storyboarded {
         // Bind the data to the table view
         viewModel!.data
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: AddressesTableViewCell.self)) { [weak self] (row, model, cell) in
-                print(model.address1!)
+                self?.emptyImage.isHidden = true
                 cell.address.text = model.address1
                 if row == 0 {
                     cell.checkMark.isHidden = false
@@ -60,12 +80,6 @@ class AddressesViewController: UIViewController ,Storyboarded {
                 }
             }
             .disposed(by: disposeBag)
-        
-        //        tableView.rx.itemDeleted
-        //            .subscribe(onNext: { [weak self] indexPath in
-        //                self?.setConfirmationAlert(indexPath: indexPath)
-        //            })
-        //            .disposed(by: disposeBag)
     }
     
     private func setUpSelectTableViewCell() {

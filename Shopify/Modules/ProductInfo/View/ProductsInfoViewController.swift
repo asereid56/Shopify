@@ -26,6 +26,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     var imgs: [ProductImage?]?
     override func viewDidLoad() {
         super.viewDidLoad()
+        addToCart()
         pageControl.layer.cornerRadius = 12
         print(viewModel?.product?.id ?? "")
         imgs = viewModel?.product?.images
@@ -36,14 +37,14 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         setupDropDownButton(sizeButton, options: viewModel?.product?.options?[0]?.values ?? [])
         setupDropDownButton(colorButton, options: viewModel?.product?.options?[1]?.values ?? [])
         viewModel?.isLoading
-                    .bind(to: loadingIndicator.rx.isAnimating)
-                    .disposed(by: disposeBag)
+            .bind(to: loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
         
         viewModel?.isLoading
-                    .subscribe(onNext: { [weak self] isLoading in
-                        self?.loadingIndicator.isHidden = !isLoading
-                    })
-                    .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] isLoading in
+                self?.loadingIndicator.isHidden = !isLoading
+            })
+            .disposed(by: disposeBag)
     }
     
     func setupDropDownButton(_ button: UIButton, options: [String]) {
@@ -97,17 +98,27 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         140
     }
     
+    private func addToCart() {
+        viewModel?.addToCart.subscribe(onNext:  {isAdded in
+            if isAdded {
+                showToast(message: "Product added to shopping cart", vc: self)
+            } else {
+                showToast(message: "Product already exists in shopping cart", vc: self)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
     @IBAction func viewAll(_ sender: Any) {
         coordinator?.goToReviews(vc: self)
     }
     
     @IBAction func addToCart(_ sender: Any) {
-        
-        print(getVariantTitle())
-        let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
-        print(variant ?? "")
-        
-        viewModel?.fetchDraftOrder()
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
+            viewModel?.fetchDraftOrder()
+        }else{
+            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        }
     }
     
     @IBAction func addToWishList(_ sender: Any) {
@@ -132,7 +143,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     func configureScrollView() {
-//        mainScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height+680)
+        //        mainScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height+680)
         reviewsTableView.frame.size.height = 420
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
