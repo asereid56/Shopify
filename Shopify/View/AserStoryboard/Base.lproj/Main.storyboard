@@ -10,6 +10,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Animation View Controller-->
+        <scene sceneID="6nU-R9-Uh7">
+            <objects>
+                <viewController storyboardIdentifier="AnimationViewController" id="Is5-hg-FQQ" customClass="AnimationViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kpG-LG-uhr">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="qxh-gQ-SXD"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jsS-w6-cVM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2094" y="1065"/>
+        </scene>
         <!--Products Screen View Controller-->
         <scene sceneID="8wX-sW-vGk">
             <objects>
@@ -847,25 +862,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="656545646" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-bT-swC">
-                                <rect key="frame" x="337.66666666666669" y="140.33333333333334" width="76.333333333333314" height="20"/>
+                                <rect key="frame" x="337.66666666666669" y="140" width="76.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55646546543" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5F-6d-3c0">
-                                <rect key="frame" x="320.66666666666669" y="168.33333333333334" width="93.333333333333314" height="20"/>
+                                <rect key="frame" x="320.66666666666669" y="168" width="93.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55646546543" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoF-0j-m6b">
-                                <rect key="frame" x="320.66666666666669" y="196.33333333333334" width="93.333333333333314" height="20"/>
+                                <rect key="frame" x="320.66666666666669" y="196" width="93.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55646546543" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31f-aI-asg">
-                                <rect key="frame" x="320.66666666666669" y="224.33333333333334" width="93.333333333333314" height="20"/>
+                                <rect key="frame" x="320.66666666666669" y="224" width="93.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1070,19 +1085,316 @@
             </objects>
             <point key="canvasLocation" x="3377" y="1065"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="spu-f4-3Jc">
+            <objects>
+                <viewController id="cLj-kY-C4e" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r1L-MQ-oHY">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SoU-SF-UeK" userLabel="NotLoggedInView">
+                                <rect key="frame" x="0.0" y="106" width="430" height="792"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="100" image="loginScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Vdu-e3-hPP">
+                                        <rect key="frame" x="16" y="0.0" width="398" height="615"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boa-eO-Hgj" userLabel="Sign up">
+                                        <rect key="frame" x="16" y="697.66666666666663" width="398" height="74.333333333333371"/>
+                                        <color key="tintColor" name="PrimColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Sign up">
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                            <color key="baseBackgroundColor" name="PrimColor"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugE-Op-FHo" userLabel="Log in">
+                                        <rect key="frame" x="16" y="615" width="398" height="74.666666666666629"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Log in">
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                            <color key="baseBackgroundColor" name="heartBg"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="ugE-Op-FHo" firstAttribute="height" secondItem="SoU-SF-UeK" secondAttribute="height" multiplier="0.094041" id="1s5-Qt-lTk"/>
+                                    <constraint firstAttribute="trailing" secondItem="ugE-Op-FHo" secondAttribute="trailing" constant="16" id="3v1-5i-RlB"/>
+                                    <constraint firstItem="boa-eO-Hgj" firstAttribute="top" secondItem="ugE-Op-FHo" secondAttribute="bottom" constant="8" id="9d1-6M-dob"/>
+                                    <constraint firstItem="boa-eO-Hgj" firstAttribute="trailing" secondItem="ugE-Op-FHo" secondAttribute="trailing" id="C4R-d7-S1g"/>
+                                    <constraint firstItem="ugE-Op-FHo" firstAttribute="top" secondItem="Vdu-e3-hPP" secondAttribute="bottom" id="P9I-7V-9yq"/>
+                                    <constraint firstItem="Vdu-e3-hPP" firstAttribute="leading" secondItem="SoU-SF-UeK" secondAttribute="leading" constant="16" id="Ra1-vi-unh"/>
+                                    <constraint firstItem="boa-eO-Hgj" firstAttribute="height" secondItem="SoU-SF-UeK" secondAttribute="height" multiplier="0.094041" id="TEb-9S-OA4"/>
+                                    <constraint firstAttribute="bottom" secondItem="boa-eO-Hgj" secondAttribute="bottom" constant="20" id="U0l-fm-Ewu"/>
+                                    <constraint firstItem="boa-eO-Hgj" firstAttribute="leading" secondItem="ugE-Op-FHo" secondAttribute="leading" id="XDk-dA-UvK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vdu-e3-hPP" secondAttribute="trailing" constant="16" id="fxV-md-A9T"/>
+                                    <constraint firstItem="ugE-Op-FHo" firstAttribute="leading" secondItem="SoU-SF-UeK" secondAttribute="leading" constant="16" id="lys-Nb-F0V"/>
+                                    <constraint firstItem="Vdu-e3-hPP" firstAttribute="top" secondItem="SoU-SF-UeK" secondAttribute="top" id="swN-rt-FTg"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Dv-Zx-NXd" userLabel="LoggedInView">
+                                <rect key="frame" x="0.0" y="106" width="430" height="792"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mina Thabet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AA-Ju-3sC">
+                                        <rect key="frame" x="143" y="52" width="95" height="20"/>
+                                        <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLD-zT-9Ab">
+                                        <rect key="frame" x="16" y="146.33333333333334" width="83" height="20"/>
+                                        <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
+                                        <color key="textColor" name="PrimColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oKk-BB-c4k">
+                                        <rect key="frame" x="400.66666666666669" y="149.66666666666666" width="10" height="14"/>
+                                        <color key="tintColor" name="PrimColor"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Z1-AW-E9e">
+                                        <rect key="frame" x="400.66666666666669" y="311.66666666666669" width="10" height="14"/>
+                                        <color key="tintColor" name="PrimColor"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="Aser Eid 1" translatesAutoresizingMaskIntoConstraints="NO" id="Tig-IO-sVh">
+                                        <rect key="frame" x="16.000000000000007" y="8" width="107.66666666666669" height="108"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxx-ZL-0y1">
+                                        <rect key="frame" x="24" y="181.33333333333331" width="34" height="19"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vj6-Vq-k9Z">
+                                        <rect key="frame" x="351" y="181.33333333333331" width="48" height="19"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27-06-2027" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1P-a8-9YH">
+                                        <rect key="frame" x="324" y="210.33333333333331" width="75" height="18"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giza, Egypt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ju4-Xh-5fj">
+                                        <rect key="frame" x="319" y="238.33333333333331" width="80" height="19"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="01026830079" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkG-6w-ofi">
+                                        <rect key="frame" x="311" y="266.33333333333331" width="88" height="18"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creation Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8A-cC-66B">
+                                        <rect key="frame" x="24" y="210.33333333333331" width="95" height="18"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipped to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ba2-QS-eyg">
+                                        <rect key="frame" x="24" y="238.33333333333331" width="72.666666666666671" height="19"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLc-IU-AqL">
+                                        <rect key="frame" x="23.999999999999996" y="267.33333333333331" width="37.666666666666657" height="16"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZZ-Yz-2Yi">
+                                        <rect key="frame" x="301" y="139.33333333333334" width="105" height="34"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Show more">
+                                            <fontDescription key="titleFontDescription" name="Cochin" family="Cochin" pointSize="17"/>
+                                            <color key="baseForegroundColor" name="PrimColor"/>
+                                            <color key="baseBackgroundColor" name="BackgroundColor"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Wishlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vY-Od-taq">
+                                        <rect key="frame" x="16" y="308.33333333333331" width="91" height="20"/>
+                                        <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
+                                        <color key="textColor" name="PrimColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4Q-ub-azn">
+                                        <rect key="frame" x="301" y="301.33333333333331" width="105" height="34"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Show more">
+                                            <fontDescription key="titleFontDescription" name="Cochin" family="Cochin" pointSize="17"/>
+                                            <color key="baseForegroundColor" name="PrimColor"/>
+                                            <color key="baseBackgroundColor" name="BackgroundColor"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ek3-Dv-HJ8">
+                                        <rect key="frame" x="24" y="458.33333333333337" width="75" height="75"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7T-Lf-3Sy">
+                                        <rect key="frame" x="107" y="348.33333333333331" width="292" height="37"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
+                                        <string key="text">Men's Tie-Dye T-Shirt
+Nike Sportswear</string>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 800" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUU-Rn-rJj">
+                                        <rect key="frame" x="107" y="393.33333333333331" width="292" height="16.666666666666686"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWE-bF-yy3">
+                                        <rect key="frame" x="107" y="458.33333333333337" width="292" height="37"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
+                                        <string key="text">Men's Tie-Dye T-Shirt
+Nike Sportswear</string>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 800" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTq-tk-Ko6">
+                                        <rect key="frame" x="107" y="503.33333333333337" width="292" height="16"/>
+                                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aKh-Os-4Tg">
+                                        <rect key="frame" x="24" y="348.33333333333331" width="75" height="75"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="aKh-Os-4Tg" firstAttribute="height" secondItem="7Dv-Zx-NXd" secondAttribute="height" multiplier="0.094697" id="0ea-kk-eMf"/>
+                                    <constraint firstItem="Ju4-Xh-5fj" firstAttribute="trailing" secondItem="g1P-a8-9YH" secondAttribute="trailing" id="2Sj-sI-Ydz"/>
+                                    <constraint firstItem="hTq-tk-Ko6" firstAttribute="leading" secondItem="MUU-Rn-rJj" secondAttribute="leading" id="2dh-0W-4pG"/>
+                                    <constraint firstItem="mWE-bF-yy3" firstAttribute="top" secondItem="ek3-Dv-HJ8" secondAttribute="top" id="2qj-Es-M2H"/>
+                                    <constraint firstItem="kLD-zT-9Ab" firstAttribute="top" secondItem="Tig-IO-sVh" secondAttribute="bottom" constant="30.329999999999998" id="2vC-HB-bRa"/>
+                                    <constraint firstItem="4AA-Ju-3sC" firstAttribute="leading" secondItem="Tig-IO-sVh" secondAttribute="trailing" constant="19.329999999999998" id="3rF-kM-cCa"/>
+                                    <constraint firstItem="2vY-Od-taq" firstAttribute="leading" secondItem="kLD-zT-9Ab" secondAttribute="leading" id="4KD-JJ-igy"/>
+                                    <constraint firstItem="aKh-Os-4Tg" firstAttribute="top" secondItem="2vY-Od-taq" secondAttribute="bottom" constant="20" id="4dw-K4-rao"/>
+                                    <constraint firstItem="gxx-ZL-0y1" firstAttribute="top" secondItem="kLD-zT-9Ab" secondAttribute="bottom" constant="15" id="5AS-eC-o3l"/>
+                                    <constraint firstItem="Ju4-Xh-5fj" firstAttribute="centerY" secondItem="ba2-QS-eyg" secondAttribute="centerY" id="5B3-OZ-oWX"/>
+                                    <constraint firstAttribute="trailing" secondItem="v7T-Lf-3Sy" secondAttribute="trailing" constant="31" id="5Vg-mg-GPB"/>
+                                    <constraint firstItem="aKh-Os-4Tg" firstAttribute="leading" secondItem="7Dv-Zx-NXd" secondAttribute="leading" constant="24" id="5a9-zk-gbT"/>
+                                    <constraint firstItem="mWE-bF-yy3" firstAttribute="leading" secondItem="v7T-Lf-3Sy" secondAttribute="leading" id="6I0-Lv-Pr0"/>
+                                    <constraint firstItem="LkG-6w-ofi" firstAttribute="trailing" secondItem="Ju4-Xh-5fj" secondAttribute="trailing" id="6TM-zU-Fdy"/>
+                                    <constraint firstItem="kLD-zT-9Ab" firstAttribute="leading" secondItem="Tig-IO-sVh" secondAttribute="leading" id="8bU-PJ-alO"/>
+                                    <constraint firstItem="b4Q-ub-azn" firstAttribute="centerY" secondItem="2vY-Od-taq" secondAttribute="centerY" id="AaC-OQ-DxW"/>
+                                    <constraint firstItem="JLc-IU-AqL" firstAttribute="leading" secondItem="ba2-QS-eyg" secondAttribute="leading" id="B0v-kh-pd1"/>
+                                    <constraint firstItem="ek3-Dv-HJ8" firstAttribute="width" secondItem="7Dv-Zx-NXd" secondAttribute="width" multiplier="0.174419" id="DXY-gq-hkW"/>
+                                    <constraint firstItem="ek3-Dv-HJ8" firstAttribute="height" secondItem="7Dv-Zx-NXd" secondAttribute="height" multiplier="0.094697" id="F0c-c7-fuX"/>
+                                    <constraint firstItem="z8A-cC-66B" firstAttribute="top" secondItem="gxx-ZL-0y1" secondAttribute="bottom" constant="10" id="F6M-kq-Bsv"/>
+                                    <constraint firstItem="1Z1-AW-E9e" firstAttribute="centerY" secondItem="b4Q-ub-azn" secondAttribute="centerY" id="GZA-tO-5gz"/>
+                                    <constraint firstItem="z8A-cC-66B" firstAttribute="leading" secondItem="gxx-ZL-0y1" secondAttribute="leading" id="HEl-gc-gVz"/>
+                                    <constraint firstItem="g1P-a8-9YH" firstAttribute="trailing" secondItem="vj6-Vq-k9Z" secondAttribute="trailing" id="Ide-O4-dK3"/>
+                                    <constraint firstItem="hTq-tk-Ko6" firstAttribute="trailing" secondItem="MUU-Rn-rJj" secondAttribute="trailing" id="Iln-Iy-ltk"/>
+                                    <constraint firstItem="4AA-Ju-3sC" firstAttribute="centerY" secondItem="Tig-IO-sVh" secondAttribute="centerY" id="JEx-Cw-G4L"/>
+                                    <constraint firstItem="ek3-Dv-HJ8" firstAttribute="top" secondItem="aKh-Os-4Tg" secondAttribute="bottom" constant="35" id="KTF-La-ozA"/>
+                                    <constraint firstItem="v7T-Lf-3Sy" firstAttribute="top" secondItem="aKh-Os-4Tg" secondAttribute="top" id="Ld9-3j-Uzn"/>
+                                    <constraint firstItem="2vY-Od-taq" firstAttribute="top" secondItem="JLc-IU-AqL" secondAttribute="bottom" constant="25" id="NLQ-cz-4x1"/>
+                                    <constraint firstItem="MUU-Rn-rJj" firstAttribute="top" secondItem="v7T-Lf-3Sy" secondAttribute="bottom" constant="8" id="O2o-eS-YoB"/>
+                                    <constraint firstItem="JLc-IU-AqL" firstAttribute="top" secondItem="ba2-QS-eyg" secondAttribute="bottom" constant="10" id="OWU-XV-APm"/>
+                                    <constraint firstItem="hTq-tk-Ko6" firstAttribute="top" secondItem="mWE-bF-yy3" secondAttribute="bottom" constant="8" id="SXb-4h-dWX"/>
+                                    <constraint firstItem="v7T-Lf-3Sy" firstAttribute="leading" secondItem="aKh-Os-4Tg" secondAttribute="trailing" constant="8" symbolic="YES" id="Slh-Fq-p8W"/>
+                                    <constraint firstItem="ek3-Dv-HJ8" firstAttribute="trailing" secondItem="aKh-Os-4Tg" secondAttribute="trailing" id="TCP-g0-6dv"/>
+                                    <constraint firstAttribute="trailing" secondItem="vj6-Vq-k9Z" secondAttribute="trailing" constant="31" id="Tfi-it-uOR"/>
+                                    <constraint firstItem="g1P-a8-9YH" firstAttribute="centerY" secondItem="z8A-cC-66B" secondAttribute="centerY" id="U1J-D9-W9p"/>
+                                    <constraint firstItem="mWE-bF-yy3" firstAttribute="trailing" secondItem="v7T-Lf-3Sy" secondAttribute="trailing" id="VOy-7z-BIQ"/>
+                                    <constraint firstItem="Tig-IO-sVh" firstAttribute="leading" secondItem="7Dv-Zx-NXd" secondAttribute="leading" constant="16" id="Vmu-tg-sMV"/>
+                                    <constraint firstItem="ba2-QS-eyg" firstAttribute="top" secondItem="z8A-cC-66B" secondAttribute="bottom" constant="10" id="X0f-fR-wfa"/>
+                                    <constraint firstItem="SZZ-Yz-2Yi" firstAttribute="centerY" secondItem="kLD-zT-9Ab" secondAttribute="centerY" id="X9X-AM-Ugd"/>
+                                    <constraint firstItem="aKh-Os-4Tg" firstAttribute="width" secondItem="7Dv-Zx-NXd" secondAttribute="width" multiplier="0.174419" id="XRQ-ra-8IM"/>
+                                    <constraint firstItem="gxx-ZL-0y1" firstAttribute="leading" secondItem="7Dv-Zx-NXd" secondAttribute="leading" constant="24" id="ZIQ-CI-047"/>
+                                    <constraint firstAttribute="trailing" secondItem="SZZ-Yz-2Yi" secondAttribute="trailing" constant="24" id="ZoY-ul-JEb"/>
+                                    <constraint firstItem="Tig-IO-sVh" firstAttribute="height" secondItem="7Dv-Zx-NXd" secondAttribute="height" multiplier="0.136406" id="c1d-1O-3fz"/>
+                                    <constraint firstAttribute="trailing" secondItem="MUU-Rn-rJj" secondAttribute="trailing" constant="31" id="dx4-wP-Gto"/>
+                                    <constraint firstItem="MUU-Rn-rJj" firstAttribute="leading" secondItem="aKh-Os-4Tg" secondAttribute="trailing" constant="8" symbolic="YES" id="gpn-xO-kM8"/>
+                                    <constraint firstItem="Tig-IO-sVh" firstAttribute="width" secondItem="7Dv-Zx-NXd" secondAttribute="width" multiplier="0.250427" id="gtj-d3-Awa"/>
+                                    <constraint firstItem="LkG-6w-ofi" firstAttribute="centerY" secondItem="JLc-IU-AqL" secondAttribute="centerY" id="lxp-rv-zPd"/>
+                                    <constraint firstItem="Tig-IO-sVh" firstAttribute="top" secondItem="7Dv-Zx-NXd" secondAttribute="top" constant="8" id="rid-eV-bm4"/>
+                                    <constraint firstAttribute="trailing" secondItem="b4Q-ub-azn" secondAttribute="trailing" constant="24" id="sJ5-Nm-J2p"/>
+                                    <constraint firstItem="ba2-QS-eyg" firstAttribute="leading" secondItem="z8A-cC-66B" secondAttribute="leading" id="ss5-Xe-ES2"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Z1-AW-E9e" secondAttribute="trailing" constant="19.329999999999998" id="uWC-zy-6Vq"/>
+                                    <constraint firstItem="vj6-Vq-k9Z" firstAttribute="centerY" secondItem="gxx-ZL-0y1" secondAttribute="centerY" id="ukU-DI-8R2"/>
+                                    <constraint firstAttribute="trailing" secondItem="oKk-BB-c4k" secondAttribute="trailing" constant="19.329999999999998" id="w5h-CZ-nog"/>
+                                    <constraint firstItem="oKk-BB-c4k" firstAttribute="centerY" secondItem="SZZ-Yz-2Yi" secondAttribute="centerY" id="zbY-Ys-KN6"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ac-vU-Y2x">
+                                <rect key="frame" x="375" y="59" width="39" height="39"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="gearshape" catalog="system" cornerStyle="capsule">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                    <color key="baseBackgroundColor" name="ViewBgColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdu-ze-lVO">
+                                <rect key="frame" x="328" y="59" width="39" height="39"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="cart" catalog="system" imagePadding="0.0" cornerStyle="capsule">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                    <color key="baseBackgroundColor" name="ViewBgColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ5-h0-JpM">
+                                <rect key="frame" x="16" y="60" width="103" height="35"/>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JfK-ap-GVo"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7Dv-Zx-NXd" firstAttribute="leading" secondItem="JfK-ap-GVo" secondAttribute="leading" id="1Wi-c6-5vX"/>
+                            <constraint firstItem="JfK-ap-GVo" firstAttribute="trailing" secondItem="3Ac-vU-Y2x" secondAttribute="trailing" constant="16" id="A8P-4y-rTO"/>
+                            <constraint firstItem="3Ac-vU-Y2x" firstAttribute="leading" secondItem="Kdu-ze-lVO" secondAttribute="trailing" constant="8" symbolic="YES" id="FGt-VW-IVa"/>
+                            <constraint firstItem="7Dv-Zx-NXd" firstAttribute="top" secondItem="3Ac-vU-Y2x" secondAttribute="bottom" constant="8" id="NXu-Px-wqS"/>
+                            <constraint firstItem="CZ5-h0-JpM" firstAttribute="top" secondItem="JfK-ap-GVo" secondAttribute="top" constant="1" id="Oaf-mL-5sc"/>
+                            <constraint firstItem="SoU-SF-UeK" firstAttribute="leading" secondItem="JfK-ap-GVo" secondAttribute="leading" id="Xiv-hq-u5g"/>
+                            <constraint firstItem="SoU-SF-UeK" firstAttribute="top" secondItem="3Ac-vU-Y2x" secondAttribute="bottom" constant="8" id="aSv-cf-ctZ"/>
+                            <constraint firstItem="CZ5-h0-JpM" firstAttribute="leading" secondItem="JfK-ap-GVo" secondAttribute="leading" constant="16" id="b9L-El-xaP"/>
+                            <constraint firstItem="7Dv-Zx-NXd" firstAttribute="bottom" secondItem="JfK-ap-GVo" secondAttribute="bottom" id="i5U-be-cCJ"/>
+                            <constraint firstItem="3Ac-vU-Y2x" firstAttribute="top" secondItem="JfK-ap-GVo" secondAttribute="top" id="k6O-zP-hIX"/>
+                            <constraint firstItem="Kdu-ze-lVO" firstAttribute="top" secondItem="JfK-ap-GVo" secondAttribute="top" id="kmd-PI-XKi"/>
+                            <constraint firstItem="SoU-SF-UeK" firstAttribute="trailing" secondItem="JfK-ap-GVo" secondAttribute="trailing" id="nak-m2-M9y"/>
+                            <constraint firstItem="JfK-ap-GVo" firstAttribute="bottom" secondItem="SoU-SF-UeK" secondAttribute="bottom" id="oNo-uw-tvt"/>
+                            <constraint firstItem="7Dv-Zx-NXd" firstAttribute="trailing" secondItem="JfK-ap-GVo" secondAttribute="trailing" id="yL6-hH-hac"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Caz-fM-UTh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgd-zF-bNX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2523" y="-361"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Aser Eid 1" width="876" height="810"/>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="arrowtriangle.down.circle" catalog="system" width="128" height="123"/>
         <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="circle.grid.3x3" catalog="system" width="128" height="110"/>
         <image name="empty" width="591" height="422"/>
         <image name="emptyProducts" width="450" height="450"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="hanger" catalog="system" width="128" height="99"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
+        <image name="loginScreen" width="540" height="360"/>
         <image name="nikaAds" width="360" height="203"/>
         <image name="onBoard1" width="666" height="375"/>
         <image name="onboard2" width="577" height="432"/>
@@ -1100,6 +1412,9 @@
         </namedColor>
         <namedColor name="ViewBgColor">
             <color red="0.96078431372549022" green="0.96470588235294119" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="heartBg">
+            <color red="0.83529411764705885" green="0.83921568627450982" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="pageController">
             <color red="0.83529411764705885" green="0.83921568627450982" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

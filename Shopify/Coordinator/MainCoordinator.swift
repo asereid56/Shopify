@@ -17,8 +17,7 @@ protocol Coordinator {
 
 class MainCoordinator : Coordinator {
     
-    private let defaults = UserDefaults.standard
-    private let key = "isFirstTime"
+  
     private let customerID = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
     private let cartID = UserDefaultsManager.shared.getCartIdFromUserDefaults()
     var childCoordinators = [Coordinator]()
@@ -30,17 +29,14 @@ class MainCoordinator : Coordinator {
     
     func start() {
         
-        if defaults.object(forKey: key) == nil {
-            defaults.setValue(true, forKey: key)
-        }
-        let isFirstTime = defaults.bool(forKey: key)
-        
-        if isFirstTime == true {
-            goToOnBoardingFirstScreen()
-        }else{
-            gotoTab()
-        }
+        gotoAnimationScreen()
 
+    }
+    
+    func gotoAnimationScreen() {
+        let animationVC = AnimationViewController.instantiate(storyboardName: "Main")
+        animationVC.coordinator = self
+        navigationController.pushViewController(animationVC, animated: false)
     }
     
     func goToOnBoardingSecondScreen(){
