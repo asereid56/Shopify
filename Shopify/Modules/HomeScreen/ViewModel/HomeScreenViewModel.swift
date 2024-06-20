@@ -21,7 +21,7 @@ protocol HomeScreenViewModelProtocol {
 class HomeScreenViewModel : HomeScreenViewModelProtocol{
     let currencyService : CurrencyServiceProtocol
     private let disposeBag = DisposeBag()
-    private let network : NetworkService
+    private let network : NetworkServiceProtocol
     private let dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
     var dataFetchCompleted = PublishRelay<Void>()
     var isLoading = BehaviorRelay<Bool>(value: false)
@@ -32,7 +32,7 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
     
    
     
-    init(currencyService: CurrencyServiceProtocol, network: NetworkService) {
+    init(currencyService: CurrencyServiceProtocol, network: NetworkServiceProtocol) {
         self.currencyService = currencyService
         self.network = network
     }
@@ -40,7 +40,7 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
    
     
     func fetchBranchs() {
-        network.get(endpoint: APIEndpoint.brands.rawValue)
+        network.get(url: NetworkConstants.baseURL, endpoint: APIEndpoint.brands.rawValue, parameters: nil, headers: nil)
             .subscribe(
                 onNext: { [ weak self ] (data : BrandsResponse) in
                     self?.dataSubject.onNext(data.smartCollections)

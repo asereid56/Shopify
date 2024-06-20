@@ -26,7 +26,7 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
     private var filteredProducts : [Product] = []
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorSubject<[Product]>(value: [])
-    var network : NetworkService
+    var network : NetworkServiceProtocol
     var brandId : String
     var dataFetchCompleted = PublishRelay<Void>()
     var isLoading = BehaviorRelay<Bool>(value: false)
@@ -40,7 +40,7 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
         return dataSubject.map { $0.count }.asObservable()
     }
     
-    init(network: NetworkService, brandId: String) {
+    init(network: NetworkServiceProtocol, brandId: String) {
         self.network = network
         self.brandId = brandId
     }
@@ -52,7 +52,7 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
     
     func fetchProducts() {
         let endpoint = APIEndpoint.products.rawValue.replacingOccurrences(of: "{brand_id}", with: brandId)
-        network.get(endpoint: endpoint)
+        network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
             .subscribe(onNext: { [weak self] (response: ProductsResponse) in
                 
                 self?.filteredProducts = response.products ?? []

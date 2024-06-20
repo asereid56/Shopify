@@ -23,7 +23,7 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
     private var productWillFiltered : [Product] = []
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorSubject<[Product]>(value: [])
-    var network : NetworkService
+    var network : NetworkServiceProtocol
     
     var isLoading =  BehaviorRelay<Bool>(value: false)
     
@@ -35,12 +35,12 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
         return dataSubject.asDriver(onErrorJustReturn: [])
     }
     
-    init(network: NetworkService) {
+    init(network: NetworkServiceProtocol) {
         self.network = network
     }
     
     func fetchData(with categoryID: APIEndpoint.RawValue) {
-        network.get(endpoint: categoryID)
+        network.get(url: NetworkConstants.baseURL, endpoint: categoryID, parameters: nil, headers: nil)
             .subscribe(onNext: { [weak self] (response : ProductsResponse) in
                 self?.productWillFiltered = response.products ?? []
                 self?.dataSubject.onNext(response.products ?? [])

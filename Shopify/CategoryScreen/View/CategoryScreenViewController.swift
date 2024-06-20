@@ -68,7 +68,6 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             activityIndicator.isHidden = true
         }
         
-        
     }
     
     private func setUpBinding(){
@@ -94,7 +93,6 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
             cell.productName.text = product.title
             cell.layer.masksToBounds = true
-            cell.deletebtn.isHidden = true
             
         }.disposed(by: disposeBag)
         

@@ -13,7 +13,6 @@ class SignInOrGuestViewController: UIViewController , Storyboarded{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationController?.navigationBar.isHidden = true
     }
     

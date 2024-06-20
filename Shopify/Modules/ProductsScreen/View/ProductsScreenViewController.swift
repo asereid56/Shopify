@@ -84,8 +84,6 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
             sortBtn.isHidden = true
             numOfItems.isHidden = true
         }
-       
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
