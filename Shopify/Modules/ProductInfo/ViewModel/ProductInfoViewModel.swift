@@ -108,7 +108,7 @@ class ProductInfoViewModel {
     
     func updateLineItem(variant : Variant){
         let lineItems = draftOrder?.lineItems
-        for lineItem in lineItems! {
+        for lineItem in lineItems ?? [] {
             if lineItem.variantId == variant.id {
                 addToCart.onNext(false)
                 self.isLoading.accept(false)

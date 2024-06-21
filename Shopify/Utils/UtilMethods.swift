@@ -65,7 +65,6 @@ func formateTheDate(date : String) -> String{
   
 }
 
-
 func showAlertForNotUser(vc : UIViewController , coordinator : MainCoordinator){
     let alert = UIAlertController(title: "Please Login First!", message: "", preferredStyle: .alert)
     

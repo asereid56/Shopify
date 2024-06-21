@@ -15,6 +15,7 @@ protocol PaymentViewModelProtocol{
     var primaryAddress: BehaviorRelay<String?>{get set}
     var priceRuleSubject : PublishSubject<(PriceRule?, Error?)>{get}
     var paymentSuccess: PKPaymentAuthorizationStatus { get set }
+    var isLoading : BehaviorRelay<Bool>{get}
     func setShippingAddress(address : Address)
     func getSubTotal() -> String
     func loadData() -> Bool
@@ -39,6 +40,7 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     var selectedAddress = BehaviorRelay<String?>(value: "Select Delivery Address")
     var primaryAddress = BehaviorRelay<String?>(value: "Select Delivery Address")
     var priceRuleSubject = PublishSubject<(PriceRule?, Error?)>()
+    var isLoading = BehaviorRelay<Bool>(value: false)
     var draftOrder : DraftOrder
     var network : NetworkServiceProtocol
     private let customerId : String
@@ -59,6 +61,7 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     }
     
     func loadData() -> Bool{
+        isLoading.accept(true)
         let primaryAddressID = defaults.integer(forKey: Constant.PRIMARY_ADDRESS_ID)
         print(primaryAddressID)
         if primaryAddressID == 0{
@@ -70,11 +73,13 @@ class PaymentViewModel :  PaymentViewModelProtocol{
             .subscribe(onNext: { [weak self](addressResponseRoot:AddressResponseRoot) in
                 self?.billingAddress = addressResponseRoot.customer_address
                 self?.primaryAddress.accept(addressResponseRoot.customer_address.address1)
+                self?.isLoading.accept(false)
             }).disposed(by: disposeBag)
         return true
     }
     
     func placeOrder(financialStatus : String){
+        isLoading.accept(true)
         //preparing order
         let customer = Customer(id: Int(customerId) ?? 0)
         let order = Order(lineItems: draftOrder.lineItems!, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus)
@@ -101,8 +106,10 @@ class PaymentViewModel :  PaymentViewModelProtocol{
             .subscribe(onNext: { [weak self](success, message, response) in
                 let realmDraftOrder = response?.draftOrder.map { RealmDraftOrder(draftOrder: $0)}
                 self?.realmManager.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
+                self?.isLoading.accept(false)
             }, onError: { error in
                 print("Error updating draft order: \(error)")
+                self.isLoading.accept(false)
             })
             .disposed(by: disposeBag)
     }
@@ -142,6 +149,7 @@ class PaymentViewModel :  PaymentViewModelProtocol{
             .subscribe(onNext: { [weak self](dicount : DiscountCodeWrapper) in
                 guard let priceRuleID  = dicount.discountCode.priceRuleId else{ return}
                 self?.getPriceRule(priceRuleID: priceRuleID)
+                self?.isLoading.accept(false)
             },onError: { _ in
                 self.priceRuleSubject.onNext((nil ,CustomError.invalidCoupon))
             }

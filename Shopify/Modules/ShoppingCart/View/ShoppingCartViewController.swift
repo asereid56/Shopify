@@ -68,6 +68,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                 if model.properties!.count > 1 {
                     inventoryQuantity = Int((model.properties?[1].value) ?? "-1") ?? 0
                 }
+                
                 self?.emptyImage.isHidden = true
                 cell.setUpCell(model: model)
                 self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price: self?.viewModel?.getDratOrder().subtotalPrice ?? "-1")
@@ -88,6 +89,8 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                             if currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)) {
                                 self?.notAvailableAlert(title: "Sold out!")
                             } else {
+                                self?.total.text =  CurrencyService.calculatePriceAccordingToCurrency(price:self?.viewModel?.calcTotalPrice(operation: "+", at: row + 1) ?? "0.0")
+                                
                                 cell.updateQuantity(currentQuantity + 1)
                                 self?.viewModel?.plusAction.onNext((row +  1, currentQuantity, inventoryQuantity ))
                             }
@@ -105,6 +108,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                             guard let currentQuantity = Int(cell.productQuantity.text!), currentQuantity > 1 else { return }
                             cell.updateQuantity(currentQuantity - 1)
                             self?.viewModel?.minusAction.onNext((row +  1, currentQuantity))
+                            self?.total.text =  CurrencyService.calculatePriceAccordingToCurrency(price:self?.viewModel?.calcTotalPrice(operation: "-", at: row + 1) ?? "0.0")
                         }else{
                             self?.notAvailableAlert(title: "No Internet connection!")
                         }

@@ -28,6 +28,7 @@ enum APIEndpoint: String {
     case createOrder = "/orders.json"
     case validateDiscount = "/discount_codes/lookup.json?code={discount_code}"
     case priceRule = "/price_rules/{price_rule_id}.json"
+    case allPriceRules = "/price_rules.json"
 }
 
 enum NetworkError: Error {

@@ -24,6 +24,9 @@ class PaymentViewController: UIViewController, Storyboarded {
     @IBOutlet weak var dicount: UILabel!
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var coupon: UITextField!
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,20 +36,8 @@ class PaymentViewController: UIViewController, Storyboarded {
         }else{
             shippingAddress.text = "Select Delivery Address"
         }
-        
-        viewModel?.priceRuleSubject.observeOn(MainScheduler.instance).subscribe(onNext:  { [weak self] (priceRule, error) in
-            if let error = error {
-                self?.showError(title: "Invalid Coupon!")
-            }else{
-                self?.coupon.isEnabled = false
-                if priceRule!.valueType == "fixed_amount" {
-                    self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price: priceRule!.value)
-                    let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) + (Double(priceRule!.value) ?? 0.0)
-                    self?.total.text = String(calcPrice)
-                }
-            }
-            
-        }).disposed(by: disposeBag)
+        handleCoupons()
+        setUpIndicator()
     }
     
     private func setUpUI(){
@@ -56,9 +47,49 @@ class PaymentViewController: UIViewController, Storyboarded {
         total.text =  CurrencyService.calculatePriceAccordingToCurrency(price: totalPrice)
     }
     
+    private func handleCoupons() {
+        viewModel?.priceRuleSubject.observeOn(MainScheduler.instance).subscribe(onNext:  { [weak self] (priceRule, error) in
+            self?.coupon.layer.borderWidth = 0.5
+            if let _ = error {
+                self?.showError(title: "Invalid Coupon!")
+                self?.coupon.layer.borderColor = UIColor.red.cgColor
+            }else{
+                self?.coupon.isEnabled = false
+                self?.coupon.layer.borderColor = UIColor.green.cgColor
+                if priceRule!.valueType == Constant.FIXED_AMOUNT {
+                    self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price: priceRule!.value)
+                    let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) + (Double(priceRule!.value) ?? 0.0)
+                    self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(calcPrice))
+                    self?.totalPrice = String(calcPrice)
+                }else if priceRule!.valueType == Constant.PERCENTAGE{
+                    let discountAmount = ((Double(self?.totalPrice ?? "") ?? 0.0) * abs(Double(priceRule!.value) ?? 0.0)) / 100
+                    self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(discountAmount))
+                    let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) - discountAmount
+                    self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(calcPrice))
+                    self?.totalPrice = String(calcPrice)
+                }
+                
+            }
+            
+        }).disposed(by: disposeBag)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         setUpSelectedAddress()
         setUpSelectedPaymentMethod()
+    }
+    
+    private func setUpIndicator() {
+        viewModel?.isLoading
+            .bind(to: loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        viewModel?.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
+                self?.loadingIndicator.isHidden = !isLoading
+                self?.bgView.isHidden = !isLoading
+            })
+            .disposed(by: disposeBag)
     }
     
     

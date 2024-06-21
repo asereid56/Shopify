@@ -32,3 +32,13 @@ struct PriceRuleWrapper: Codable {
         case priceRule = "price_rule"
     }
 }
+
+
+struct AllPriceRulesWrapper: Codable {
+    let priceRules: [PriceRule]
+    
+    // Coding keys to map the JSON keys to the struct properties
+    enum CodingKeys: String, CodingKey {
+        case priceRules = "price_rules"
+    }
+}

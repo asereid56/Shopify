@@ -23,6 +23,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var btnPlus: UIImageView!
     @IBOutlet weak var btnDelete: UIImageView!
     
+    
      var disposeBag = DisposeBag()
     var plusBtnTapped = PublishSubject<Void>()
     var minusBtnTapped = PublishSubject<Void>()

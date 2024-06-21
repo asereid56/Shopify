@@ -23,6 +23,7 @@ protocol ShoppingCartViewModelProtocol {
     func decrementItem(at row: Int, currentQuantity: Int)
     func updateRealm()
     func getLineItemsCount() -> Int
+    func calcTotalPrice(operation : String, at index : Int) -> String
     func fetchCartItemsFromRealm()
 }
 
@@ -35,6 +36,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     private var endpoint : String?
     private var draftOrderWrapper:DraftOrderWrapper = DraftOrderWrapper()
     private var lineItems : [LineItem]?
+    private var currentTotalPrice = 0.0
     var data: Driver<[LineItem]>{
         return dataSubject.asDriver(onErrorJustReturn: [])
     }
@@ -132,6 +134,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                 }
             }
             .subscribe(onNext: { [weak self] updatedLineItems in
+                self?.currentTotalPrice = Double((self?.draftOrderWrapper.draftOrder?.subtotalPrice!)!)!
                 self?.lineItems = updatedLineItems
                 self?.isLoading.accept(false)
                 self?.dataSubject.onNext(updatedLineItems)
@@ -231,6 +234,17 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     
     func getLineItemsCount() -> Int{
         return lineItems?.count ?? 0
+    }
+    
+    func calcTotalPrice(operation : String, at index : Int) -> String{
+        switch operation {
+        case "+":
+            currentTotalPrice += Double(lineItems?[index].price ?? "0") ?? 0.0
+            return String(currentTotalPrice)
+        default:
+            currentTotalPrice -= Double(lineItems?[index].price ?? "0") ?? 0.0
+            return String(currentTotalPrice)
+        }
     }
 }
 

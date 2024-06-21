@@ -21,6 +21,8 @@ class Constant {
     static let COD = "Cash on Delivery"
     static let PENDING = "pending"
     static let PAID = "paid"
+    static let FIXED_AMOUNT = "fixed_amount"
+    static let PERCENTAGE = "percentage"
 }
 
 struct NetworkConstants {

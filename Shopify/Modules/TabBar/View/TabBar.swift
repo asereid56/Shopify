@@ -24,8 +24,10 @@ class TabBar : UITabBarController , Storyboarded {
         homeScreen.coordinator = coordinator
         categoryScreen.coordinator = coordinator
         profileScreen.coordinator = coordinator
+        
         let currencyService = CurrencyService.shared
         currencyService.network = NetworkService.shared
+        
         let homeScreenViewModel = HomeScreenViewModel(currencyService: currencyService, network: NetworkService.shared)
         homeScreen.viewModel = homeScreenViewModel
         
@@ -34,6 +36,7 @@ class TabBar : UITabBarController , Storyboarded {
         
         let profileViewModel = ProfileViewModel(network: NetworkService.shared)
         profileScreen.viewModel = profileViewModel
+        
         viewControllers = [homeScreen , categoryScreen , profileScreen]
     
     }
