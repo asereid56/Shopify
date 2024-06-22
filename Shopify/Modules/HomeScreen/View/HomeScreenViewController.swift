@@ -31,7 +31,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutside(_:)))
-        adsCollection.addGestureRecognizer(tapGesture)
+        //adsCollection.addGestureRecognizer(tapGesture)
         self.navigationController?.setNavigationBarHidden(true, animated: false);
         let nib = UINib(nibName: "BrandsCollectionXIBCell", bundle: nil)
         brandsCollection.register(nib, forCellWithReuseIdentifier: "brandCell")
@@ -245,10 +245,16 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     func setupSearchBar() {
         if checkInternetAndShowToast(vc: self) {
             searchBar.rx.text.orEmpty
+                .do(onNext: { [weak self] searchText in
+                    if searchText.isEmpty {
+                        self?.searchBar.resignFirstResponder()
+                    }
+                })
                 .bind(to: viewModel?.searchTextSubject ?? PublishSubject<String>())
                 .disposed(by: disposeBag)
         }
     }
+    
     @objc func handleTapOutside(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
             searchBar.endEditing(true)

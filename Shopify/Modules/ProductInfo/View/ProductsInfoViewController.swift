@@ -9,6 +9,7 @@ import UIKit
 import Cosmos
 import RxSwift
 import Firebase
+
 class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var wishlistButton: UIButton!
     var coordinator: MainCoordinator?
@@ -26,7 +27,6 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var pageControl: UIPageControl!
     var imgs: [ProductImage?]?
     override func viewDidLoad() {
-        reviewsTableView.rowHeight = 140
         print("USER STATUS: \(AuthenticationManager.shared.isUserLoggedIn())")
         checkonUserDefaultsValues()
         super.viewDidLoad()
@@ -90,10 +90,6 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
         reviewsTableView.dataSource = nil
         reviewsTableView.delegate = nil
         scrollView.delegate = nil
-            .subscribe(onNext: { [weak self] isLoading in
-                self?.loadingIndicator.isHidden = !isLoading
-            })
-            .disposed(by: disposeBag)
     }
     
     func setupDropDownButton(_ button: UIButton, options: [String]) {
@@ -123,31 +119,12 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.getReviews()?.count ?? 0
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reviewCell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as! ReviewTableViewCell
-        reviewCell.reviewerImage.image = UIImage(named: viewModel?.getReviews()?[indexPath.row].img ?? "")
-        reviewCell.reviewBody.text = viewModel?.getReviews()?[indexPath.row].reviewBody ?? ""
-        return reviewCell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        140
-    }
-    
     private func addToCart() {
         viewModel?.addToCart.subscribe(onNext:  {isAdded in
             if isAdded {
-                showToast(message: "Product added to shopping cart", vc: self)
+                _ = showToast(message: "Product added to shopping cart", vc: self)
             } else {
-                showToast(message: "Product already exists in shopping cart", vc: self)
+                _ =  showToast(message: "Product already exists in shopping cart", vc: self)
             }
         }).disposed(by: disposeBag)
     }
@@ -157,13 +134,9 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func addToCart(_ sender: Any) {
-        print(getVariantTitle())
-        let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
-        print(variant ?? "")
-        viewModel?.fetchDraftOrder()
         if checkInternetAndShowToast(vc: self){
             if AuthenticationManager.shared.isUserLoggedIn() {
-                let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
+                _ = viewModel?.getSelectedVariant(title: getVariantTitle())
                 viewModel?.fetchDraftOrder()
             }else{
                 showAlertForNotUser(vc: self, coordinator: coordinator!)
@@ -220,10 +193,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func configureScrollView() {
-        //        mainScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height+680)
-        reviewsTableView.frame.size.height = 420
-        reviewsTableView.delegate = self
-        reviewsTableView.dataSource = self
+        reviewsTableView.rowHeight = 140
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false

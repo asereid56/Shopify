@@ -29,26 +29,47 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
     private let disposeBag = DisposeBag()
     private let network : NetworkServiceProtocol
     var dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
+    let adsArr = [
+        //AdsItems(image: "addidasAds"),
+        AdsItems(image: "pumaAds"),
+        AdsItems(image: "nikaAds"),
+        AdsItems(image: "reebokAds"),
+        AdsItems(image: "filaAds")
+    ]
+    var adsArray = BehaviorRelay<[AdsItems]>(value: [])
+    private var coupons : [PriceRule] = []
     var dataFetchCompleted = PublishRelay<Void>()
     var isLoading = BehaviorRelay<Bool>(value: false)
+//    var data : Driver<[SmartCollection]> {
+//        return dataSubject.asDriver(onErrorJustReturn: [])
+//    }
+    var data: Driver<[SmartCollection]> {
+        return searchTextSubject
+            .startWith("")
+            .flatMapLatest { [weak self] text in
+                guard let self = self else { return Driver<[SmartCollection]>.empty() }
+                return self.filteredData(searchText: text)
+            }
+            .asDriver(onErrorJustReturn: [SmartCollection]())
+    }
     var searchTextSubject = PublishSubject<String>()
     
-    init(currencyService: CurrencyServiceProtocol, network: NetworkService) {
-        private let dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
-        let adsArr = [
-            //AdsItems(image: "addidasAds"),
-            AdsItems(image: "pumaAds"),
-            AdsItems(image: "nikaAds"),
-            AdsItems(image: "reebokAds"),
-            AdsItems(image: "filaAds")
-        ]
-        var adsArray = BehaviorRelay<[AdsItems]>(value: [])
-        private var coupons : [PriceRule] = []
-        var dataFetchCompleted = PublishRelay<Void>()
-        var isLoading = BehaviorRelay<Bool>(value: false)
-        var data : Driver<[SmartCollection]> {
-            return dataSubject.asDriver(onErrorJustReturn: [])
-        }
+//    init(currencyService: CurrencyServiceProtocol, network: NetworkService) {
+//        private let dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
+//        let adsArr = [
+//            //AdsItems(image: "addidasAds"),
+//            AdsItems(image: "pumaAds"),
+//            AdsItems(image: "nikaAds"),
+//            AdsItems(image: "reebokAds"),
+//            AdsItems(image: "filaAds")
+//        ]
+//        var adsArray = BehaviorRelay<[AdsItems]>(value: [])
+//        private var coupons : [PriceRule] = []
+//        var dataFetchCompleted = PublishRelay<Void>()
+//        var isLoading = BehaviorRelay<Bool>(value: false)
+//        var data : Driver<[SmartCollection]> {
+//            return dataSubject.asDriver(onErrorJustReturn: [])
+//        }
         
         
         
@@ -68,21 +89,9 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
                 }).disposed(by: disposeBag)
         }
         
-        var data: Driver<[SmartCollection]> {
-            return searchTextSubject
-                .startWith("")
-                .flatMapLatest { [weak self] text in
-                    guard let self = self else { return Driver<[SmartCollection]>.empty() }
-                    return self.filteredData(searchText: text)
-                }
-                .asDriver(onErrorJustReturn: [SmartCollection]())
-        }
+
         
-        init(currencyService: CurrencyServiceProtocol, network: NetworkServiceProtocol) {
-            self.currencyService = currencyService
-            self.network = network
-        }
-        
+
         func fetchBranchs() {
             network.get(url: NetworkConstants.baseURL, endpoint: APIEndpoint.brands.rawValue, parameters: nil, headers: nil)
                 .subscribe(
@@ -123,4 +132,5 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
         func getAdsArrCount() -> Int {
             return adsArr.count
         }
+        
     }

@@ -137,7 +137,6 @@ class ProductInfoViewModel {
                     // print(realmDraftOrder?.id)
                     self?.realmManger.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
                     print(self?.realmManger.getAll(RealmDraftOrder.self).count ?? 0)
-                    self?.realmManger.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
                 }
                 
             }, onError: { error in
