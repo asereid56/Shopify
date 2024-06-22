@@ -15,6 +15,7 @@ enum APIEndpoint: String {
     case editOrDeleteAddress = "/customers/{customer_id}/addresses/{address_id}.json"
     case brands = "/smart_collections.json"
     case products = "/products.json?collection_id={brand_id}"
+    case singeProduct = "/products/{productId}.json"
     case CategoryAll = "/products.json"
     case CategoryMen = "/products.json?collection_id=330332438681"
     case CategoryWomen = "/products.json?collection_id=330332471449"

@@ -15,4 +15,20 @@ class LoginWithEmailViewModel {
             else { completion(false, title, message) }
         }
     }
+    func signInWithGoogle(vc: UIViewController, completion: @escaping (Bool, Bool) -> Void) {
+        AuthenticationManager.shared.signInWithGoogle(vc: vc) {
+            isUserSignedIn, isNewUser in
+            if isUserSignedIn {
+                if isNewUser {
+                    completion(true, true)
+                }
+                else {
+                    completion(true, false)
+                }
+            }
+            else {
+                completion(false, false)
+            }
+        }
+    }
 }

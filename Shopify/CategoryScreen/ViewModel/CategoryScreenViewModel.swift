@@ -16,6 +16,7 @@ protocol CategoryScreenViewModelProtocol {
     
     func fetchData(with categoryID : APIEndpoint.RawValue)
     func filterData(selectedSegmentIndex: Int)
+    var searchTextSubject: PublishSubject<String> { get }
 }
 
 class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
@@ -24,6 +25,7 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorSubject<[Product]>(value: [])
     var network : NetworkServiceProtocol
+    var searchTextSubject = PublishSubject<String>()
     
     var isLoading =  BehaviorRelay<Bool>(value: false)
     
@@ -32,7 +34,13 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
     }
     
     var data: Driver<[Product]> {
-        return dataSubject.asDriver(onErrorJustReturn: [])
+        return searchTextSubject
+            .startWith("")
+            .flatMapLatest { [weak self] text in
+                guard let self = self else { return Driver<[Product]>.empty() }
+                return self.filteredData(searchText: text)
+            }
+            .asDriver(onErrorJustReturn: [Product]())
     }
     
     init(network: NetworkServiceProtocol) {
@@ -73,6 +81,18 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
             }
         }
         dataSubject.onNext(filteredProducts)
+    }
+    private func filteredData(searchText: String) -> Driver<[Product]> {
+        return dataSubject
+            .map { collections in
+                if searchText.isEmpty {
+                    return collections
+                }
+                return collections.filter { collection in
+                    collection.title!.lowercased().contains(searchText.lowercased())
+                }
+            }
+            .asDriver(onErrorJustReturn: [])
     }
     
 }

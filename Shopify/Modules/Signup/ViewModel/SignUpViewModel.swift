@@ -17,7 +17,7 @@ class SignUpViewModel {
                     }
                     else {
                         completion(false)
-                        showToast(message: message ?? "", vc: vc)
+                        _ = showToast(message: message ?? "", vc: vc)
                     }
                 }
             } else {

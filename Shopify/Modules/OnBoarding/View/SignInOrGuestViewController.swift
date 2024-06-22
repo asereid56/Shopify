@@ -17,7 +17,7 @@ class SignInOrGuestViewController: UIViewController , Storyboarded{
     }
     
     @IBAction func signInBtn(_ sender: Any) {
-        coordinator?.goToMainLogin()
+        coordinator?.goToLogin()
     }
     
     

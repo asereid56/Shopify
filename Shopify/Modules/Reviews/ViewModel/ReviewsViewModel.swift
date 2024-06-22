@@ -6,18 +6,14 @@
 //
 
 import Foundation
+import RxSwift
 class ReviewsViewModel {
     var reviews: [Review]!
-    let reviewText = "Lorem ipsum dolor sit amet, consectetur ire adipiscing elit. Pellentesque malesuada eget vitae amet."
+    var reviewsData = PublishSubject<[Review]>()
     init() {
-        reviews = [Review(img: "1st", reviewBody: reviewText),
-                   Review(img: "2nd", reviewBody: reviewText),
-                   Review(img: "1st", reviewBody: reviewText),
-                   Review(img: "3rd", reviewBody: reviewText),
-                   Review(img: "2nd", reviewBody: reviewText),
-                   Review(img: "3rd", reviewBody: reviewText)]
+        reviews = generateReviews()
     }
-    func getReviews() -> [Review] {
-        return reviews
+    func getReviews() {
+        reviewsData.onNext(reviews)
     }
 }

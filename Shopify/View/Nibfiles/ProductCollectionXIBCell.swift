@@ -12,6 +12,7 @@ class ProductCollectionXIBCell: UICollectionViewCell {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productCost: UILabel!
+    @IBOutlet weak var costSign: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

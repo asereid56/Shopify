@@ -9,4 +9,5 @@ import Foundation
 struct Review {
     let img: String?
     let reviewBody: String?
+    let rating: Double?
 }

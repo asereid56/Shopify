@@ -5,13 +5,13 @@
 //  Created by Mina on 11/06/2024.
 //
 
-import Foundation
 import RxCocoa
 import RxSwift
 import UIKit
 
 class ProductInfoViewModel {
-    
+    var makeNetworkCall: Bool?
+    var productId: String?
     let network : NetworkServiceProtocol
     let realmManger : RealmManagerProtocol
     let draftOrderId : String
@@ -20,30 +20,38 @@ class ProductInfoViewModel {
     let disposeBag = DisposeBag()
     var endpoint : String?
     var data = PublishSubject<Bool>()
+    var reviewsData = PublishSubject<[Review]>()
     var reviews: [Review]?
     var product: Product?
-    let reviewText = "Lorem ipsum dolor sit amet, consectetur ire adipiscing elit. Pellentesque malesuada eget vitae amet."
+    var wishlistItems: [LineItem]?
     
-//    init(product: Product) {
-//        self.network = NetworkService.shared
-//        self.product = product
-//    }
     
-    init(product: Product , network : NetworkServiceProtocol , draftOrderId : String , realmManger : RealmManagerProtocol) {
-
-        reviews = [Review(img: "1st", reviewBody: reviewText),
-                   Review(img: "2nd", reviewBody: reviewText),
-                   Review(img: "3rd", reviewBody: reviewText)]
+    init(product: Product? , network : NetworkServiceProtocol , draftOrderId : String , realmManger : RealmManagerProtocol, makeNetworkCall: Bool) {
+        reviews = Array(generateReviews().prefix(3))
+        self.makeNetworkCall = makeNetworkCall
         self.product = product
         self.network = network
         self.draftOrderId = draftOrderId
         endpoint = APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId)
         self.realmManger = realmManger
+        
     }
     
-
-    func getReviews() -> [Review]? {
-        reviews
+    func getReviews() {
+        reviewsData.onNext(reviews ?? [])
+    }
+    
+    func getProduct(completion: @escaping () -> ()) {
+        _ = network.get(url: NetworkConstants.baseURL, endpoint: APIEndpoint.singeProduct.rawValue.replacingOccurrences(of: "{productId}", with: productId!), parameters: nil, headers: nil)
+            .subscribe(onNext: { [weak self] (product: ProductWrapper) in
+                self?.product = product.product
+                print(product.product?.title ?? "")
+                print(product.product?.variants?.first??.price ?? "")
+                
+                completion()
+            }, onError: { error in
+                print("Error from getProduct function \(error)")
+            })
     }
     
     func addToWishList(product: Product?, vc: UIViewController, completion: @escaping (Bool) -> Void) {
@@ -58,7 +66,7 @@ class ProductInfoViewModel {
         }
         let draftOrderId = UserDefaultsManager.shared.getWishListIdFromUserDefaults()
         let endpoint = APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId ?? "")
-
+        
         _ = network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
             .flatMap { (data: DraftOrderWrapper) -> Observable<(Bool, String?, DraftOrderWrapper?)> in
                 var workingData = data
@@ -68,12 +76,11 @@ class ProductInfoViewModel {
                     return Observable.just((false, nil, nil))
                 }
                 let lineItem = LineItem(productId: productId, title: title, price: price, img: imageSrc, quantity: 1, variantTitle: String(productId))
-                print("LINE ITEM: \(lineItem)")
                 workingData.draftOrder?.lineItems?.append(lineItem)
-                return self.network.put(url: NetworkConstants.baseURL, endpoint: endpoint, body: workingData, headers: nil, responseType: DraftOrderWrapper.self) ?? Observable.empty()
-//                return self.network?.put(endpoint: endpoint, body: workingData, responseType: DraftOrderWrapper.self)
-                        
+                return self.network.put(url: NetworkConstants.baseURL, endpoint: endpoint, body: workingData, headers: nil, responseType: DraftOrderWrapper.self)
+                
             }
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(
                 onNext: { success, response, updatedDraftOrder in
                     if success {
@@ -89,12 +96,12 @@ class ProductInfoViewModel {
                 }
             )
     }
-
+    
     func getSelectedVariant(title: String) -> Variant? {
         let variants = product?.variants?.filter{ $0?.title == title }
         return variants?[0]
     }
-
+    
     func fetchDraftOrder(){
         network.get(url: NetworkConstants.baseURL, endpoint: endpoint!, parameters: nil, headers: nil).subscribe {[weak self] (draftOrderWrapper : DraftOrderWrapper) in
             self?.draftOrder = draftOrderWrapper.draftOrder
@@ -123,16 +130,63 @@ class ProductInfoViewModel {
                 if response != nil {
                     self?.data.onNext(true)
                     let realmDraftOrder = response?.draftOrder.map { RealmDraftOrder(draftOrder: $0)}
-                   // print(realmDraftOrder?.id)
+                    // print(realmDraftOrder?.id)
                     self?.realmManger.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
-                    print(self?.realmManger.getAll(RealmDraftOrder.self).count)
+                    print(self?.realmManger.getAll(RealmDraftOrder.self).count ?? 0)
                 }
-             
+                
             }, onError: { error in
                 print("Error updating draft order: \(error)")
             })
             .disposed(by: disposeBag)
     }
     
+    func isProductInWishlist(completion: @escaping (Bool) -> Void) {
+        let draftOrderId = UserDefaultsManager.shared.getWishListIdFromUserDefaults()
+        let endpoint = APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId ?? "")
+        _ = network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
+            .subscribe(onNext: { (draftOrderWrapper: DraftOrderWrapper) in
+                if ((draftOrderWrapper.draftOrder!.lineItems!.contains(where: { $0.title == self.product?.title }))) {
+                    completion(true)
+                }
+                else { completion(false) }
+            }, onError: { error in
+                print(error)
+            })
+    }
+    
+    func removeProduct(completion: @escaping () -> ()) {
+        isLoading.accept(true)
+        
+        guard let draftOrderId = UserDefaultsManager.shared.getWishListIdFromUserDefaults() else { return }
+        
+        let endpoint = APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId)
+        
+        _ = network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
+            .flatMap { (data: DraftOrderWrapper) -> Observable<(Bool, String?, DraftOrderWrapper?)> in
+                var workingData = data
+                workingData.draftOrder?.lineItems?.removeAll(where: { lineItem in
+                    lineItem.title == self.product?.title
+                })
+                print("matched items: \(String(describing: workingData.draftOrder?.lineItems?.count))")
+                return self.network.put(url: NetworkConstants.baseURL, endpoint: endpoint, body: workingData, headers: nil, responseType: DraftOrderWrapper.self)
+            }
+            .flatMap { (success, response, updatedDraftOrder) -> Observable<DraftOrderWrapper> in
+                if success, let updatedDraftOrder = updatedDraftOrder {
+                    return Observable.just(updatedDraftOrder)
+                } else {
+                    return Observable.error(NSError(domain: "Update failed", code: 0, userInfo: [NSLocalizedDescriptionKey: response ?? "Unknown error"]))
+                }
+            }
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { updatedDraftOrder in
+                self.isLoading.accept(false)
+                print("removed and updated")
+                completion()
+            }, onError: { error in
+                print("Error removing product: \(error.localizedDescription)")
+            })
+            .disposed(by: disposeBag)
+    }
     
 }

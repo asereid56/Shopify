@@ -22,24 +22,33 @@ class SignUpViewController: UIViewController{
     }
     
     @IBAction func signupButton(_ sender: Any) {
-        viewModel?.validateEntries(passTxt: passwordTxt.text!, confirmPassTxt: confirmPasswordTxt.text!, firstNameTxt: firstNameTxt.text!, lastNameTxt: lastNameTxt.text!, emailTxt: emailTxt.text!, coordinator: MainCoordinator(navigationController: UINavigationController()), vc: self) { [weak self] success in
-            if success {
-                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
-                self?.coordinator?.gotoTab()
-                showToast(message: "Welcome back \(name ?? "")!", vc: self ?? UIViewController())
-            }
-            else {
-                showToast(message: "Something is real wrong", vc: self ?? UIViewController())
-            }
+        if checkInternetAndShowToast(vc: self) {
+            signup()
         }
     }
     
     
     @IBAction func signInTapped(_ sender: Any) {
-        coordinator?.goToLoginWithEmail()
+        coordinator?.goToLogin()
     }
     
     @IBAction func backTapped(_ sender: Any) {
         coordinator?.goBack()
+    }
+    
+    func signup() {
+        viewModel?.validateEntries(passTxt: passwordTxt.text!, confirmPassTxt: confirmPasswordTxt.text!, firstNameTxt: firstNameTxt.text!, lastNameTxt: lastNameTxt.text!, emailTxt: emailTxt.text!, coordinator: MainCoordinator(navigationController: UINavigationController()), vc: self) { [weak self] success in
+            if success {
+                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()?.capitalized
+                self?.coordinator?.gotoTab()
+                _ = showToast(message: "Welcome \(name ?? "")!", vc: self ?? UIViewController()) {
+                    let action1 = UIAlertAction(title: "Dismiss", style: .cancel)
+                    _ = showToast(title: "Email Verification Required", message: "Please note you must verify your email address to be able to use your cart", vc: self ?? UIViewController(), actions: [action1], style: .alert, selfDismiss: false)
+                }
+            }
+            else {
+                _ = showToast(message: "Something went wrong, try again", vc: self ?? UIViewController())
+            }
+        }
     }
 }

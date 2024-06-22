@@ -36,4 +36,13 @@ class UserDefaultsManager {
     func getLastNameFromUserDefaults() -> String? {
         UserDefaults.standard.string(forKey: "lastName")
     }
+    
+    func clearDefaults() {
+        UserDefaults.standard.setValue("", forKey: "customerId")
+        UserDefaults.standard.setValue("", forKey: "ordersId")
+        UserDefaults.standard.setValue("", forKey: "wishListId")
+        UserDefaults.standard.setValue("", forKey: "firstName")
+        UserDefaults.standard.setValue("", forKey: "lastName")
+        UserDefaults.standard.setValue("", forKey: "PRIMARY_ADDRESS_ID")
+    }
 }

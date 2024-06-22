@@ -8,7 +8,9 @@
 import UIKit
 import Cosmos
 import RxSwift
-class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
+import Firebase
+class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
+    @IBOutlet weak var wishlistButton: UIButton!
     var coordinator: MainCoordinator?
     var viewModel: ProductInfoViewModel?
     let disposeBag = DisposeBag()
@@ -22,28 +24,69 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     @IBOutlet weak var reviewsTableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    let images = ["second", "first", "third", "forth"]
     var imgs: [ProductImage?]?
     override func viewDidLoad() {
+        reviewsTableView.rowHeight = 140
+        print("USER STATUS: \(AuthenticationManager.shared.isUserLoggedIn())")
+        checkonUserDefaultsValues()
         super.viewDidLoad()
-        pageControl.layer.cornerRadius = 12
-        print(viewModel?.product?.id ?? "")
-        imgs = viewModel?.product?.images
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            checkWishlistStatus()
+        }
+        
         configureNib()
+        
+        if viewModel?.makeNetworkCall == true {
+            viewModel?.getProduct() { [weak self] in
+                guard let self = self else { return }
+                self.setProductInfo()
+                self.setupScrollView()
+                self.setupDropDownButton(self.colorButton, options: self.viewModel?.product?.options?[1]?.values ?? [])
+                self.setupDropDownButton(self.sizeButton, options: self.viewModel?.product?.options?[0]?.values ?? [])
+            }
+        } else {
+            setProductInfo()
+            setupDropDownButton(sizeButton, options: viewModel?.product?.options?[0]?.values ?? [])
+            setupDropDownButton(colorButton, options: viewModel?.product?.options?[1]?.values ?? [])
+        }
+        
+        bindViewModel()
         configureScrollView()
         setupScrollView()
-        setProductInfo()
-        setupDropDownButton(sizeButton, options: viewModel?.product?.options?[0]?.values ?? [])
-        setupDropDownButton(colorButton, options: viewModel?.product?.options?[1]?.values ?? [])
+        bindReviews()
+        viewModel?.getReviews()
+    }
+    
+    private func bindViewModel() {
         viewModel?.isLoading
-                    .bind(to: loadingIndicator.rx.isAnimating)
-                    .disposed(by: disposeBag)
+            .bind(to: loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
         
         viewModel?.isLoading
-                    .subscribe(onNext: { [weak self] isLoading in
-                        self?.loadingIndicator.isHidden = !isLoading
-                    })
-                    .disposed(by: disposeBag)
+            .map { !$0 }
+            .bind(to: loadingIndicator.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindReviews() {
+        viewModel?.reviewsData.bind(to: reviewsTableView.rx.items(cellIdentifier: "reviewCell", cellType: ReviewTableViewCell.self)) { index, item, cell in
+            cell.configure(item: item)
+        }.disposed(by: disposeBag)
+    }
+    
+    private func checkWishlistStatus() {
+        if checkInternetAndShowToast(vc: self) {
+            viewModel?.isProductInWishlist { [weak self] yes in
+                let imageName = yes ? "heart.fill" : "heart"
+                self?.wishlistButton.setImage(UIImage(systemName: imageName), for: .normal)
+            }
+        }
+    }
+    
+    private func cleanup() {
+        reviewsTableView.dataSource = nil
+        reviewsTableView.delegate = nil
+        scrollView.delegate = nil
     }
     
     func setupDropDownButton(_ button: UIButton, options: [String]) {
@@ -57,44 +100,19 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         button.menu = UIMenu(children: children)
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
-        //print(button.menu?.children.first?.title)
-        
     }
     
-    func update(number:String) {
+    func update(number: String) {
         print("\(number) selected")
     }
     
     func getVariantTitle() -> String {
         sizeButton.currentTitle! + " / " + colorButton.currentTitle!
-        //viewModel?.product
     }
-    
-    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
         pageControl.currentPage = Int(page)
-    }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.getReviews()?.count ?? 0
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reviewCell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as! ReviewTableViewCell
-        reviewCell.reviewerImage.image = UIImage(named: viewModel?.getReviews()?[indexPath.row].img ?? "")
-        reviewCell.reviewBody.text = viewModel?.getReviews()?[indexPath.row].reviewBody ?? ""
-        return reviewCell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        140
     }
     
     @IBAction func viewAll(_ sender: Any) {
@@ -102,27 +120,52 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     @IBAction func addToCart(_ sender: Any) {
-        
         print(getVariantTitle())
         let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
         print(variant ?? "")
-        
         viewModel?.fetchDraftOrder()
     }
     
     @IBAction func addToWishList(_ sender: Any) {
-        viewModel?.addToWishList(product: viewModel?.product, vc: self) { success in
-            if success {
-                showToast(message: "Product added to wishlist", vc: self)
+        if !AuthenticationManager.shared.isUserLoggedIn() {
+            
+            let action1 = UIAlertAction(title: "Cancel", style: .cancel)
+            let action2 = UIAlertAction(title: "Sign in", style: .default) { _ in
+                self.coordinator?.goToLogin()
             }
-            else {
-                showToast(message: "Product already exists in wishlist", vc: self)
+            _ = showToast(message: "You must be signed in to add to your wishlist", vc: self, actions: [action1, action2], style: .alert, selfDismiss: false)
+        } else {
+            addToWishlist()
+        }
+    }
+    func addToWishlist() {
+        if checkInternetAndShowToast(vc: self) {
+            viewModel?.isProductInWishlist { yes in
+                if yes {
+                    let action1 = UIAlertAction(title: "Cancel", style: .default)
+                    let action2 = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                        self.viewModel?.removeProduct {
+                            self.wishlistButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                            _ = showToast(message: "Product removed from wishlist", vc: self)
+                        }
+                    }
+                    _ = showToast(message: "Are you sure you want to remove this product from your wishlist?", vc: self, actions: [action1, action2], style: .alert, selfDismiss: false)
+                } else {
+                    self.viewModel?.addToWishList(product: self.viewModel?.product, vc: self) { success in
+                        if success {
+                            _ = showToast(message: "Product added to wishlist", vc: self)
+                            self.wishlistButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                        } else {
+                            _ = showToast(message: "Failed to add to wishlist", vc: self)
+                        }
+                    }
+                }
             }
         }
     }
     
-    
     @IBAction func backTapped(_ sender: Any) {
+        cleanup()
         coordinator?.goBack()
     }
     
@@ -132,10 +175,6 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     func configureScrollView() {
-//        mainScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height+680)
-        reviewsTableView.frame.size.height = 420
-        reviewsTableView.delegate = self
-        reviewsTableView.dataSource = self
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -148,7 +187,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     
     func setupScrollView() {
         scrollView.subviews.forEach { $0.removeFromSuperview() }
-        
+        pageControl.layer.cornerRadius = 12
         let scrollViewWidth = scrollView.frame.size.width
         let scrollViewHeight = scrollView.frame.size.height
         
@@ -170,7 +209,9 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
         let offset = CGPoint(x: CGFloat(currentPage) * scrollViewWidth, y: 0)
         scrollView.setContentOffset(offset, animated: true)
     }
-    func setProductInfo(){
+    
+    func setProductInfo() {
+        self.imgs = self.viewModel?.product?.images
         productName.text = viewModel?.product?.title
         productPrice.text =  CurrencyService.calculatePriceAccordingToCurrency(price: String(viewModel?.product?.variants?.first??.price ?? "0"))
         descriptionTxt.text = viewModel?.product?.bodyHTML

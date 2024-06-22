@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 import Cosmos
 class ReviewTableViewCell: UITableViewCell {
 
@@ -13,6 +14,13 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var reviewerImage: UIImageView!
+    
+    var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         reviewerImage.layer.cornerRadius = reviewerImage.frame.size.width / 2
@@ -26,6 +34,12 @@ class ReviewTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configure(item: Review) {
+        reviewBody.text = item.reviewBody
+        rating.rating = item.rating ?? 4
+        reviewerImage.image = UIImage(named: item.img ?? "placeholder")
     }
     
 }
