@@ -27,6 +27,9 @@ enum APIEndpoint: String {
     case ordersByCustomer = "/orders.json?customer_id={customer_id}"
     case currencyRate = "?apikey={apikey}&currencies={currencies}&base_currency={base_currency}"
     case createOrder = "/orders.json"
+    case validateDiscount = "/discount_codes/lookup.json?code={discount_code}"
+    case priceRule = "/price_rules/{price_rule_id}.json"
+    case allPriceRules = "/price_rules.json"
 }
 
 enum NetworkError: Error {
@@ -116,35 +119,6 @@ class NetworkService: NetworkServiceProtocol {
             }
         }
     }
-    //Generic function to put data
-//    func put<T: Codable>(url: String = NetworkConstants.baseURL, endpoint: String, body: T, headers: HTTPHeaders? = nil) -> Observable<(HTTPURLResponse, Data)> {
-//        let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
-//        print(completeURL)
-//        do {
-//            let jsonData = try JSONEncoder().encode(body)
-//            return Observable.create { observer in
-//                var request = URLRequest(url: URL(string: completeURL)!)
-//                request.httpMethod = HTTPMethod.put.rawValue
-//                request.headers = combinedHeaders
-//                request.httpBody = jsonData
-//
-//                let disposable = RxAlamofire.request(request)
-//                    .responseData()
-//                    .subscribe(onNext: { (response, data) in
-//                        observer.onNext((response , data))
-//                        observer.onCompleted()
-//                    }, onError: { error in
-//                        observer.onError(error)
-//                    })
-//
-//                return Disposables.create {
-//                    disposable.dispose()
-//                }
-//            }
-//        } catch {
-//            return Observable.error(error)
-//        }
-//    }
     func put<T: Encodable, U: Decodable>(url: String = NetworkConstants.baseURL, endpoint: String, body: T, headers: HTTPHeaders? = nil, responseType: U.Type) -> Observable<(Bool, String?, U?)> {
         let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
         print(completeURL)

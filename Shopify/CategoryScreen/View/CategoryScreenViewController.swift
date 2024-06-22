@@ -59,6 +59,7 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             emptyImg.isHidden = false
             activityIndicator.isHidden = false
             noInternetImg.isHidden = true
+            searchBar.isHidden = false
         }else {
             noInternetImg.isHidden = false
             categoryCollectionView.isHidden = true
@@ -66,6 +67,7 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             categoryBtn.isHidden = true
             emptyImg.isHidden = true
             activityIndicator.isHidden = true
+            searchBar.isHidden = true
         }
         
     }

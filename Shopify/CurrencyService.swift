@@ -41,9 +41,10 @@ class CurrencyService : CurrencyServiceProtocol{
         case Constant.EGP:
             let priceValue = Double(price) ?? 0.0
             let rateValue = rate ?? 0.0
-            return String(format: "EGP %.2f", priceValue * rateValue)
+            return String(format: "EGP %.2f", abs(priceValue * rateValue))
         case Constant.USD:
-            return "$\(price)"
+            let priceValue = abs(Double(price) ?? 0.0)
+            return "$\(priceValue)"
         default:
             return "0.0"
         }

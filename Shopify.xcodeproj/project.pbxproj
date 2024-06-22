@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181B77582C23C05E00A9D683 /* Discount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B77572C23C05E00A9D683 /* Discount.swift */; };
+		181B775A2C23C35300A9D683 /* PriceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B77592C23C35300A9D683 /* PriceRule.swift */; };
 		182772C02C1E6B75007428C0 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182772BF2C1E6B75007428C0 /* Order.swift */; };
 		182772C42C1E7303007428C0 /* OrderConfirmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182772C32C1E7303007428C0 /* OrderConfirmedViewController.swift */; };
 		1829BFB62C0E8AC3004FA5D4 /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829BFB52C0E8AC3004FA5D4 /* AddressesViewController.swift */; };
@@ -140,6 +142,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		181B77572C23C05E00A9D683 /* Discount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discount.swift; sourceTree = "<group>"; };
+		181B77592C23C35300A9D683 /* PriceRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRule.swift; sourceTree = "<group>"; };
 		182772BF2C1E6B75007428C0 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		182772C32C1E7303007428C0 /* OrderConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmedViewController.swift; sourceTree = "<group>"; };
 		1829BFB52C0E8AC3004FA5D4 /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
@@ -285,22 +289,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		182772C12C1E72D2007428C0 /* Order */ = {
-			isa = PBXGroup;
-			children = (
-				182772C22C1E72E8007428C0 /* View */,
-			);
-			path = Order;
-			sourceTree = "<group>";
-		};
-		182772C22C1E72E8007428C0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				182772C32C1E7303007428C0 /* OrderConfirmedViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		1829BFB22C0E8A76004FA5D4 /* Address */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,6 +747,7 @@
 		4A1FA6582C20CD8500560786 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				182772C32C1E7303007428C0 /* OrderConfirmedViewController.swift */,
 				4A1FA65A2C20CDAD00560786 /* OrdersScreenViewController.swift */,
 			);
 			path = View;
@@ -830,6 +819,8 @@
 				186303CB2C1ADCD900A33B58 /* Currency.swift */,
 				182772BF2C1E6B75007428C0 /* Order.swift */,
 				187029C72C1FF310004AF09B /* RealmDraftOrder.swift */,
+				181B77572C23C05E00A9D683 /* Discount.swift */,
+				181B77592C23C35300A9D683 /* PriceRule.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -944,7 +935,6 @@
 				4A1FA6572C20CD7C00560786 /* Orders */,
 				390BD40B2C1EF632007D4609 /* Profile */,
 				4AC7C50D2C1C875C00031AAF /* OnBoarding */,
-				182772C12C1E72D2007428C0 /* Order */,
 				18F0AC252C1CA98900BDE7C0 /* Payment */,
 				395870872C10DDAF00016FA0 /* Authentication */,
 				397B604A2C18751A00ED6BAF /* WishList */,
@@ -1274,9 +1264,11 @@
 				391098DE2C1355C1005CEE7B /* ReviewsViewController.swift in Sources */,
 				18FEA7322C13866500F16304 /* AddressesViewModel.swift in Sources */,
 				4AD192F42C0CF73400EF34D0 /* Constant.swift in Sources */,
+				181B77582C23C05E00A9D683 /* Discount.swift in Sources */,
 				4AC7C5142C1C87C700031AAF /* OnBoardingThreeViewController.swift in Sources */,
 				397FAC322C13537B005499BA /* ProductCollectionXIBCell.swift in Sources */,
 				1866D80B2C14AF3F00E7C47C /* Country.swift in Sources */,
+				181B775A2C23C35300A9D683 /* PriceRule.swift in Sources */,
 				187029C62C1FF237004AF09B /* RealmManager.swift in Sources */,
 				1851C0CE2C165DED00849BB6 /* ShoppingCartViewController.swift in Sources */,
 				4A5FF77A2C20F1F10050756D /* OrderDetailsViewController.swift in Sources */,

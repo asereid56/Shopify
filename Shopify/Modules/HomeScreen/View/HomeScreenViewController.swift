@@ -18,12 +18,13 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var noInternetImage: UIImageView!
     @IBOutlet weak var chooseBrandTxt: UILabel!
+
     
     
     var viewModel : HomeScreenViewModelProtocol?
     private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
-    var adsArray : [AdsItems] = []
+    var homeScreenSource : String?
     
     var timer : Timer?
     
@@ -34,14 +35,6 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         self.navigationController?.setNavigationBarHidden(true, animated: false);
         let nib = UINib(nibName: "BrandsCollectionXIBCell", bundle: nil)
         brandsCollection.register(nib, forCellWithReuseIdentifier: "brandCell")
-        adsArray = [
-            AdsItems(image: "addidasAds"),
-            AdsItems(image: "pumaAds"),
-            AdsItems(image: "nikaAds"),
-            AdsItems(image: "reebokAds"),
-            AdsItems(image: "filaAds")
-        ]
-        
         configurePageController()
         startAutoScrollingToAdsCollection()
         
@@ -50,6 +43,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         
         selectBrandToNavigate()
         viewModel?.fetchCurrencyRate()
+        if homeScreenSource == "PAYMENT" {showErrorAlert()}
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +62,9 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             activityIndicator.isHidden = false
             adsCollection.isHidden = false
             brandsCollection.isHidden = false
+            searchBar.isHidden = false
             viewModel?.fetchBranchs()
+            viewModel?.fetchCoupons()
             setUpBrandsBinding()
             setUpAdsBinding()
         }else {
@@ -77,6 +73,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             chooseBrandTxt.isHidden = true
             activityIndicator.isHidden = true
             noInternetImage.isHidden = false
+            searchBar.isHidden = true
         }
     }
     
@@ -86,17 +83,41 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         }
     }
     
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Failed!", message: "Something went wrong while placing order", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(ok)
+        self.present(alert, animated: true)
+    }
+    
     func setUpAdsBinding() {
-        Observable.just(adsArray)
+        viewModel?.adsArray
             .bind(to: adsCollection.rx.items(cellIdentifier: "adsCell", cellType: AdsCollectionCell.self)) { index, adsItem, cell in
-                
                 cell.adsImage.image = UIImage(named: adsItem.image)
+                cell.couponImage.image = UIImage(named: (self.viewModel?.getCoupons()[index].title)!)
                 cell.layer.cornerRadius = 15
                 cell.layer.masksToBounds = true
+                cell.circularView.layer.cornerRadius = cell.circularView.frame.size.width / 2
+                cell.circularView.clipsToBounds = true
             }
             .disposed(by: disposeBag)
         
+        adsCollection.rx.modelSelected(AdsItems.self)
+            .subscribe(onNext: { [weak self] adsItem in
+                guard let indexPath = self?.adsCollection.indexPathsForSelectedItems?.first else {
+                    return
+                }
+                UIPasteboard.general.string = self?.viewModel?.getCoupons()[indexPath.row].title.replacingOccurrences(of: "%", with: "%25")
+                let alert = UIAlertController(title: nil, message: "Congratulations! Your discount code has been copied to the clipboard.", preferredStyle: .actionSheet)
+                self?.present(alert, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    alert.dismiss(animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
+        
     }
+    
     
     func setUpBrandsBinding() {
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
@@ -137,7 +158,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     func configurePageController(){
-        self.pageController.numberOfPages = self.adsArray.count
+        self.pageController.numberOfPages = self.viewModel?.getAdsArrCount() ?? 0
         self.pageController.currentPage = 0
         self.pageController.layer.cornerRadius = 12
         self.pageController.addTarget(self, action: #selector(pageControllerTapped), for: .valueChanged)
@@ -156,7 +177,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         let items = adsCollection.indexPathsForVisibleItems.sorted()
         guard let currentIndexPath = items.first else { return }
         
-        let nextItem = (currentIndexPath.item + 1) % adsArray.count
+        let nextItem = (currentIndexPath.item + 1) % (viewModel?.getAdsArrCount() ?? 0)
         let nextIndexPath = IndexPath(item: nextItem, section: 0)
         
         adsCollection.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)

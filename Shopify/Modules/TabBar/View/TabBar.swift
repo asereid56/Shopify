@@ -11,6 +11,7 @@ import UIKit
 class TabBar : UITabBarController , Storyboarded {
     
     var coordinator : MainCoordinator?
+    var homeScreenSource : String?
     
     override func viewDidLoad() {
         
@@ -22,6 +23,7 @@ class TabBar : UITabBarController , Storyboarded {
         let profileScreen = storyboard.instantiateViewController(identifier: "profileViewController") as! ProfileViewController
         
         homeScreen.coordinator = coordinator
+        homeScreen.homeScreenSource = homeScreenSource
         categoryScreen.coordinator = coordinator
         profileScreen.coordinator = coordinator
         

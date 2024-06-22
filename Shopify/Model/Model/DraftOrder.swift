@@ -133,7 +133,7 @@ struct AppliedDiscount: Codable {
 }
 
 struct DraftOrder: Codable {
-    let id: Int? = nil
+    var id: Int?
     var note: String?
     var email: String?
     var taxesIncluded: Bool? = nil

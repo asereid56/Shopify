@@ -21,6 +21,7 @@ class ProductInfoViewModel {
     var endpoint : String?
     var data = PublishSubject<Bool>()
     var reviewsData = PublishSubject<[Review]>()
+    var addToCart = PublishSubject<Bool>()
     var reviews: [Review]?
     var product: Product?
     var wishlistItems: [LineItem]?
@@ -103,6 +104,7 @@ class ProductInfoViewModel {
     }
     
     func fetchDraftOrder(){
+        isLoading.accept(true)
         network.get(url: NetworkConstants.baseURL, endpoint: endpoint!, parameters: nil, headers: nil).subscribe {[weak self] (draftOrderWrapper : DraftOrderWrapper) in
             self?.draftOrder = draftOrderWrapper.draftOrder
             let variant = self?.product?.variants![0]
@@ -116,7 +118,8 @@ class ProductInfoViewModel {
         let lineItems = draftOrder?.lineItems
         for lineItem in lineItems ?? [] {
             if lineItem.variantId == variant.id {
-                data.onNext(false)
+                addToCart.onNext(false)
+                self.isLoading.accept(false)
                 return
             }
         }
@@ -128,11 +131,13 @@ class ProductInfoViewModel {
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { [weak self] (success, message, response) in
                 if response != nil {
-                    self?.data.onNext(true)
+                    self?.addToCart.onNext(true)
+                    self?.isLoading.accept(false)
                     let realmDraftOrder = response?.draftOrder.map { RealmDraftOrder(draftOrder: $0)}
                     // print(realmDraftOrder?.id)
                     self?.realmManger.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
                     print(self?.realmManger.getAll(RealmDraftOrder.self).count ?? 0)
+                    self?.realmManger.deleteAllThenAdd(realmDraftOrder!, RealmDraftOrder.self)
                 }
                 
             }, onError: { error in
