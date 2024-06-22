@@ -144,7 +144,11 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
     
     @IBAction func cartBtn(_ sender: Any) {
         if AuthenticationManager.shared.isUserLoggedIn() {
-            coordinator?.goToShoppingCart()
+            isEmailVerified(vc: self) { [weak self] isVerified in
+                if isVerified {
+                    self?.coordinator?.goToShoppingCart()
+                }
+            }
         }else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }

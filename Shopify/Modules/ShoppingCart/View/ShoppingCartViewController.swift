@@ -90,7 +90,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                         guard let currentQuantity = Int(cell.productQuantity.text!) else { return }
                         if checkInternetAndShowToast(vc: self!)  {
 //                            self?.viewModel?.isSoldOut(inventoryQuantity: inventoryQuantity, productQuantity: currentQuantity) ?? false
-                            if currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)){
+                            if  currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)){
                                 self?.notAvailableAlert(title: "Product is not available!")
                             } else {
                                 self?.total.text =  CurrencyService.calculatePriceAccordingToCurrency(price:self?.viewModel?.calcTotalPrice(operation: "+", at: row + 1) ?? "0.0")

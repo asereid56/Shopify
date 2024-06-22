@@ -136,8 +136,13 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func addToCart(_ sender: Any) {
         if checkInternetAndShowToast(vc: self){
             if AuthenticationManager.shared.isUserLoggedIn() {
-                _ = viewModel?.getSelectedVariant(title: getVariantTitle())
-                viewModel?.fetchDraftOrder()
+                isEmailVerified(vc: self) { [weak self] isVerified in
+                    if isVerified {
+                        _ = self?.viewModel?.getSelectedVariant(title: (self?.getVariantTitle())!)
+                        self?.viewModel?.fetchDraftOrder()
+                    }
+                }
+              
             }else{
                 showAlertForNotUser(vc: self, coordinator: coordinator!)
             }

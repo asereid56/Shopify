@@ -107,12 +107,17 @@ class HomeScreenViewController: UIViewController , Storyboarded {
                 guard let indexPath = self?.adsCollection.indexPathsForSelectedItems?.first else {
                     return
                 }
-                UIPasteboard.general.string = self?.viewModel?.getCoupons()[indexPath.row].title.replacingOccurrences(of: "%", with: "%25")
-                let alert = UIAlertController(title: nil, message: "Congratulations! Your discount code has been copied to the clipboard.", preferredStyle: .actionSheet)
-                self?.present(alert, animated: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    alert.dismiss(animated: true)
+                isEmailVerified(vc: self!) { [weak self] isVerified in
+                    if isVerified {
+                        UIPasteboard.general.string = self?.viewModel?.getCoupons()[indexPath.row].title.replacingOccurrences(of: "%", with: "%25")
+                        let alert = UIAlertController(title: nil, message: "Congratulations! Your discount code has been copied to the clipboard.", preferredStyle: .actionSheet)
+                        self?.present(alert, animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            alert.dismiss(animated: true)
+                        }
+                    }
                 }
+                
             })
             .disposed(by: disposeBag)
         
@@ -228,7 +233,11 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     @IBAction func cartBtn(_ sender: Any) {
         if AuthenticationManager.shared.isUserLoggedIn() {
-            coordinator?.goToShoppingCart()
+            isEmailVerified(vc: self) { [weak self] isVerified in
+                if isVerified {
+                    self?.coordinator?.goToShoppingCart()
+                }
+            }
         }else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }

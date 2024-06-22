@@ -220,7 +220,8 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
             return (false,"Shopping cart is empty!")
         }
         for index in 1..<lineItems!.count{
-            if lineItems![index].quantity! >  max(1 , Int(0.3 * Double(lineItems![index].properties![1].value ?? "")!)){
+            let inventoryQuantity = Double(lineItems![index].properties![1].value ?? "")!
+            if inventoryQuantity <= 0 || lineItems![index].quantity! >  max(1 , Int(0.3 * inventoryQuantity)){
                 return (false,"Oops! Some items in your cart are sold out. Please decrement or remove them.")
             }
         }
