@@ -24,11 +24,9 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
     let currencyService : CurrencyServiceProtocol
     private let disposeBag = DisposeBag()
     private let network : NetworkServiceProtocol
-    private let dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
+    var dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
     var dataFetchCompleted = PublishRelay<Void>()
     var isLoading = BehaviorRelay<Bool>(value: false)
-    private let network : NetworkService
-    var dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
     var searchTextSubject = PublishSubject<String>()
     
     init(currencyService: CurrencyServiceProtocol, network: NetworkService) {

@@ -72,10 +72,10 @@ func formateTheDate(date : String) -> String{
 
 
 func showAlertForNotUser(vc : UIViewController , coordinator : MainCoordinator){
-    let alert = UIAlertController(title: "Please Login First!", message: "", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Access Restricted", message: "You must be signed in", preferredStyle: .alert)
     
-    let ok = UIAlertAction(title: "Ok", style: .default) { action in
-        coordinator.goToMainLogin()
+    let ok = UIAlertAction(title: "Sign in", style: .default) { action in
+        coordinator.goToLogin()
     }
     let cancel = UIAlertAction(title: "Cancel", style: .cancel)
     
