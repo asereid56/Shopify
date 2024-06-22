@@ -33,6 +33,11 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
         setUpIndicator()
     }
     override func viewWillAppear(_ animated: Bool) {
+        if isInternetAvailable() {
+            viewModel?.fetchCartItems()
+        }else{
+            viewModel?.fetchCartItemsFromRealm()
+        }
         tableView.dataSource = nil
         bindTableView()
     }
@@ -84,7 +89,8 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                     .subscribe(onNext: {
                         guard let currentQuantity = Int(cell.productQuantity.text!) else { return }
                         if checkInternetAndShowToast(vc: self!)  {
-                            if self?.viewModel?.isSoldOut(inventoryQuantity: inventoryQuantity, productQuantity: currentQuantity) ?? false/*currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity))*/ {
+//                            self?.viewModel?.isSoldOut(inventoryQuantity: inventoryQuantity, productQuantity: currentQuantity) ?? false
+                            if currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)){
                                 self?.notAvailableAlert(title: "Product is not available!")
                             } else {
                                 self?.total.text =  CurrencyService.calculatePriceAccordingToCurrency(price:self?.viewModel?.calcTotalPrice(operation: "+", at: row + 1) ?? "0.0")
@@ -121,11 +127,11 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
     
     func setConfirmationAlert(index : Int){
         let alert = UIAlertController(title: "Confirmation Required", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
-        let btnOk = UIAlertAction(title: "Ok", style: .default) { action in self.viewModel?.deleteItem(at: index)
+        let btnOk = UIAlertAction(title: "Delete", style: .destructive) { action in self.viewModel?.deleteItem(at: index)
         }
-        let btnCancel = UIAlertAction(title: "Cancel", style: .destructive)
-        alert.addAction(btnOk)
+        let btnCancel = UIAlertAction(title: "Cancel", style: .default)
         alert.addAction(btnCancel)
+        alert.addAction(btnOk)
         self.present(alert, animated: true)
     }
     

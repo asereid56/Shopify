@@ -49,6 +49,8 @@ class NewAddressViewController: UIViewController ,Storyboarded {
         
     }
     private func setupUI() {
+        firstName.text = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
+        lastName.text = UserDefaultsManager.shared.getLastNameFromUserDefaults()
         country.placeholder = "Select Country"
         city.placeholder = "Select City"
         city.isEnabled = false

@@ -120,7 +120,7 @@ class AddressesViewController: UIViewController ,Storyboarded {
     
     func setConfirmationAlert(indexPath : IndexPath){
         let alert = UIAlertController(title: "Confirmation Required", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
-        let btnOk = UIAlertAction(title: "Ok", style: .default) { action in
+        let btnOk = UIAlertAction(title: "Delete", style: .destructive) { action in
             let isDeleted = self.viewModel?.deleteItem(at: indexPath.row)
             if isDeleted == false {
                 let alert = UIAlertController(title: "Can't Delete Default Address",
@@ -131,9 +131,10 @@ class AddressesViewController: UIViewController ,Storyboarded {
                 }
             }
         }
-        let btnCancel = UIAlertAction(title: "Cancel", style: .destructive)
-        alert.addAction(btnOk)
+        let btnCancel = UIAlertAction(title: "Cancel", style: .default)
         alert.addAction(btnCancel)
+        alert.addAction(btnOk)
+
         self.present(alert, animated: true)
     }
     

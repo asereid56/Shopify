@@ -653,7 +653,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Okm-oh-ok9">
-                                                            <rect key="frame" x="321" y="31.000000000000004" width="24" height="25.333333333333339"/>
+                                                            <rect key="frame" x="321" y="31.000000000000007" width="24" height="25.333333333333336"/>
                                                             <color key="tintColor" red="0.29019607843137252" green="0.7803921568627451" blue="0.42745098039215684" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="2Fe-al-ggG"/>
@@ -1348,7 +1348,7 @@ Electronic City</string>
                                             <constraint firstAttribute="height" constant="16" id="Vqk-HP-79W"/>
                                             <constraint firstAttribute="width" constant="16" id="Yba-Gf-XeA"/>
                                         </constraints>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay" translatesAutoresizingMaskIntoConstraints="NO" id="hRz-cg-2gO">
                                         <rect key="frame" x="0.0" y="35.666666666666657" width="65" height="65"/>

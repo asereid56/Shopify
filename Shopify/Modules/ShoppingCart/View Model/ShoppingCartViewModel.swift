@@ -240,10 +240,10 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
         switch operation {
         case "+":
             currentTotalPrice += Double(lineItems?[index].price ?? "0") ?? 0.0
-            return String(currentTotalPrice)
+            return String(format: "%.2f", currentTotalPrice)
         default:
             currentTotalPrice -= Double(lineItems?[index].price ?? "0") ?? 0.0
-            return String(currentTotalPrice)
+            return String(format: "%.2f", currentTotalPrice)
         }
     }
 }

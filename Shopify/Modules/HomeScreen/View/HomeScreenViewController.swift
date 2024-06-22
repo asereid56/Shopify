@@ -60,6 +60,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             activityIndicator.isHidden = false
             adsCollection.isHidden = false
             brandsCollection.isHidden = false
+            searchBar.isHidden = false
             viewModel?.fetchBranchs()
             viewModel?.fetchCoupons()
             setUpBrandsBinding()
@@ -70,6 +71,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             chooseBrandTxt.isHidden = true
             activityIndicator.isHidden = true
             noInternetImage.isHidden = false
+            searchBar.isHidden = true
         }
         
     }
