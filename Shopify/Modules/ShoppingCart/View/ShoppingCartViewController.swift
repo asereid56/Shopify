@@ -75,27 +75,23 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                 
                 
                 cell.deleteAction = {
-                    if isInternetAvailable() {
+                    if checkInternetAndShowToast(vc: self!) {
                         self?.setConfirmationAlert(index: row + 1)
-                    }else{
-                        self?.notAvailableAlert(title: "No Internet connection!")
                     }
                 }
                 
                 cell.plusBtnTapped
                     .subscribe(onNext: {
                         guard let currentQuantity = Int(cell.productQuantity.text!) else { return }
-                        if isInternetAvailable() {
-                            if currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)) {
-                                self?.notAvailableAlert(title: "Sold out!")
+                        if checkInternetAndShowToast(vc: self!)  {
+                            if self?.viewModel?.isSoldOut(inventoryQuantity: inventoryQuantity, productQuantity: currentQuantity) ?? false/*currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity))*/ {
+                                self?.notAvailableAlert(title: "Product is not available!")
                             } else {
                                 self?.total.text =  CurrencyService.calculatePriceAccordingToCurrency(price:self?.viewModel?.calcTotalPrice(operation: "+", at: row + 1) ?? "0.0")
                                 
                                 cell.updateQuantity(currentQuantity + 1)
                                 self?.viewModel?.plusAction.onNext((row +  1, currentQuantity, inventoryQuantity ))
                             }
-                        }else{
-                            self?.notAvailableAlert(title: "No Internet connection!")
                         }
                         
                         
@@ -104,13 +100,11 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                 
                 cell.minusBtnTapped
                     .subscribe(onNext: {
-                        if isInternetAvailable() {
+                        if checkInternetAndShowToast(vc: self!) {
                             guard let currentQuantity = Int(cell.productQuantity.text!), currentQuantity > 1 else { return }
                             cell.updateQuantity(currentQuantity - 1)
                             self?.viewModel?.minusAction.onNext((row +  1, currentQuantity))
                             self?.total.text =  CurrencyService.calculatePriceAccordingToCurrency(price:self?.viewModel?.calcTotalPrice(operation: "-", at: row + 1) ?? "0.0")
-                        }else{
-                            self?.notAvailableAlert(title: "No Internet connection!")
                         }
                     })
                     .disposed(by: cell.disposeBag)
@@ -145,14 +139,12 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
     }
     
     @IBAction func btnCheckout(_ sender: Any) {
-        if isInternetAvailable() {
+        if checkInternetAndShowToast(vc: self) {
             if viewModel?.canCheckOut().0 ?? false{
                 coordinator?.goToPayment(draftOrder: (viewModel?.getDratOrder())!)
             }else{
                 notAvailableAlert(title: viewModel?.canCheckOut().1 ?? "")
             }
-        }else{
-            self.notAvailableAlert(title: "No Internet connection!")
         }
     }
     

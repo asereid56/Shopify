@@ -25,7 +25,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     var viewModel : HomeScreenViewModelProtocol?
     private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
-    var adsArray : [AdsItems] = []
+    var homeScreenSource : String?
     
     var timer : Timer?
     
@@ -35,14 +35,6 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         let nib = UINib(nibName: "BrandsCollectionXIBCell", bundle: nil)
         brandsCollection.register(nib, forCellWithReuseIdentifier: "brandCell")
 
-        adsArray = [
-            AdsItems(image: "addidasAds"),
-            AdsItems(image: "pumaAds"),
-            AdsItems(image: "nikaAds"),
-            AdsItems(image: "reebokAds"),
-            //AdsItems(image: "filaAds")
-        ]
-        
         configurePageController()
         startAutoScrollingToAdsCollection()
         
@@ -51,6 +43,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         
         selectBrandToNavigate()
         viewModel?.fetchCurrencyRate()
+        if homeScreenSource == "PAYMENT" {showErrorAlert()}
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +61,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             adsCollection.isHidden = false
             brandsCollection.isHidden = false
             viewModel?.fetchBranchs()
+            viewModel?.fetchCoupons()
             setUpBrandsBinding()
             setUpAdsBinding()
         }else {
@@ -78,6 +72,13 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             noInternetImage.isHidden = false
         }
         
+    }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Failed!", message: "Something went wrong while placing order", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(ok)
+        self.present(alert, animated: true)
     }
     
     func setUpAdsBinding() {
@@ -146,7 +147,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     func configurePageController(){
-        self.pageController.numberOfPages = self.adsArray.count
+        self.pageController.numberOfPages = self.viewModel?.getAdsArrCount() ?? 0
         self.pageController.currentPage = 0
         self.pageController.layer.cornerRadius = 12
         self.pageController.addTarget(self, action: #selector(pageControllerTapped), for: .valueChanged)
@@ -165,7 +166,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         let items = adsCollection.indexPathsForVisibleItems.sorted()
         guard let currentIndexPath = items.first else { return }
         
-        let nextItem = (currentIndexPath.item + 1) % adsArray.count
+        let nextItem = (currentIndexPath.item + 1) % (viewModel?.getAdsArrCount() ?? 0)
         let nextIndexPath = IndexPath(item: nextItem, section: 0)
         
         adsCollection.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)

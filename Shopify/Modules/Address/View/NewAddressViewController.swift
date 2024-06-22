@@ -85,42 +85,44 @@ class NewAddressViewController: UIViewController ,Storyboarded {
     
     
     @IBAction func btnSave(_ sender: Any) {
-        if (firstName.text?.isEmpty ?? true) ||
-            (lastName.text?.isEmpty ?? true) ||
-            (country.text?.isEmpty ?? true) ||
-            (city.text?.isEmpty ?? true) ||
-            (phone.text?.isEmpty ?? true) ||
-            (address.text?.isEmpty ?? true) {
-            // Handle Validation
-            setValidationAlert(message: "All fields are required")
-        }else if !validatePhoneNumber(phoneNumber: phone.text ?? ""){
-            setValidationAlert(message: "Invalid phone number")
-        }
-        else {
-            let newAddress = Address(firstName: firstName.text, lastName: lastName.text, address1: address.text,  city: city.text, country: country.text, phone: phone.text, default: isPrimary.isOn)
-            if (viewModel?.address) != nil{
-                
-                viewModel?.updateAddress(address: newAddress)
-                viewModel?.putAddress
-                    .subscribe(onNext: { [weak self] (success, message, response) in
-                        if success {
-                            self?.coordinator?.goBack()
-                        } else {
-                            self?.setErrorMessageAlert()
-                        }
-                    })
-                    .disposed(by: disposeBag)
-            }else{
-                viewModel?.addNewAddress(address: newAddress)
-                viewModel?.postAddress
-                    .subscribe(onNext: { [weak self] (success, message, response) in
-                        if success {
-                            self?.coordinator?.goBack()
-                        } else {
-                            self?.setErrorMessageAlert()
-                        }
-                    })
-                    .disposed(by: disposeBag)
+        if checkInternetAndShowToast(vc: self) {
+            if (firstName.text?.isEmpty ?? true) ||
+                (lastName.text?.isEmpty ?? true) ||
+                (country.text?.isEmpty ?? true) ||
+                (city.text?.isEmpty ?? true) ||
+                (phone.text?.isEmpty ?? true) ||
+                (address.text?.isEmpty ?? true) {
+                // Handle Validation
+                setValidationAlert(message: "All fields are required")
+            }else if !validatePhoneNumber(phoneNumber: phone.text ?? ""){
+                setValidationAlert(message: "Invalid phone number")
+            }
+            else {
+                let newAddress = Address(firstName: firstName.text, lastName: lastName.text, address1: address.text,  city: city.text, country: country.text, phone: phone.text, default: isPrimary.isOn)
+                if (viewModel?.address) != nil{
+                    
+                    viewModel?.updateAddress(address: newAddress)
+                    viewModel?.putAddress
+                        .subscribe(onNext: { [weak self] (success, message, response) in
+                            if success {
+                                self?.coordinator?.goBack()
+                            } else {
+                                self?.setErrorMessageAlert()
+                            }
+                        })
+                        .disposed(by: disposeBag)
+                }else{
+                    viewModel?.addNewAddress(address: newAddress)
+                    viewModel?.postAddress
+                        .subscribe(onNext: { [weak self] (success, message, response) in
+                            if success {
+                                self?.coordinator?.goBack()
+                            } else {
+                                self?.setErrorMessageAlert()
+                            }
+                        })
+                        .disposed(by: disposeBag)
+                }
             }
         }
     }

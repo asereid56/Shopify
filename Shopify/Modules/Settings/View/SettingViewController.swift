@@ -31,7 +31,9 @@ class SettingViewController: UIViewController, Storyboarded {
     
     @IBAction func goToAddresses(_ sender: Any) {
         if AuthenticationManager.shared.isUserLoggedIn(){
-            coordinator?.goToAddresses()
+            if checkInternetAndShowToast(vc: self) {
+                coordinator?.goToAddresses()
+            }
         }else{
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }

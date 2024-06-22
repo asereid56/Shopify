@@ -146,7 +146,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     }
     
     func isSoldOut(inventoryQuantity : Int , productQuantity: Int) -> Bool{
-        if  productQuantity > max(1, Int(0.3 * Double(inventoryQuantity))){
+        if inventoryQuantity <= 0 ||  productQuantity > max(1, Int(0.3 * Double(inventoryQuantity))){
             return true
         }
         return false

@@ -12,12 +12,13 @@ import RxSwift
 protocol HomeScreenViewModelProtocol {
     var data : Driver<[SmartCollection]>{ get }
     var adsArray : BehaviorRelay<[AdsItems]> {get}
-   // var coupons : PublishSubject<[PriceRule]> {get}
     var isLoading : BehaviorRelay<Bool>{ get }
     var dataFetchCompleted: PublishRelay<Void> { get }
     func getCoupons() -> [PriceRule]
     func fetchBranchs()
+    func fetchCoupons() 
     func fetchCurrencyRate()
+    func getAdsArrCount() -> Int
 }
 
 
@@ -26,7 +27,13 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
     private let disposeBag = DisposeBag()
     private let network : NetworkServiceProtocol
     private let dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
-
+    let adsArr = [
+        //AdsItems(image: "addidasAds"),
+        AdsItems(image: "pumaAds"),
+        AdsItems(image: "nikaAds"),
+        AdsItems(image: "reebokAds"),
+        AdsItems(image: "filaAds")
+    ]
     var adsArray = BehaviorRelay<[AdsItems]>(value: [])
     private var coupons : [PriceRule] = []
     var dataFetchCompleted = PublishRelay<Void>()
@@ -43,18 +50,11 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
         fetchCoupons()
     }
     
-    private func fetchCoupons() {
+     func fetchCoupons() {
         let endpoint = APIEndpoint.allPriceRules.rawValue
         network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
             .subscribe(onNext: { [weak self](priceRulesWrapper : AllPriceRulesWrapper) in
-                let adsArr = [
-                    AdsItems(image: "addidasAds"),
-                    AdsItems(image: "pumaAds"),
-                    AdsItems(image: "nikaAds"),
-                    AdsItems(image: "reebokAds"),
-                   // AdsItems(image: "filaAds")
-                ]
-                self?.adsArray.accept(adsArr)
+                self?.adsArray.accept(self?.adsArr ?? [])
                 self?.coupons = priceRulesWrapper.priceRules
                // self?.coupons.onNext(priceRulesWrapper.priceRules)
             }).disposed(by: disposeBag)
@@ -85,5 +85,9 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
     
     func getCoupons() -> [PriceRule]{
         return coupons
+    }
+    
+    func getAdsArrCount() -> Int {
+        return adsArr.count
     }
 }

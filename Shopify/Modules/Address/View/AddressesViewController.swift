@@ -37,7 +37,9 @@ class AddressesViewController: UIViewController ,Storyboarded {
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.dataSource = nil
-        viewModel?.fetchData()
+        if checkInternetAndShowToast(vc: self) {
+            viewModel?.fetchData()
+        }
         bindTableView()
     }
     
@@ -58,7 +60,9 @@ class AddressesViewController: UIViewController ,Storyboarded {
     }
     
     @IBAction func goToNewAddress(_ sender: Any) {
-        coordinator?.goToNewAddress()
+        if checkInternetAndShowToast(vc: self) {
+            coordinator?.goToNewAddress()
+        }
     }
     
     @IBAction func btnBack(_ sender: Any) {
@@ -144,15 +148,18 @@ extension AddressesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, completionHandler) in
-            self?.editSubject.onNext(indexPath)
-            
+            if checkInternetAndShowToast(vc: self!){
+                self?.editSubject.onNext(indexPath)
+            }
             completionHandler(true)
         }
         editAction.image = UIImage(systemName: "square.and.pencil")
         editAction.backgroundColor = .systemBlue
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completionHandler) in
-            self?.setConfirmationAlert(indexPath: indexPath)
+            if checkInternetAndShowToast(vc: self!) {
+                self?.setConfirmationAlert(indexPath: indexPath)
+            }
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash")

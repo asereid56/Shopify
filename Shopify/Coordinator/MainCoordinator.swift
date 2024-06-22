@@ -84,9 +84,10 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(onBoardingThreeScreen, animated: true)
     }
     
-    func gotoTab(){
+    func gotoTab(homeScreenSource : String? = nil){
         let tabBar = TabBar.instantiate(storyboardName: "Main")
         tabBar.coordinator = self
+        tabBar.homeScreenSource = homeScreenSource
         //  navigationController.pushViewController(tabBar, animated: false)
         navigationController.setViewControllers([tabBar], animated: true)
     }
@@ -97,19 +98,19 @@ class MainCoordinator : Coordinator {
         let viewModel = SettingViewModel()
         settingVC.viewModel = viewModel
         settingVC.coordinator = self
-        navigationController.pushViewController(settingVC, animated: false)
+        navigationController.pushViewController(settingVC, animated: true)
     }
     
     func goToContactUs(){
         let contactUsVC = ContactUsViewController.instantiate(storyboardName:"Setting")
         contactUsVC.coordinator = self
-        navigationController.pushViewController(contactUsVC, animated: false)
+        navigationController.pushViewController(contactUsVC, animated: true)
     }
     
     func goToAboutUs(){
         let abouttUsVC = AboutUsViewController.instantiate(storyboardName:"Setting")
         abouttUsVC.coordinator = self
-        navigationController.pushViewController(abouttUsVC, animated: false)
+        navigationController.pushViewController(abouttUsVC, animated: true)
     }
     
     func goToAddresses(from viewController: PaymentViewController? = nil , source : String = "setting"){
@@ -120,7 +121,7 @@ class MainCoordinator : Coordinator {
         addressesVC.coordinator = self
         addressesVC.source = source
         addressesVC.delegate = viewController
-        navigationController.pushViewController(addressesVC, animated: false)
+        navigationController.pushViewController(addressesVC, animated: true)
     }
     
     func goToEditAddress(address : Address){
@@ -129,7 +130,7 @@ class MainCoordinator : Coordinator {
         let viewModel = NewAddressViewModel(address: address, networkService: NetworkService.shared, customerId: customerID ?? "" ,dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
         newAddressVC.coordinator = self
-        navigationController.pushViewController(newAddressVC, animated: false)
+        navigationController.pushViewController(newAddressVC, animated: true)
     }
     
     func goToNewAddress(){
@@ -138,7 +139,7 @@ class MainCoordinator : Coordinator {
         let viewModel = NewAddressViewModel(networkService: NetworkService.shared, customerId: customerID ?? "" ,dataLoader: DataLoader())
         newAddressVC.viewModel = viewModel
         newAddressVC.coordinator = self
-        navigationController.pushViewController(newAddressVC, animated: false)
+        navigationController.pushViewController(newAddressVC, animated: true)
     }
     
     func goToAddressMeunList(from viewController: NewAddressViewController, type : ListType , viewModel : NewAddressViewModelProtocol){
@@ -155,7 +156,7 @@ class MainCoordinator : Coordinator {
         let viewModel = ShoppingCartViewModel(networkService: NetworkService.shared, draftOrderId: cartID ?? "" , realmManager: RealmManager.shared)
         ShoppingCarVC.viewModel = viewModel
         ShoppingCarVC.coordinator = self
-        navigationController.pushViewController(ShoppingCarVC, animated: false)
+        navigationController.pushViewController(ShoppingCarVC, animated: true)
     }
     
     func goToPayment(draftOrder : DraftOrder){
@@ -165,7 +166,7 @@ class MainCoordinator : Coordinator {
         viewModel.delegate = PaymentVC
         PaymentVC.viewModel = viewModel
         PaymentVC.coordinator = self
-        navigationController.pushViewController(PaymentVC, animated: false)
+        navigationController.pushViewController(PaymentVC, animated: true)
     }
     
     func goToPaymentMethd(from viewController : PaymentViewController){
@@ -176,10 +177,11 @@ class MainCoordinator : Coordinator {
         navigationController.present(PaymentMethodVC, animated: true)
     }
     
-    func goToOrderConfirmed(){
+    func goToOrderConfirmed(placedOrder : Order){
         let OrderConfirmedVC = OrderConfirmedViewController.instantiate(storyboardName: "Setting")
         OrderConfirmedVC.coordinator = self
-        navigationController.pushViewController(OrderConfirmedVC, animated: false)
+        OrderConfirmedVC.placedOrder = placedOrder
+        navigationController.pushViewController(OrderConfirmedVC, animated: true)
     }
     
     func goBack() {

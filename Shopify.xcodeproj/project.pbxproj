@@ -289,22 +289,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		182772C12C1E72D2007428C0 /* Order */ = {
-			isa = PBXGroup;
-			children = (
-				182772C22C1E72E8007428C0 /* View */,
-			);
-			path = Order;
-			sourceTree = "<group>";
-		};
-		182772C22C1E72E8007428C0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				182772C32C1E7303007428C0 /* OrderConfirmedViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		1829BFB22C0E8A76004FA5D4 /* Address */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +763,7 @@
 		4A1FA6582C20CD8500560786 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				182772C32C1E7303007428C0 /* OrderConfirmedViewController.swift */,
 				4A1FA65A2C20CDAD00560786 /* OrdersScreenViewController.swift */,
 			);
 			path = View;
@@ -965,7 +950,6 @@
 				4A1FA6572C20CD7C00560786 /* Orders */,
 				390BD40B2C1EF632007D4609 /* Profile */,
 				4AC7C50D2C1C875C00031AAF /* OnBoarding */,
-				182772C12C1E72D2007428C0 /* Order */,
 				18F0AC252C1CA98900BDE7C0 /* Payment */,
 				395870872C10DDAF00016FA0 /* Authentication */,
 				397B604A2C18751A00ED6BAF /* WishList */,

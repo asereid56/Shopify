@@ -38,6 +38,8 @@ class PaymentViewController: UIViewController, Storyboarded {
         }
         handleCoupons()
         setUpIndicator()
+        orderPlacedSuccessfully()
+        viewModel?.checkInventory()
     }
     
     private func setUpUI(){
@@ -45,6 +47,14 @@ class PaymentViewController: UIViewController, Storyboarded {
         deliveryCharge.text =  CurrencyService.calculatePriceAccordingToCurrency(price: "10")
         totalPrice = String(Double((viewModel?.getSubTotal())!)!  +  10.00)
         total.text =  CurrencyService.calculatePriceAccordingToCurrency(price: totalPrice)
+    }
+    
+    private func orderPlacedSuccessfully(){
+        viewModel?.orderPlaced.subscribe(onNext: { [weak self] isPlaced in
+            if isPlaced {
+                self?.coordinator?.goToOrderConfirmed(placedOrder: (self?.viewModel?.getPlacedOrder()!)!)
+            }
+        }).disposed(by: disposeBag)
     }
     
     private func handleCoupons() {
@@ -110,7 +120,9 @@ class PaymentViewController: UIViewController, Storyboarded {
     }
     
     @IBAction func btnDeliveryAddress(_ sender: Any) {
-        coordinator?.goToAddresses(from: self, source: "payment")
+        if checkInternetAndShowToast(vc: self) {
+            coordinator?.goToAddresses(from: self, source: "payment")
+        }
     }
     
     
@@ -120,19 +132,28 @@ class PaymentViewController: UIViewController, Storyboarded {
     }
     
     @IBAction func btnConfirmPayment(_ sender: Any) {
-        if shippingAddress.text != "Select Delivery Address" {
-            switch  viewModel?.getPaymentMethod(){
-            case Constant.COD:
-                if canPayUsingCOD() == true {
-                    print("success")
-                    viewModel?.placeOrder(financialStatus: Constant.PENDING)
-                    coordinator?.goToOrderConfirmed()
-                }
-            default:
-                payUsingApplePay()
+        if checkInternetAndShowToast(vc: self) {
+            if shippingAddress.text != "Select Delivery Address" {
+                viewModel?.quantityAvailable.subscribe(onNext: { [weak self] isAvailable in
+                    if isAvailable == false {
+                        print("isAvailable \(isAvailable)")
+                        self?.coordinator?.gotoTab(homeScreenSource: "PAYMENT")
+                    }else{
+                        switch  self?.viewModel?.getPaymentMethod(){
+                        case Constant.COD:
+                            if self?.canPayUsingCOD() == true {
+                                print("success")
+                                self?.viewModel?.placeOrder(financialStatus: Constant.PENDING)
+                                
+                            }
+                        default:
+                            self?.payUsingApplePay()
+                        }
+                    }
+                }).disposed(by: disposeBag)
+            }else{
+                showError(title: "Select the Delivery address")
             }
-        }else{
-            showError(title: "Select the shipping address")
         }
     }
     
@@ -167,21 +188,12 @@ class PaymentViewController: UIViewController, Storyboarded {
             alert.dismiss(animated: true)
         }
     }
-    @IBAction func btnClick(_ sender: Any) {
+    @IBAction func btnValidate(_ sender: Any) {
         if let coupon = coupon.text {
             viewModel?.validateCoupon(coupon: coupon)
         }
     }
-    
-    //    @IBAction func btnValidate(_ sender: Any) {
-    //        print("clciked")
-    //        if let coupon = coupon.text {
-    //            viewModel?.validateCoupon(coupon: coupon)
-    //        }
-    //    }
-    
-    
-    
+
     @IBAction func btnBack(_ sender: Any) {
         coordinator?.goBack()
     }
@@ -208,7 +220,6 @@ extension PaymentViewController: PaymentViewModelDelegate {
         if success {
             print("Payment successful!")
             viewModel?.placeOrder(financialStatus: Constant.PAID)
-            coordinator?.goToOrderConfirmed()
         } else {
             showError(title: "Payment failed!" )
         }

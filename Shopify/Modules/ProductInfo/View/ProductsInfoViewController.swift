@@ -113,11 +113,13 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     
     @IBAction func addToCart(_ sender: Any) {
-        if AuthenticationManager.shared.isUserLoggedIn() {
-            let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
-            viewModel?.fetchDraftOrder()
-        }else{
-            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        if checkInternetAndShowToast(vc: self){
+            if AuthenticationManager.shared.isUserLoggedIn() {
+                let variant = viewModel?.getSelectedVariant(title: getVariantTitle())
+                viewModel?.fetchDraftOrder()
+            }else{
+                showAlertForNotUser(vc: self, coordinator: coordinator!)
+            }
         }
     }
     
