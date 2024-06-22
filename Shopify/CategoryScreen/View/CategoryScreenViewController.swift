@@ -22,10 +22,9 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
     private var lastCategoryTitle = "Women's"
     var coordinator : MainCoordinator?
     var viewModel : CategoryScreenViewModelProtocol?
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.isHidden = true
         let nib = UINib(nibName: "ProductCollectionXIBCell", bundle: nil)
         categoryCollectionView.register(nib, forCellWithReuseIdentifier: "ProductCell")
@@ -43,6 +42,7 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupSearchBar()
         categoryCollectionView.delegate = nil
         categoryCollectionView.dataSource = nil
         categoryBtn.titleLabel?.text = lastCategoryTitle
@@ -50,6 +50,12 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
         viewModel?.fetchData(with: lastCategory.rawValue)
         setUpBinding()
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if searchBar.text == "" {
+            searchBar.resignFirstResponder()
+        }
     }
     
     private func setUpBinding(){
@@ -82,11 +88,11 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
     
     func selectProductToNavigate(){
         categoryCollectionView.rx.modelSelected(Product.self)
-                   .subscribe(onNext: { [weak self] product in
-                       guard let self = self else { return }
-                       self.coordinator?.goToProductInfo(product: product)
-                   })
-                   .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] product in
+                guard let self = self else { return }
+                self.coordinator?.goToProductInfo(product: product)
+            })
+            .disposed(by: disposeBag)
     }
     
     @IBAction func favBtn(_ sender: Any) {
@@ -165,4 +171,12 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
+    func setupSearchBar() {
+        if checkInternetAndShowToast(vc: self) {
+            searchBar.rx.text.orEmpty
+                .bind(to: viewModel?.searchTextSubject ?? PublishSubject<String>())
+                .disposed(by: disposeBag)
+        }
+    }
 }
+

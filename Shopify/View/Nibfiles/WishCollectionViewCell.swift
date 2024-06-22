@@ -7,9 +7,6 @@
 
 import UIKit
 import RxSwift
-protocol WishProtocol {
-    func removeItem(id: Int?, index: Int?)
-}
 
 class WishCollectionViewCell: UICollectionViewCell {
     
@@ -18,7 +15,6 @@ class WishCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var removeButton: UIButton!
     
-    var delegate: WishProtocol?
     var id: Int?
     var index: Int?
     var disposeBag = DisposeBag()

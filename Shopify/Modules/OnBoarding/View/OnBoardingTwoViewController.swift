@@ -24,7 +24,7 @@ class OnBoardingTwoViewController: UIViewController , Storyboarded {
     
     
     @IBAction func skipBtn(_ sender: Any) {
-        coordinator?.goToMainLogin()
+        coordinator?.goToLogin()
     }
     
 }

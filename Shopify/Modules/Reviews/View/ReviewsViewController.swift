@@ -6,35 +6,36 @@
 //
 
 import UIKit
-
-class ReviewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+import RxSwift
+import RxCocoa
+class ReviewsViewController: UIViewController  {
     var viewModel: ReviewsViewModel?
+    let disposeBag = DisposeBag()
     @IBOutlet weak var reviewsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNib()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        140
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bindTableView()
+        getReviews()
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.reviews.count ?? 0
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reviewCell = tableView.dequeueReusableCell(withIdentifier: "reviewsCell", for: indexPath) as! ReviewTableViewCell
-        reviewCell.reviewerImage.image = UIImage(named: viewModel?.reviews[indexPath.row].img ?? "")
-        reviewCell.reviewBody.text = viewModel?.reviews[indexPath.row].reviewBody ?? ""
-        return reviewCell
-    }
+    
     func configureNib() {
         let nib = UINib(nibName: "ReviewTableViewCell", bundle: .main)
         reviewsTableView.register(nib, forCellReuseIdentifier: "reviewsCell")
-        reviewsTableView.dataSource = self
-        reviewsTableView.delegate = self
+    }
+    
+    func bindTableView() {
+        viewModel?.reviewsData.bind(to: reviewsTableView.rx.items(cellIdentifier: "reviewsCell", cellType: ReviewTableViewCell.self)) { index, item, cell in
+            
+            cell.configure(item: item)
+        }.disposed(by: disposeBag)
+    }
+    
+    func getReviews() {
+        viewModel?.getReviews()
     }
 }

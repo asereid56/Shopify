@@ -16,20 +16,17 @@ class LoginWithEmailViewController: UIViewController {
         super.viewDidLoad()
         passwordTxt.isSecureTextEntry = true 
     }
-    override func viewDidAppear(_ animated: Bool) {
-        
-        checkonUserDefaultsValues()
-    }
+   
     
     @IBAction func loginTapped(_ sender: Any) {
-        viewModel?.signInWithEmail(email: emailTxt.text ?? "", password: passwordTxt.text ?? "") { [weak self] success, title, message in
-            if success {
-                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
-                self?.coordinator?.gotoTab()
-                showToast(message: "Welcome back \(name ?? "")!", vc: self ?? UIViewController())
-            } else {
-                showToast(message: "Something went wrong", vc: self ?? UIViewController())
-            }
+        if checkInternetAndShowToast(vc: self) {
+            signin()
+        }
+    }
+    
+    @IBAction func loginWithGoogle(_ sender: Any) {
+        if checkInternetAndShowToast(vc: self) {
+            signInWithGoogle()
         }
     }
     
@@ -40,5 +37,38 @@ class LoginWithEmailViewController: UIViewController {
 
     @IBAction func backTapped(_ sender: Any) {
         coordinator?.goBack()
+    }
+    
+    func signin() {
+        viewModel?.signInWithEmail(email: emailTxt.text ?? "", password: passwordTxt.text ?? "") { [weak self] success, title, message in
+            if success {
+                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
+                self?.coordinator?.gotoTab()
+                _ = showToast(message: "Welcome back \(name ?? "")!", vc: self ?? UIViewController())
+            } else {
+                _ = showToast(message: "Something went wrong, try again", vc: self ?? UIViewController())
+            }
+        }
+    }
+    
+    func signInWithGoogle() {
+        viewModel?.signInWithGoogle(vc: self) { [weak self] success, newUser in
+            if success {
+                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
+                self?.coordinator?.gotoTab()
+                if newUser {
+                    _ = showToast(message: "Welcome \(name ?? "")!", vc: self ?? UIViewController())
+                }
+                else {
+                    _ = showToast(message: "Welcome back\(name ?? "")!", vc: self ?? UIViewController())
+                }
+            }
+            else {
+                _ = showToast(message: "Something went wrong, try again", vc: self ?? UIViewController())
+            }
+        }
+    }
+    @IBAction func forgotPassTapped(_ sender: Any) {
+        coordinator?.goToResetPassword()
     }
 }

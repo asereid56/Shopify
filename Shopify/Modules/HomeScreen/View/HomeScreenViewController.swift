@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 import Kingfisher
 import RxCocoa
-
 class HomeScreenViewController: UIViewController , Storyboarded {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -26,10 +25,11 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutside(_:)))
+        adsCollection.addGestureRecognizer(tapGesture)
         self.navigationController?.setNavigationBarHidden(true, animated: false);
         let nib = UINib(nibName: "BrandsCollectionXIBCell", bundle: nil)
         brandsCollection.register(nib, forCellWithReuseIdentifier: "brandCell")
-        
         adsArray = [
             AdsItems(image: "addidasAds"),
             AdsItems(image: "pumaAds"),
@@ -50,6 +50,9 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(AuthenticationManager.shared.isUserLoggedIn())
+        checkonUserDefaultsValues()
+        setupSearchBar()
         adsCollection.delegate = nil
         adsCollection.dataSource = nil
         brandsCollection.delegate = nil
@@ -61,7 +64,12 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         }else {
             
         }
-       
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if searchBar.text == "" {
+            searchBar.resignFirstResponder()
+        }
     }
     
     func setUpAdsBinding() {
@@ -78,10 +86,10 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     func setUpBrandsBinding() {
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
-        
+            
             cell.layer.borderColor = UIColor.lightGray.cgColor
             
-            cell.brandImage.kf.setImage(with: URL(string: brand.image.src ?? ""))
+            cell.brandImage.kf.setImage(with: URL(string: brand.image.src))
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 15
             cell.layer.masksToBounds = true
@@ -92,10 +100,12 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     func selectBrandToNavigate(){
+        print("selecting item to navigate from home")
         brandsCollection.rx.modelSelected(SmartCollection.self)
             .subscribe(onNext: { [weak self] brand in
                 guard let self = self else { return }
                 self.coordinator?.gotoProductsScreen(with: String(brand.id))
+                
             })
             .disposed(by: disposeBag)
     }
@@ -178,4 +188,16 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         coordinator?.goToWishList()
     }
     
+    func setupSearchBar() {
+        if checkInternetAndShowToast(vc: self) {
+            searchBar.rx.text.orEmpty
+                .bind(to: viewModel?.searchTextSubject ?? PublishSubject<String>())
+                .disposed(by: disposeBag)
+        }
+    }
+    @objc func handleTapOutside(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            searchBar.endEditing(true)
+        }
+    }
 }

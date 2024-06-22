@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 struct Item {}
 class WishListViewModel {
-    let network: NetworkService?
+    let network: NetworkServiceProtocol?
     let items: BehaviorRelay<[LineItem]> = BehaviorRelay(value: [])
     let isLoading = BehaviorRelay<Bool>(value: false)
     let draftOrderId: String?
@@ -35,7 +35,7 @@ class WishListViewModel {
                     .flatMap { (data: DraftOrderWrapper) -> Observable<(Int, [LineItem], DraftOrderWrapper)> in
                         var workingData = data
                         workingData.draftOrder?.lineItems?.remove(at: index+1)
-                        return self.network?.put(endpoint: self.endpoint ?? "", body: workingData, responseType: DraftOrderWrapper.self)
+                        return self.network?.put(url: NetworkConstants.baseURL, endpoint: self.endpoint ?? "", body: workingData, headers: nil, responseType: DraftOrderWrapper.self)
                             .map { (success, response, updatedDraftOrder) -> (Int, [LineItem], DraftOrderWrapper) in
                                 if success {
                                     return (index, items, updatedDraftOrder ?? workingData)
@@ -62,7 +62,7 @@ class WishListViewModel {
     
     func fetchData() {
         isLoading.accept(true)
-        _ = network?.get(endpoint: APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId ?? "")).subscribe(onNext: { [weak self] (data: DraftOrderWrapper) in
+        _ = network?.get(url: NetworkConstants.baseURL, endpoint: APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: draftOrderId ?? ""), parameters: nil, headers: nil).subscribe(onNext: { [weak self] (data: DraftOrderWrapper) in
             var dataExcludingDummy = data.draftOrder?.lineItems
             dataExcludingDummy?.remove(at: 0)
             self?.items.accept(dataExcludingDummy ?? [])

@@ -190,16 +190,7 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(homeScreenVC, animated: true)
     }
     
-    func goToMainLogin(){
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let mainLogin = storyboard.instantiateViewController(withIdentifier: "generalLoginViewController") as! GeneralLoginViewController
-        mainLogin.coordinator = self
-        mainLogin.viewModel = GeneralLoginViewModel()
-        mainLogin.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(mainLogin, animated: true)
-    }
-    
-    func goToLoginWithEmail(){
+    func goToLogin(){
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
         let emailLogin = storyboard.instantiateViewController(withIdentifier: "LoginWithEmailViewController") as! LoginWithEmailViewController
         emailLogin.coordinator = self
@@ -223,7 +214,17 @@ class MainCoordinator : Coordinator {
         let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
         let productInfo = storyboard.instantiateViewController(withIdentifier: "pinfo") as! ProductInfoViewController
         productInfo.coordinator = self
-        let viewModel = ProductInfoViewModel(product: product, network: NetworkService.shared , draftOrderId: cartID ?? "",realmManger: RealmManager.shared)
+        let viewModel = ProductInfoViewModel(product: product, network: NetworkService.shared , draftOrderId: cartID ?? "",realmManger: RealmManager.shared, makeNetworkCall: false)
+        productInfo.viewModel = viewModel
+        productInfo.navigationController?.navigationBar.isHidden = true
+        navigationController.pushViewController(productInfo, animated: true)
+    }
+    func goToProductInfo(productId: String){
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let productInfo = storyboard.instantiateViewController(withIdentifier: "pinfo") as! ProductInfoViewController
+        productInfo.coordinator = self
+        let viewModel = ProductInfoViewModel(product: nil, network: NetworkService.shared , draftOrderId: cartID ?? "",realmManger: RealmManager.shared, makeNetworkCall: true)
+        viewModel.productId = productId
         productInfo.viewModel = viewModel
         productInfo.navigationController?.navigationBar.isHidden = true
         navigationController.pushViewController(productInfo, animated: true)
@@ -269,5 +270,13 @@ class MainCoordinator : Coordinator {
         
     }
     
-
+    func goToResetPassword() {
+        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let resetPassword = storyboard.instantiateViewController(withIdentifier: "ResetPassowrdViewController") as! ResetPassowrdViewController
+        resetPassword.coordinator = self
+        let viewModel = ResetPasswordViewModel()
+        resetPassword.viewModel = viewModel
+        resetPassword.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(resetPassword, animated: true)
+    }
 }

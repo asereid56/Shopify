@@ -12,6 +12,8 @@ class WishlistViewController: UIViewController {
     
     
     
+    @IBOutlet weak var noInternetImage: UIImageView!
+    @IBOutlet weak var noUserView: UIView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emptyLabel: UILabel!
     @IBOutlet weak var emptyImg: UIImageView!
@@ -23,33 +25,37 @@ class WishlistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNib()
-        wishlistCollectionView.collectionViewLayout = createLayout()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel?.fetchData()
-        setUpBinding()
-        
+        super.viewWillAppear(animated)
+        checkUser()
+        configureNib()
+        wishlistCollectionView.collectionViewLayout = createLayout()
+        selectItemToNavigate()
+        if checkInternetAndShowToast(vc: self) {
+            viewModel?.fetchData()
+            setUpBinding()
+        }
     }
     
     
-    override func viewDidDisappear(_ animated: Bool) {
-        wishlistCollectionView.delegate = nil
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         wishlistCollectionView.dataSource = nil
+        wishlistCollectionView.delegate = nil
     }
-    
-    
-    @IBAction func goToCart(_ sender: Any) {
-        coordinator?.goToShoppingCart()
-    }
-    
     
     @IBAction func backBtn(_ sender: Any) {
         coordinator?.goBack()
     }
     
+    @IBAction func loginTapped(_ sender: Any) {
+        coordinator?.goToLogin()
+    }
+    @IBAction func signupTapped(_ sender: Any) {
+        coordinator?.goToSignUp()
+    }
 }
 
 extension WishlistViewController {
@@ -103,27 +109,27 @@ extension WishlistViewController {
             .disposed(by: disposeBag)
         
         viewModel?.isEmpty
-                    .map { !$0 }
-                    .bind(to: emptyImg.rx.isHidden)
-                    .disposed(by: disposeBag)
+            .map { !$0 }
+            .bind(to: emptyImg.rx.isHidden)
+            .disposed(by: disposeBag)
         
         viewModel?.isEmpty
-                    .map { !$0 }
-                    .bind(to: emptyLabel.rx.isHidden)
-                    .disposed(by: disposeBag)
+            .map { !$0 }
+            .bind(to: emptyLabel.rx.isHidden)
+            .disposed(by: disposeBag)
         
         viewModel?.isLoading
-                    .bind(to: loadingIndicator.rx.isAnimating)
-                    .disposed(by: disposeBag)
+            .bind(to: loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
         
         Observable.combineLatest(viewModel!.isLoading, viewModel!.isEmpty)
-                    .subscribe(onNext: { [weak self] isLoading, isEmpty in
-                        self?.loadingIndicator.isHidden = !isLoading
-                        self?.emptyImg.isHidden = isLoading || !isEmpty
-                        self?.emptyLabel.isHidden = isLoading || !isEmpty
-                        self?.wishlistCollectionView.isHidden = isLoading
-                    })
-                    .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] isLoading, isEmpty in
+                self?.loadingIndicator.isHidden = !isLoading
+                self?.emptyImg.isHidden = isLoading || !isEmpty
+                self?.emptyLabel.isHidden = isLoading || !isEmpty
+                self?.wishlistCollectionView.isHidden = isLoading
+            })
+            .disposed(by: disposeBag)
     }
     
     func showDeleteConfirmationAlert(for index: Int) {
@@ -135,5 +141,32 @@ extension WishlistViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func selectItemToNavigate(){
+        if checkInternetAndShowToast(vc: self) {
+            wishlistCollectionView.rx.modelSelected(LineItem.self)
+                .subscribe(onNext: { [weak self] product in
+                    guard let self = self else { return }
+                    let arr = product.sku?.components(separatedBy: " ")
+                    self.coordinator?.goToProductInfo(productId: String(arr?[1] ?? ""))
+                    
+                })
+                .disposed(by: disposeBag)
+        }
+    }
+    func checkUser() {
+        if !checkInternetAndShowToast(vc: self) {
+            noInternetImage.isHidden = false
+        }
+        else {
+            noInternetImage.isHidden = true
+            if !AuthenticationManager.shared.isUserLoggedIn() {
+                noUserView.isHidden = false
+            }
+            else {
+                noUserView.isHidden = true
+            }
+        }
     }
 }

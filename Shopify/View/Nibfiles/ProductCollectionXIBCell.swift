@@ -20,7 +20,7 @@ class ProductCollectionXIBCell: UICollectionViewCell {
     @IBOutlet weak var deletebtn: UIButton!
     
     
-    weak var delegate: CollectionViewDelegate?
+    //weak var delegate: CollectionViewDelegate?
     var id: Int?
     var index: Int?
     var isBtnHidden : Bool = true
@@ -43,7 +43,7 @@ class ProductCollectionXIBCell: UICollectionViewCell {
     }
     
     @IBAction func deleteBtn(_ sender: Any) {
-        delegate?.removeItem(id: id!, index: index!)
+        //delegate?.removeItem(id: id!, index: index!)
     }
     
 }
