@@ -27,6 +27,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var pageControl: UIPageControl!
     var imgs: [ProductImage?]?
     override func viewDidLoad() {
+
         print("USER STATUS: \(AuthenticationManager.shared.isUserLoggedIn())")
         checkonUserDefaultsValues()
         super.viewDidLoad()
@@ -156,7 +157,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
             let action2 = UIAlertAction(title: "Sign in", style: .default) { _ in
                 self.coordinator?.goToLogin()
             }
-            _ = showToast(message: "You must be signed in to add to your wishlist", vc: self, actions: [action1, action2], style: .alert, selfDismiss: false)
+            _ = showAlert(message: "You must be signed in", vc: self, actions: [action1, action2], style: .alert, selfDismiss: false)
         } else {
             addToWishlist()
         }
@@ -166,20 +167,23 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
             viewModel?.isProductInWishlist { yes in
                 if yes {
                     let action1 = UIAlertAction(title: "Cancel", style: .default)
-                    let action2 = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                    let action2 = UIAlertAction(title: "Remove", style: .destructive) { _ in
                         self.viewModel?.removeProduct {
+                            self.wishlistButton.configuration?.baseForegroundColor = .label
                             self.wishlistButton.setImage(UIImage(systemName: "heart"), for: .normal)
-                            _ = showToast(message: "Product removed from wishlist", vc: self)
+                            _ = showAlert(message: "Product removed from wishlist", vc: self)
                         }
                     }
-                    _ = showToast(message: "Are you sure you want to remove this product from your wishlist?", vc: self, actions: [action1, action2], style: .alert, selfDismiss: false)
+                    _ = showAlert(message: "Are you sure you want to remove this product from your wishlist?", vc: self, actions: [action1, action2], style: .alert, selfDismiss: false)
                 } else {
                     self.viewModel?.addToWishList(product: self.viewModel?.product, vc: self) { success in
                         if success {
-                            _ = showToast(message: "Product added to wishlist", vc: self)
+                            _ = showAlert(message: "Product added to wishlist", vc: self)
+                            
                             self.wishlistButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                            self.wishlistButton.configuration?.baseForegroundColor = .prim
                         } else {
-                            _ = showToast(message: "Failed to add to wishlist", vc: self)
+                            _ = showAlert(message: "Failed to add to wishlist", vc: self)
                         }
                     }
                 }

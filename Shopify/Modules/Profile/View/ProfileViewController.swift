@@ -79,10 +79,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func goToCart(_ sender: Any) {
-        isEmailVerified(vc: self) { [weak self] isVerified in
-            if isVerified {
-                self?.coordinator?.goToShoppingCart()
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            isEmailVerified(vc: self) { [weak self] isVerified in
+                if isVerified {
+                    self?.coordinator?.goToShoppingCart()
+                }
             }
+        } else {
+            showAlertForNotUser(vc: self, coordinator: coordinator!)
         }
     }
     @IBAction func logIn(_ sender: Any) {
@@ -109,17 +113,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.profileImage.image = selected
         let data = selected.jpegData(compressionQuality: 0.1)
         picker.dismiss(animated: true) {
-            alert = showToast(message: "please wait, your image is being updated..", vc: self, selfDismiss: false)!
+            alert = showAlert(message: "please wait, your image is being updated..", vc: self, selfDismiss: false)!
         }
         
         viewModel?.saveImage(data: data ?? Data()) { result in
             alert.dismiss(animated: true)
             self.loadingIndicator.isHidden = true
             if result {
-                _ = showToast(message: "image updated successfully", vc: self)
+                _ = showAlert(message: "image updated successfully", vc: self)
             }
             else {
-                _ = showToast(message: "Couldn't update image, try again", vc: self)
+                _ = showAlert(message: "Couldn't update image, try again", vc: self)
             }
         }
         
@@ -212,6 +216,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(changeImage(_:)))
         editImage.addGestureRecognizer(tapGesture)
         profileImage.addGestureRecognizer(tapGesture1)
-        profileImage.layer.cornerRadius = profileImage.frame.width/2
+        profileImage.layer.cornerRadius = profileImage.bounds.width/2
     }
 }

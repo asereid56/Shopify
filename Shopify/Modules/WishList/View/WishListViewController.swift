@@ -24,26 +24,27 @@ class WishlistViewController: UIViewController {
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        checkonUserDefaultsValues()
         checkUser()
         configureNib()
         wishlistCollectionView.collectionViewLayout = createLayout()
         selectItemToNavigate()
         if checkInternetAndShowToast(vc: self) {
-            viewModel?.fetchData()
             setUpBinding()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if checkInternetAndShowToast(vc: self) {
+            viewModel?.fetchData()
         }
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        wishlistCollectionView.dataSource = nil
-        wishlistCollectionView.delegate = nil
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -104,7 +105,7 @@ extension WishlistViewController {
                     .subscribe(onNext: { [weak self] in
                         self?.showDeleteConfirmationAlert(for: index)
                     })
-                    .disposed(by: cell.disposeBag)
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
             }
             .disposed(by: disposeBag)
         

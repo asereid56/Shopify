@@ -74,6 +74,7 @@ class AuthenticationManager {
                 setupCustomer(firstName: firstname, lastName: lastName, email: email) { success in
                     if success {
                         completion(true, nil, nil)
+                        UserDefaults.standard.setValue(false, forKey: "isVerified")
                         Auth.auth().currentUser?.sendEmailVerification()
                         print("User signs up successfully")
                     }
@@ -131,15 +132,8 @@ class AuthenticationManager {
     func showWelcomeAlert(vc: UIViewController){
         if let currentUser = Auth.auth().currentUser {
             print("user here")
-            _ = showToast(message: "Welcome back \(currentUser.email ?? "")", vc: vc)
+            _ = showAlert(message: "Welcome back \(currentUser.email ?? "")", vc: vc)
         }
-    }
-    
-    func showAlert(vc: UIViewController, title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        vc.present(alert, animated: true)
-        
     }
     
     func isUserLoggedIn() -> Bool {
@@ -440,14 +434,15 @@ func isEmailVerified(vc: UIViewController, completion: @escaping (Bool) -> Void)
             if let user = Auth.auth().currentUser {
                 if user.isEmailVerified {
                     completion(true)
+                    UserDefaults.standard.setValue(true, forKey: "isVerified")
                 } else {
-                    let action1 = UIAlertAction(title: "Verify", style: .default) { _ in
+                    let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
                         AuthenticationManager.shared.resendEmailVerificaiton() {
-                            _ = showToast(message: "Email verification sent", vc: vc)
+                            _ = showAlert(message: "Email verification sent", vc: vc)
                         }
                     }
-                    let action2 = UIAlertAction(title: "Cancel", style: .destructive)
-                    _ = showToast(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: vc, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
+                    let action2 = UIAlertAction(title: "Dismiss", style: .cancel)
+                    _ = showAlert(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: vc, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
                     completion(false)
                 }
             } else {
