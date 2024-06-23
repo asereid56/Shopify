@@ -45,6 +45,7 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         setupSearchBar()
         categoryCollectionView.delegate = nil
         categoryCollectionView.dataSource = nil
@@ -56,7 +57,7 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             categoryCollectionView.isHidden = false
             segmentedControl.isHidden = false
             categoryBtn.isHidden = false
-            emptyImg.isHidden = false
+            emptyImg.isHidden = true
             activityIndicator.isHidden = false
             noInternetImg.isHidden = true
             searchBar.isHidden = false
@@ -117,7 +118,7 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
         Observable.combineLatest(viewModel!.isLoading, viewModel!.isEmpty)
             .subscribe(onNext: { [weak self] isLoading, isEmpty in
                 self?.activityIndicator.isHidden = !isLoading
-                self?.emptyImg.isHidden = isLoading || !isEmpty
+                self?.emptyImg.isHidden  = isLoading || !isEmpty
                 self?.categoryCollectionView.isHidden = isLoading || isEmpty
             })
             .disposed(by: disposeBag)

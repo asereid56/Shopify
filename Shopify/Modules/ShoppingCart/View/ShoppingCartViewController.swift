@@ -13,9 +13,13 @@ import Kingfisher
 class ShoppingCartViewController: UIViewController , Storyboarded{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var total: UILabel!
-    @IBOutlet weak var currency: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emptyImage: UIImageView!
+    
+    @IBOutlet weak var loadingView: UIView!
+    
+    @IBOutlet weak var sizeText: UILabel!
+    
     private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
     var viewModel : ShoppingCartViewModelProtocol?
@@ -50,6 +54,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
         viewModel?.isLoading
             .subscribe(onNext: { [weak self] isLoading in
                 self?.loadingIndicator.isHidden = !isLoading
+                self?.loadingView.isHidden = !isLoading
                 if (self?.loadingIndicator.isHidden)! && (self?.viewModel?.getLineItemsCount())! <= 1{
                     self?.emptyImage.isHidden = false
                 }
@@ -91,7 +96,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                         if checkInternetAndShowToast(vc: self!)  {
 //                            self?.viewModel?.isSoldOut(inventoryQuantity: inventoryQuantity, productQuantity: currentQuantity) ?? false
                             if  currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)){
-                                self?.notAvailableAlert(title: "Product is not available!")
+                                self?.notAvailableAlert(title: "Out of stock!")
                             } else {
                                 self?.total.text =  CurrencyService.calculatePriceAccordingToCurrency(price:self?.viewModel?.calcTotalPrice(operation: "+", at: row + 1) ?? "0.0")
                                 
@@ -149,6 +154,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
             if viewModel?.canCheckOut().0 ?? false{
                 coordinator?.goToPayment(draftOrder: (viewModel?.getDratOrder())!)
             }else{
+                
                 notAvailableAlert(title: viewModel?.canCheckOut().1 ?? "")
             }
         }

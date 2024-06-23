@@ -138,8 +138,8 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
             if AuthenticationManager.shared.isUserLoggedIn() {
                 isEmailVerified(vc: self) { [weak self] isVerified in
                     if isVerified {
-                        _ = self?.viewModel?.getSelectedVariant(title: (self?.getVariantTitle())!)
-                        self?.viewModel?.fetchDraftOrder()
+                       let variant = self?.viewModel?.getSelectedVariant(title: (self?.getVariantTitle())!)
+                        self?.viewModel?.fetchDraftOrder(variant: variant!)
                     }
                 }
               

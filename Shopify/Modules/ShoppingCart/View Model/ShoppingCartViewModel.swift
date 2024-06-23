@@ -216,7 +216,10 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     }
     
     func canCheckOut() -> (Bool, String){
-        if lineItems!.count <= 1 {
+        if (isLoading.value){
+            return (false,"")
+        }
+        else if lineItems!.count <= 1 {
             return (false,"Shopping cart is empty!")
         }
         for index in 1..<lineItems!.count{

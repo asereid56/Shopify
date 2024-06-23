@@ -13,10 +13,12 @@ protocol CategoryScreenViewModelProtocol {
     var data : Driver<[Product]> { get }
     var isLoading : BehaviorRelay<Bool> { get }
     var isEmpty : Observable<Bool> { get }
-    
+    var searchTextSubject: PublishSubject<String> { get }
     func fetchData(with categoryID : APIEndpoint.RawValue)
     func filterData(selectedSegmentIndex: Int)
-    var searchTextSubject: PublishSubject<String> { get }
+    func setCategory(category : String)
+    func getCategory() -> String
+   
 }
 
 class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
@@ -24,10 +26,11 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
     private var productWillFiltered : [Product] = []
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorSubject<[Product]>(value: [])
+    private var defaults = UserDefaults.standard
     var network : NetworkServiceProtocol
     var searchTextSubject = PublishSubject<String>()
     
-    var isLoading =  BehaviorRelay<Bool>(value: false)
+    var isLoading =  BehaviorRelay<Bool>(value: true)
     
     var isEmpty: Observable<Bool> {
         return dataSubject.map { $0.isEmpty }
@@ -93,6 +96,14 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
                 }
             }
             .asDriver(onErrorJustReturn: [])
+    }
+    
+    func setCategory(category : String) {
+        defaults.set(category, forKey: Constant.CATEGORY)
+    }
+    
+    func getCategory() -> String{
+        return defaults.string(forKey: Constant.CATEGORY) ?? Constant.WOMEN
     }
     
 }

@@ -17,8 +17,6 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var productQuantity: UILabel!
     @IBOutlet weak var productVendor: UILabel!
     @IBOutlet weak var productPrice: UILabel!
-    @IBOutlet weak var productCurrency: UILabel!
-    
     @IBOutlet weak var btnMinus: UIImageView!
     @IBOutlet weak var btnPlus: UIImageView!
     @IBOutlet weak var btnDelete: UIImageView!

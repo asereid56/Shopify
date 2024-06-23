@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -16,11 +16,11 @@
             <objects>
                 <viewController storyboardIdentifier="NewAddressViewController" title="Add Address" id="Vqb-o5-QK8" customClass="NewAddressViewController" customModule="Shopify" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0bF-bp-WgX">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09T-4Q-0M0">
-                                <rect key="frame" x="16" y="59" width="48" height="48"/>
+                                <rect key="frame" x="16" y="47" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="KSS-a9-bcH"/>
                                     <constraint firstAttribute="width" constant="48" id="QrM-dD-rhq"/>
@@ -36,13 +36,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8p-LS-mvj">
-                                <rect key="frame" x="135.66666666666666" y="70.666666666666671" width="121.66666666666666" height="24.666666666666671"/>
+                                <rect key="frame" x="134.33333333333334" y="58.666666666666664" width="121.66666666666666" height="24.666666666666664"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLJ-qE-CCe">
-                                <rect key="frame" x="16" y="742" width="361" height="68"/>
+                                <rect key="frame" x="16" y="734.33333333333337" width="358" height="67.666666666666629"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -53,26 +53,26 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXq-q0-tly">
-                                <rect key="frame" x="16" y="139" width="80.666666666666671" height="19.666666666666657"/>
+                                <rect key="frame" x="16" y="127.00000000000001" width="80.666666666666671" height="19.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbj-eu-V48">
-                                <rect key="frame" x="16" y="166.66666666666666" width="361" height="34"/>
+                                <rect key="frame" x="16" y="154.66666666666666" width="358" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQF-Mp-Rp7">
-                                <rect key="frame" x="16.000000000000004" y="286.33333333333331" width="59.333333333333343" height="19.666666666666686"/>
+                                <rect key="frame" x="16.000000000000004" y="274.33333333333331" width="59.333333333333343" height="19.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKb-Bk-UQX">
-                                <rect key="frame" x="16" y="309" width="162.33333333333334" height="34"/>
+                                <rect key="frame" x="16" y="297" width="161" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <gestureRecognizers/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,13 +83,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sga-hO-Jux">
-                                <rect key="frame" x="210.33333333333337" y="281.33333333333331" width="166.66666666666663" height="19.666666666666686"/>
+                                <rect key="frame" x="209" y="269.33333333333331" width="165" height="19.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i0t-j9-ezt">
-                                <rect key="frame" x="210.33333333333337" y="309" width="166.66666666666663" height="34"/>
+                                <rect key="frame" x="209" y="297" width="165" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <gestureRecognizers/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -100,48 +100,48 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5p-hL-Fk1">
-                                <rect key="frame" x="16" y="355" width="109" height="19.666666666666686"/>
+                                <rect key="frame" x="16" y="343" width="109" height="19.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="56j-Ys-4Ql">
-                                <rect key="frame" x="16" y="382.66666666666669" width="361" height="34"/>
+                                <rect key="frame" x="16" y="370.66666666666669" width="358" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5o-cB-nHf">
-                                <rect key="frame" x="15.999999999999996" y="428.66666666666669" width="57.666666666666657" height="19.666666666666686"/>
+                                <rect key="frame" x="15.999999999999996" y="416.66666666666669" width="57.666666666666657" height="19.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uko-2I-lYu">
-                                <rect key="frame" x="16" y="456.33333333333331" width="361" height="34"/>
+                                <rect key="frame" x="16" y="444.33333333333331" width="358" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save as primary address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2D-m3-xFr">
-                                <rect key="frame" x="16" y="508.66666666666669" width="161.33333333333334" height="18.666666666666686"/>
+                                <rect key="frame" x="16" y="496.66666666666669" width="161.33333333333334" height="18.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QJM-q3-ZyV">
-                                <rect key="frame" x="328" y="502.33333333333326" width="51" height="31"/>
+                                <rect key="frame" x="325" y="490.33333333333331" width="51" height="30.999999999999943"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh8-Sf-4DY">
-                                <rect key="frame" x="16" y="212.66666666666666" width="77.666666666666671" height="19.666666666666657"/>
+                                <rect key="frame" x="16" y="200.66666666666666" width="77.666666666666671" height="19.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IJe-89-AYz">
-                                <rect key="frame" x="16" y="240.33333333333337" width="361" height="34"/>
+                                <rect key="frame" x="16" y="228.33333333333334" width="358" height="34.000000000000028"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
@@ -227,25 +227,25 @@
             <objects>
                 <viewController storyboardIdentifier="MenuListViewController" id="OVB-La-fIX" customClass="MenuListViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9H5-Uh-Ef7">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Countries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfq-F5-Htp">
-                                <rect key="frame" x="151.66666666666666" y="71" width="90" height="24.666666666666671"/>
+                                <rect key="frame" x="150" y="58.999999999999993" width="90" height="24.666666666666664"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Z-6I-1UV">
-                                <rect key="frame" x="0.0" y="111.66666666666669" width="393" height="706.33333333333326"/>
+                                <rect key="frame" x="0.0" y="99.666666666666686" width="390" height="710.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Mf1-YZ-7mG">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mf1-YZ-7mG" id="lua-b8-7xs">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="BackgroundColor"/>
@@ -278,11 +278,11 @@
             <objects>
                 <viewController storyboardIdentifier="ContactUsViewController" id="Crp-g5-jYd" customClass="ContactUsViewController" customModule="Shopify" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q7K-Vy-e9t">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhw-r9-Oqi">
-                                <rect key="frame" x="16" y="59" width="48" height="48"/>
+                                <rect key="frame" x="16" y="47" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="Hfp-Wy-Q3m"/>
                                     <constraint firstAttribute="height" constant="48" id="h8o-hY-TrA"/>
@@ -298,33 +298,33 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cN-k4-3BJ">
-                                <rect key="frame" x="145" y="70.666666666666671" width="103" height="25"/>
+                                <rect key="frame" x="143.66666666666666" y="58.666666666666657" width="103" height="25"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get in touch " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Do-Og-dR6">
-                                <rect key="frame" x="16" y="139" width="92.666666666666671" height="20"/>
+                                <rect key="frame" x="16" y="127" width="92.666666666666671" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbe-GP-lTa">
-                                <rect key="frame" x="16" y="167" width="361" height="51.666666666666657"/>
+                                <rect key="frame" x="16" y="155" width="358" height="51.666666666666657"/>
                                 <string key="text">We value your feedback and are here to assist you with any questions or concerns. Please reach out to us through any of the following methods:</string>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                 <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ug-Cf-h37">
-                                <rect key="frame" x="16" y="242.66666666666663" width="361" height="50"/>
+                                <rect key="frame" x="16" y="230.66666666666666" width="358" height="49.999999999999972"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="K9C-Fe-tUU">
-                                        <rect key="frame" x="15.999999999999998" y="9.6666666666666679" width="25.333333333333329" height="31.333333333333332"/>
+                                        <rect key="frame" x="16" y="9.6666666666666679" width="25" height="31.333333333333332"/>
                                         <color key="tintColor" name="PrimColor"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01112225512" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UF-VN-IKc">
-                                        <rect key="frame" x="49.333333333333321" y="15.333333333333345" width="93.666666666666686" height="19.666666666666671"/>
+                                        <rect key="frame" x="49.000000000000007" y="15.333333333333345" width="93.666666666666686" height="19.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -342,14 +342,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cap-iC-OXU">
-                                <rect key="frame" x="16" y="308.66666666666669" width="361" height="50"/>
+                                <rect key="frame" x="16" y="296.66666666666669" width="358" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-by-RQ2">
-                                        <rect key="frame" x="15.999999999999998" y="10.333333333333334" width="25.333333333333329" height="29.999999999999993"/>
+                                        <rect key="frame" x="16" y="10.333333333333334" width="25" height="29.999999999999993"/>
                                         <color key="tintColor" name="PrimColor"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shopifySupport@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ij-7x-iYq">
-                                        <rect key="frame" x="49.333333333333329" y="15.333333333333316" width="195.33333333333337" height="19.666666666666671"/>
+                                        <rect key="frame" x="49.000000000000014" y="15.333333333333316" width="195.33333333333337" height="19.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -365,8 +365,8 @@
                                     <constraint firstItem="Wv7-by-RQ2" firstAttribute="top" secondItem="cap-iC-OXU" secondAttribute="top" constant="8" id="nij-Ee-w3a"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTY-Wp-EO2">
-                                <rect key="frame" x="16" y="390.66666666666674" width="361" height="411.33333333333326"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" rotateEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTY-Wp-EO2">
+                                <rect key="frame" x="16" y="378.66666666666674" width="358" height="415.33333333333326"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                         </subviews>
@@ -408,17 +408,17 @@
             <objects>
                 <viewController storyboardIdentifier="AboutUsViewController" id="sTU-YF-OGc" customClass="AboutUsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1l-Z6-B4t">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFm-0i-6fw">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Twg-VW-gw9">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="608"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="607.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpw-pR-hwg">
-                                                <rect key="frame" x="16" y="108" width="361" height="92"/>
+                                                <rect key="frame" x="16" y="108" width="358" height="92"/>
                                                 <string key="text">Shopify designed to transform your m-commerce business into a thriving marketplace. Our platform empowers businesses with cutting-edge tools and intuitive solutions for inventory management, sales optimization, and enhanced profitability.</string>
                                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -431,32 +431,32 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mina Thabet" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyG-Ej-Xza">
-                                                <rect key="frame" x="15.999999999999993" y="466.99999999999994" width="98.333333333333314" height="98.333333333333314"/>
+                                                <rect key="frame" x="16.000000000000007" y="467.00000000000006" width="97.666666666666686" height="97.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="FyG-Ej-Xza" secondAttribute="height" multiplier="1:1" id="GDh-Vv-4Eh"/>
                                                     <constraint firstAttribute="width" secondItem="FyG-Ej-Xza" secondAttribute="height" multiplier="1:1" id="hwU-Bn-hOs"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nada Mostafa 1" translatesAutoresizingMaskIntoConstraints="NO" id="1vQ-4D-F1n">
-                                                <rect key="frame" x="147.33333333333334" y="466.99999999999994" width="98.333333333333343" height="98.333333333333314"/>
+                                                <rect key="frame" x="146.33333333333334" y="467.00000000000006" width="97.333333333333343" height="97.666666666666686"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Aser Eid" translatesAutoresizingMaskIntoConstraints="NO" id="iak-Or-Uta">
-                                                <rect key="frame" x="278.66666666666669" y="466.99999999999994" width="98.333333333333314" height="98.333333333333314"/>
+                                                <rect key="frame" x="276.66666666666669" y="467.00000000000006" width="97.333333333333314" height="97.666666666666686"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aser Eid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWp-dC-Ydi">
-                                                <rect key="frame" x="298.33333333333331" y="573.33333333333337" width="59" height="18"/>
+                                                <rect key="frame" x="295.66666666666669" y="572.66666666666663" width="59" height="18"/>
                                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nada Mostafa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMo-bS-WnX">
-                                                <rect key="frame" x="149" y="573.33333333333337" width="95" height="18"/>
+                                                <rect key="frame" x="147.66666666666666" y="572.66666666666663" width="95" height="18"/>
                                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mina Thabet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89v-eo-Ttz">
-                                                <rect key="frame" x="21.666666666666664" y="573.33333333333337" width="86.666666666666686" height="18.666666666666629"/>
+                                                <rect key="frame" x="21.333333333333336" y="572.66666666666663" width="86.666666666666657" height="18.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -488,7 +488,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sId-pd-gzX">
-                                        <rect key="frame" x="16" y="260" width="361" height="147"/>
+                                        <rect key="frame" x="16" y="260" width="358" height="147"/>
                                         <string key="text">We empower m-commerce businesses with intuitive and efficient inventory management solutions that optimize operations, reduce waste, and enhance profitability. Our goal is to become the leading platform for e-commerce inventory management, renowned for our innovation, reliability, and unparalleled customer support, enabling businesses of all sizes to thrive in a dynamic market.</string>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -507,7 +507,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJS-6a-Aui">
-                                        <rect key="frame" x="153" y="11.666666666666671" width="87" height="25"/>
+                                        <rect key="frame" x="151.66666666666666" y="11.666666666666664" width="87" height="25"/>
                                         <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -529,6 +529,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Twg-VW-gw9" secondAttribute="trailing" id="3hH-oO-KR3"/>
                                     <constraint firstItem="Cjr-xp-Ejr" firstAttribute="top" secondItem="Bpw-pR-hwg" secondAttribute="bottom" constant="32" id="Avd-H3-Tsn"/>
@@ -551,7 +552,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5l0-XM-CrY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Twg-VW-gw9" firstAttribute="width" secondItem="V1l-Z6-B4t" secondAttribute="width" id="4pY-yy-k5y"/>
                             <constraint firstItem="5l0-XM-CrY" firstAttribute="trailing" secondItem="CFm-0i-6fw" secondAttribute="trailing" id="akd-ZF-DVJ"/>
@@ -575,11 +576,11 @@
             <objects>
                 <viewController storyboardIdentifier="AddressesViewController" title="Addresses" id="OdR-j6-fJy" customClass="AddressesViewController" customModule="Shopify" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jdY-T3-2ep">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVw-6d-rBq">
-                                <rect key="frame" x="16" y="59" width="48" height="48"/>
+                                <rect key="frame" x="16" y="47" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="8Ah-hj-PDy"/>
                                     <constraint firstAttribute="height" constant="48" id="AbH-yJ-tS2"/>
@@ -588,20 +589,20 @@
                                 <buttonConfiguration key="configuration" style="filled" image="arrow.left" catalog="system">
                                     <backgroundConfiguration key="background" cornerRadius="24"/>
                                     <color key="baseForegroundColor" red="0.1137254902" green="0.1176470588" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="baseBackgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="baseBackgroundColor" name="ViewBgColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="btnBack:" destination="OdR-j6-fJy" eventType="touchUpInside" id="xdV-U4-uuW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Addresses" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13G-Zg-vo4">
-                                <rect key="frame" x="150.33333333333334" y="70.666666666666671" width="92.333333333333343" height="24.666666666666671"/>
+                                <rect key="frame" x="149" y="58.666666666666664" width="92.333333333333314" height="24.666666666666664"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hh-RP-Dcq">
-                                <rect key="frame" x="16" y="742" width="361" height="68"/>
+                                <rect key="frame" x="16" y="734.33333333333337" width="358" height="67.666666666666629"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add New Address">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -612,19 +613,19 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c8U-MB-NDP">
-                                <rect key="frame" x="0.0" y="123" width="393" height="611"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="111" width="390" height="615.33333333333337"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="99" id="D31-5s-7Rq" customClass="AddressesTableViewCell" customModule="Shopify" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="99"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D31-5s-7Rq" id="XRx-EB-mIv">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OTW-By-OjQ">
-                                                    <rect key="frame" x="16" y="0.0" width="361" height="87"/>
+                                                    <rect key="frame" x="16" y="0.0" width="358" height="87"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="LIK-dv-L1W">
                                                             <rect key="frame" x="4" y="4" width="79" height="79"/>
@@ -653,7 +654,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Okm-oh-ok9">
-                                                            <rect key="frame" x="321" y="31.000000000000007" width="24" height="25.333333333333336"/>
+                                                            <rect key="frame" x="318" y="31.000000000000007" width="24" height="25.333333333333336"/>
                                                             <color key="tintColor" red="0.29019607843137252" green="0.7803921568627451" blue="0.42745098039215684" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="2Fe-al-ggG"/>
@@ -682,6 +683,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="OTW-By-OjQ" secondAttribute="trailing" constant="16" id="Qil-zG-eSb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="ViewBgColor"/>
                                         <connections>
                                             <outlet property="address" destination="4G5-58-pHD" id="t1p-Ye-3kF"/>
                                             <outlet property="checkMark" destination="Okm-oh-ok9" id="k2e-df-Vym"/>
@@ -690,10 +692,10 @@
                                 </prototypes>
                             </tableView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty2" translatesAutoresizingMaskIntoConstraints="NO" id="uHz-SE-fgT">
-                                <rect key="frame" x="16" y="277" width="361" height="298"/>
+                                <rect key="frame" x="16" y="274.33333333333337" width="358" height="295.33333333333337"/>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kg0-NP-QJ9">
-                                <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                                <rect key="frame" x="185" y="412" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bIm-ig-kXu"/>
@@ -735,11 +737,11 @@
             <objects>
                 <viewController storyboardIdentifier="SettingViewController" title="Seetings" id="d4u-mF-6hT" customClass="SettingViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZUC-c2-cvZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iig-fJ-58K">
-                                <rect key="frame" x="16" y="59" width="48" height="48"/>
+                                <rect key="frame" x="16" y="47" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="8WK-JA-hmc"/>
                                     <constraint firstAttribute="height" constant="48" id="R79-QK-eru"/>
@@ -755,13 +757,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0U-WN-brk">
-                                <rect key="frame" x="159.33333333333334" y="70.666666666666671" width="74.333333333333343" height="24.666666666666671"/>
+                                <rect key="frame" x="158" y="58.666666666666664" width="74.333333333333314" height="24.666666666666664"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HM-WY-qHh">
-                                <rect key="frame" x="16" y="742" width="361" height="68"/>
+                                <rect key="frame" x="16" y="734.33333333333337" width="358" height="67.666666666666629"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Logout">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -772,16 +774,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ok-8d-gGB">
-                                <rect key="frame" x="16" y="139" width="361" height="59.666666666666657"/>
+                                <rect key="frame" x="16" y="127" width="358" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbf-4j-9r7">
-                                        <rect key="frame" x="8" y="20" width="345" height="19.666666666666671"/>
+                                        <rect key="frame" x="8" y="19.666666666666657" width="342" height="19.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oDr-3b-5bH">
-                                        <rect key="frame" x="329" y="21.333333333333321" width="24" height="17.333333333333336"/>
+                                        <rect key="frame" x="326" y="21.333333333333321" width="24" height="17.333333333333336"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Ys6-Uo-Cep"/>
@@ -807,16 +809,16 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIu-1B-2xi">
-                                <rect key="frame" x="16" y="210.66666666666666" width="361" height="59.666666666666657"/>
+                                <rect key="frame" x="16" y="198" width="358" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYb-Sf-ROs">
-                                        <rect key="frame" x="8" y="20" width="345" height="19.666666666666671"/>
+                                        <rect key="frame" x="8" y="19.666666666666657" width="342" height="19.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="luh-Jd-H11">
-                                        <rect key="frame" x="329" y="21.33333333333335" width="24" height="17.333333333333336"/>
+                                        <rect key="frame" x="326" y="21.333333333333321" width="24" height="17.333333333333336"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="D7V-Hw-XzS"/>
@@ -825,7 +827,7 @@
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EGP" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX1-ay-fFC">
-                                        <rect key="frame" x="289.33333333333331" y="21" width="31.666666666666686" height="17.333333333333329"/>
+                                        <rect key="frame" x="286.33333333333331" y="21" width="31.666666666666686" height="17.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -850,17 +852,17 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfX-Ni-7ha">
-                                <rect key="frame" x="16" y="282.33333333333331" width="361" height="59.666666666666686"/>
+                                <rect key="frame" x="16" y="269" width="358" height="59.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMf-kK-AyW">
-                                        <rect key="frame" x="8" y="19.666666666666686" width="345" height="20"/>
+                                        <rect key="frame" x="8" y="19.666666666666686" width="342" height="20"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JfK-QO-a9d">
-                                        <rect key="frame" x="329" y="21.33333333333335" width="24" height="17.333333333333336"/>
+                                        <rect key="frame" x="326" y="21.33333333333335" width="24" height="17.333333333333336"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="q9A-Um-gwz"/>
@@ -886,16 +888,16 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSy-gg-N12">
-                                <rect key="frame" x="16" y="354" width="361" height="59.666666666666686"/>
+                                <rect key="frame" x="16" y="340.33333333333331" width="358" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xo-bA-gBa">
-                                        <rect key="frame" x="8" y="19.666666666666686" width="345" height="20"/>
+                                        <rect key="frame" x="8" y="19.333333333333371" width="342" height="20"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cW0-pI-prZ">
-                                        <rect key="frame" x="329" y="21.33333333333335" width="24" height="17.333333333333336"/>
+                                        <rect key="frame" x="326" y="21.000000000000036" width="24" height="17.333333333333336"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="e82-RC-fsI"/>
@@ -984,11 +986,11 @@
             <objects>
                 <viewController storyboardIdentifier="ShoppingCartViewController" title="Cart" id="IOI-Li-jOt" customClass="ShoppingCartViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tZd-Pw-CzO">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSm-Js-kQd">
-                                <rect key="frame" x="16" y="59" width="48" height="48"/>
+                                <rect key="frame" x="16" y="47" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="8sH-RD-dQ3"/>
                                     <constraint firstAttribute="height" constant="48" id="VMe-rF-hE7"/>
@@ -1004,13 +1006,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF6-7k-CxU">
-                                <rect key="frame" x="175.66666666666666" y="72.666666666666671" width="42" height="20.666666666666671"/>
+                                <rect key="frame" x="174" y="60.666666666666664" width="42" height="20.666666666666664"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygW-WI-ri7">
-                                <rect key="frame" x="16" y="742" width="361" height="68"/>
+                                <rect key="frame" x="16" y="734.33333333333337" width="358" height="67.666666666666629"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Checkout">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1021,31 +1023,31 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI9-Q8-mUL">
-                                <rect key="frame" x="15.999999999999996" y="714" width="40.666666666666657" height="20"/>
+                                <rect key="frame" x="15.999999999999996" y="706.33333333333337" width="40.666666666666657" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="we9-ui-INt">
-                                <rect key="frame" x="368.66666666666669" y="714" width="8.3333333333333144" height="20"/>
+                                <rect key="frame" x="365.66666666666669" y="706.33333333333337" width="8.3333333333333144" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GQh-BC-qti">
-                                <rect key="frame" x="0.0" y="125.33333333333331" width="393" height="580.66666666666674"/>
+                                <rect key="frame" x="0.0" y="113.33333333333331" width="390" height="585"/>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="146" id="7iK-Wd-xLk" customClass="ShoppingCartTableViewCell" customModule="Shopify" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="146"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="146"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7iK-Wd-xLk" id="dgI-aK-f7H">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="146"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="146"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rdb-LN-Bfb">
-                                                    <rect key="frame" x="16" y="0.0" width="361" height="138"/>
+                                                    <rect key="frame" x="16" y="0.0" width="358" height="138"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YmG-6z-RjI">
                                                             <rect key="frame" x="8" y="12" width="126" height="114"/>
@@ -1053,8 +1055,8 @@
                                                                 <constraint firstAttribute="width" secondItem="YmG-6z-RjI" secondAttribute="height" multiplier="1:1" constant="12" id="viK-S0-Uus"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Men's Tie-Dye T-Shirt Nike Sportswear" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7H-U6-xl5">
-                                                            <rect key="frame" x="142" y="12" width="215" height="37"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Men's Tie-Dye T-Shirt Nike Sportswear | Size: 7" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7H-U6-xl5">
+                                                            <rect key="frame" x="142" y="12" width="212" height="37"/>
                                                             <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1090,7 +1092,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="26K-Rt-69I">
-                                                            <rect key="frame" x="332" y="108.33333333333333" width="21" height="21.333333333333329"/>
+                                                            <rect key="frame" x="329" y="108.33333333333333" width="21" height="21.333333333333329"/>
                                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <accessibility key="accessibilityConfiguration">
                                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
@@ -1107,7 +1109,7 @@
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0x-Ic-3kR">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="500" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0x-Ic-3kR">
                                                             <rect key="frame" x="142" y="74" width="22" height="17"/>
                                                             <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1168,10 +1170,15 @@
                                 </prototypes>
                             </tableView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty2" translatesAutoresizingMaskIntoConstraints="NO" id="KUP-qu-LZx">
-                                <rect key="frame" x="16" y="277" width="361" height="298"/>
+                                <rect key="frame" x="16" y="274.33333333333337" width="358" height="295.33333333333337"/>
                             </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-hE-RVX">
-                                <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7V-7W-9U4">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-hE-RVX">
+                                <rect key="frame" x="186" y="416" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gUs-gq-jQi"/>
@@ -1184,21 +1191,23 @@
                             <constraint firstItem="wF6-7k-CxU" firstAttribute="centerX" secondItem="tZd-Pw-CzO" secondAttribute="centerX" id="Cp3-TY-Zhg"/>
                             <constraint firstItem="KUP-qu-LZx" firstAttribute="centerX" secondItem="tZd-Pw-CzO" secondAttribute="centerX" id="Fkj-LE-o35"/>
                             <constraint firstItem="KUP-qu-LZx" firstAttribute="centerY" secondItem="tZd-Pw-CzO" secondAttribute="centerY" id="Hn0-qb-Wt1"/>
-                            <constraint firstItem="hvk-hE-RVX" firstAttribute="centerY" secondItem="tZd-Pw-CzO" secondAttribute="centerY" id="Jaw-sF-QDI"/>
                             <constraint firstItem="KUP-qu-LZx" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" constant="16" id="Lfr-Cp-sU9"/>
+                            <constraint firstAttribute="bottom" secondItem="I7V-7W-9U4" secondAttribute="bottom" id="MI1-HF-Av9"/>
                             <constraint firstItem="MI9-Q8-mUL" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" constant="16" id="OLy-GD-xn4"/>
                             <constraint firstItem="wF6-7k-CxU" firstAttribute="top" secondItem="PSm-Js-kQd" secondAttribute="bottom" constant="-34.333333333333329" id="T7g-xb-4j1"/>
                             <constraint firstItem="MI9-Q8-mUL" firstAttribute="top" secondItem="GQh-BC-qti" secondAttribute="bottom" constant="8" id="TNU-BD-5AH"/>
                             <constraint firstItem="ygW-WI-ri7" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" constant="16" id="V3Q-mT-4d7"/>
                             <constraint firstItem="gUs-gq-jQi" firstAttribute="trailing" secondItem="we9-ui-INt" secondAttribute="trailing" constant="16" id="Vme-pY-xHO"/>
+                            <constraint firstItem="gUs-gq-jQi" firstAttribute="trailing" secondItem="I7V-7W-9U4" secondAttribute="trailing" id="W03-n9-kdK"/>
+                            <constraint firstItem="I7V-7W-9U4" firstAttribute="top" secondItem="tZd-Pw-CzO" secondAttribute="top" id="dBf-am-SWz"/>
                             <constraint firstItem="GQh-BC-qti" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" id="ftX-Bt-AHA"/>
+                            <constraint firstItem="I7V-7W-9U4" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" id="fuR-bs-IWq"/>
                             <constraint firstItem="ygW-WI-ri7" firstAttribute="height" secondItem="tZd-Pw-CzO" secondAttribute="height" multiplier="0.08" id="gaW-GZ-3aY"/>
                             <constraint firstItem="GQh-BC-qti" firstAttribute="top" secondItem="wF6-7k-CxU" secondAttribute="bottom" constant="32" id="nCu-PU-Kjg"/>
                             <constraint firstItem="PSm-Js-kQd" firstAttribute="leading" secondItem="gUs-gq-jQi" secondAttribute="leading" constant="16" id="rBO-lQ-NMI"/>
                             <constraint firstItem="PSm-Js-kQd" firstAttribute="top" secondItem="gUs-gq-jQi" secondAttribute="top" id="rvI-m9-1Zp"/>
                             <constraint firstItem="gUs-gq-jQi" firstAttribute="trailing" secondItem="KUP-qu-LZx" secondAttribute="trailing" constant="16" id="sZ7-lj-fL0"/>
                             <constraint firstItem="KUP-qu-LZx" firstAttribute="height" secondItem="tZd-Pw-CzO" secondAttribute="height" multiplier="0.35" id="t9X-DQ-Hi3"/>
-                            <constraint firstItem="hvk-hE-RVX" firstAttribute="centerX" secondItem="tZd-Pw-CzO" secondAttribute="centerX" id="uTa-Re-Jy1"/>
                             <constraint firstItem="wF6-7k-CxU" firstAttribute="centerY" secondItem="PSm-Js-kQd" secondAttribute="centerY" id="urR-ne-nRw"/>
                             <constraint firstItem="gUs-gq-jQi" firstAttribute="bottom" secondItem="ygW-WI-ri7" secondAttribute="bottom" constant="8" id="yGm-VU-vi7"/>
                         </constraints>
@@ -1206,24 +1215,25 @@
                     <connections>
                         <outlet property="emptyImage" destination="KUP-qu-LZx" id="KrS-Y3-f2A"/>
                         <outlet property="loadingIndicator" destination="hvk-hE-RVX" id="R6a-zN-iAt"/>
+                        <outlet property="loadingView" destination="I7V-7W-9U4" id="e8a-pC-CjS"/>
                         <outlet property="tableView" destination="GQh-BC-qti" id="bav-p5-kNT"/>
                         <outlet property="total" destination="we9-ui-INt" id="jh6-4g-Zzr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qhh-DA-49f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="945.80152671755718" y="710.56338028169023"/>
+            <point key="canvasLocation" x="944.61538461538453" y="710.18957345971558"/>
         </scene>
         <!--Payment-->
         <scene sceneID="Og3-91-1ge">
             <objects>
                 <viewController storyboardIdentifier="PaymentViewController" title="Payment" id="3E5-UD-KXD" customClass="PaymentViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TMP-Lg-qHm">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bb0-mR-gCx">
-                                <rect key="frame" x="16" y="59" width="48" height="48"/>
+                                <rect key="frame" x="16" y="47" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="FJQ-Y2-YR0"/>
                                     <constraint firstAttribute="height" constant="48" id="fr2-zt-nfK"/>
@@ -1239,13 +1249,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hf-jN-4tq">
-                                <rect key="frame" x="156" y="70.666666666666671" width="81" height="24.666666666666671"/>
+                                <rect key="frame" x="154.66666666666666" y="58.666666666666657" width="81" height="25"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoS-fY-j5F">
-                                <rect key="frame" x="16" y="742" width="361" height="68"/>
+                                <rect key="frame" x="16" y="734.33333333333337" width="358" height="67.666666666666629"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Confirm Payment">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1256,7 +1266,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcP-y0-zlf">
-                                <rect key="frame" x="16" y="139" width="361" height="100.66666666666669"/>
+                                <rect key="frame" x="16" y="127" width="358" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHq-0k-GLm">
                                         <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="19.666666666666668"/>
@@ -1265,7 +1275,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zsa-YO-9Ej">
-                                        <rect key="frame" x="345" y="2" width="16" height="12.333333333333332"/>
+                                        <rect key="frame" x="342" y="2" width="16" height="12.333333333333332"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="b77-TC-C8h"/>
@@ -1274,7 +1284,7 @@
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="Iwh-Ms-T5l">
-                                        <rect key="frame" x="0.0" y="35.666666666666657" width="65" height="65"/>
+                                        <rect key="frame" x="0.0" y="35.66666666666665" width="64.333333333333329" height="64.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Iwh-Ms-T5l" secondAttribute="height" multiplier="1:1" id="LcE-50-RuF"/>
                                         </constraints>
@@ -1294,7 +1304,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LW-LP-dap">
-                                        <rect key="frame" x="73" y="50.666666666666657" width="256" height="34.666666666666657"/>
+                                        <rect key="frame" x="72.333333333333329" y="50.666666666666657" width="253.66666666666669" height="34.666666666666657"/>
                                         <string key="text">43, Electronics City Phase 1,
 Electronic City</string>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
@@ -1302,7 +1312,7 @@ Electronic City</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nkq-Bt-goM">
-                                        <rect key="frame" x="337" y="55.333333333333329" width="24" height="25.333333333333329"/>
+                                        <rect key="frame" x="334" y="55.333333333333329" width="24" height="25.333333333333329"/>
                                         <color key="tintColor" red="0.2901960784" green="0.78039215689999997" blue="0.42745098040000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="G4L-7b-jCv"/>
@@ -1333,7 +1343,7 @@ Electronic City</string>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTA-4Z-gFT">
-                                <rect key="frame" x="16" y="251.66666666666666" width="361" height="100.66666666666666"/>
+                                <rect key="frame" x="16" y="239.00000000000003" width="358" height="100.33333333333334"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-rR-liR">
                                         <rect key="frame" x="0.0" y="0.0" width="122.66666666666667" height="19.666666666666668"/>
@@ -1342,7 +1352,7 @@ Electronic City</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BAm-eQ-PCP">
-                                        <rect key="frame" x="345" y="2" width="16" height="12.333333333333332"/>
+                                        <rect key="frame" x="342" y="2" width="16" height="12.333333333333332"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="Vqk-HP-79W"/>
@@ -1351,19 +1361,19 @@ Electronic City</string>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay" translatesAutoresizingMaskIntoConstraints="NO" id="hRz-cg-2gO">
-                                        <rect key="frame" x="0.0" y="35.666666666666657" width="65" height="65"/>
+                                        <rect key="frame" x="0.0" y="35.666666666666693" width="64.333333333333329" height="64.666666666666686"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hRz-cg-2gO" secondAttribute="height" multiplier="1:1" id="YTS-Rb-Mrj"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visa Classic" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6K-Z6-N2k">
-                                        <rect key="frame" x="73" y="59.33333333333335" width="256" height="17.333333333333336"/>
+                                        <rect key="frame" x="72.333333333333329" y="59.333333333333321" width="253.66666666666669" height="17.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="E2c-DO-sfs">
-                                        <rect key="frame" x="337" y="55.333333333333357" width="24" height="25.333333333333329"/>
+                                        <rect key="frame" x="334" y="55.333333333333329" width="24" height="25.333333333333329"/>
                                         <color key="tintColor" red="0.2901960784" green="0.78039215689999997" blue="0.42745098040000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="fus-Ii-1sq"/>
@@ -1391,10 +1401,10 @@ Electronic City</string>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxp-VA-uxR">
-                                <rect key="frame" x="16" y="530" width="361" height="196"/>
+                                <rect key="frame" x="16" y="522.33333333333337" width="358" height="196"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9WQ-vi-Pq7">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="358" height="20"/>
                                         <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1406,13 +1416,13 @@ Electronic City</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Charge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2D-fF-F50">
-                                        <rect key="frame" x="0.0" y="67.333333333333371" width="104" height="18"/>
+                                        <rect key="frame" x="0.0" y="67.333333333333258" width="104" height="18"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Coupon" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="76w-QQ-VmQ">
-                                        <rect key="frame" x="0.0" y="99.333333333333371" width="252.66666666666666" height="34"/>
+                                        <rect key="frame" x="0.0" y="99.333333333333258" width="250.66666666666666" height="34"/>
                                         <color key="backgroundColor" name="ViewBgColor"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
@@ -1425,37 +1435,37 @@ Electronic City</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWO-A6-rZl">
-                                        <rect key="frame" x="338.33333333333331" y="36" width="22.666666666666686" height="17.333333333333329"/>
+                                        <rect key="frame" x="335.33333333333331" y="36" width="22.666666666666686" height="17.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9G-O7-POq">
-                                        <rect key="frame" x="338.33333333333331" y="67.333333333333371" width="22.666666666666686" height="17.333333333333329"/>
+                                        <rect key="frame" x="335.33333333333331" y="67.333333333333258" width="22.666666666666686" height="17.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2g-Ng-oN3">
-                                        <rect key="frame" x="338.33333333333331" y="178.66666666666663" width="22.666666666666686" height="17.333333333333343"/>
+                                        <rect key="frame" x="335.33333333333331" y="178.66666666666663" width="22.666666666666686" height="17.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlW-uM-N1P">
-                                        <rect key="frame" x="353.33333333333331" y="147.33333333333337" width="7.6666666666666856" height="17.333333333333343"/>
+                                        <rect key="frame" x="350.33333333333331" y="147.33333333333326" width="7.6666666666666856" height="17.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cL-zf-SR9">
-                                        <rect key="frame" x="0.0" y="147.33333333333337" width="57.333333333333336" height="17.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="147.33333333333326" width="57.333333333333336" height="17.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQh-Zi-n89">
-                                        <rect key="frame" x="310" y="107.66666666666663" width="51" height="17"/>
+                                        <rect key="frame" x="307" y="108" width="51" height="17"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Validate">
                                             <fontDescription key="titleFontDescription" name="Cochin" family="Cochin" pointSize="15"/>
@@ -1498,11 +1508,11 @@ Electronic City</string>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ckk-1w-ecz">
-                                <rect key="frame" x="0.0" y="139" width="393" height="679"/>
+                                <rect key="frame" x="0.0" y="127" width="390" height="683"/>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Zqa-WT-gNP">
-                                <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                                <rect key="frame" x="185" y="412" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ICr-2s-nbq"/>
@@ -1566,29 +1576,29 @@ Electronic City</string>
             <objects>
                 <viewController title="Profile" id="7lW-Wi-shZ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G1t-UI-p74">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g52-E0-bUz">
-                                <rect key="frame" x="170.66666666666666" y="72.666666666666671" width="52" height="21"/>
+                                <rect key="frame" x="169" y="60.666666666666657" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Aser Eid 1" translatesAutoresizingMaskIntoConstraints="NO" id="NcP-hz-d5X">
-                                <rect key="frame" x="15.999999999999993" y="125.66666666666669" width="98.333333333333314" height="98.333333333333314"/>
+                                <rect key="frame" x="16.000000000000007" y="113.66666666666666" width="97.666666666666686" height="97.666666666666657"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="NcP-hz-d5X" secondAttribute="height" multiplier="1:1" id="yrA-pS-ojZ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aser Eid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M45-xs-YdW">
-                                <rect key="frame" x="122.33333333333333" y="164.33333333333334" width="254.66666666666669" height="21"/>
+                                <rect key="frame" x="121.66666666666667" y="152" width="252.33333333333331" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfn-qA-Y2G">
-                                <rect key="frame" x="16" y="240" width="361" height="170.33333333333337"/>
+                                <rect key="frame" x="16" y="227.33333333333337" width="358" height="168.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V92-6P-pRI">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="21"/>
@@ -1597,61 +1607,61 @@ Electronic City</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRA-A8-Fat">
-                                        <rect key="frame" x="0.0" y="37" width="34" height="18"/>
+                                        <rect key="frame" x="0.0" y="36.999999999999972" width="34" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.5607843137254902" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creation Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmz-vd-A00">
-                                        <rect key="frame" x="0.0" y="69" width="95" height="18"/>
+                                        <rect key="frame" x="0.0" y="68.999999999999972" width="95" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipped to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbA-tA-TLm">
-                                        <rect key="frame" x="0.0" y="101" width="75" height="18"/>
+                                        <rect key="frame" x="0.0" y="100.99999999999997" width="75" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB9-Qu-zus">
-                                        <rect key="frame" x="0.0" y="133" width="44" height="18"/>
+                                        <rect key="frame" x="0.0" y="132.99999999999997" width="44" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01099791681" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6W-vK-pgI">
-                                        <rect key="frame" x="267" y="133" width="94" height="18"/>
+                                        <rect key="frame" x="264" y="132.99999999999997" width="94" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.11372549019607843" green="0.11764705882352941" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egypt, Giza" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgH-iJ-6E1">
-                                        <rect key="frame" x="282" y="101" width="79" height="18"/>
+                                        <rect key="frame" x="279" y="100.99999999999997" width="79" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.1137254902" green="0.1176470588" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023-06-22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqU-40-Sdq">
-                                        <rect key="frame" x="275" y="69" width="86" height="18"/>
+                                        <rect key="frame" x="272" y="68.999999999999972" width="86" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.1137254902" green="0.1176470588" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-a6-dVK">
-                                        <rect key="frame" x="333" y="37" width="28" height="18"/>
+                                        <rect key="frame" x="330" y="36.999999999999972" width="28" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.1137254902" green="0.1176470588" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAm-KO-Wud">
-                                        <rect key="frame" x="323" y="37" width="10" height="18"/>
+                                        <rect key="frame" x="320" y="36.999999999999972" width="10" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.1137254902" green="0.1176470588" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMM-bR-cBb">
-                                        <rect key="frame" x="279.33333333333331" y="0.0" width="81.666666666666686" height="16"/>
+                                        <rect key="frame" x="276.33333333333331" y="0.0" width="81.666666666666686" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show More" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaG-dQ-31O">
                                                 <rect key="frame" x="0.0" y="0.0" width="68" height="16"/>
@@ -1704,7 +1714,7 @@ Electronic City</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZl-eb-tPi">
-                                <rect key="frame" x="16" y="442.33333333333326" width="361" height="340.66666666666674"/>
+                                <rect key="frame" x="16" y="428" width="358" height="337.66666666666674"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wish List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymD-hn-SKu">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="21"/>
@@ -1713,13 +1723,13 @@ Electronic City</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOD-Te-Sge">
-                                        <rect key="frame" x="0.0" y="36.999999999999993" width="361" height="102.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="36.999999999999993" width="358" height="101.33333333333331"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5lY-mk-cz7">
-                                                <rect key="frame" x="8" y="8" width="90.333333333333329" height="86.333333333333329"/>
+                                                <rect key="frame" x="8" y="8" width="89.666666666666671" height="85.333333333333329"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKw-C0-QBj">
-                                                <rect key="frame" x="106.33333333333333" y="22.000000000000004" width="246.66666666666669" height="38.333333333333343"/>
+                                                <rect key="frame" x="105.66666666666667" y="21.333333333333318" width="244.33333333333331" height="38.333333333333343"/>
                                                 <string key="text">Men's Tie-Dye T-Shirt
 Nike Sportswear</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1727,13 +1737,13 @@ Nike Sportswear</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9r-rU-VNp">
-                                                <rect key="frame" x="106.33333333333333" y="68.333333333333314" width="10" height="20"/>
+                                                <rect key="frame" x="105.66666666666667" y="67.666666666666629" width="10" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="900" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36g-t9-tog">
-                                                <rect key="frame" x="116.33333333333334" y="69.333333333333314" width="28" height="18"/>
+                                                <rect key="frame" x="115.66666666666666" y="68.666666666666629" width="28" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1755,13 +1765,13 @@ Nike Sportswear</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmQ-Ls-yJh">
-                                        <rect key="frame" x="0.0" y="155.33333333333331" width="361" height="102"/>
+                                        <rect key="frame" x="0.0" y="154.33333333333337" width="358" height="101.33333333333331"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MVJ-QV-ayy">
-                                                <rect key="frame" x="8" y="8" width="90.333333333333329" height="86"/>
+                                                <rect key="frame" x="8" y="8" width="89.666666666666671" height="85.333333333333329"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXq-PI-O6I">
-                                                <rect key="frame" x="106.33333333333333" y="22.000000000000004" width="246.66666666666669" height="38.333333333333343"/>
+                                                <rect key="frame" x="105.66666666666667" y="21.333333333333261" width="244.33333333333331" height="38.333333333333343"/>
                                                 <string key="text">Men's Tie-Dye T-Shirt
 Nike Sportswear</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1769,13 +1779,13 @@ Nike Sportswear</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1PI-1i-lCd">
-                                                <rect key="frame" x="106.33333333333333" y="68.333333333333371" width="10" height="20"/>
+                                                <rect key="frame" x="105.66666666666667" y="67.666666666666629" width="10" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="900" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJ6-0Z-JKP">
-                                                <rect key="frame" x="116.33333333333334" y="69.333333333333371" width="28" height="18"/>
+                                                <rect key="frame" x="115.66666666666666" y="68.666666666666629" width="28" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1797,7 +1807,7 @@ Nike Sportswear</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQb-Hh-TwJ">
-                                        <rect key="frame" x="279.33333333333331" y="0.0" width="81.666666666666686" height="16"/>
+                                        <rect key="frame" x="276.33333333333331" y="0.0" width="81.666666666666686" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show More" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2D-rQ-81t">
                                                 <rect key="frame" x="0.0" y="0.0" width="68" height="16"/>
@@ -1871,32 +1881,32 @@ Nike Sportswear</string>
             <objects>
                 <viewController storyboardIdentifier="PaymentMethodViewController" id="75T-FP-rQx" customClass="PaymentMethodViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W0o-4b-t42">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kv-8t-Bl4">
-                                <rect key="frame" x="97.666666666666671" y="91" width="197.66666666666663" height="22.333333333333329"/>
+                                <rect key="frame" x="96.333333333333329" y="79" width="197.66666666666669" height="22.333333333333329"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6D3-4T-8cg">
-                                <rect key="frame" x="16" y="145.33333333333331" width="361" height="170.33333333333331"/>
+                                <rect key="frame" x="16" y="133.33333333333337" width="358" height="168.66666666666663"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applePay" translatesAutoresizingMaskIntoConstraints="NO" id="Ivs-aB-539">
-                                        <rect key="frame" x="8" y="8" width="75.666666666666671" height="75.666666666666671"/>
+                                        <rect key="frame" x="8" y="8" width="75.333333333333329" height="75.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Ivs-aB-539" secondAttribute="height" multiplier="1:1" id="3fm-fB-wrN"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hF-wW-rv7">
-                                        <rect key="frame" x="99.666666666666686" y="36" width="74" height="20"/>
+                                        <rect key="frame" x="99.333333333333314" y="35.666666666666657" width="74" height="20"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dzI-xa-jVS">
-                                        <rect key="frame" x="321" y="33.333333333333329" width="24" height="25.333333333333336"/>
+                                        <rect key="frame" x="318" y="32.999999999999986" width="24" height="25.333333333333336"/>
                                         <color key="tintColor" red="0.2901960784" green="0.78039215689999997" blue="0.42745098040000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="678-Rh-2Hk"/>
@@ -1920,22 +1930,22 @@ Nike Sportswear</string>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjU-gB-A7n">
-                                <rect key="frame" x="16" y="331.66666666666669" width="361" height="170.33333333333331"/>
+                                <rect key="frame" x="16" y="318" width="358" height="169"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay" translatesAutoresizingMaskIntoConstraints="NO" id="ycX-fc-v8L">
-                                        <rect key="frame" x="8" y="8" width="75.666666666666671" height="76"/>
+                                        <rect key="frame" x="8" y="8" width="75.333333333333329" height="75.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ycX-fc-v8L" secondAttribute="height" multiplier="1:1" id="SRY-3r-dY9"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash on Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ky-or-3Jj">
-                                        <rect key="frame" x="99.666666666666657" y="36.333333333333314" width="123.66666666666666" height="19.333333333333329"/>
+                                        <rect key="frame" x="99.333333333333314" y="36" width="123" height="19.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OiW-Zr-kWC">
-                                        <rect key="frame" x="321" y="33.333333333333329" width="24" height="25.333333333333336"/>
+                                        <rect key="frame" x="318" y="33.000000000000014" width="24" height="25.333333333333336"/>
                                         <color key="tintColor" red="0.2901960784" green="0.78039215689999997" blue="0.42745098040000001" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="Ami-IT-FzX"/>
@@ -1998,11 +2008,11 @@ Nike Sportswear</string>
             <objects>
                 <viewController storyboardIdentifier="OrderConfirmedViewController" title="Order Confirmed" id="Lnj-Te-I55" customClass="OrderConfirmedViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="71w-Zq-Yd5">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ura-mS-Q6s">
-                                <rect key="frame" x="16" y="742" width="361" height="68"/>
+                                <rect key="frame" x="16" y="734.33333333333337" width="358" height="67.666666666666629"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Continue Shopping">
                                     <color key="baseForegroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -2013,7 +2023,7 @@ Nike Sportswear</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6d-HZ-9NN">
-                                <rect key="frame" x="16" y="665.66666666666663" width="361" height="68.333333333333371"/>
+                                <rect key="frame" x="16" y="659" width="358" height="67.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Go To Order Details">
                                     <color key="baseForegroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2024,16 +2034,16 @@ Nike Sportswear</string>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confirm" translatesAutoresizingMaskIntoConstraints="NO" id="b3D-QM-U8S">
-                                <rect key="frame" x="16" y="139.00000000000003" width="361" height="340.66666666666674"/>
+                                <rect key="frame" x="16" y="127.00000000000003" width="358" height="337.66666666666674"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Confirmed!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVJ-aX-opu">
-                                <rect key="frame" x="121.33333333333333" y="495.66666666666669" width="150.33333333333337" height="22.333333333333314"/>
+                                <rect key="frame" x="120.00000000000001" y="480.66666666666669" width="150.33333333333337" height="22.333333333333314"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your order has been confirmed, we will send you confirmation email shortly." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Blh-eq-yiF">
-                                <rect key="frame" x="16" y="534" width="361" height="39"/>
+                                <rect key="frame" x="16" y="519" width="358" height="39"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

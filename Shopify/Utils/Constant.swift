@@ -23,6 +23,13 @@ class Constant {
     static let PAID = "paid"
     static let FIXED_AMOUNT = "fixed_amount"
     static let PERCENTAGE = "percentage"
+    static let WOMEN = "Women's"
+    static let MEN = "Men's"
+    static let ALL = "All"
+    static let KIDS = "Kids"
+    static let SALE = "SALE"
+    static let CATEGORY = "CATEGORY"
+    
 }
 
 struct NetworkConstants {

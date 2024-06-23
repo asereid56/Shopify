@@ -18,7 +18,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var noInternetImage: UIImageView!
     @IBOutlet weak var chooseBrandTxt: UILabel!
-
+    @IBOutlet weak var viewLoading: UIView!
     
     
     var viewModel : HomeScreenViewModelProtocol?
@@ -48,7 +48,9 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         print(AuthenticationManager.shared.isUserLoggedIn())
+        print("Draft Order Id : \(checkonUserDefaultsValues)")
         checkonUserDefaultsValues()
         setupSearchBar()
         adsCollection.delegate = nil
@@ -63,6 +65,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             adsCollection.isHidden = false
             brandsCollection.isHidden = false
             searchBar.isHidden = false
+            viewLoading.isHidden = false
             viewModel?.fetchBranchs()
             viewModel?.fetchCoupons()
             setUpBrandsBinding()
@@ -74,6 +77,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             activityIndicator.isHidden = true
             noInternetImage.isHidden = false
             searchBar.isHidden = true
+            viewLoading.isHidden = true
         }
     }
     
@@ -139,12 +143,16 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         
         viewModel?.isLoading
             .map { !$0 }
+            .do(onDispose: {
+                self.viewLoading.isHidden = false
+            })
             .bind(to: activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
         
         viewModel?.dataFetchCompleted
             .subscribe(onNext: { [weak self] in
                 self?.activityIndicator.isHidden = true
+                self?.viewLoading.isHidden = true
             })
             .disposed(by: disposeBag)
         

@@ -103,16 +103,15 @@ class ProductInfoViewModel {
         return variants?[0]
     }
     
-    func fetchDraftOrder(){
+    func fetchDraftOrder(variant : Variant){
         isLoading.accept(true)
         network.get(url: NetworkConstants.baseURL, endpoint: endpoint!, parameters: nil, headers: nil).subscribe {[weak self] (draftOrderWrapper : DraftOrderWrapper) in
             self?.draftOrder = draftOrderWrapper.draftOrder
-            let variant = self?.product?.variants![0]
-            self?.updateLineItem(variant: variant!)
+            //let variant = self?.product?.variants![0]
+            self?.updateLineItem(variant: variant)
             
         }.disposed(by: disposeBag)
     }
-    
     
     func updateLineItem(variant : Variant){
         let lineItems = draftOrder?.lineItems
