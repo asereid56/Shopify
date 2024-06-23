@@ -18,7 +18,6 @@ class UserDefaultsManager {
         userDefaults.set(wishListId, forKey: "wishListId")
         userDefaults.set(firstName, forKey: "firstName")
         userDefaults.set(lastName, forKey: "lastName")
-        
     }
 
     func getCustomerIdFromUserDefaults() -> String? {

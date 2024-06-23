@@ -48,5 +48,29 @@ final class NetworkTest: XCTestCase {
         waitForExpectations(timeout: 10)
     }
     
+    func testPost() {
+            let expectation = expectation(description: "wait to create draft order")
+            let linItems = LineItem(title: "DummyProduct", price: "0.0", quantity: 1)
+            let draftOrder = DraftOrder(lineItems: [linItems])
+            let draftOrderWrapper = DraftOrderWrapper(draftOrder: draftOrder)
+            let endPoint = APIEndpoint.createDraftOrder.rawValue
+
+            network?.post(url: NetworkConstants.baseURL, endpoint: endPoint, body: draftOrderWrapper, headers: nil, responseType: DraftOrderWrapper.self)
+                .subscribe(onNext: { success , msg , response in
+
+                    XCTAssertTrue(success)
+                    XCTAssertEqual(response?.draftOrder?.lineItems?.count, 1)
+                    XCTAssertEqual(response?.draftOrder?.lineItems?.first?.title , "DummyProduct")
+                    expectation.fulfill()
+
+                },onError: { error in
+
+                    XCTFail("Error occurred: (error.localizedDescription)")
+                    expectation.fulfill()
+
+                }).disposed(by: disposeBag)
+
+            waitForExpectations(timeout: 10)
+        }
     
 }

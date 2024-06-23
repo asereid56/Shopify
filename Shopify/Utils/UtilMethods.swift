@@ -8,7 +8,7 @@
 import UIKit
 import Reachability
 
-func showToast(title: String? = nil, message: String, vc: UIViewController, actions: [UIAlertAction]? = nil, style: UIAlertController.Style? = nil, selfDismiss: Bool = true, completion: (() -> Void)? = nil) -> UIAlertController? {
+func showAlert(title: String? = nil, message: String, vc: UIViewController, actions: [UIAlertAction]? = nil, style: UIAlertController.Style? = nil, selfDismiss: Bool = true, dismissAfter: Double = 1.2, completion: (() -> Void)? = nil) -> UIAlertController? {
     let alert = UIAlertController(title: title, message: message, preferredStyle: style ?? .actionSheet)
     if let actions {
         for action in actions {
@@ -17,7 +17,7 @@ func showToast(title: String? = nil, message: String, vc: UIViewController, acti
     }
     vc.present(alert, animated: true)
     if selfDismiss {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + dismissAfter) {
             alert.dismiss(animated: true)
             completion?()
         }
@@ -48,7 +48,7 @@ func checkInternetAndShowToast(vc: UIViewController) -> Bool{
     if isInternetAvailable() {
         return true
     } else {
-        _ = showToast(message: "No internet connection", vc: vc)
+        _ = showAlert(message: "No internet connection", vc: vc)
         return false
     }
 }
@@ -79,8 +79,8 @@ func showAlertForNotUser(vc : UIViewController , coordinator : MainCoordinator){
     }
     let cancel = UIAlertAction(title: "Cancel", style: .cancel)
     
-    alert.addAction(ok)
     alert.addAction(cancel)
+    alert.addAction(ok)
     
     vc.present(alert, animated: true)
 }

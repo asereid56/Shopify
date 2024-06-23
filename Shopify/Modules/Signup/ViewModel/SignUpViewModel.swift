@@ -17,15 +17,15 @@ class SignUpViewModel {
                     }
                     else {
                         completion(false)
-                        _ = showToast(message: message ?? "", vc: vc)
+                        _ = showAlert(message: message ?? "", vc: vc)
                     }
                 }
             } else {
-                AuthenticationManager.shared.showAlert(vc: vc, title: "", message: "Passwords Don't Match")
+                _ = showAlert(message: "Passwords don't match", vc: vc)
             }
         }
         else {
-            AuthenticationManager.shared.showAlert(vc: vc, title: "Empty Fields", message: "Please fill in all the fields")
+            _ = showAlert(title: "Empty Fields", message: "Please fill in all the fields", vc: vc)
         }
     }
     
