@@ -18,7 +18,7 @@ class ProfileViewModel {
     
     private let dataSubject = BehaviorSubject<[Order]>(value: [])
     private let wishListSubject = BehaviorSubject<[LineItem]>(value: [])
-    
+    private let defaults = UserDefaults.standard
     init(network: NetworkService? = nil) {
         self.network = network
         customerId = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
@@ -69,5 +69,9 @@ class ProfileViewModel {
         updateUserImage(data: data) { result in
             completion(result)
         }
+    }
+    
+    func isVerified() -> Bool {
+        return defaults.bool(forKey: Constant.IS_VERIFIED)
     }
 }

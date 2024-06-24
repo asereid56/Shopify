@@ -104,7 +104,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                                             if mutableLineItems[i].variantId == variantWrapper.variant?.id {
                                                 let property = Property(name: "quantity", value: String(quantity))
                                                 if mutableLineItems[i].properties != nil {
-                                                    if mutableLineItems[i].properties?.count == 2{
+                                                    if mutableLineItems[i].properties!.count > 1{
                                                         mutableLineItems[i].properties?.remove(at: 1)
                                                     }
                                                     

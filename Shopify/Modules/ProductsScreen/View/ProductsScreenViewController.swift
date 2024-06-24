@@ -177,7 +177,9 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     
     @IBAction func cartBtn(_ sender: Any) {
         if AuthenticationManager.shared.isUserLoggedIn() {
-            coordinator?.goToShoppingCart()
+            if viewModel?.isVerified() ?? false{
+                coordinator?.goToShoppingCart()
+            }
         }else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }

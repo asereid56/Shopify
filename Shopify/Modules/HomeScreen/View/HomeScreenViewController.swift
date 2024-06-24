@@ -241,11 +241,16 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     @IBAction func cartBtn(_ sender: Any) {
+        print(AuthenticationManager.shared.isUserLoggedIn())
         if AuthenticationManager.shared.isUserLoggedIn() {
-            isEmailVerified(vc: self) { [weak self] isVerified in
-                if isVerified {
-                    self?.coordinator?.goToShoppingCart()
-                }
+//                        isEmailVerified(vc: self) { [weak self] isVerified in
+//                            if isVerified {
+//                                self?.coordinator?.goToShoppingCart()
+//                            }
+//                        }
+            print(viewModel?.isVerified())
+            if viewModel?.isVerified() ?? false{
+                coordinator?.goToShoppingCart()
             }
         }else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)

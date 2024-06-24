@@ -32,17 +32,18 @@ class AddressesViewController: UIViewController ,Storyboarded {
         tableView.delegate = self
         editSelectedAddress()
         setUpIndicator()
+        bindTableView()
         if source == "payment" {
             setUpSelectTableViewCell()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.dataSource = nil
+       // tableView.dataSource = nil
         if checkInternetAndShowToast(vc: self) {
             viewModel?.fetchData()
         }
-        bindTableView()
+       
     }
     
     private func setUpIndicator() {
@@ -76,6 +77,7 @@ class AddressesViewController: UIViewController ,Storyboarded {
         viewModel!.data
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: AddressesTableViewCell.self)) { [weak self] (row, model, cell) in
                 self?.emptyImage.isHidden = true
+              //  cell.selectionStyle = .none
                 cell.address.text = model.address1
                 if row == 0 {
                     cell.checkMark.isHidden = false

@@ -18,7 +18,7 @@ protocol CategoryScreenViewModelProtocol {
     func filterData(selectedSegmentIndex: Int)
     func setCategory(category : String)
     func getCategory() -> String
-    
+    func isVerified() -> Bool
 }
 
 class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
@@ -104,6 +104,10 @@ class CategoryScreenViewModel : CategoryScreenViewModelProtocol{
     
     func getCategory() -> String{
         return defaults.string(forKey: Constant.CATEGORY) ?? Constant.WOMEN
+    }
+    
+    func isVerified() -> Bool {
+        return defaults.bool(forKey: Constant.IS_VERIFIED)
     }
     
 }

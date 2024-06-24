@@ -74,7 +74,7 @@ class AuthenticationManager {
                 setupCustomer(firstName: firstname, lastName: lastName, email: email) { success in
                     if success {
                         completion(true, nil, nil)
-                        UserDefaults.standard.setValue(false, forKey: "isVerified")
+                        UserDefaults.standard.setValue(false, forKey: Constant.IS_VERIFIED)
                         Auth.auth().currentUser?.sendEmailVerification()
                         print("User signs up successfully")
                     }
@@ -434,7 +434,7 @@ func isEmailVerified(vc: UIViewController, completion: @escaping (Bool) -> Void)
             if let user = Auth.auth().currentUser {
                 if user.isEmailVerified {
                     completion(true)
-                    UserDefaults.standard.setValue(true, forKey: "isVerified")
+                    UserDefaults.standard.setValue(true, forKey: Constant.IS_VERIFIED)
                 } else {
                     let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
                         AuthenticationManager.shared.resendEmailVerificaiton() {
