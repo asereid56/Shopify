@@ -21,6 +21,7 @@ protocol HomeScreenViewModelProtocol {
     func fetchCoupons()
     func fetchCurrencyRate()
     func getAdsArrCount() -> Int
+    func isVerified() -> Bool
 }
 
 
@@ -28,6 +29,7 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
     let currencyService : CurrencyServiceProtocol
     private let disposeBag = DisposeBag()
     private let network : NetworkServiceProtocol
+    private let defaults = UserDefaults.standard
     var dataSubject = BehaviorSubject<[SmartCollection]>(value: [])
     let adsArr = [
         AdsItems(image: "pumaAds"),
@@ -107,6 +109,10 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
     
     func getAdsArrCount() -> Int {
         return adsArr.count
+    }
+    
+    func isVerified() -> Bool {
+        return defaults.bool(forKey: Constant.IS_VERIFIED)
     }
     
 }

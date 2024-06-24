@@ -84,10 +84,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func goToCart(_ sender: Any) {
         if AuthenticationManager.shared.isUserLoggedIn() {
-            isEmailVerified(vc: self) { [weak self] isVerified in
-                if isVerified {
-                    self?.coordinator?.goToShoppingCart()
-                }
+            if viewModel?.isVerified() ?? false{
+                coordinator?.goToShoppingCart()
             }
         } else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)

@@ -121,8 +121,10 @@ class ProductInfoViewModel {
                 return
             }
         }
-        let properties = Property(name: "img", value: (product?.image?.src)!)
-        let newProduct = LineItem(variantId: variant.id!, productId: variant.productId!, properties: [properties])
+        let imageProperty = Property(name: "img", value: (product?.image?.src)!)
+        let quantityProperty = Property(name: "quantity", value: String(variant.inventoryQuantity!))
+        let sizeProperty = Property(name: "size", value: variant.option1)
+        let newProduct = LineItem(variantId: variant.id!, productId: variant.productId!, properties: [imageProperty,quantityProperty,sizeProperty])
         draftOrder?.lineItems?.append(newProduct)
         let wrapper = DraftOrderWrapper(draftOrder: draftOrder)
         network.put(url: NetworkConstants.baseURL, endpoint: endpoint ?? "", body: wrapper, headers: nil, responseType: DraftOrderWrapper.self)

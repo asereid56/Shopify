@@ -29,6 +29,7 @@ class Constant {
     static let KIDS = "Kids"
     static let SALE = "SALE"
     static let CATEGORY = "CATEGORY"
+    static let IS_VERIFIED = "IS_VERIFIED"
     
 }
 

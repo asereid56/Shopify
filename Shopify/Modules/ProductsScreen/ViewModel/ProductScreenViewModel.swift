@@ -15,7 +15,7 @@ protocol ProductScreenViewModelProtocol {
     var isLoading : BehaviorRelay<Bool>{ get }
     var dataFetchCompleted: PublishRelay<Void> { get }
     var priceRange: BehaviorRelay<(min: Float, max: Float)> { get }
-    
+    func isVerified() -> Bool
     func fetchProducts()
     func filteredTheProducts(price : Float)
     func convertPriceToCurrency(price : String) -> String
@@ -26,6 +26,7 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
     private var filteredProducts : [Product] = []
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorSubject<[Product]>(value: [])
+    private let defaults = UserDefaults.standard
     var network : NetworkServiceProtocol
     var brandId : String
     var dataFetchCompleted = PublishRelay<Void>()
@@ -84,4 +85,7 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
         dataSubject.onNext(filteredProduct)
     }
     
+    func isVerified() -> Bool {
+        return defaults.bool(forKey: Constant.IS_VERIFIED)
+    }
 }
