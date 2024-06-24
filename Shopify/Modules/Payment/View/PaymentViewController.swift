@@ -11,11 +11,7 @@ import RxSwift
 import RxCocoa
 
 class PaymentViewController: UIViewController, Storyboarded {
-    var viewModel : PaymentViewModelProtocol?
-    var coordinator : MainCoordinator?
-    private let disposeBag = DisposeBag()
-    private var totalPrice = ""
-    
+
     @IBOutlet weak var shippingAddress: UILabel!
     @IBOutlet weak var paymentMethod: UILabel!
     @IBOutlet weak var paymentMethodImage: UIImageView!
@@ -27,6 +23,10 @@ class PaymentViewController: UIViewController, Storyboarded {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    var viewModel : PaymentViewModelProtocol?
+    var coordinator : MainCoordinator?
+    private let disposeBag = DisposeBag()
+    private var totalPrice = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

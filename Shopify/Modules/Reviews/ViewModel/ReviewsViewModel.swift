@@ -7,13 +7,18 @@
 
 import Foundation
 import RxSwift
+
 class ReviewsViewModel {
+    
     var reviews: [Review]!
     var reviewsData = PublishSubject<[Review]>()
+    
     init() {
         reviews = generateReviews()
     }
+    
     func getReviews() {
         reviewsData.onNext(reviews)
     }
+    
 }

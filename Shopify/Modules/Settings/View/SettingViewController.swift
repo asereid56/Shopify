@@ -9,10 +9,12 @@ import UIKit
 import RxSwift
 
 class SettingViewController: UIViewController, Storyboarded {
-    var coordinator : MainCoordinator?
-    var viewModel : SettingViewModelProtocol?
+ 
     @IBOutlet weak var currentCurrency: UILabel!
     @IBOutlet weak var btnLogout: UIButton!
+    
+    var coordinator : MainCoordinator?
+    var viewModel : SettingViewModelProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +73,6 @@ class SettingViewController: UIViewController, Storyboarded {
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        
         
         alert.addAction(usd)
         alert.addAction(egp)

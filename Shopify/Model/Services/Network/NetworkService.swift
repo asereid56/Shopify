@@ -38,34 +38,33 @@ enum NetworkError: Error {
 
 // Define a protocol for NetworkService
 protocol NetworkServiceProtocol {
+    
     func get<T: Decodable>(url : String? , endpoint: String,  parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<T>
     func post<T: Encodable, U: Decodable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?, responseType: U.Type) -> Observable<(Bool, String?, U?)>
     func delete(url: String, endpoint: String, parameters: [String: Any]?, headers: HTTPHeaders?) -> Observable<Int>
-//    func put<T: Codable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?) -> Observable<(HTTPURLResponse, Data)>
     func put<T: Encodable, U: Decodable>(url: String, endpoint: String, body: T, headers: HTTPHeaders?, responseType: U.Type) -> Observable<(Bool, String?, U?)>
-    
 }
 
 class NetworkService: NetworkServiceProtocol {
- 
-    static let shared = NetworkService()
     
+    static let shared = NetworkService()
     private let disposeBag = DisposeBag()
-
+    
     private init(){}
+    
     // Helper function to create full URL and default headers
     private func createRequestDetails(url : String ,endpoint: String, headers: HTTPHeaders?) -> (String, HTTPHeaders) {
         let url = "\(url)\(endpoint)"
         print("url-------------: \(url)")
         var combinedHeaders = headers ?? HTTPHeaders()
-       // combinedHeaders.add(name: "Authorization", value: NetworkConstants.apiKey)
+        // combinedHeaders.add(name: "Authorization", value: NetworkConstants.apiKey)
         if headers == nil{
             combinedHeaders.add(name: "X-Shopify-Access-Token", value: Constant.adminApiAccessToken)
             combinedHeaders.add(name: "Content", value: "application/json")
         }
         return (url, combinedHeaders)
     }
-
+    
     // Generic function to get data
     func get<T: Decodable>(url : String? = NetworkConstants.baseURL ,endpoint: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<T> {
         let (url, combinedHeaders) = createRequestDetails(url : url ?? "" ,endpoint: endpoint, headers: headers)
@@ -80,7 +79,7 @@ class NetworkService: NetworkServiceProtocol {
                 }
             }
     }
-
+    
     // Generic function to post data
     func post<T: Encodable, U: Decodable>(url: String = NetworkConstants.baseURL, endpoint: String, body: T, headers: HTTPHeaders? = nil, responseType: U.Type) -> Observable<(Bool, String?, U?)> {
         let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
@@ -99,12 +98,12 @@ class NetworkService: NetworkServiceProtocol {
                 Observable.just((false, "Request error: \(error.localizedDescription)", nil))
             }
     }
-
-
+    
+    
     //Generic function to delete data
     func delete(url: String = NetworkConstants.baseURL, endpoint: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil) -> Observable<Int> {
         let (completeURL, combinedHeaders) = createRequestDetails(url: url, endpoint: endpoint, headers: headers)
-
+        
         return Observable.create { observer in
             let disposable = RxAlamofire.requestData(.delete, completeURL, parameters: parameters, encoding: URLEncoding.default, headers: combinedHeaders)
                 .subscribe(onNext: { (response, _) in
@@ -113,7 +112,7 @@ class NetworkService: NetworkServiceProtocol {
                 }, onError: { error in
                     observer.onError(error)
                 })
-
+            
             return Disposables.create {
                 disposable.dispose()
             }
@@ -136,7 +135,7 @@ class NetworkService: NetworkServiceProtocol {
                 Observable.just((false, "Request error: \(error.localizedDescription)", nil))
             }
     }
-
+    
 }
 
 extension Encodable {

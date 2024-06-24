@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 class SignUpViewModel {
     
     func validateEntries(passTxt: String, confirmPassTxt: String, firstNameTxt: String, lastNameTxt: String, emailTxt: String, coordinator: MainCoordinator, vc: UIViewController, completion: @escaping (Bool) -> Void) {

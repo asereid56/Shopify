@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import Kingfisher
 import RxCocoa
+
 class HomeScreenViewController: UIViewController , Storyboarded {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -20,18 +21,15 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     @IBOutlet weak var chooseBrandTxt: UILabel!
     @IBOutlet weak var viewLoading: UIView!
     
-    
     var viewModel : HomeScreenViewModelProtocol?
     private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
     var homeScreenSource : String?
-    
     var timer : Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutside(_:)))
-        //adsCollection.addGestureRecognizer(tapGesture)
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false);
         let nib = UINib(nibName: "BrandsCollectionXIBCell", bundle: nil)
         brandsCollection.register(nib, forCellWithReuseIdentifier: "brandCell")
@@ -50,7 +48,6 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         super.viewWillAppear(animated)
         
         print(AuthenticationManager.shared.isUserLoggedIn())
-        print("Draft Order Id : \(checkonUserDefaultsValues)")
         checkonUserDefaultsValues()
         setupSearchBar()
         adsCollection.delegate = nil

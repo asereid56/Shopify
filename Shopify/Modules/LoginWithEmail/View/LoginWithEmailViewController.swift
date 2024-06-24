@@ -7,21 +7,25 @@
 
 import UIKit
 import FirebaseAuth
-class LoginWithEmailViewController: UIViewController {
-    var coordinator: MainCoordinator?
-    var viewModel:LoginWithEmailViewModel?
-    var passShown = false
+
+class LoginWithEmailViewController: UIViewController , Storyboarded {
+    
     @IBOutlet weak var showPasswordIcon: UIImageView!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var emailTxt: UITextField!
+    
+    var coordinator: MainCoordinator?
+    var viewModel:LoginWithEmailViewModel?
+    var passShown = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTxt.isSecureTextEntry = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleImage(_:)))
         showPasswordIcon.addGestureRecognizer(tapGesture)
     }
-   
+    
     
     @IBAction func loginTapped(_ sender: Any) {
         if checkInternetAndShowToast(vc: self) {
@@ -39,7 +43,7 @@ class LoginWithEmailViewController: UIViewController {
         coordinator?.goToSignUp()
     }
     
-
+    
     @IBAction func backTapped(_ sender: Any) {
         coordinator?.goBack()
     }
@@ -75,9 +79,11 @@ class LoginWithEmailViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func forgotPassTapped(_ sender: Any) {
         coordinator?.goToResetPassword()
     }
+    
     @objc func toggleImage(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
             passwordTxt.isSecureTextEntry = !passwordTxt.isSecureTextEntry
@@ -85,9 +91,10 @@ class LoginWithEmailViewController: UIViewController {
             
         }
     }
+    
     func toggleImage() {
         passShown = !passShown
         showPasswordIcon.image = 
-            passShown ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")
+        passShown ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")
     }
 }

@@ -8,13 +8,17 @@
 import UIKit
 import MapKit
 class ContactUsViewController: UIViewController , Storyboarded {
+    
     @IBOutlet weak var mapView: MKMapView!
+    
     var coordinator : MainCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         addAnnotation()
     }
+    
     @IBAction func btnBack(_ sender: Any) {
         coordinator?.goBack()
     }
@@ -30,7 +34,7 @@ class ContactUsViewController: UIViewController , Storyboarded {
     }
     
     func zoomInOn(annotation: MKPointAnnotation) {
-        let regionRadius: CLLocationDistance = 1000
+        let regionRadius: CLLocationDistance = 1200
         let coordinateRegion = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }

@@ -19,6 +19,7 @@ protocol  AddressesViewModelProtocol{
 }
 
 class AddressesViewModel : AddressesViewModelProtocol{
+    
     private let disposeBag = DisposeBag()
     private let networkService: NetworkServiceProtocol
     private let customerId : String
@@ -29,7 +30,6 @@ class AddressesViewModel : AddressesViewModelProtocol{
     var data: Driver<[Address]> {
         return dataSubject.asDriver(onErrorJustReturn: [])
     }
-    
     var isLoading = BehaviorRelay<Bool>(value: true)
     
     init(networkService: NetworkServiceProtocol , customerId : String) {

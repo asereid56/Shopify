@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 class NewAddressViewController: UIViewController ,Storyboarded {
+    
     @IBOutlet weak var screenTitle: UILabel!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
@@ -18,6 +19,7 @@ class NewAddressViewController: UIViewController ,Storyboarded {
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var isPrimary: UISwitch!
+    
     private let disposeBag = DisposeBag()
     private let phoneRegex = "^\\(?(\\d{3})\\)?[- ]?(\\d{4})[- ]?(\\d{4})$"
     var coordinator : MainCoordinator?

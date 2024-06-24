@@ -19,7 +19,7 @@ class TabBar : UITabBarController , Storyboarded {
         
         let categoryScreen = storyboard?.instantiateViewController(withIdentifier: "CategoryScreenViewController") as! CategoryScreenViewController
         
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let profileScreen = storyboard.instantiateViewController(identifier: "profileViewController") as! ProfileViewController
         
         homeScreen.coordinator = coordinator

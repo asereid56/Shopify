@@ -8,8 +8,11 @@
 import Foundation
 import RxSwift
 import RxCocoa
+
 struct Item {}
+
 class WishListViewModel {
+    
     let network: NetworkServiceProtocol?
     let items: BehaviorRelay<[LineItem]> = BehaviorRelay(value: [])
     let isLoading = BehaviorRelay<Bool>(value: false)

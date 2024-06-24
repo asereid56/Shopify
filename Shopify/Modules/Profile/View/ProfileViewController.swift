@@ -7,11 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    var viewModel: ProfileViewModel?
-    var coordinator: MainCoordinator?
-    var tapGesture: UITapGestureRecognizer!
-    var tapGesture1: UITapGestureRecognizer!
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , Storyboarded {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var profileImageIndicator: UIActivityIndicatorView!
@@ -37,10 +33,16 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var showWishlist: UIButton!
     @IBOutlet weak var editImage: UILabel!
     
+    var viewModel: ProfileViewModel?
+    var coordinator: MainCoordinator?
+    var tapGesture: UITapGestureRecognizer!
+    var tapGesture1: UITapGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProfileImage()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         if checkInternetAndShowToast(vc: self) {
             updateImage()
@@ -71,9 +73,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.coordinator?.gotoOrdersScreen(orders: orders)
         })
     }
+    
     @IBAction func showWishlist(_ sender: Any) {
         coordinator?.goToWishList()
     }
+    
     @IBAction func goToSettings(_ sender: Any) {
         coordinator?.goToSettings()
     }
@@ -89,9 +93,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }
     }
+    
     @IBAction func logIn(_ sender: Any) {
         coordinator?.goToLogin()
     }
+    
     @IBAction func signUp(_ sender: Any) {
         coordinator?.goToSignUp()
     }
@@ -106,6 +112,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         }
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         var alert = UIAlertController()
         loadingIndicator.isHidden = false
@@ -128,6 +135,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
     }
+    
     func updateImage() {
         viewModel?.updateImage(completion: { [weak self] data in
             guard let self else { return }
@@ -142,6 +150,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         })
     }
+    
     func setupOrders() {
         viewModel?.getOrders()
         _ = viewModel?.data.drive(onNext: { [weak self] orders in
@@ -167,6 +176,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             
         })
     }
+    
     func setupWishlist() {
         viewModel?.getWishListItems()
         _ = viewModel?.wishlistData.drive(onNext: { [weak self] wishlist in
@@ -202,6 +212,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         })
     }
+    
     func setupUserInfo() {
         let firstName = UserDefaultsManager.shared.getFirstNameFromUserDefaults() ?? ""
         let lastName = UserDefaultsManager.shared.getLastNameFromUserDefaults() ?? ""

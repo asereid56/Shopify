@@ -14,15 +14,17 @@ protocol AddressesViewControllerDelegate: AnyObject {
 }
 
 class AddressesViewController: UIViewController ,Storyboarded {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyImage: UIImageView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+    private let editSubject = PublishSubject<IndexPath>()
     private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
     var viewModel: AddressesViewModelProtocol?
     var source : String?
     weak var delegate: AddressesViewControllerDelegate?
-    private let editSubject = PublishSubject<IndexPath>()
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var emptyImage: UIImageView!
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +54,7 @@ class AddressesViewController: UIViewController ,Storyboarded {
             .subscribe(onNext: { [weak self] isLoading in
                 self?.loadingIndicator.isHidden = !isLoading
                 if (self?.loadingIndicator.isHidden)! && self?.viewModel?.getAddressesCount() == 0{
-                   // print((self?.loadingIndicator.isHidden)! && self?.viewModel?.getAddressesCount() == 0)
+                    // print((self?.loadingIndicator.isHidden)! && self?.viewModel?.getAddressesCount() == 0)
                     self?.emptyImage.isHidden = false
                 }
             })
@@ -134,7 +136,7 @@ class AddressesViewController: UIViewController ,Storyboarded {
         let btnCancel = UIAlertAction(title: "Cancel", style: .default)
         alert.addAction(btnCancel)
         alert.addAction(btnOk)
-
+        
         self.present(alert, animated: true)
     }
     

@@ -17,41 +17,22 @@ protocol Coordinator {
 
 class MainCoordinator : Coordinator {
     
-
-    private let defaults = UserDefaults.standard
-    private let key = "isFirstTime"
-//    private let customerID = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
-//    private let cartID = UserDefaultsManager.shared.getCartIdFromUserDefaults()
-
     var childCoordinators = [Coordinator]()
     var navigationController : UINavigationController
     var customerID = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
     var cartID = UserDefaultsManager.shared.getCartIdFromUserDefaults()
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
-//
-//        print(AuthenticationManager.shared.isUserLoggedIn())
-//        if defaults.object(forKey: key) == nil {
-//            defaults.setValue(true, forKey: key)
-//        }
-//        let isFirstTime = defaults.bool(forKey: key)
-//        
-//        if isFirstTime == true {
-//            goToOnBoardingFirstScreen()
-//        }else{
-//            gotoTab()
-//        }
         gotoAnimationScreen()
-        
     }
     
     private func getDefaults() {
         customerID = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
         cartID = UserDefaultsManager.shared.getCartIdFromUserDefaults()
-        
     }
     
     func gotoAnimationScreen() {
@@ -88,7 +69,6 @@ class MainCoordinator : Coordinator {
         let tabBar = TabBar.instantiate(storyboardName: "Main")
         tabBar.coordinator = self
         tabBar.homeScreenSource = homeScreenSource
-        //  navigationController.pushViewController(tabBar, animated: false)
         navigationController.setViewControllers([tabBar], animated: true)
     }
     
@@ -152,7 +132,7 @@ class MainCoordinator : Coordinator {
     
     func goToShoppingCart() {
         getDefaults()
-        let ShoppingCarVC = ShoppingCartViewController.instantiate(storyboardName:"Setting")
+        let ShoppingCarVC = ShoppingCartViewController.instantiate(storyboardName:"Main")
         let viewModel = ShoppingCartViewModel(networkService: NetworkService.shared, draftOrderId: cartID ?? "" , realmManager: RealmManager.shared)
         ShoppingCarVC.viewModel = viewModel
         ShoppingCarVC.coordinator = self
@@ -161,7 +141,7 @@ class MainCoordinator : Coordinator {
     
     func goToPayment(draftOrder : DraftOrder){
         getDefaults()
-        let PaymentVC = PaymentViewController.instantiate(storyboardName:"Setting")
+        let PaymentVC = PaymentViewController.instantiate(storyboardName:"Main")
         let viewModel = PaymentViewModel(draftOrder: draftOrder, network: NetworkService.shared , customerId: customerID ?? "" ,mockPaymentProcessor: MockPaymentProcessor(), draftOrderId: cartID ?? "", realmManager: RealmManager.shared)
         viewModel.delegate = PaymentVC
         PaymentVC.viewModel = viewModel
@@ -170,7 +150,7 @@ class MainCoordinator : Coordinator {
     }
     
     func goToPaymentMethd(from viewController : PaymentViewController){
-        let PaymentMethodVC = PaymentMethodViewController.instantiate(storyboardName:"Setting")
+        let PaymentMethodVC = PaymentMethodViewController.instantiate(storyboardName:"Main")
         let viewModel = PaymentMethodViewModel()
         PaymentMethodVC.viewModel = viewModel
         PaymentMethodVC.delegate = viewController
@@ -178,7 +158,7 @@ class MainCoordinator : Coordinator {
     }
     
     func goToOrderConfirmed(placedOrder : Order){
-        let OrderConfirmedVC = OrderConfirmedViewController.instantiate(storyboardName: "Setting")
+        let OrderConfirmedVC = OrderConfirmedViewController.instantiate(storyboardName: "Main")
         OrderConfirmedVC.coordinator = self
         OrderConfirmedVC.placedOrder = placedOrder
         navigationController.pushViewController(OrderConfirmedVC, animated: true)
@@ -186,9 +166,7 @@ class MainCoordinator : Coordinator {
     
     func goBack() {
         navigationController.popViewController(animated: true)
-        
     }
-    
     
     func gotoProductsScreen(with brandId: String) {
         
@@ -201,94 +179,70 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(productScreenVC, animated: true)
     }
     
-    func goToHomeScreen() {
-        
-        let homeScreenVC = HomeScreenViewController.instantiate(storyboardName: "Main")
-        
-        
-        let currencyService = CurrencyService.shared
-        currencyService.network = NetworkService.shared
-        
-        let homeViewModel = HomeScreenViewModel(currencyService: currencyService, network: NetworkService.shared)
-        
-        homeScreenVC.viewModel = homeViewModel
-        homeScreenVC.coordinator = self
-        navigationController.pushViewController(homeScreenVC, animated: true)
-    }
-    
-    func goToLogin(){
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let emailLogin = storyboard.instantiateViewController(withIdentifier: "LoginWithEmailViewController") as! LoginWithEmailViewController
-        emailLogin.coordinator = self
+
+    func goToLogin() {
+        let emailLoginVC = LoginWithEmailViewController.instantiate(storyboardName: "Main")
+        emailLoginVC.coordinator = self
         let viewModel = LoginWithEmailViewModel()
-        emailLogin.viewModel = viewModel
-        emailLogin.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(emailLogin, animated: true)
+        emailLoginVC.viewModel = viewModel
+        emailLoginVC.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(emailLoginVC, animated: true)
     }
     
-    func goToSignUp(){
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let signUp = storyboard.instantiateViewController(withIdentifier: "signUpViewController") as! SignUpViewController
-        signUp.coordinator = self
+    func goToSignUp() {
+        let signUpVC = SignUpViewController.instantiate(storyboardName: "Main")
+        signUpVC.coordinator = self
         let viewModel = SignUpViewModel()
-        signUp.viewModel = viewModel
-        signUp.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(signUp, animated: true)
+        signUpVC.viewModel = viewModel
+        signUpVC.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(signUpVC, animated: true)
     }
     
-    func goToProductInfo(product: Product){
+    func goToProductInfo(product: Product) {
         getDefaults()
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let productInfo = storyboard.instantiateViewController(withIdentifier: "pinfo") as! ProductInfoViewController
-        productInfo.coordinator = self
+        let productInfoVC = ProductInfoViewController.instantiate(storyboardName: "Main")
+        productInfoVC.coordinator = self
         let viewModel = ProductInfoViewModel(product: product, network: NetworkService.shared , draftOrderId: cartID ?? "",realmManger: RealmManager.shared, makeNetworkCall: false)
-        productInfo.viewModel = viewModel
-        productInfo.navigationController?.navigationBar.isHidden = true
-        navigationController.pushViewController(productInfo, animated: true)
+        productInfoVC.viewModel = viewModel
+        productInfoVC.navigationController?.navigationBar.isHidden = true
+        navigationController.pushViewController(productInfoVC, animated: true)
     }
-    func goToProductInfo(productId: String){
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let productInfo = storyboard.instantiateViewController(withIdentifier: "pinfo") as! ProductInfoViewController
-        productInfo.coordinator = self
+    
+    func goToProductInfo(productId: String) {
+        let productInfoVC = ProductInfoViewController.instantiate(storyboardName: "Main")
+        productInfoVC.coordinator = self
         let viewModel = ProductInfoViewModel(product: nil, network: NetworkService.shared , draftOrderId: cartID ?? "",realmManger: RealmManager.shared, makeNetworkCall: true)
         viewModel.productId = productId
-        productInfo.viewModel = viewModel
-        productInfo.navigationController?.navigationBar.isHidden = true
-        navigationController.pushViewController(productInfo, animated: true)
+        productInfoVC.viewModel = viewModel
+        productInfoVC.navigationController?.navigationBar.isHidden = true
+        navigationController.pushViewController(productInfoVC, animated: true)
     }
     
-    func gotoOrdersScreen(orders : [Order]){
-        
+    func gotoOrdersScreen(orders : [Order]) {
         let ordersVC = OrdersScreenViewController.instantiate(storyboardName: "Main")
         let viewModel = OrdersViewModel(orders: orders)
-        
         ordersVC.coordinator = self
         ordersVC.viewModel = viewModel
         navigationController.pushViewController(ordersVC, animated: true)
     }
     
-    func gotoOrderDetailsScreen(order : Order){
-        
+    func gotoOrderDetailsScreen(order : Order) {
         let orderDetailsVC = OrderDetailsViewController.instantiate(storyboardName: "Main")
         let viewModel = OrderDetailsViewModel(orderDetails: order)
-        
         orderDetailsVC.coordinator = self
         orderDetailsVC.viewModel = viewModel
         navigationController.pushViewController(orderDetailsVC, animated: true)
     }
     
-    func goToReviews(vc: UIViewController){
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let reviewsVC = storyboard.instantiateViewController(withIdentifier: "reviews") as! ReviewsViewController
+    func goToReviews(vc: UIViewController) {
+        let reviewsVC = ReviewsViewController.instantiate(storyboardName: "Main")
         let viewModel = ReviewsViewModel()
         reviewsVC.viewModel = viewModel
         vc.present(reviewsVC, animated: true)
     }
     
-    
     func goToWishList() {
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let wishList = storyboard.instantiateViewController(withIdentifier: "WishlistViewController") as! WishlistViewController
+        let wishList = WishlistViewController.instantiate(storyboardName: "Main")
         wishList.coordinator = self
         let viewModel = WishListViewModel(network: NetworkService.shared)
         wishList.viewModel = viewModel
@@ -299,13 +253,12 @@ class MainCoordinator : Coordinator {
     
 
     func goToResetPassword() {
-        let storyboard = UIStoryboard(name: "MinaStoryboard", bundle: Bundle.main)
-        let resetPassword = storyboard.instantiateViewController(withIdentifier: "ResetPassowrdViewController") as! ResetPassowrdViewController
-        resetPassword.coordinator = self
+        let resetPasswordVC = ResetPassowrdViewController.instantiate(storyboardName: "Main")
+        resetPasswordVC.coordinator = self
         let viewModel = ResetPasswordViewModel()
-        resetPassword.viewModel = viewModel
-        resetPassword.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(resetPassword, animated: true)
+        resetPasswordVC.viewModel = viewModel
+        resetPasswordVC.navigationItem.hidesBackButton = true
+        navigationController.pushViewController(resetPasswordVC, animated: true)
     }
 
 }

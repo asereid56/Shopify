@@ -22,6 +22,7 @@ protocol NewAddressViewModelProtocol{
 }
 
 class NewAddressViewModel : NewAddressViewModelProtocol{
+    
     var postAddress: PublishSubject<(Bool, String?, AddressResponseRoot?)> = PublishSubject()
     var putAddress: PublishSubject<(Bool, String?, AddressResponseRoot?)> = PublishSubject()
     

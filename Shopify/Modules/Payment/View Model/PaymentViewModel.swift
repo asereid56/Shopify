@@ -26,7 +26,7 @@ protocol PaymentViewModelProtocol{
     func getPaymentMethod() -> String
     func getSelectedCurrency() -> String
     func placeOrder(financialStatus : String)
-    func validateCoupon(coupon : String) 
+    func validateCoupon(coupon : String)
     func getPlacedOrder() -> Order?
     func checkInventory()
 }
@@ -127,7 +127,7 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     func getPlacedOrder() -> Order?{
         return placedOrder ?? nil
     }
-
+    
     func setShippingAddress(address : Address){
         if address.default == true {
             billingAddress = address
@@ -167,7 +167,7 @@ class PaymentViewModel :  PaymentViewModelProtocol{
             },onError: { _ in
                 self.priceRuleSubject.onNext((nil ,CustomError.invalidCoupon))
             }
-            
+                       
             ).disposed(by: disposeBag)
     }
     

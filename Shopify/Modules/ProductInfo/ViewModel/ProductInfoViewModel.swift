@@ -107,7 +107,6 @@ class ProductInfoViewModel {
         isLoading.accept(true)
         network.get(url: NetworkConstants.baseURL, endpoint: endpoint!, parameters: nil, headers: nil).subscribe {[weak self] (draftOrderWrapper : DraftOrderWrapper) in
             self?.draftOrder = draftOrderWrapper.draftOrder
-            //let variant = self?.product?.variants![0]
             self?.updateLineItem(variant: variant)
             
         }.disposed(by: disposeBag)

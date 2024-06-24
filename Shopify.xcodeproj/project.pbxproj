@@ -80,7 +80,6 @@
 		39DD57A32C25C5AC00D99923 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DD57A22C25C5AC00D99923 /* ResetPasswordViewModel.swift */; };
 		39E1F7AB2C16117600C00575 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 39E1F7AA2C16117600C00575 /* FirebaseFirestore */; };
 		39E1F7AD2C16117600C00575 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39E1F7AC2C16117600C00575 /* FirebaseFirestoreSwift */; };
-		39F33E2A2C175A8500B211DF /* DraftOrderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F33E292C175A8500B211DF /* DraftOrderr.swift */; };
 		4A1FA65B2C20CDAD00560786 /* OrdersScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FA65A2C20CDAD00560786 /* OrdersScreenViewController.swift */; };
 		4A1FA65D2C20CF8800560786 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FA65C2C20CF8800560786 /* OrdersViewModel.swift */; };
 		4A4A46782C20B4FE0079C05B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4A46772C20B4FE0079C05B /* NetworkService.swift */; };
@@ -119,7 +118,6 @@
 		4AD192DD2C0CF53900EF34D0 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD192DC2C0CF53900EF34D0 /* Reachability */; };
 		4AD192E02C0CF55B00EF34D0 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD192DF2C0CF55B00EF34D0 /* Cosmos */; };
 		4AD192EF2C0CF6EA00EF34D0 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AD192EE2C0CF6EA00EF34D0 /* Setting.storyboard */; };
-		4AD192F12C0CF6FD00EF34D0 /* MinaStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AD192F02C0CF6FD00EF34D0 /* MinaStoryboard.storyboard */; };
 		4AD192F42C0CF73400EF34D0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192F32C0CF73400EF34D0 /* Constant.swift */; };
 		4AD192F72C0CF76B00EF34D0 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD192F62C0CF76B00EF34D0 /* MainCoordinator.swift */; };
 /* End PBXBuildFile section */
@@ -209,7 +207,6 @@
 		39D20DFA2C1348160093AC66 /* ProductsScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsScreenViewController.swift; sourceTree = "<group>"; };
 		39DD57A02C25BE2E00D99923 /* ResetPassowrdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassowrdViewController.swift; sourceTree = "<group>"; };
 		39DD57A22C25C5AC00D99923 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
-		39F33E292C175A8500B211DF /* DraftOrderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrderr.swift; sourceTree = "<group>"; };
 		4A1FA65A2C20CDAD00560786 /* OrdersScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersScreenViewController.swift; sourceTree = "<group>"; };
 		4A1FA65C2C20CF8800560786 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
 		4A4A46772C20B4FE0079C05B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -245,7 +242,6 @@
 		4AD192C02C0CEB0000EF34D0 /* ShopifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITests.swift; sourceTree = "<group>"; };
 		4AD192C22C0CEB0000EF34D0 /* ShopifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4AD192EE2C0CF6EA00EF34D0 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
-		4AD192F02C0CF6FD00EF34D0 /* MinaStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MinaStoryboard.storyboard; sourceTree = "<group>"; };
 		4AD192F32C0CF73400EF34D0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4AD192F62C0CF76B00EF34D0 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -361,14 +357,6 @@
 				186303C72C1AD01500A33B58 /* SettingViewModel.swift */,
 			);
 			path = "View Model";
-			sourceTree = "<group>";
-		};
-		187029C42C1FF217004AF09B /* DB */ = {
-			isa = PBXGroup;
-			children = (
-				187029C52C1FF237004AF09B /* RealmManager.swift */,
-			);
-			path = DB;
 			sourceTree = "<group>";
 		};
 		1877DC422C13A517002F709E /* Model */ = {
@@ -492,7 +480,6 @@
 			children = (
 				3958709A2C10DF9500016FA0 /* AuthenticationManager.swift */,
 				391182302C1DBEB000C3C4B7 /* UserDefaultsManager.swift */,
-				39A0774C2C14EB2500472C38 /* Model */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -649,15 +636,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		39A0774C2C14EB2500472C38 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				39A0774D2C14EB3B00472C38 /* Customer.swift */,
-				39F33E292C175A8500B211DF /* DraftOrderr.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		39D20DD82C133CFA0093AC66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -764,6 +742,7 @@
 		4A4A46752C20B4BF0079C05B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4AAB9C8D2C28F8E60074BC65 /* DB */,
 				4A4A46762C20B4D90079C05B /* Network */,
 			);
 			path = Services;
@@ -814,6 +793,7 @@
 		4A9ED4282C1A0DE600B8AFCE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				39A0774D2C14EB3B00472C38 /* Customer.swift */,
 				1851C0D12C16793F00849BB6 /* DraftOrder.swift */,
 				4AA8E1A52C14F56400F5F07B /* Products.swift */,
 				186303CB2C1ADCD900A33B58 /* Currency.swift */,
@@ -821,6 +801,7 @@
 				187029C72C1FF310004AF09B /* RealmDraftOrder.swift */,
 				181B77572C23C05E00A9D683 /* Discount.swift */,
 				181B77592C23C35300A9D683 /* PriceRule.swift */,
+				186303C92C1ADBAF00A33B58 /* CurrencyService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -839,6 +820,14 @@
 				4AA8E1A32C14E27600F5F07B /* ProductScreenViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4AAB9C8D2C28F8E60074BC65 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				187029C52C1FF237004AF09B /* RealmManager.swift */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		4AAD6C2D2C186C5900237FE2 /* ViewModel */ = {
@@ -893,7 +882,6 @@
 		4AD1929E2C0CEAFA00EF34D0 /* Shopify */ = {
 			isa = PBXGroup;
 			children = (
-				187029C42C1FF217004AF09B /* DB */,
 				18F0AC242C1C8F6900BDE7C0 /* Shopify.entitlements */,
 				4AD192E22C0CF5B300EF34D0 /* Modules */,
 				4A9ED4252C1A0D5300B8AFCE /* Model */,
@@ -905,7 +893,6 @@
 				4AD192A82C0CEAFE00EF34D0 /* Assets.xcassets */,
 				395870962C10DEEE00016FA0 /* GoogleService-Info.plist */,
 				4AD192AD2C0CEAFE00EF34D0 /* Info.plist */,
-				186303C92C1ADBAF00A33B58 /* CurrencyService.swift */,
 			);
 			path = Shopify;
 			sourceTree = "<group>";
@@ -976,44 +963,35 @@
 			isa = PBXGroup;
 			children = (
 				397FAC2F2C135347005499BA /* Nibfiles */,
-				4AD192EB2C0CF67B00EF34D0 /* AserStoryboard */,
-				4AD192ED2C0CF69200EF34D0 /* NadaStoryboard */,
-				4AD192EC2C0CF68600EF34D0 /* MinaStoryboard */,
+				4AD192EB2C0CF67B00EF34D0 /* MainStoryboard */,
+				4AD192ED2C0CF69200EF34D0 /* SettingStoryboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		4AD192EB2C0CF67B00EF34D0 /* AserStoryboard */ = {
+		4AD192EB2C0CF67B00EF34D0 /* MainStoryboard */ = {
 			isa = PBXGroup;
 			children = (
 				4AD192A52C0CEAFA00EF34D0 /* Main.storyboard */,
 				4AD192AA2C0CEAFE00EF34D0 /* LaunchScreen.storyboard */,
 			);
-			path = AserStoryboard;
+			path = MainStoryboard;
 			sourceTree = "<group>";
 		};
-		4AD192EC2C0CF68600EF34D0 /* MinaStoryboard */ = {
-			isa = PBXGroup;
-			children = (
-				4AD192F02C0CF6FD00EF34D0 /* MinaStoryboard.storyboard */,
-			);
-			path = MinaStoryboard;
-			sourceTree = "<group>";
-		};
-		4AD192ED2C0CF69200EF34D0 /* NadaStoryboard */ = {
+		4AD192ED2C0CF69200EF34D0 /* SettingStoryboard */ = {
 			isa = PBXGroup;
 			children = (
 				4AD192EE2C0CF6EA00EF34D0 /* Setting.storyboard */,
 			);
-			path = NadaStoryboard;
+			path = SettingStoryboard;
 			sourceTree = "<group>";
 		};
 		4AD192F22C0CF71100EF34D0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				4AD192F32C0CF73400EF34D0 /* Constant.swift */,
-				1866D80E2C14B83200E7C47C /* countries.json */,
 				3911822E2C1DBE4C00C3C4B7 /* UtilMethods.swift */,
+				1866D80E2C14B83200E7C47C /* countries.json */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1164,7 +1142,6 @@
 				397FAC332C13537B005499BA /* ProductCollectionXIBCell.xib in Resources */,
 				4AD192EF2C0CF6EA00EF34D0 /* Setting.storyboard in Resources */,
 				1866D80F2C14B83200E7C47C /* countries.json in Resources */,
-				4AD192F12C0CF6FD00EF34D0 /* MinaStoryboard.storyboard in Resources */,
 				4A5FF7752C20ED160050756D /* OrderDetailsViewCell.xib in Resources */,
 				4AD192A92C0CEAFE00EF34D0 /* Assets.xcassets in Resources */,
 				391098E32C1355DD005CEE7B /* ReviewTableViewCell.xib in Resources */,
@@ -1238,7 +1215,6 @@
 				18DA18DF2C0E757900D82C46 /* Storyboard.swift in Sources */,
 				391098E62C1355F1005CEE7B /* Review.swift in Sources */,
 				391098E22C1355DD005CEE7B /* ReviewTableViewCell.swift in Sources */,
-				39F33E2A2C175A8500B211DF /* DraftOrderr.swift in Sources */,
 				1877DC3F2C138C2B002F709E /* AddressesTableViewCell.swift in Sources */,
 				4AA8E1A62C14F56400F5F07B /* Products.swift in Sources */,
 				18DA18D92C0E6B9D00D82C46 /* SettingViewController.swift in Sources */,
@@ -1467,8 +1443,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1496,8 +1471,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

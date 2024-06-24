@@ -10,20 +10,17 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
-class ShoppingCartViewController: UIViewController , Storyboarded{
+class ShoppingCartViewController: UIViewController , Storyboarded {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emptyImage: UIImageView!
-    
     @IBOutlet weak var loadingView: UIView!
-    
-    @IBOutlet weak var sizeText: UILabel!
     
     private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
     var viewModel : ShoppingCartViewModelProtocol?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +91,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded{
                     .subscribe(onNext: {
                         guard let currentQuantity = Int(cell.productQuantity.text!) else { return }
                         if checkInternetAndShowToast(vc: self!)  {
-//                            self?.viewModel?.isSoldOut(inventoryQuantity: inventoryQuantity, productQuantity: currentQuantity) ?? false
+                            
                             if  currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)){
                                 self?.notAvailableAlert(title: "Out of stock!")
                             } else {

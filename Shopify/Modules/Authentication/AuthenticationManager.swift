@@ -236,23 +236,23 @@ func updateUserImage(data: Data, completion: @escaping (Bool) -> Void) {
         print("Error: Could not retrieve current user ID for image upload.")
         return
     }
-
+    
     let storageRef = Storage.storage().reference()
     let imagesRef = storageRef.child("images/\(userID).jpg") // Consistent naming
-
+    
     imagesRef.putData(data, metadata: nil) { metadata, error in
         if let error = error {
             print("Error uploading image: \(error)")
             completion(false)
             return
         }
-
+        
         imagesRef.downloadURL { url, error in
             if let error = error {
                 print("Error getting download URL: \(error)")
                 return
             }
-
+            
             guard let downloadURL = url else {
                 print("Download URL is nil")
                 return
@@ -274,10 +274,10 @@ func updateUserImageURL(_ url: String, completion: @escaping (Bool) -> Void) {
         print("Error: Could not retrieve current user ID for image URL update.")
         return
     }
-
+    
     let db = Firestore.firestore() // Concise variable name
     let userRef = db.collection("users").document(userID)
-
+    
     userRef.updateData(["img": url]) { error in
         if let error = error {
             print("Error updating Firestore: \(error)")
@@ -321,7 +321,7 @@ func getUserImage(completion: @escaping (Data) -> Void) {
                     print("from load image url actual completion")
                     completion(data)
                 }
-            
+                
             }
             //completion(userImg as! Data)
         } else {
@@ -394,7 +394,7 @@ func createDraftOrder(name: String, email: String, completion: @escaping (Int) -
 func attachIdsToCustomer(_ ids: [Int], _ customer_id: String, _ network: NetworkService, completion: @escaping (Bool) -> Void) {
     let customer = Customer(tags: ids.map{String($0)}.joined(separator: ","))
     _ = network.put(endpoint: "/customers/\(customer_id).json", body: CustomerResponse(customer: customer), responseType: CustomerResponse.self).subscribe(onNext: {_,_,_ in
-            completion(true)
+        completion(true)
     }, onError: { error in
         completion(false)
         print("Error: \(error)")

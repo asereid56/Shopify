@@ -14,10 +14,5 @@ class OrdrersTableViewCell: UITableViewCell {
     @IBOutlet weak var phoneNum: UILabel!
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var orderPlace: UILabel!
-    
-    
-    
-
-    
-    
+ 
 }

@@ -8,12 +8,11 @@
 import UIKit
 import RxCocoa
 import RxSwift
-class WishlistViewController: UIViewController {
-    
-    
+
+class WishlistViewController: UIViewController , Storyboarded{
     
     @IBOutlet weak var noInternetImage: UIImageView!
-    @IBOutlet weak var noUserView: UIView!
+//    @IBOutlet weak var noUserView: UIView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emptyLabel: UILabel!
     @IBOutlet weak var emptyImg: UIImageView!
@@ -22,6 +21,7 @@ class WishlistViewController: UIViewController {
     var coordinator: MainCoordinator?
     var viewModel: WishListViewModel?
     private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkonUserDefaultsValues()
@@ -156,18 +156,19 @@ extension WishlistViewController {
                 .disposed(by: disposeBag)
         }
     }
+    
     func checkUser() {
         if !checkInternetAndShowToast(vc: self) {
             noInternetImage.isHidden = false
         }
         else {
             noInternetImage.isHidden = true
-            if !AuthenticationManager.shared.isUserLoggedIn() {
-                noUserView.isHidden = false
-            }
-            else {
-                noUserView.isHidden = true
-            }
+//            if !AuthenticationManager.shared.isUserLoggedIn() {
+//                noUserView.isHidden = false
+//            }
+//            else {
+//                noUserView.isHidden = true
+//            }
         }
     }
 }

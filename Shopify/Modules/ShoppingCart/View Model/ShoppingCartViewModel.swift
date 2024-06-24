@@ -28,6 +28,7 @@ protocol ShoppingCartViewModelProtocol {
 }
 
 class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
+    
     private let disposeBag = DisposeBag()
     private let dataSubject = BehaviorSubject<[LineItem]>(value: [])
     private let networkService: NetworkServiceProtocol
@@ -75,9 +76,8 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
         print(realmDraftOrders.count)
         let draftOrder = DraftOrder(from: realmDraftOrders.first!)
         draftOrderWrapper.draftOrder = draftOrder
-         dataSubject.onNext(draftOrder.lineItems!)
-//        guard let lineItems = draftOrder.lineItems else{return}
-//        dataSubject.onNext(lineItems)
+        dataSubject.onNext(draftOrder.lineItems!)
+        
         isLoading.accept(false)
         
     }

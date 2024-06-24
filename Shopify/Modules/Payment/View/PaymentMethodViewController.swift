@@ -12,13 +12,17 @@ protocol PaymentMethodViewControllerDelegate: AnyObject {
 }
 
 class PaymentMethodViewController:UIViewController, UISheetPresentationControllerDelegate,Storyboarded {
-    var viewModel : PaymentMethodViewModelProtocol?
+    
     @IBOutlet weak var applePayCheckMark: UIImageView!
     @IBOutlet weak var codCheckMark: UIImageView!
+    
+    var viewModel : PaymentMethodViewModelProtocol?
     weak var delegate: PaymentMethodViewControllerDelegate?
+    
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

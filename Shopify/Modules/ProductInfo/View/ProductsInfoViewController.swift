@@ -10,11 +10,9 @@ import Cosmos
 import RxSwift
 import Firebase
 
-class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
+class ProductInfoViewController: UIViewController, UIScrollViewDelegate , Storyboarded {
+    
     @IBOutlet weak var wishlistButton: UIButton!
-    var coordinator: MainCoordinator?
-    var viewModel: ProductInfoViewModel?
-    let disposeBag = DisposeBag()
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var colorButton: UIButton!
     @IBOutlet weak var sizeButton: UIButton!
@@ -25,9 +23,14 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var reviewsTableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    
+    var coordinator: MainCoordinator?
+    var viewModel: ProductInfoViewModel?
+    let disposeBag = DisposeBag()
     var imgs: [ProductImage?]?
+    
     override func viewDidLoad() {
-
+        
         print("USER STATUS: \(AuthenticationManager.shared.isUserLoggedIn())")
         checkonUserDefaultsValues()
         super.viewDidLoad()
@@ -123,9 +126,9 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
     private func addToCart() {
         viewModel?.addToCart.subscribe(onNext:  {isAdded in
             if isAdded {
-                _ = showToast(message: "Product added to shopping cart", vc: self)
+                _ = showAlert(message: "Product added to shopping cart", vc: self)
             } else {
-                _ =  showToast(message: "Product already exists in shopping cart", vc: self)
+                _ =  showAlert(message: "Product already exists in shopping cart", vc: self)
             }
         }).disposed(by: disposeBag)
     }
@@ -139,11 +142,11 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate {
             if AuthenticationManager.shared.isUserLoggedIn() {
                 isEmailVerified(vc: self) { [weak self] isVerified in
                     if isVerified {
-                       let variant = self?.viewModel?.getSelectedVariant(title: (self?.getVariantTitle())!)
+                        let variant = self?.viewModel?.getSelectedVariant(title: (self?.getVariantTitle())!)
                         self?.viewModel?.fetchDraftOrder(variant: variant!)
                     }
                 }
-              
+                
             }else{
                 showAlertForNotUser(vc: self, coordinator: coordinator!)
             }

@@ -16,6 +16,7 @@ class CustomerResponse: Codable {
 }
 
 class Customer: Codable {
+    
     var id: Int?
     var email: String?
     var firstName: String?
@@ -26,9 +27,11 @@ class Customer: Codable {
     var note: String?
     var verifiedEmail: Bool?
     var tags: String?
+    
     init(tags: String) {
         self.tags = tags
     }
+    
     init(firstName : String , lastName : String, email: String) {
         self.firstName = firstName
         self.lastName = lastName

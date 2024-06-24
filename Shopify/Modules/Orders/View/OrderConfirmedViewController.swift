@@ -7,9 +7,11 @@
 
 import UIKit
 
-class OrderConfirmedViewController: UIViewController,Storyboarded {
+class OrderConfirmedViewController: UIViewController, Storyboarded {
+    
     var coordinator : MainCoordinator?
     var placedOrder : Order?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

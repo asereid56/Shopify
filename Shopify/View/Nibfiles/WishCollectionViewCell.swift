@@ -17,12 +17,6 @@ class WishCollectionViewCell: UICollectionViewCell {
     
     var id: Int?
     var index: Int?
-//    var disposeBag = DisposeBag()
-//    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        disposeBag = DisposeBag()
-//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

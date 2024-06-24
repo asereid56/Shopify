@@ -7,12 +7,9 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController{
-    var coordinator: MainCoordinator?
+class SignUpViewController: UIViewController , Storyboarded {
+    
     @IBOutlet weak var confirmPassIcon: UIImageView!
-    var viewModel: SignUpViewModel?
-    var passShown = false
-    var confirmPassShown = false
     @IBOutlet weak var passIcon: UIImageView!
     @IBOutlet weak var confirmPasswordTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
@@ -20,6 +17,12 @@ class SignUpViewController: UIViewController{
     @IBOutlet weak var lastNameTxt: UITextField!
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var firstNameTxt: UITextField!
+    
+    var coordinator: MainCoordinator?
+    var viewModel: SignUpViewModel?
+    var passShown = false
+    var confirmPassShown = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTxt.isSecureTextEntry = true
@@ -35,7 +38,6 @@ class SignUpViewController: UIViewController{
             signup()
         }
     }
-    
     
     @IBAction func signInTapped(_ sender: Any) {
         coordinator?.goToLogin()
@@ -73,7 +75,7 @@ class SignUpViewController: UIViewController{
     func toggleImage() {
         passShown = !passShown
         passIcon.image =
-            passShown ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")
+        passShown ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")
     }
     
     @objc func toggleConfirmImage(_ sender: UITapGestureRecognizer) {
@@ -86,6 +88,6 @@ class SignUpViewController: UIViewController{
     func toggleConfirmImage() {
         confirmPassShown = !confirmPassShown
         confirmPassIcon.image =
-            confirmPassShown ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")
+        confirmPassShown ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")
     }
 }

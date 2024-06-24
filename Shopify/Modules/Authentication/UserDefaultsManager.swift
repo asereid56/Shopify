@@ -19,7 +19,7 @@ class UserDefaultsManager {
         userDefaults.set(firstName, forKey: "firstName")
         userDefaults.set(lastName, forKey: "lastName")
     }
-
+    
     func getCustomerIdFromUserDefaults() -> String? {
         UserDefaults.standard.string(forKey: "customerId")
     }

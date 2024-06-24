@@ -7,20 +7,21 @@
 
 import UIKit
 
-class ResetPassowrdViewController: UIViewController {
+class ResetPassowrdViewController: UIViewController , Storyboarded {
+    
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var email: UITextField!
-    var viewModel: ResetPasswordViewModel?
-    var coordinator: MainCoordinator?
     @IBOutlet weak var text: UILabel!
     @IBOutlet weak var image: UIImageView!
+    
+    var viewModel: ResetPasswordViewModel?
+    var coordinator: MainCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
+    
     @IBAction func resetPassword(_ sender: Any) {
         if checkInternetAndShowToast(vc: self) {
             loadingIndicator.isHidden = false
@@ -31,7 +32,7 @@ class ResetPassowrdViewController: UIViewController {
             }
         }
     }
-  
+    
     @IBAction func backTapped(_ sender: Any) {
         coordinator?.goBack()
     }

@@ -18,7 +18,7 @@ protocol CategoryScreenViewModelProtocol {
     func filterData(selectedSegmentIndex: Int)
     func setCategory(category : String)
     func getCategory() -> String
-   
+    
 }
 
 class CategoryScreenViewModel : CategoryScreenViewModelProtocol{

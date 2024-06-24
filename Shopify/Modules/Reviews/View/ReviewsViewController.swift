@@ -8,10 +8,13 @@
 import UIKit
 import RxSwift
 import RxCocoa
-class ReviewsViewController: UIViewController  {
+class ReviewsViewController: UIViewController , Storyboarded{
+  
+    @IBOutlet weak var reviewsTableView: UITableView!
+    
     var viewModel: ReviewsViewModel?
     let disposeBag = DisposeBag()
-    @IBOutlet weak var reviewsTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNib()

@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import UIKit
+
 class ProfileViewModel {
     
     var network: NetworkServiceProtocol?
@@ -27,6 +28,7 @@ class ProfileViewModel {
     var data : Driver<[Order]> {
         return dataSubject.asDriver(onErrorJustReturn: [])
     }
+    
     var wishlistData : Driver<[LineItem]> {
         return wishListSubject.asDriver(onErrorJustReturn: [])
     }
