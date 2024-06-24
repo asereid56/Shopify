@@ -26,6 +26,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     var coordinator : MainCoordinator?
     var homeScreenSource : String?
     var timer : Timer?
+    var isFirstTime = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +56,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         print(AuthenticationManager.shared.isUserLoggedIn())
         checkonUserDefaultsValues()
         setupSearchBar()
-//        adsCollection.delegate = nil
-//        adsCollection.dataSource = nil
-//        brandsCollection.delegate = nil
-//        brandsCollection.dataSource = nil
+
         
         if checkInternetAndShowToast(vc: self) {
             noInternetImage.isHidden = true
@@ -70,7 +68,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             viewLoading.isHidden = false
             viewModel?.fetchBranchs()
             viewModel?.fetchCoupons()
-          
+            
         }else {
             adsCollection.isHidden = true
             brandsCollection.isHidden = true
@@ -79,6 +77,20 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             noInternetImage.isHidden = false
             searchBar.isHidden = true
             viewLoading.isHidden = true
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if isFirstTime {
+            if homeScreenSource == "SignUp"{
+                _ = showAlert(message: "Welcome \(viewModel?.getUserName() ?? "")", vc: self ) {
+                    let home = HomeScreenViewController.instantiate(storyboardName: "Main")
+                    
+                    let action1 = UIAlertAction(title: "Dismiss", style: .cancel)
+                    _ = showAlert(title: "Email Verification Required", message: "We've sent you an email with the link to verify your email", vc: self , actions: [action1], style: .alert, selfDismiss: false)
+                }
+            }
+            isFirstTime = false
         }
     }
     
@@ -243,15 +255,29 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     @IBAction func cartBtn(_ sender: Any) {
         print(AuthenticationManager.shared.isUserLoggedIn())
         if AuthenticationManager.shared.isUserLoggedIn() {
-//                        isEmailVerified(vc: self) { [weak self] isVerified in
-//                            if isVerified {
-//                                self?.coordinator?.goToShoppingCart()
-//                            }
-//                        }
-            print(viewModel?.isVerified())
-            if viewModel?.isVerified() ?? false{
-                coordinator?.goToShoppingCart()
+            if isInternetAvailable() {
+                isEmailVerified(vc: self) { [weak self] isVerified in
+                    if isVerified {
+                        self?.coordinator?.goToShoppingCart()
+                    }
+                }
             }
+            else {
+                if viewModel?.isVerified() ?? false{
+                    coordinator?.goToShoppingCart()
+                }
+                else {
+                    let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
+                        AuthenticationManager.shared.resendEmailVerificaiton() {
+                            _ = showAlert(message: "Email verification sent", vc: self)
+                        }
+                    }
+                    
+                    let action2 = UIAlertAction(title: "Dismiss", style: .cancel)
+                    _ = showAlert(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: self, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
+                }
+            }
+            
         }else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }

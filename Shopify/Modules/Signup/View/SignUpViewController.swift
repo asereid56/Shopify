@@ -50,18 +50,14 @@ class SignUpViewController: UIViewController , Storyboarded {
     func signup() {
         indicatorView.isHidden = false
         viewModel?.validateEntries(passTxt: passwordTxt.text!, confirmPassTxt: confirmPasswordTxt.text!, firstNameTxt: firstNameTxt.text!, lastNameTxt: lastNameTxt.text!, emailTxt: emailTxt.text!, coordinator: MainCoordinator(navigationController: UINavigationController()), vc: self) {
-            [weak self] success in
+            [weak self] success, title, msg  in
             self?.indicatorView.isHidden = true
             if success {
-                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()?.capitalized
-                self?.coordinator?.gotoTab()
-                _ = showAlert(message: "Welcome \(name ?? "")!", vc: self ?? UIViewController()) {
-                    let action1 = UIAlertAction(title: "Dismiss", style: .cancel)
-                    _ = showAlert(title: "Email Verification Required", message: "We've sent you an email with the link to verify your email", vc: self ?? UIViewController(), actions: [action1], style: .alert, selfDismiss: false)
-                }
+                self?.coordinator?.gotoTab(homeScreenSource: "SignUp")
             }
             else {
-                _ = showAlert(message: "Something went wrong, try again", vc: self ?? UIViewController())
+                let action : UIAlertAction = UIAlertAction(title: "Dismiss", style: .default)
+                _ = showAlert(title: title, message: msg!, vc: self ?? UIViewController(),actions: [action], style: .alert, selfDismiss: false)
             }
         }
     }

@@ -26,21 +26,23 @@ class ShoppingCartViewController: UIViewController , Storyboarded {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         tableView.delegate = self
+        bindTableView()
+        setUpIndicator()
         if isInternetAvailable() {
             viewModel?.fetchCartItems()
         }else{
             viewModel?.fetchCartItemsFromRealm()
         }
-        setUpIndicator()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         if isInternetAvailable() {
             viewModel?.fetchCartItems()
         }else{
             viewModel?.fetchCartItemsFromRealm()
         }
-        tableView.dataSource = nil
-        bindTableView()
+       // tableView.dataSource = nil
+        
     }
     
     private func setUpIndicator() {

@@ -102,6 +102,7 @@ class AuthenticationManager {
             let accessToken = user?.accessToken
             let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken!.tokenString)
             Auth.auth().signIn(with: credential){ [weak self] authResult, error in
+                UserDefaults.standard.setValue(true, forKey: Constant.IS_VERIFIED)
                 if let isNewUser = authResult?.additionalUserInfo?.isNewUser {
                     if isNewUser {
                         print("New Google user: ")

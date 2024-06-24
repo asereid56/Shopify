@@ -22,6 +22,7 @@ protocol HomeScreenViewModelProtocol {
     func fetchCurrencyRate()
     func getAdsArrCount() -> Int
     func isVerified() -> Bool
+    func getUserName() -> String
 }
 
 
@@ -113,6 +114,10 @@ class HomeScreenViewModel : HomeScreenViewModelProtocol{
     
     func isVerified() -> Bool {
         return defaults.bool(forKey: Constant.IS_VERIFIED)
+    }
+    
+    func getUserName() -> String {
+        return UserDefaultsManager.shared.getFirstNameFromUserDefaults() ?? ""
     }
     
 }

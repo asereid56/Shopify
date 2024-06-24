@@ -12,7 +12,6 @@ import RxSwift
 class WishlistViewController: UIViewController , Storyboarded{
     
     @IBOutlet weak var noInternetImage: UIImageView!
-//    @IBOutlet weak var noUserView: UIView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emptyLabel: UILabel!
     @IBOutlet weak var emptyImg: UIImageView!
