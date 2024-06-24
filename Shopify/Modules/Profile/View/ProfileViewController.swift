@@ -39,6 +39,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var tapGesture1: UITapGestureRecognizer!
     
     override func viewDidLoad() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false);
         super.viewDidLoad()
         setupProfileImage()
     }
