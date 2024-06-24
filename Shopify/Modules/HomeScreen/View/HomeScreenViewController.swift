@@ -42,6 +42,11 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         selectBrandToNavigate()
         viewModel?.fetchCurrencyRate()
         if homeScreenSource == "PAYMENT" {showErrorAlert()}
+        
+        if checkInternetAndShowToast(vc: self) {
+            setUpBrandsBinding()
+            setUpAdsBinding()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,10 +55,10 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         print(AuthenticationManager.shared.isUserLoggedIn())
         checkonUserDefaultsValues()
         setupSearchBar()
-        adsCollection.delegate = nil
-        adsCollection.dataSource = nil
-        brandsCollection.delegate = nil
-        brandsCollection.dataSource = nil
+//        adsCollection.delegate = nil
+//        adsCollection.dataSource = nil
+//        brandsCollection.delegate = nil
+//        brandsCollection.dataSource = nil
         
         if checkInternetAndShowToast(vc: self) {
             noInternetImage.isHidden = true
@@ -65,8 +70,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
             viewLoading.isHidden = false
             viewModel?.fetchBranchs()
             viewModel?.fetchCoupons()
-            setUpBrandsBinding()
-            setUpAdsBinding()
+          
         }else {
             adsCollection.isHidden = true
             brandsCollection.isHidden = true

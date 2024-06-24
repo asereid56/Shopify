@@ -683,7 +683,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="OTW-By-OjQ" secondAttribute="trailing" constant="16" id="Qil-zG-eSb"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" name="ViewBgColor"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
                                         <connections>
                                             <outlet property="address" destination="4G5-58-pHD" id="t1p-Ye-3kF"/>
                                             <outlet property="checkMark" destination="Okm-oh-ok9" id="k2e-df-Vym"/>

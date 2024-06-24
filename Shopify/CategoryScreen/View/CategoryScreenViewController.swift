@@ -41,19 +41,20 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             .disposed(by: disposeBag)
         
         selectProductToNavigate()
+        
+        if checkInternetAndShowToast(vc: self){
+            setUpBinding()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setupSearchBar()
-        categoryCollectionView.delegate = nil
-        categoryCollectionView.dataSource = nil
         categoryBtn.titleLabel?.text = lastCategoryTitle
         
         if checkInternetAndShowToast(vc: self){
             viewModel?.fetchData(with: lastCategory.rawValue)
-            setUpBinding()
             categoryCollectionView.isHidden = false
             segmentedControl.isHidden = false
             categoryBtn.isHidden = false
