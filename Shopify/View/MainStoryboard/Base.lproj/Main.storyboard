@@ -1554,7 +1554,7 @@ Nike Sportswear</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Don't have an account?" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LU-df-wIY">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="100" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Don't have an account?" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LU-df-wIY">
                                         <rect key="frame" x="45.666666666666671" y="453.66666666666674" width="157" height="18"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
                                         <nil key="textColor"/>
@@ -1603,7 +1603,7 @@ Nike Sportswear</string>
                                     <action selector="loginTapped:" destination="teH-bH-fYC" eventType="touchUpInside" id="Vlu-Wg-GZs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDk-E2-4kZ">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDk-E2-4kZ">
                                 <rect key="frame" x="242.66666666666663" y="686.33333333333337" width="91" height="38"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign up">
@@ -1717,7 +1717,7 @@ Nike Sportswear</string>
                                         <rect key="frame" x="0.0" y="19" width="143.66666666666666" height="34"/>
                                         <color key="backgroundColor" name="ViewBgColor"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4Q-PB-8nH">
                                         <rect key="frame" x="153" y="-0.33333333333334281" width="78" height="20"/>
@@ -1729,7 +1729,7 @@ Nike Sportswear</string>
                                         <rect key="frame" x="153" y="19" width="159" height="34"/>
                                         <color key="backgroundColor" name="ViewBgColor"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qIB-SK-xyy">
                                         <rect key="frame" x="0.0" y="92.999999999999972" width="312" height="34"/>
@@ -1912,7 +1912,7 @@ Nike Sportswear</string>
                                 <rect key="frame" x="39" y="411.66666666666669" width="312" height="34"/>
                                 <color key="backgroundColor" name="ViewBgColor"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eJ-sV-WYi">
                                 <rect key="frame" x="39" y="391.66666666666669" width="42" height="20"/>

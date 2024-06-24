@@ -162,12 +162,6 @@ extension WishlistViewController {
         }
         else {
             noInternetImage.isHidden = true
-//            if !AuthenticationManager.shared.isUserLoggedIn() {
-//                noUserView.isHidden = false
-//            }
-//            else {
-//                noUserView.isHidden = true
-//            }
         }
     }
 }

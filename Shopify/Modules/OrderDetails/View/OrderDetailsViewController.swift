@@ -32,7 +32,13 @@ class OrderDetailsViewController: UIViewController , Storyboarded {
         createdOnText.text = formateTheDate(date: viewModel?.getOrderDetails().createdAt ?? "")
         phoneNum.text = viewModel?.getOrderDetails().shippingAddress?.phone
         orderLocation.text = (viewModel?.getOrderDetails().shippingAddress?.city ?? "") + ", " + (viewModel?.getOrderDetails().shippingAddress?.country ?? "")
-        totalPrice.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(viewModel?.getOrderDetails().currentTotalPrice ?? "0"))
+        totalPrice.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(viewModel?.getOrderDetails().currentSubtotalPrice ?? "0"))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        orderDetailsTableView.dataSource = nil
+        orderDetailsTableView.delegate = nil
     }
     
     

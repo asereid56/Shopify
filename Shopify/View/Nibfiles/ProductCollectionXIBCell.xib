@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="234" height="316"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MUY-v7-7Dh">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="MUY-v7-7Dh">
                         <rect key="frame" x="0.0" y="0.0" width="234" height="237"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="Addidas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrj-gB-w3C">
@@ -61,7 +61,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="placeholder" width="400" height="300"/>
+        <image name="emptyPlaceholder" width="480" height="480"/>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
