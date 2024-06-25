@@ -14,31 +14,58 @@ protocol AddressesViewControllerDelegate: AnyObject {
 }
 
 class AddressesViewController: UIViewController ,Storyboarded {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyImage: UIImageView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+    private let editSubject = PublishSubject<IndexPath>()
     private let disposeBag = DisposeBag()
     var coordinator : MainCoordinator?
     var viewModel: AddressesViewModelProtocol?
     var source : String?
     weak var delegate: AddressesViewControllerDelegate?
-    private let editSubject = PublishSubject<IndexPath>()
-    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         tableView.delegate = self
         editSelectedAddress()
+        setUpIndicator()
+        bindTableView()
         if source == "payment" {
             setUpSelectTableViewCell()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.dataSource = nil
-        viewModel?.fetchData()
-        bindTableView()
+       // tableView.dataSource = nil
+        if checkInternetAndShowToast(vc: self) {
+            viewModel?.fetchData()
+        }
+       
+    }
+    
+    private func setUpIndicator() {
+        viewModel?.isLoading
+            .bind(to: loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        viewModel?.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
+                self?.loadingIndicator.isHidden = !isLoading
+                if (self?.loadingIndicator.isHidden)! && self?.viewModel?.getAddressesCount() == 0{
+                    // print((self?.loadingIndicator.isHidden)! && self?.viewModel?.getAddressesCount() == 0)
+                    self?.emptyImage.isHidden = false
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     @IBAction func goToNewAddress(_ sender: Any) {
-        coordinator?.goToNewAddress()
+        if checkInternetAndShowToast(vc: self) {
+            coordinator?.goToNewAddress()
+        }
     }
     
     @IBAction func btnBack(_ sender: Any) {
@@ -49,7 +76,8 @@ class AddressesViewController: UIViewController ,Storyboarded {
         // Bind the data to the table view
         viewModel!.data
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: AddressesTableViewCell.self)) { [weak self] (row, model, cell) in
-                print(model.address1!)
+                self?.emptyImage.isHidden = true
+              //  cell.selectionStyle = .none
                 cell.address.text = model.address1
                 if row == 0 {
                     cell.checkMark.isHidden = false
@@ -60,12 +88,6 @@ class AddressesViewController: UIViewController ,Storyboarded {
                 }
             }
             .disposed(by: disposeBag)
-        
-        //        tableView.rx.itemDeleted
-        //            .subscribe(onNext: { [weak self] indexPath in
-        //                self?.setConfirmationAlert(indexPath: indexPath)
-        //            })
-        //            .disposed(by: disposeBag)
     }
     
     private func setUpSelectTableViewCell() {
@@ -102,7 +124,7 @@ class AddressesViewController: UIViewController ,Storyboarded {
     
     func setConfirmationAlert(indexPath : IndexPath){
         let alert = UIAlertController(title: "Confirmation Required", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
-        let btnOk = UIAlertAction(title: "Ok", style: .default) { action in
+        let btnOk = UIAlertAction(title: "Delete", style: .destructive) { action in
             let isDeleted = self.viewModel?.deleteItem(at: indexPath.row)
             if isDeleted == false {
                 let alert = UIAlertController(title: "Can't Delete Default Address",
@@ -113,9 +135,10 @@ class AddressesViewController: UIViewController ,Storyboarded {
                 }
             }
         }
-        let btnCancel = UIAlertAction(title: "Cancel", style: .destructive)
-        alert.addAction(btnOk)
+        let btnCancel = UIAlertAction(title: "Cancel", style: .default)
         alert.addAction(btnCancel)
+        alert.addAction(btnOk)
+        
         self.present(alert, animated: true)
     }
     
@@ -130,15 +153,18 @@ extension AddressesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, completionHandler) in
-            self?.editSubject.onNext(indexPath)
-            
+            if checkInternetAndShowToast(vc: self!){
+                self?.editSubject.onNext(indexPath)
+            }
             completionHandler(true)
         }
         editAction.image = UIImage(systemName: "square.and.pencil")
         editAction.backgroundColor = .systemBlue
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completionHandler) in
-            self?.setConfirmationAlert(indexPath: indexPath)
+            if checkInternetAndShowToast(vc: self!) {
+                self?.setConfirmationAlert(indexPath: indexPath)
+            }
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash")

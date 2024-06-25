@@ -19,7 +19,11 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     @IBOutlet weak var upperConstraintforCollectionView: NSLayoutConstraint!
     @IBOutlet weak var priceTxt: UILabel!
     @IBOutlet weak var priceSlider: UISlider!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var availableInStockTxt: UILabel!
+    @IBOutlet weak var sortBtn: UIButton!
+    @IBOutlet weak var noInternetImg: UIImageView!
+    @IBOutlet weak var btnCart: UIButton!
     private let disposeBag = DisposeBag()
     private var isSortViewHidden = true
     private var sortViewHeight : CGFloat = 0
@@ -43,6 +47,18 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         }.disposed(by: disposeBag)
         
         selectProductToNavigate()
+        setupCartButtonBinding()
+        
+        viewModel?.priceRange
+            .subscribe(onNext: { [weak self] (min, max) in
+                self?.priceSlider.minimumValue = min
+                self?.priceSlider.maximumValue = max + 100
+                self?.priceSlider.value = max + 100
+                let maxPriceTxt = Int( max + 100 )
+                self?.priceTxt.text = String(maxPriceTxt)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,9 +67,23 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         productsCollectionView.delegate = nil
         productsCollectionView.dataSource = nil
         
-        viewModel?.fetchProducts()
-        setUpBinding()
-     
+        if checkInternetAndShowToast(vc: self){
+            viewModel?.fetchProducts()
+            setUpBinding()
+            productsCollectionView.isHidden = false
+            activityIndicator.isHidden = false
+            availableInStockTxt.isHidden = false
+            sortBtn.isHidden = false
+            numOfItems.isHidden = false
+            noInternetImg.isHidden = true
+        }else {
+            noInternetImg.isHidden = false
+            productsCollectionView.isHidden = true
+            activityIndicator.isHidden = true
+            availableInStockTxt.isHidden = true
+            sortBtn.isHidden = true
+            numOfItems.isHidden = true
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,25 +95,16 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     func setUpBinding(){
         
         viewModel?.data
-//               .compactMap { [weak self] products -> [Product]? in
-//                   let prices = products.compactMap { product in
-//                       Float(product.variants?.first??.price ?? "0")
-//                   }
-//                   self?.priceSlider.maximumValue = prices.max() ?? 0
-//                   self?.priceSlider.minimumValue = prices.min() ?? 0
-//                   print(self?.priceSlider.maximumValue ?? 0)
-//                   print(self?.priceSlider.minimumValue ?? 0)
-//                   return products
-//               }
-               .drive(productsCollectionView.rx.items(cellIdentifier: "ProductCell", cellType: ProductCollectionXIBCell.self)) { [weak self] index, product, cell in
-                   cell.productCost.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(product.variants?.first??.price ?? "0"))
-                   cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
-                   cell.productName.text = product.title
-                   cell.layer.masksToBounds = true
-                   self?.brandName.text = product.vendor
-               }
-               .disposed(by: disposeBag)
-
+        
+            .drive(productsCollectionView.rx.items(cellIdentifier: "ProductCell", cellType: ProductCollectionXIBCell.self)) { [weak self] index, product, cell in
+                cell.productCost.text = self?.viewModel?.convertPriceToCurrency(price: product.variants?.first??.price ?? "0")
+                cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
+                cell.productName.text = product.title
+                cell.layer.masksToBounds = true
+                self?.brandName.text = product.vendor
+            }
+            .disposed(by: disposeBag)
+        
         
         viewModel?.productsCount
             .map { "\($0) items"}
@@ -96,15 +117,26 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
             .bind(to: priceTxt.rx.text)
             .disposed(by: disposeBag)
         
+        viewModel?.isLoading
+            .map{ !$0 }
+            .bind(to: activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        viewModel?.dataFetchCompleted
+            .subscribe(onNext: { [weak self ] in
+                self?.activityIndicator.isHidden = true
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     func selectProductToNavigate(){
         productsCollectionView.rx.modelSelected(Product.self)
-                   .subscribe(onNext: { [weak self] product in
-                       guard let self = self else { return }
-                       self.coordinator?.goToProductInfo(product: product)
-                   })
-                   .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] product in
+                guard let self = self else { return }
+                self.coordinator?.goToProductInfo(product: product)
+            })
+            .disposed(by: disposeBag)
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -143,12 +175,53 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         }
     }
     
-    @IBAction func cartBtn(_ sender: Any) {
-        coordinator?.goToShoppingCart()
+    private func setupCartButtonBinding() {
+        btnCart.rx.tap
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                self?.handleCartButtonTap()
+            })
+            .disposed(by: disposeBag)
     }
     
+    private func handleCartButtonTap() {
+        print(AuthenticationManager.shared.isUserLoggedIn())
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            if isInternetAvailable() {
+                isEmailVerified(vc: self) { [weak self] isVerified in
+                    if isVerified {
+                        self?.coordinator?.goToShoppingCart()
+                    }
+                }
+            }
+            else {
+                if viewModel?.isVerified() ?? false{
+                    coordinator?.goToShoppingCart()
+                }
+                else {
+                    let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
+                        AuthenticationManager.shared.resendEmailVerificaiton() {
+                            _ = showAlert(message: "Email verification sent", vc: self)
+                        }
+                    }
+                    
+                    let action2 = UIAlertAction(title: "Dismiss", style: .cancel)
+                    _ = showAlert(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: self, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
+                }
+            }
+            
+        }else {
+            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        }
+    }
+    
+    
     @IBAction func favBtn(_ sender: Any) {
-        coordinator?.goToWishList()
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            coordinator?.goToWishList()
+        }else {
+            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        }
     }
     
     @IBAction func backBtn(_ sender: Any) {

@@ -17,13 +17,12 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var productQuantity: UILabel!
     @IBOutlet weak var productVendor: UILabel!
     @IBOutlet weak var productPrice: UILabel!
-    @IBOutlet weak var productCurrency: UILabel!
-    
     @IBOutlet weak var btnMinus: UIImageView!
     @IBOutlet weak var btnPlus: UIImageView!
     @IBOutlet weak var btnDelete: UIImageView!
     
-     var disposeBag = DisposeBag()
+    
+    var disposeBag = DisposeBag()
     var plusBtnTapped = PublishSubject<Void>()
     var minusBtnTapped = PublishSubject<Void>()
     
@@ -48,9 +47,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
         btnDelete.isUserInteractionEnabled = true
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        // super.setSelected(selected, animated: animated)
-    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag() // Reset dispose bag for cell reuse
@@ -67,12 +64,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
     }
     
     @objc private func plusButtonTapped() {
-       // plusAction?()
         plusBtnTapped.onNext(())
     }
     
     @objc private func minusButtonTapped() {
-        //minusAction?()
         minusBtnTapped.onNext(())
     }
     

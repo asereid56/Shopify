@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="234" height="316"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MUY-v7-7Dh">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="MUY-v7-7Dh">
                         <rect key="frame" x="0.0" y="0.0" width="234" height="237"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="Addidas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrj-gB-w3C">
@@ -35,17 +34,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pvm-gl-BE3">
-                        <rect key="frame" x="189" y="10" width="35" height="35"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="gray" image="trash" catalog="system" cornerStyle="capsule">
-                            <color key="baseForegroundColor" systemColor="systemRedColor"/>
-                            <color key="baseBackgroundColor" name="heartBg"/>
-                        </buttonConfiguration>
-                        <connections>
-                            <action selector="deleteBtn:" destination="gTV-IL-0wX" eventType="touchUpInside" id="8j7-cV-Rd9"/>
-                        </connections>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -55,19 +43,16 @@
                 <constraint firstAttribute="trailing" secondItem="vrj-gB-w3C" secondAttribute="trailing" id="JLk-Dw-bWE"/>
                 <constraint firstItem="Opi-o0-dmA" firstAttribute="top" secondItem="vrj-gB-w3C" secondAttribute="bottom" id="Ouj-Ih-K9Q"/>
                 <constraint firstAttribute="trailing" secondItem="MUY-v7-7Dh" secondAttribute="trailing" id="Pok-uG-sTz"/>
-                <constraint firstItem="Pvm-gl-BE3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Ufz-LB-T5P"/>
                 <constraint firstItem="Opi-o0-dmA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="V0V-fz-po3"/>
                 <constraint firstItem="MUY-v7-7Dh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ZRv-TO-DhY"/>
                 <constraint firstItem="vrj-gB-w3C" firstAttribute="top" secondItem="MUY-v7-7Dh" secondAttribute="bottom" id="cGw-5o-HpY"/>
                 <constraint firstItem="MUY-v7-7Dh" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.75" id="fzP-TE-7I9"/>
                 <constraint firstAttribute="bottom" secondItem="Opi-o0-dmA" secondAttribute="bottom" id="gGI-4z-Nby"/>
-                <constraint firstAttribute="trailing" secondItem="Pvm-gl-BE3" secondAttribute="trailing" constant="10" id="lUS-xg-hnZ"/>
                 <constraint firstItem="MUY-v7-7Dh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ozx-af-A7g"/>
                 <constraint firstAttribute="trailing" secondItem="Opi-o0-dmA" secondAttribute="trailing" id="zuO-03-LCf"/>
             </constraints>
             <size key="customSize" width="234" height="316"/>
             <connections>
-                <outlet property="deletebtn" destination="Pvm-gl-BE3" id="75u-e0-2UM"/>
                 <outlet property="productCost" destination="Opi-o0-dmA" id="lZq-0P-Lk1"/>
                 <outlet property="productImage" destination="MUY-v7-7Dh" id="jef-pD-ciX"/>
                 <outlet property="productName" destination="vrj-gB-w3C" id="jTW-y2-keg"/>
@@ -76,15 +61,9 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="trash" catalog="system" width="117" height="128"/>
+        <image name="emptyPlaceholder" width="480" height="480"/>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="heartBg">
-            <color red="0.83529411764705885" green="0.83921568627450982" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

@@ -13,15 +13,10 @@ import FirebaseCore
 import GoogleSignIn
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 class AuthenticationManager {
     static let shared = AuthenticationManager()
-//    private static let sharedInstance = AuthenticationManager()
-//    private var mainCoordinator: MainCoordinator?
-//    static func shared(coordinator: MainCoordinator) -> AuthenticationManager {
-//        sharedInstance.mainCoordinator = coordinator
-//        return sharedInstance
-//    }
     
     private init() {}
     
@@ -79,6 +74,8 @@ class AuthenticationManager {
                 setupCustomer(firstName: firstname, lastName: lastName, email: email) { success in
                     if success {
                         completion(true, nil, nil)
+                        UserDefaults.standard.setValue(false, forKey: Constant.IS_VERIFIED)
+                        Auth.auth().currentUser?.sendEmailVerification()
                         print("User signs up successfully")
                     }
                     else {
@@ -92,7 +89,7 @@ class AuthenticationManager {
         }
     }
     
-    func signInWithGoogle(vc: UIViewController, completion: @escaping (Bool) -> Void){
+    func signInWithGoogle(vc: UIViewController, completion: @escaping (Bool, Bool) -> Void){
         let signInConfig = GIDConfiguration(clientID: FirebaseApp.app()?.options.clientID ?? "")
         GIDSignIn.sharedInstance.configuration = signInConfig
         
@@ -105,19 +102,20 @@ class AuthenticationManager {
             let accessToken = user?.accessToken
             let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken!.tokenString)
             Auth.auth().signIn(with: credential){ [weak self] authResult, error in
+                UserDefaults.standard.setValue(true, forKey: Constant.IS_VERIFIED)
                 if let isNewUser = authResult?.additionalUserInfo?.isNewUser {
                     if isNewUser {
                         print("New Google user: ")
                         print("firstName: \(user!.profile!.givenName!), lastName: \(user!.profile!.familyName!), email: \(user!.profile!.email)")
                         setupCustomer(firstName: user!.profile!.givenName!, lastName: user!.profile!.familyName!, email: user!.profile!.email) { success in
-                            completion(true)
+                            completion(true, true)
                         }
                     }
                     else {
                         print("Old Google user: ")
                         self?.fetchExistingUserData(id: authResult!.user.uid) { success in
                             if success {
-                                completion(true)
+                                completion(true, false)
                             }
                         }
                     }
@@ -126,27 +124,28 @@ class AuthenticationManager {
         }
     }
     
+    func resendEmailVerificaiton(completion: @escaping () -> Void) {
+        Auth.auth().currentUser?.sendEmailVerification(completion: { _ in
+            completion()
+        })
+    }
+    
     func showWelcomeAlert(vc: UIViewController){
         if let currentUser = Auth.auth().currentUser {
             print("user here")
-            showToast(message: "Welcome back \(currentUser.email ?? "")", vc: vc)
+            _ = showAlert(message: "Welcome back \(currentUser.email ?? "")", vc: vc)
         }
     }
     
-    func showAlert(vc: UIViewController, title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        vc.present(alert, animated: true)
-        
-    }
-    
     func isUserLoggedIn() -> Bool {
-        Auth.auth().currentUser != nil
+        Auth.auth().currentUser != nil && UserDefaultsManager.shared.getCustomerIdFromUserDefaults() != nil
+        
     }
     
     func signOut() {
         do {
             try Auth.auth().signOut()
+            UserDefaultsManager.shared.clearDefaults()
         } catch {
             print(error.localizedDescription)
         }
@@ -165,7 +164,11 @@ class AuthenticationManager {
             }
         }
     }
-    
+    func resetPassword(with email: String, completion: @escaping () -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { _ in
+            completion()
+        }
+    }
 }
 
 
@@ -183,7 +186,7 @@ fileprivate func setupCustomer(firstName: String, lastName: String, email: Strin
                 if let response = response {
                     let customer_id = String(response.customer!.id!)
                     print("Response: \(response.customer?.id ?? 0000)")
-                    createUserDocumentOverFirebase(firebaseId: Auth.auth().currentUser!.uid, APIId: customer_id, email: email) {
+                    createUserDocumentOverFirebase(firebaseId: Auth.auth().currentUser!.uid, APIId: customer_id, email: email, img: nil) {
                         createTwoDraftOrders(email: email) { ids in
                             attachIdsToCustomer(ids, customer_id, network) { success in
                                 UserDefaultsManager.shared.saveUserInfoToUserDefaults(customerId: customer_id, ordersId: String(ids[0]), wishListId: String(ids[1]), firstName: firstName, lastName: lastName)
@@ -207,14 +210,16 @@ fileprivate func setupCustomer(firstName: String, lastName: String, email: Strin
 }
 
 
-func createUserDocumentOverFirebase(firebaseId: String, APIId: String, email: String, completion: @escaping () -> Void) {
+func createUserDocumentOverFirebase(firebaseId: String, APIId: String, email: String, img: Data?, completion: @escaping () -> Void) {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(firebaseId)
     
     let userData: [String: Any] = [
         "firebaseId": firebaseId,
         "APIId": APIId,
-        "email": email
+        "email": email,
+        "otra": "another",
+        "img": img ?? String()
     ]
     
     userRef.setData(userData) { error in
@@ -226,6 +231,65 @@ func createUserDocumentOverFirebase(firebaseId: String, APIId: String, email: St
         }
     }
 }
+
+func updateUserImage(data: Data, completion: @escaping (Bool) -> Void) {
+    guard let userID = Auth.auth().currentUser?.uid else {
+        print("Error: Could not retrieve current user ID for image upload.")
+        return
+    }
+    
+    let storageRef = Storage.storage().reference()
+    let imagesRef = storageRef.child("images/\(userID).jpg") // Consistent naming
+    
+    imagesRef.putData(data, metadata: nil) { metadata, error in
+        if let error = error {
+            print("Error uploading image: \(error)")
+            completion(false)
+            return
+        }
+        
+        imagesRef.downloadURL { url, error in
+            if let error = error {
+                print("Error getting download URL: \(error)")
+                return
+            }
+            
+            guard let downloadURL = url else {
+                print("Download URL is nil")
+                return
+            }
+            updateUserImageURL(downloadURL.absoluteString){ complete in
+                if complete {
+                    completion(true)
+                }
+                else {
+                    completion(false)
+                }
+            }
+        }
+    }
+}
+
+func updateUserImageURL(_ url: String, completion: @escaping (Bool) -> Void) {
+    guard let userID = Auth.auth().currentUser?.uid else {
+        print("Error: Could not retrieve current user ID for image URL update.")
+        return
+    }
+    
+    let db = Firestore.firestore() // Concise variable name
+    let userRef = db.collection("users").document(userID)
+    
+    userRef.updateData(["img": url]) { error in
+        if let error = error {
+            print("Error updating Firestore: \(error)")
+            completion(false)
+        } else {
+            print("Image URL successfully updated in Firestore")
+            completion(true)
+        }
+    }
+}
+
 func fetchUserDocumentFromFirebase(firebaseId: String, completion: @escaping (String) -> ()) {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(firebaseId)
@@ -237,10 +301,52 @@ func fetchUserDocumentFromFirebase(firebaseId: String, completion: @escaping (St
             print("User API Id fetched from Firestore: \(customerId)")
             completion(customerId as! String)
         } else {
-            print("Document does not exist")
+            print("User Info Document does not exist")
         }
     }
 }
+
+func getUserImage(completion: @escaping (Data) -> Void) {
+    guard let id = Auth.auth().currentUser?.uid else { return }
+    let db = Firestore.firestore()
+    let userRef = db.collection("users").document(id)
+    
+    userRef.getDocument { document, error in
+        if let document = document, document.exists {
+            guard let data = document.data() else { return }
+            guard let userImg = data["img"] else { return }
+            print("User img fetched from firestore: \(userImg)")
+            if let imgURL = userImg as? String {
+                print("could")
+                loadImageFromURL(imgURL) { data in
+                    print("from load image url actual completion")
+                    completion(data)
+                }
+                
+            }
+            //completion(userImg as! Data)
+        } else {
+            completion(Data())
+            print("Image Document does not exist")
+        }
+    }
+}
+
+func loadImageFromURL(_ urlString: String, completion: @escaping (Data) -> Void) {
+    print("from load image url")
+    guard let url = URL(string: urlString) else {
+        completion(Data())
+        return
+    }
+    URLSession.shared.dataTask(with: url) { data, response, error in
+        guard let data = data, error == nil else {
+            print("Failed to download image: \(String(describing: error))")
+            return
+        }
+        completion(data)
+    }.resume()
+}
+
 func createTwoDraftOrders(email: String, completion: @escaping ([Int]) -> Void) {
     var draftOrdersIds = [Int]()
     let dispatchGroup = DispatchGroup()
@@ -265,7 +371,7 @@ func createTwoDraftOrders(email: String, completion: @escaping ([Int]) -> Void) 
 func createDraftOrder(name: String, email: String, completion: @escaping (Int) -> Void) {
     let network = NetworkService.shared
     let endpoint = APIEndpoint.createDraftOrder.rawValue
-    let lineItem = LineItem(title: "dummy", price: "12", quantity: 1)
+    let lineItem = LineItem(title: "dummy", price: "0", quantity: 1)
     let draftOrderWrapper = DraftOrderWrapper(draftOrder: DraftOrder(name: name, lineItems: [lineItem], email: email))
     _ = network.post(endpoint: endpoint, body: draftOrderWrapper, responseType: DraftOrderWrapper.self)
         .subscribe(onNext: { success, message, response in
@@ -289,7 +395,7 @@ func createDraftOrder(name: String, email: String, completion: @escaping (Int) -
 func attachIdsToCustomer(_ ids: [Int], _ customer_id: String, _ network: NetworkService, completion: @escaping (Bool) -> Void) {
     let customer = Customer(tags: ids.map{String($0)}.joined(separator: ","))
     _ = network.put(endpoint: "/customers/\(customer_id).json", body: CustomerResponse(customer: customer), responseType: CustomerResponse.self).subscribe(onNext: {_,_,_ in
-            completion(true)
+        completion(true)
     }, onError: { error in
         completion(false)
         print("Error: \(error)")
@@ -316,3 +422,38 @@ func getCustomerFirstAndLastName(customerId: String, completion: @escaping (Stri
             print("error getting customer draft orders ids: \(error)")
         }
 }
+
+func isEmailVerified(vc: UIViewController, completion: @escaping (Bool) -> Void) {
+    if AuthenticationManager.shared.isUserLoggedIn() {
+        Auth.auth().currentUser?.reload(completion: { error in
+            if let error = error {
+                print("Error reloading user: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            
+            if let user = Auth.auth().currentUser {
+                if user.isEmailVerified {
+                    completion(true)
+                    UserDefaults.standard.setValue(true, forKey: Constant.IS_VERIFIED)
+                } else {
+                    let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
+                        AuthenticationManager.shared.resendEmailVerificaiton() {
+                            _ = showAlert(message: "Email verification sent", vc: vc)
+                        }
+                    }
+                    let action2 = UIAlertAction(title: "Dismiss", style: .cancel)
+                    _ = showAlert(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: vc, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
+                    completion(false)
+                }
+            } else {
+                completion(false)
+            }
+        })
+    } else {
+        completion(false)
+    }
+}
+
+
+

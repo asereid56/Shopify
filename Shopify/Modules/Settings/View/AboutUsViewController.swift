@@ -8,10 +8,13 @@
 import UIKit
 
 class AboutUsViewController: UIViewController  , Storyboarded {
+    
     @IBOutlet weak var firstMemeberImg: UIImageView!
     @IBOutlet weak var thirdMemberImg: UIImageView!
     @IBOutlet weak var secondMemberImg: UIImageView!
+    
     var coordinator : MainCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)

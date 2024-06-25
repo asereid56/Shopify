@@ -8,15 +8,17 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import UIKit
+
 class ProfileViewModel {
     
-    var network: NetworkService?
+    var network: NetworkServiceProtocol?
     var customerId: String?
     var wishlistId: String?
     
     private let dataSubject = BehaviorSubject<[Order]>(value: [])
     private let wishListSubject = BehaviorSubject<[LineItem]>(value: [])
-    
+    private let defaults = UserDefaults.standard
     init(network: NetworkService? = nil) {
         self.network = network
         customerId = UserDefaultsManager.shared.getCustomerIdFromUserDefaults()
@@ -26,12 +28,13 @@ class ProfileViewModel {
     var data : Driver<[Order]> {
         return dataSubject.asDriver(onErrorJustReturn: [])
     }
+    
     var wishlistData : Driver<[LineItem]> {
         return wishListSubject.asDriver(onErrorJustReturn: [])
     }
     
     func getOrders() {
-        _ = network?.get(endpoint: APIEndpoint.ordersByCustomer.rawValue.replacingOccurrences(of: "{customer_id}", with: customerId ?? "")).subscribe(onNext: { [weak self] (apiResponse: OrdersWrapper) in
+        _ = network?.get(url: NetworkConstants.baseURL, endpoint: APIEndpoint.ordersByCustomer.rawValue.replacingOccurrences(of: "{customer_id}", with: customerId ?? ""), parameters: nil, headers: nil).subscribe(onNext: { [weak self] (apiResponse: OrdersWrapper) in
             self?.dataSubject.onNext(apiResponse.orders)
         }, onError: { error in
             print("Error fetching orders \(error)")
@@ -39,10 +42,36 @@ class ProfileViewModel {
     }
     
     func getWishListItems() {
-        _ = network?.get(endpoint: APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: wishlistId ?? "")).subscribe(onNext: { [weak self] (apiResponse: DraftOrderWrapper) in
+        _ = network?.get(url: NetworkConstants.baseURL, endpoint: APIEndpoint.getDraftOrder.rawValue.replacingOccurrences(of: "{darft_order_id}", with: wishlistId ?? ""), parameters: nil, headers: nil).subscribe(onNext: { [weak self] (apiResponse: DraftOrderWrapper) in
             self?.wishListSubject.onNext(apiResponse.draftOrder?.lineItems ?? [])
         }, onError: { error in
             print("Error fetching orders \(error)")
         })
+    }
+    
+    func fetchOrders(completion: @escaping ([Order]) -> Void) {
+        do {
+            let orders = try dataSubject.value()
+            completion(orders)
+        } catch {
+            print("Error fetching orders from dataSubject: \(error)")
+            completion([])
+        }
+    }
+    
+    func updateImage(completion: @escaping (Data) -> Void) {
+        getUserImage { data in
+            completion(data)
+        }
+    }
+    
+    func saveImage(data: Data, completion: @escaping (Bool) -> Void) {
+        updateUserImage(data: data) { result in
+            completion(result)
+        }
+    }
+    
+    func isVerified() -> Bool {
+        return defaults.bool(forKey: Constant.IS_VERIFIED)
     }
 }

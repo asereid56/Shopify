@@ -143,3 +143,7 @@ struct Variantt: Codable {
         case imageID = "image_id"
     }
 }
+
+struct ProductWrapper: Codable {
+    let product: Product?
+}

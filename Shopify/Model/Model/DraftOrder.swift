@@ -52,6 +52,7 @@ struct LineItem: Codable {
         case price
         case adminGraphqlApiId = "admin_graphql_api_id"
     }
+    
     init(title: String?, price: String?, quantity: Int?) {
         self.title = title
         self.price = price
@@ -96,7 +97,9 @@ struct LineItem: Codable {
         
         self.properties = realmLineItem.properties.map { Property(name: $0.name, value: $0.value) }
     }
+    
 }
+
 struct Property: Codable {
     var name: String? = nil
     var value: String?
@@ -110,6 +113,7 @@ struct Property: Codable {
     }
     
 }
+
 struct TaxLine: Codable {
     let rate: Double?
     let title: String?
@@ -120,7 +124,7 @@ struct AppliedDiscount: Codable {
     let description: String?
     let valueType: String?
     let value: String?
-    let amount: String?
+    var amount: String?
     let title: String?
     
     enum CodingKeys: String, CodingKey {
@@ -133,7 +137,7 @@ struct AppliedDiscount: Codable {
 }
 
 struct DraftOrder: Codable {
-    let id: Int? = nil
+    var id: Int?
     var note: String?
     var email: String?
     var taxesIncluded: Bool? = nil

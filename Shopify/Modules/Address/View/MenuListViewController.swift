@@ -23,10 +23,12 @@ class MenuListViewController: UIViewController , Storyboarded {
     
     @IBOutlet weak var screenTitle: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     private let disposeBag = DisposeBag()
     var viewModel: NewAddressViewModelProtocol?
     var type: ListType?
     weak var delegate: MenuListViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

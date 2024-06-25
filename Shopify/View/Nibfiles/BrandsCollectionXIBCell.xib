@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="205" height="181"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cWK-M9-lsQ">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="cWK-M9-lsQ">
                         <rect key="frame" x="0.0" y="0.0" width="205" height="180.66666666666666"/>
                     </imageView>
                 </subviews>
@@ -36,4 +36,7 @@
             <point key="canvasLocation" x="154.96183206106869" y="33.450704225352112"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="emptyPlaceholder" width="480" height="480"/>
+    </resources>
 </document>

@@ -13,7 +13,6 @@ class OnBoardingTwoViewController: UIViewController , Storyboarded {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -24,7 +23,7 @@ class OnBoardingTwoViewController: UIViewController , Storyboarded {
     
     
     @IBAction func skipBtn(_ sender: Any) {
-        coordinator?.goToMainLogin()
+        coordinator?.goToSignOrGuestScreen()
     }
     
 }

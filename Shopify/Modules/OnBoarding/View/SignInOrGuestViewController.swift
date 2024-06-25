@@ -13,12 +13,11 @@ class SignInOrGuestViewController: UIViewController , Storyboarded{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationController?.navigationBar.isHidden = true
     }
     
     @IBAction func signInBtn(_ sender: Any) {
-        coordinator?.goToMainLogin()
+        coordinator?.goToLogin()
     }
     
     

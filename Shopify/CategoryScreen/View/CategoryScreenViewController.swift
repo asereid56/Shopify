@@ -16,16 +16,19 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var categoryBtn: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var emptyImg: UIImageView!
+    @IBOutlet weak var noInternetImg: UIImageView!
     
+    @IBOutlet weak var btnCart: UIButton!
     private let disposeBag = DisposeBag()
     private var lastCategory: APIEndpoint = .CategoryWomen
     private var lastCategoryTitle = "Women's"
     var coordinator : MainCoordinator?
     var viewModel : CategoryScreenViewModelProtocol?
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.isHidden = true
         let nib = UINib(nibName: "ProductCollectionXIBCell", bundle: nil)
         categoryCollectionView.register(nib, forCellWithReuseIdentifier: "ProductCell")
@@ -39,17 +42,42 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             .disposed(by: disposeBag)
         
         selectProductToNavigate()
+        setUpBinding()
+        setupCartButtonBinding()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        categoryCollectionView.delegate = nil
-        categoryCollectionView.dataSource = nil
+        
+        setupSearchBar()
         categoryBtn.titleLabel?.text = lastCategoryTitle
         
-        viewModel?.fetchData(with: lastCategory.rawValue)
-        setUpBinding()
+        if checkInternetAndShowToast(vc: self){
+            viewModel?.fetchData(with: lastCategory.rawValue)
+            categoryCollectionView.isHidden = false
+            segmentedControl.isHidden = false
+            categoryBtn.isHidden = false
+            emptyImg.isHidden = true
+            activityIndicator.isHidden = false
+            noInternetImg.isHidden = true
+            searchBar.isHidden = false
+        }else {
+            noInternetImg.isHidden = false
+            categoryCollectionView.isHidden = true
+            segmentedControl.isHidden = true
+            categoryBtn.isHidden = true
+            emptyImg.isHidden = true
+            activityIndicator.isHidden = true
+            searchBar.isHidden = true
+        }
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if searchBar.text == "" {
+            searchBar.resignFirstResponder()
+        }
     }
     
     private func setUpBinding(){
@@ -75,27 +103,87 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
             cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""))
             cell.productName.text = product.title
             cell.layer.masksToBounds = true
-            cell.deletebtn.isHidden = true
             
         }.disposed(by: disposeBag)
+        
+        viewModel?.isLoading
+            .map{ !$0 }
+            .bind(to: activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        viewModel?.isEmpty
+            .map { !$0 }
+            .bind(to: emptyImg.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(viewModel!.isLoading, viewModel!.isEmpty)
+            .subscribe(onNext: { [weak self] isLoading, isEmpty in
+                self?.activityIndicator.isHidden = !isLoading
+                self?.emptyImg.isHidden  = isLoading || !isEmpty
+                self?.categoryCollectionView.isHidden = isLoading || isEmpty
+            })
+            .disposed(by: disposeBag)
     }
     
     func selectProductToNavigate(){
-        categoryCollectionView.rx.modelSelected(Product.self)
-                   .subscribe(onNext: { [weak self] product in
-                       guard let self = self else { return }
-                       self.coordinator?.goToProductInfo(product: product)
-                   })
-                   .disposed(by: disposeBag)
+        if checkInternetAndShowToast(vc: self){
+            categoryCollectionView.rx.modelSelected(Product.self)
+                .subscribe(onNext: { [weak self] product in
+                    guard let self = self else { return }
+                    self.coordinator?.goToProductInfo(product: product)
+                })
+                .disposed(by: disposeBag)
+        }
     }
     
     @IBAction func favBtn(_ sender: Any) {
-        coordinator?.goToWishList()
+        if AuthenticationManager.shared.isUserLoggedIn() {
+            coordinator?.goToWishList()
+        }else {
+            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        }
     }
     
-    @IBAction func cartBtn(_ sender: Any) {
-        coordinator?.goToShoppingCart()
-    }
+    private func setupCartButtonBinding() {
+            btnCart.rx.tap
+                .debounce(.seconds(1), scheduler: MainScheduler.instance)
+                .subscribe(onNext: { [weak self] in
+                    self?.handleCartButtonTap()
+                })
+                .disposed(by: disposeBag)
+        }
+        
+        private func handleCartButtonTap() {
+            print(AuthenticationManager.shared.isUserLoggedIn())
+            if AuthenticationManager.shared.isUserLoggedIn() {
+                if isInternetAvailable() {
+                    isEmailVerified(vc: self) { [weak self] isVerified in
+                        if isVerified {
+                            self?.coordinator?.goToShoppingCart()
+                        }
+                    }
+                }
+                else {
+                    if viewModel?.isVerified() ?? false{
+                        coordinator?.goToShoppingCart()
+                    }
+                    else {
+                        let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
+                            AuthenticationManager.shared.resendEmailVerificaiton() {
+                                _ = showAlert(message: "Email verification sent", vc: self)
+                            }
+                        }
+                        
+                        let action2 = UIAlertAction(title: "Dismiss", style: .cancel)
+                        _ = showAlert(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: self, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
+                    }
+                }
+                
+            }else {
+                showAlertForNotUser(vc: self, coordinator: coordinator!)
+            }
+        }
+    
     
     @IBAction func categoryBtn(_ sender: Any) {
         self.categoryBtn.titleLabel?.text = lastCategoryTitle
@@ -165,4 +253,14 @@ class CategoryScreenViewController: UIViewController , Storyboarded{
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
+    func setupSearchBar() {
+        if checkInternetAndShowToast(vc: self) {
+            searchBar.rx.text.orEmpty
+                .bind(to: viewModel?.searchTextSubject ?? PublishSubject<String>())
+                .disposed(by: disposeBag)
+        }
+    }
+    
+    
 }
+

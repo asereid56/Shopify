@@ -22,14 +22,22 @@ class MockPaymentProcessor: PaymentProcessing {
         request.merchantCapabilities = .threeDSecure
         request.countryCode = countryCode
         request.currencyCode = UserDefaults.standard.string(forKey: Constant.SELECTED_CURRENCY) ?? Constant.USD
+        
+        var calcAmount = amount
+        
+        if UserDefaults.standard.string(forKey: Constant.SELECTED_CURRENCY) == Constant.EGP {
+            let stringAmount = CurrencyService.calculatePriceAccordingToCurrency(price: String(amount)).replacingOccurrences(of: "\(Constant.EGP) ", with: "")
+            print(stringAmount)
+            calcAmount = Double(stringAmount) ?? 0.0
+        }
+        
         request.paymentSummaryItems = [
-            PKPaymentSummaryItem(label: "Products", amount: NSDecimalNumber(decimal: Decimal(amount)))
+            PKPaymentSummaryItem(label: "Products", amount: NSDecimalNumber(decimal: Decimal(calcAmount)))
         ]
         return request
     }
     
     func handlePaymentAuthorization(_ payment: PKPayment, completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
-        // completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
         let status: PKPaymentAuthorizationStatus = .success
         let result = PKPaymentAuthorizationResult(status: status, errors: nil)
         completion(result)

@@ -7,29 +7,35 @@
 
 import UIKit
 import FirebaseAuth
-class LoginWithEmailViewController: UIViewController {
+
+class LoginWithEmailViewController: UIViewController , Storyboarded {
+    
+    @IBOutlet weak var showPasswordIcon: UIImageView!
+    @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var indicatorView: UIView!
+    @IBOutlet weak var emailTxt: UITextField!
+    
     var coordinator: MainCoordinator?
     var viewModel:LoginWithEmailViewModel?
-    @IBOutlet weak var passwordTxt: UITextField!
-    @IBOutlet weak var emailTxt: UITextField!
+    var passShown = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        passwordTxt.isSecureTextEntry = true 
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        
-        checkonUserDefaultsValues()
+        passwordTxt.isSecureTextEntry = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleImage(_:)))
+        showPasswordIcon.addGestureRecognizer(tapGesture)
     }
     
+    
     @IBAction func loginTapped(_ sender: Any) {
-        viewModel?.signInWithEmail(email: emailTxt.text ?? "", password: passwordTxt.text ?? "") { [weak self] success, title, message in
-            if success {
-                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
-                self?.coordinator?.gotoTab()
-                showToast(message: "Welcome back \(name ?? "")!", vc: self ?? UIViewController())
-            } else {
-                showToast(message: "Something went wrong", vc: self ?? UIViewController())
-            }
+        if checkInternetAndShowToast(vc: self) {
+            signin()
+        }
+    }
+    
+    @IBAction func loginWithGoogle(_ sender: Any) {
+        if checkInternetAndShowToast(vc: self) {
+            signInWithGoogle()
         }
     }
     
@@ -37,8 +43,58 @@ class LoginWithEmailViewController: UIViewController {
         coordinator?.goToSignUp()
     }
     
-
+    
     @IBAction func backTapped(_ sender: Any) {
         coordinator?.goBack()
+    }
+    
+    func signin() {
+        indicatorView.isHidden = false
+        viewModel?.signInWithEmail(email: emailTxt.text ?? "", password: passwordTxt.text ?? "") { [weak self] success, title, message in
+            self?.indicatorView.isHidden = true
+            if success {
+                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
+                self?.coordinator?.gotoTab()
+                _ = showAlert(message: "Welcome back \(name ?? "")!", vc: self ?? UIViewController())
+            } else {
+                _ = showAlert(title: title, message: message!, vc: self ?? UIViewController(), dismissAfter: 2)
+            }
+        }
+    }
+    
+    func signInWithGoogle() {
+        viewModel?.signInWithGoogle(vc: self) { [weak self] success, newUser in
+            if success {
+                let name = UserDefaultsManager.shared.getFirstNameFromUserDefaults()
+                self?.coordinator?.gotoTab()
+                if newUser {
+                    _ = showAlert(message: "Welcome \(name ?? "")!", vc: self ?? UIViewController())
+                }
+                else {
+                    _ = showAlert(message: "Welcome back\(name ?? "")!", vc: self ?? UIViewController())
+                }
+            }
+            else {
+                _ = showAlert(message: "Something went wrong, try again", vc: self ?? UIViewController())
+            }
+        }
+    }
+    
+    @IBAction func forgotPassTapped(_ sender: Any) {
+        coordinator?.goToResetPassword()
+    }
+    
+    @objc func toggleImage(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            passwordTxt.isSecureTextEntry = !passwordTxt.isSecureTextEntry
+            toggleImage()
+            
+        }
+    }
+    
+    func toggleImage() {
+        passShown = !passShown
+        showPasswordIcon.image = 
+        passShown ? UIImage(systemName: "eye.slash") : UIImage(systemName: "eye")
     }
 }
