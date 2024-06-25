@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v8N-WW-pPR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v8N-WW-pPR">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -211,6 +211,7 @@
                         <outlet property="activityIndicator" destination="Xq0-rs-5Qh" id="dEJ-8N-RRF"/>
                         <outlet property="availableInStockTxt" destination="Lif-C1-fMF" id="QWO-vR-V28"/>
                         <outlet property="brandName" destination="01J-C4-ltE" id="13x-Be-w6c"/>
+                        <outlet property="btnCart" destination="ghf-9v-bMT" id="NVL-RD-hzm"/>
                         <outlet property="noInternetImg" destination="SuA-Op-IKa" id="HYX-sa-9t5"/>
                         <outlet property="numOfItems" destination="IuZ-Cv-6sD" id="bKb-fa-tRF"/>
                         <outlet property="priceSlider" destination="jnn-mi-eLE" id="UzO-tc-02z"/>
@@ -406,6 +407,7 @@
                         <outlet property="activityIndicator" destination="H7V-bx-IFz" id="gpw-tK-Nhq"/>
                         <outlet property="adsCollection" destination="KDu-tr-wx4" id="Jnn-g4-gxY"/>
                         <outlet property="brandsCollection" destination="2fW-df-dR9" id="bxg-bZ-ASo"/>
+                        <outlet property="btnCart" destination="5hD-Bd-ei6" id="cz1-Jk-YWx"/>
                         <outlet property="chooseBrandTxt" destination="FFY-s6-zCs" id="mrO-YQ-mcg"/>
                         <outlet property="noInternetImage" destination="a9J-fR-2Ee" id="2HH-nO-tRT"/>
                         <outlet property="pageController" destination="rzz-XL-fjt" id="aWe-3L-e6Z"/>
@@ -555,6 +557,7 @@
                     <tabBarItem key="tabBarItem" title="Category" image="circle.grid.3x3" catalog="system" id="8g2-Qo-Caj"/>
                     <connections>
                         <outlet property="activityIndicator" destination="vUc-KP-v5w" id="8Zs-vf-60b"/>
+                        <outlet property="btnCart" destination="qUN-Sw-4Pc" id="rlY-Uv-cef"/>
                         <outlet property="categoryBtn" destination="TNb-DG-ndY" id="NbU-Uu-Agg"/>
                         <outlet property="categoryCollectionView" destination="3sB-dY-M0Q" id="dgG-vQ-ML2"/>
                         <outlet property="emptyImg" destination="kuv-Fd-hz9" id="gxe-lx-HNc"/>
@@ -1367,6 +1370,7 @@ Nike Sportswear</string>
                     <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" id="PZd-vY-K05"/>
                     <connections>
                         <outlet property="address" destination="s3Y-Bx-9LT" id="Ex6-xz-zoq"/>
+                        <outlet property="btnCart" destination="VIa-vo-Io5" id="OV1-5J-t3U"/>
                         <outlet property="createdAt" destination="Vh2-BG-Wn6" id="gSW-7O-SR7"/>
                         <outlet property="editImage" destination="6fI-08-U53" id="N82-2q-uWa"/>
                         <outlet property="emptyWishlitView" destination="NCz-i3-khA" id="IOv-qp-SNp"/>
@@ -2321,6 +2325,10 @@ Nike Sportswear</string>
                                     <constraint firstAttribute="trailing" secondItem="40T-JM-fJJ" secondAttribute="trailing" id="wl2-FZ-8fo"/>
                                 </constraints>
                             </scrollView>
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBC-8i-qmU">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-yF-0Mo">
                                 <rect key="frame" x="186" y="416" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2336,15 +2344,20 @@ Nike Sportswear</string>
                             <constraint firstItem="Ekw-n4-yqn" firstAttribute="height" secondItem="WEb-g5-FMB" secondAttribute="height" multiplier="0.1" id="BMZ-mL-Zix"/>
                             <constraint firstItem="lsj-XV-Ra3" firstAttribute="leading" secondItem="lHU-EH-dIs" secondAttribute="leading" id="Fbi-XN-O5U"/>
                             <constraint firstItem="Ekw-n4-yqn" firstAttribute="width" secondItem="WEb-g5-FMB" secondAttribute="width" id="QTC-eX-Ulq"/>
+                            <constraint firstItem="lHU-EH-dIs" firstAttribute="trailing" secondItem="NBC-8i-qmU" secondAttribute="trailing" id="Qfk-9l-Hak"/>
                             <constraint firstItem="lHU-EH-dIs" firstAttribute="bottom" secondItem="lsj-XV-Ra3" secondAttribute="bottom" id="Qu8-U7-I8y"/>
                             <constraint firstItem="jrC-FG-4ll" firstAttribute="height" secondItem="WEb-g5-FMB" secondAttribute="height" multiplier="0.35" id="W6H-ue-mdY"/>
                             <constraint firstItem="lsj-XV-Ra3" firstAttribute="top" secondItem="lHU-EH-dIs" secondAttribute="top" id="iCu-iz-T2u"/>
+                            <constraint firstItem="NBC-8i-qmU" firstAttribute="leading" secondItem="lHU-EH-dIs" secondAttribute="leading" id="lHp-yJ-ELk"/>
+                            <constraint firstItem="NBC-8i-qmU" firstAttribute="top" secondItem="WEb-g5-FMB" secondAttribute="top" id="nxS-wP-QhS"/>
+                            <constraint firstAttribute="bottom" secondItem="NBC-8i-qmU" secondAttribute="bottom" id="tXq-zy-tOD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="colorButton" destination="G1w-sC-x4T" id="22T-dA-tk2"/>
                         <outlet property="descriptionTxt" destination="2Ug-Ts-ECD" id="PMQ-0m-hWN"/>
                         <outlet property="loadingIndicator" destination="0zk-yF-0Mo" id="nA1-OI-DVX"/>
+                        <outlet property="loadingView" destination="NBC-8i-qmU" id="7Nw-PM-pCV"/>
                         <outlet property="pageControl" destination="RxH-JF-gCe" id="2Xg-NK-wgz"/>
                         <outlet property="productName" destination="18u-WC-dwj" id="BJX-f4-Vwf"/>
                         <outlet property="productPrice" destination="n6X-9I-a4f" id="BU8-NR-REw"/>
@@ -2379,10 +2392,10 @@ Nike Sportswear</string>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewsCell" id="2ej-YO-3Ig">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="47.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ej-YO-3Ig" id="KCj-n6-BCA">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="47.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="ViewBgColor"/>

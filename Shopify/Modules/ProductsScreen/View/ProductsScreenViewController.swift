@@ -23,7 +23,7 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     @IBOutlet weak var availableInStockTxt: UILabel!
     @IBOutlet weak var sortBtn: UIButton!
     @IBOutlet weak var noInternetImg: UIImageView!
-    
+    @IBOutlet weak var btnCart: UIButton!
     private let disposeBag = DisposeBag()
     private var isSortViewHidden = true
     private var sortViewHeight : CGFloat = 0
@@ -47,7 +47,7 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         }.disposed(by: disposeBag)
         
         selectProductToNavigate()
-        
+        setupCartButtonBinding()
         
         viewModel?.priceRange
             .subscribe(onNext: { [weak self] (min, max) in
@@ -175,7 +175,16 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         }
     }
     
-    @IBAction func cartBtn(_ sender: Any) {
+    private func setupCartButtonBinding() {
+        btnCart.rx.tap
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                self?.handleCartButtonTap()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func handleCartButtonTap() {
         print(AuthenticationManager.shared.isUserLoggedIn())
         if AuthenticationManager.shared.isUserLoggedIn() {
             if isInternetAvailable() {
@@ -204,6 +213,37 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         }else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }
+    }
+    
+    @IBAction func cartBtn(_ sender: Any) {
+//        print(AuthenticationManager.shared.isUserLoggedIn())
+//        if AuthenticationManager.shared.isUserLoggedIn() {
+//            if isInternetAvailable() {
+//                isEmailVerified(vc: self) { [weak self] isVerified in
+//                    if isVerified {
+//                        self?.coordinator?.goToShoppingCart()
+//                    }
+//                }
+//            }
+//            else {
+//                if viewModel?.isVerified() ?? false{
+//                    coordinator?.goToShoppingCart()
+//                }
+//                else {
+//                    let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
+//                        AuthenticationManager.shared.resendEmailVerificaiton() {
+//                            _ = showAlert(message: "Email verification sent", vc: self)
+//                        }
+//                    }
+//                    
+//                    let action2 = UIAlertAction(title: "Dismiss", style: .cancel)
+//                    _ = showAlert(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: self, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
+//                }
+//            }
+//            
+//        }else {
+//            showAlertForNotUser(vc: self, coordinator: coordinator!)
+//        }
     }
     
     @IBAction func favBtn(_ sender: Any) {

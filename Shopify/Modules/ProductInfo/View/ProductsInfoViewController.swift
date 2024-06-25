@@ -23,6 +23,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate , Storyb
     @IBOutlet weak var reviewsTableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var loadingView: UIView!
     
     var coordinator: MainCoordinator?
     var viewModel: ProductInfoViewModel?
@@ -72,6 +73,11 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate , Storyb
         viewModel?.isLoading
             .map { !$0 }
             .bind(to: loadingIndicator.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel?.isLoading
+            .map { !$0 }
+            .bind(to: loadingView.rx.isHidden)
             .disposed(by: disposeBag)
     }
     

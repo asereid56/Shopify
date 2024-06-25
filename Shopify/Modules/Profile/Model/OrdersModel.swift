@@ -29,7 +29,9 @@ struct Order: Codable {
     var shippingAddress: Address?
     var financialStatus: String
     
-    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String) {
+    var discountCodes: [OrderDiscountCode]?
+    
+    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String, discountCodes : [OrderDiscountCode]? = nil) {
         self.id = nil
         self.contactEmail = nil
         self.createdAt = nil
@@ -46,6 +48,7 @@ struct Order: Codable {
         self.billingAddress = billingAddress
         self.shippingAddress = shippingAddress
         self.financialStatus = financialStatus
+        self.discountCodes = discountCodes
     }
     
     enum CodingKeys: String, CodingKey {
@@ -85,6 +88,18 @@ struct Money: Codable {
         case amount
         case currencyCode = "currency_code"
     }
+}
+
+struct OrderDiscountCode: Codable {
+    let code: String
+        let amount: String
+        let type: String // or enum if you have specific types
+
+        enum CodingKeys: String, CodingKey {
+            case code
+            case amount
+            case type
+        }
 }
 
 

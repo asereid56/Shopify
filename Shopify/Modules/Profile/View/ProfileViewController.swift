@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , Storyboarded {
     
@@ -33,15 +35,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var showWishlist: UIButton!
     @IBOutlet weak var editImage: UILabel!
     
+    @IBOutlet weak var btnCart: UIButton!
     var viewModel: ProfileViewModel?
     var coordinator: MainCoordinator?
     var tapGesture: UITapGestureRecognizer!
     var tapGesture1: UITapGestureRecognizer!
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         self.navigationController?.setNavigationBarHidden(true, animated: false);
         super.viewDidLoad()
         setupProfileImage()
+        setupCartButtonBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +88,16 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         coordinator?.goToSettings()
     }
     
-    @IBAction func goToCart(_ sender: Any) {
+    private func setupCartButtonBinding() {
+        btnCart.rx.tap
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                self?.handleCartButtonTap()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func handleCartButtonTap() {
         print(AuthenticationManager.shared.isUserLoggedIn())
         if AuthenticationManager.shared.isUserLoggedIn() {
             if isInternetAvailable() {
@@ -112,6 +126,36 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }
+    }
+    @IBAction func goToCart(_ sender: Any) {
+        //        print(AuthenticationManager.shared.isUserLoggedIn())
+        //        if AuthenticationManager.shared.isUserLoggedIn() {
+        //            if isInternetAvailable() {
+        //                isEmailVerified(vc: self) { [weak self] isVerified in
+        //                    if isVerified {
+        //                        self?.coordinator?.goToShoppingCart()
+        //                    }
+        //                }
+        //            }
+        //            else {
+        //                if viewModel?.isVerified() ?? false{
+        //                    coordinator?.goToShoppingCart()
+        //                }
+        //                else {
+        //                    let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
+        //                        AuthenticationManager.shared.resendEmailVerificaiton() {
+        //                            _ = showAlert(message: "Email verification sent", vc: self)
+        //                        }
+        //                    }
+        //
+        //                    let action2 = UIAlertAction(title: "Dismiss", style: .cancel)
+        //                    _ = showAlert(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: self, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
+        //                }
+        //            }
+        //
+        //        }else {
+        //            showAlertForNotUser(vc: self, coordinator: coordinator!)
+        //        }
     }
     
     @IBAction func logIn(_ sender: Any) {

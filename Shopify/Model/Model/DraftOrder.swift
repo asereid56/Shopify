@@ -124,7 +124,7 @@ struct AppliedDiscount: Codable {
     let description: String?
     let valueType: String?
     let value: String?
-    let amount: String?
+    var amount: String?
     let title: String?
     
     enum CodingKeys: String, CodingKey {

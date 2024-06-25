@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class PaymentViewController: UIViewController, Storyboarded {
-
+    
     @IBOutlet weak var shippingAddress: UILabel!
     @IBOutlet weak var paymentMethod: UILabel!
     @IBOutlet weak var paymentMethodImage: UIImageView!
@@ -31,6 +31,8 @@ class PaymentViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        setUpSelectedAddress()
+        setUpSelectedPaymentMethod()
         if viewModel?.loadData() == true{
             viewModel?.primaryAddress.bind(to: shippingAddress.rx.text).disposed(by: disposeBag)
         }else{
@@ -68,11 +70,15 @@ class PaymentViewController: UIViewController, Storyboarded {
                 self?.coupon.layer.borderColor = UIColor.green.cgColor
                 if priceRule!.valueType == Constant.FIXED_AMOUNT {
                     self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price: priceRule!.value)
+                    print("---------\(String(abs(Int(priceRule!.value)!)))")
+                    //       self?.viewModel?.setDiscountAmount(discountAmount: String(abs(Int(priceRule!.value)!)))
                     let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) + (Double(priceRule!.value) ?? 0.0)
                     self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(calcPrice))
                     self?.totalPrice = String(calcPrice)
                 }else if priceRule!.valueType == Constant.PERCENTAGE{
                     let discountAmount = ((Double(self?.totalPrice ?? "") ?? 0.0) * abs(Double(priceRule!.value) ?? 0.0)) / 100
+                    print("---------\(String(discountAmount))")
+                    //        self?.viewModel?.setDiscountAmount(discountAmount: String(discountAmount))
                     self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(discountAmount))
                     let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) - discountAmount
                     self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(calcPrice))
@@ -84,10 +90,10 @@ class PaymentViewController: UIViewController, Storyboarded {
         }).disposed(by: disposeBag)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        setUpSelectedAddress()
-        setUpSelectedPaymentMethod()
-    }
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        setUpSelectedAddress()
+    //        setUpSelectedPaymentMethod()
+    //    }
     
     private func setUpIndicator() {
         viewModel?.isLoading
@@ -193,7 +199,7 @@ class PaymentViewController: UIViewController, Storyboarded {
             viewModel?.validateCoupon(coupon: coupon)
         }
     }
-
+    
     @IBAction func btnBack(_ sender: Any) {
         coordinator?.goBack()
     }
