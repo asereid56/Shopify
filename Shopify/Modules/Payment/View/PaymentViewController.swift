@@ -47,7 +47,7 @@ class PaymentViewController: UIViewController, Storyboarded {
     private func setUpUI(){
         subTotal.text = CurrencyService.calculatePriceAccordingToCurrency(price: (viewModel?.getSubTotal())!)
         deliveryCharge.text =  CurrencyService.calculatePriceAccordingToCurrency(price: "10")
-        totalPrice = String(Double((viewModel?.getSubTotal())!)!  +  10.00)
+        totalPrice = String(Double((viewModel?.getSubTotal())!)!)
         total.text =  CurrencyService.calculatePriceAccordingToCurrency(price: totalPrice)
     }
     

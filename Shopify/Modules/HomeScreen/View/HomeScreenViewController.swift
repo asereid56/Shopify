@@ -83,6 +83,8 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if isFirstTime {
             if homeScreenSource == "SignUp"{
                 _ = showAlert(message: "Welcome \(viewModel?.getUserName() ?? "")", vc: self ) {
@@ -95,6 +97,8 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         if searchBar.text == "" {
             searchBar.resignFirstResponder()
         }
@@ -142,6 +146,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     
     
     func setUpBrandsBinding() {
+        
         viewModel?.data.drive(brandsCollection.rx.items(cellIdentifier: "brandCell", cellType: BrandsCollectionXIBCell.self)){ index , brand , cell in
             
             cell.layer.borderColor = UIColor.lightGray.cgColor
@@ -290,9 +295,6 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         }else {
             showAlertForNotUser(vc: self, coordinator: coordinator!)
         }
-    }
-    
-    @IBAction func cartBtn(_ sender: Any) {
     }
     
     @IBAction func wishListBtn(_ sender: Any) {

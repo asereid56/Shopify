@@ -3,4 +3,70 @@
    uuid = "E3FECDB1-DB85-41A7-96FD-AAEEDC3A64FB"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D42F9EDB-C7D7-48A5-9C07-7713F7C42809"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shopify/Modules/HomeScreen/View/HomeScreenViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "096572E4-39F5-4946-BDA4-1481EDE275C5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shopify/Modules/HomeScreen/View/HomeScreenViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "096572E4-39F5-4946-BDA4-1481EDE275C5 - 4716bcc6fdbcee1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopify.HomeScreenViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "Shopify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/asereid/Desktop/ITI/Grad.%20Project/The%20App/Shopify/Shopify/Modules/HomeScreen/View/HomeScreenViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "3509">
+               </Location>
+               <Location
+                  uuid = "096572E4-39F5-4946-BDA4-1481EDE275C5 - 54f399bd9caea617"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopify.HomeScreenViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "Shopify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/asereid/Desktop/ITI/Grad.%20Project/The%20App/Shopify/Shopify/Modules/HomeScreen/View/HomeScreenViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

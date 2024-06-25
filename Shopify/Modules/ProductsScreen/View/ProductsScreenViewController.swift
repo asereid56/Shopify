@@ -59,17 +59,19 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
             })
             .disposed(by: disposeBag)
         
+        setUpBinding()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        productsCollectionView.delegate = nil
-        productsCollectionView.dataSource = nil
+//        productsCollectionView.delegate = nil
+//        productsCollectionView.dataSource = nil
         
         if checkInternetAndShowToast(vc: self){
             viewModel?.fetchProducts()
-            setUpBinding()
+            
             productsCollectionView.isHidden = false
             activityIndicator.isHidden = false
             availableInStockTxt.isHidden = false
@@ -92,6 +94,11 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         sortViewHeight = sortView.frame.height + 12
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        productsCollectionView.dataSource = nil
+//        productsCollectionView.delegate = nil
+    }
     func setUpBinding(){
         
         viewModel?.data

@@ -33,7 +33,7 @@ class OrderDetailsViewController: UIViewController , Storyboarded {
         phoneNum.text = viewModel?.getOrderDetails().shippingAddress?.phone
         orderLocation.text = (viewModel?.getOrderDetails().shippingAddress?.city ?? "") + ", " + (viewModel?.getOrderDetails().shippingAddress?.country ?? "")
         totalPrice.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(
-            ( Double (viewModel?.getOrderDetails().currentSubtotalPrice ?? "0" )! + 10 )
+            ( Double (viewModel?.getOrderDetails().currentSubtotalPrice ?? "0" )!)
         ))
     }
     

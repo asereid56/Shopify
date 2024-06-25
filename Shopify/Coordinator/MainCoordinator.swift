@@ -72,6 +72,10 @@ class MainCoordinator : Coordinator {
         navigationController.setViewControllers([tabBar], animated: true)
     }
     
+    func returnToRoot() {
+        navigationController.popToRootViewController(animated: true)
+    }
+    
     func goToSettings(){
         print(checkonUserDefaultsValues())
         let settingVC = SettingViewController.instantiate(storyboardName:"Setting")
