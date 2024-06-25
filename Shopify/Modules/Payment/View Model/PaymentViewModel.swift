@@ -98,7 +98,7 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     //    }
         
         let customer = Customer(id: Int(customerId) ?? 0)
-        let order = Order(lineItems: draftOrder.lineItems!, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus)
+        let order = Order(lineItems: draftOrder.lineItems!, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus, discountCodes: [appliedDiscount ?? nil])
         let orderWrapper = OrderWrapper(order: order)
         
         //request

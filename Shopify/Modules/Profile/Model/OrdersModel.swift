@@ -29,9 +29,9 @@ struct Order: Codable {
     var shippingAddress: Address?
     var financialStatus: String
     
-    var discountCodes: [OrderDiscountCode]?
+    var discountCodes: [OrderDiscountCode?]?
     
-    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String, discountCodes : [OrderDiscountCode]? = nil) {
+    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String, discountCodes : [OrderDiscountCode?]? = nil) {
         self.id = nil
         self.contactEmail = nil
         self.createdAt = nil
@@ -68,6 +68,7 @@ struct Order: Codable {
         case billingAddress = "billing_address"
         case shippingAddress = "shipping_address"
         case financialStatus = "financial_status"
+        case discountCodes = "discount_codes"
         
     }
 }
