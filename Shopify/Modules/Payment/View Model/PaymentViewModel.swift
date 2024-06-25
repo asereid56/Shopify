@@ -29,7 +29,6 @@ protocol PaymentViewModelProtocol{
     func validateCoupon(coupon : String)
     func getPlacedOrder() -> Order?
     func checkInventory()
-    //func setDiscountAmount(discountAmount : String)
 }
 
 protocol PaymentViewModelDelegate: AnyObject {
@@ -58,7 +57,6 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     private let defaults = UserDefaults.standard
     private let realmManager : RealmManagerProtocol
     private var appliedDiscount : OrderDiscountCode?
-//    private var dicountAmount = ""
     
     
     init( draftOrder: DraftOrder, network: NetworkServiceProtocol, customerId : String , mockPaymentProcessor : PaymentProcessing , draftOrderId : String, realmManager : RealmManagerProtocol) {
@@ -91,12 +89,7 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     
     func placeOrder(financialStatus : String){
         isLoading.accept(true)
-        //preparing order
-      //  if appliedDiscount != nil {
-            //appliedDiscount?.amount = dicountAmount
-           // draftOrder.lineItems?[1].appliedDiscount = appliedDiscount
-    //    }
-        
+
         let customer = Customer(id: Int(customerId) ?? 0)
         let order = Order(lineItems: draftOrder.lineItems!, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus, discountCodes: [appliedDiscount ?? nil])
         let orderWrapper = OrderWrapper(order: order)
@@ -184,18 +177,10 @@ class PaymentViewModel :  PaymentViewModelProtocol{
         network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil)
             .subscribe(onNext: { [weak self] (priceRuleWrapper : PriceRuleWrapper ) in
                 self?.priceRuleSubject.onNext((priceRuleWrapper.priceRule, nil))
-                //print(Double(priceRuleWrapper.priceRule.value))
-                print(String(abs(Double(priceRuleWrapper.priceRule.value)!)))
                 self?.appliedDiscount = OrderDiscountCode(code: priceRuleWrapper.priceRule.title, amount: String(abs(Double(priceRuleWrapper.priceRule.value)!)), type: priceRuleWrapper.priceRule.valueType)
-//                AppliedDiscount(description: "", valueType: priceRuleWrapper.priceRule.valueType, value: priceRuleWrapper.priceRule.value, amount: String(abs(Double(priceRuleWrapper.priceRule.value)!)), title: priceRuleWrapper.priceRule.title)
             }).disposed(by: disposeBag)
     }
-    
-//    func setDiscountAmount(discountAmount : String) {
-//        self.dicountAmount = discountAmount
-//    }
-//    
-    
+        
     func checkInventory() {
         guard let lineItems = draftOrder.lineItems else { return }
         

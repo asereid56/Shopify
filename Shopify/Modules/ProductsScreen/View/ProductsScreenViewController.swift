@@ -177,7 +177,7 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     
     private func setupCartButtonBinding() {
         btnCart.rx.tap
-            .debounce(.milliseconds(100), scheduler: MainScheduler.instance)
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.handleCartButtonTap()
             })

@@ -64,9 +64,6 @@
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                     <color key="baseBackgroundColor" name="ViewBgColor"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="cartBtn:" destination="Jel-1i-RZI" eventType="touchUpInside" id="Vjl-tG-phl"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Addidas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01J-C4-ltE">
                                 <rect key="frame" x="63" y="53.666666666666657" width="210" height="26"/>
@@ -456,7 +453,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="cartBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Km-9X-wCo"/>
-                                    <action selector="cartBtn:" destination="eFd-AP-ZuE" eventType="touchUpInside" id="l0o-nm-TWP"/>
                                 </connections>
                             </button>
                             <searchBar contentMode="redraw" verticalCompressionResistancePriority="1000" searchBarStyle="minimal" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="19y-cp-2oo">
@@ -1332,9 +1328,6 @@ Nike Sportswear</string>
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                     <color key="baseBackgroundColor" name="ViewBgColor"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="goToCart:" destination="FuH-VS-DM9" eventType="touchUpInside" id="XWM-kL-91g"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSN-po-E8P">
                                 <rect key="frame" x="16" y="48" width="103" height="35"/>

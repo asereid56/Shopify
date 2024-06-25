@@ -293,34 +293,6 @@ class HomeScreenViewController: UIViewController , Storyboarded {
     }
     
     @IBAction func cartBtn(_ sender: Any) {
-        //        print(AuthenticationManager.shared.isUserLoggedIn())
-        //        if AuthenticationManager.shared.isUserLoggedIn() {
-        //            if isInternetAvailable() {
-        //                isEmailVerified(vc: self) { [weak self] isVerified in
-        //                    if isVerified {
-        //                        self?.coordinator?.goToShoppingCart()
-        //                    }
-        //                }
-        //            }
-        //            else {
-        //                if viewModel?.isVerified() ?? false{
-        //                    coordinator?.goToShoppingCart()
-        //                }
-        //                else {
-        //                    let action1 = UIAlertAction(title: "Resend email", style: .default) { _ in
-        //                        AuthenticationManager.shared.resendEmailVerificaiton() {
-        //                            _ = showAlert(message: "Email verification sent", vc: self)
-        //                        }
-        //                    }
-        //
-        //                    let action2 = UIAlertAction(title: "Dismiss", style: .cancel)
-        //                    _ = showAlert(title: "Email Verification Required", message: "You must verify your email in order to proceed", vc: self, actions: [action2, action1], style: .alert, selfDismiss: false, completion: nil)
-        //                }
-        //            }
-        //
-        //        }else {
-        //            showAlertForNotUser(vc: self, coordinator: coordinator!)
-        //        }
     }
     
     @IBAction func wishListBtn(_ sender: Any) {

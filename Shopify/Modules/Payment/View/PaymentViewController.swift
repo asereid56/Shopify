@@ -70,18 +70,14 @@ class PaymentViewController: UIViewController, Storyboarded {
                 self?.coupon.layer.borderColor = UIColor.green.cgColor
                 if priceRule!.valueType == Constant.FIXED_AMOUNT {
                     self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price: priceRule!.value)
-                    print("---------\(String(abs(Int(priceRule!.value)!)))")
-                    //       self?.viewModel?.setDiscountAmount(discountAmount: String(abs(Int(priceRule!.value)!)))
                     let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) + (Double(priceRule!.value) ?? 0.0)
-                    self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(calcPrice))
+                    self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(format:"%.2f" ,calcPrice))
                     self?.totalPrice = String(calcPrice)
                 }else if priceRule!.valueType == Constant.PERCENTAGE{
                     let discountAmount = ((Double(self?.viewModel?.getSubTotal() ?? "") ?? 0.0) * abs(Double(priceRule!.value) ?? 0.0)) / 100
-                    print("---------\(String(discountAmount))")
-                    //        self?.viewModel?.setDiscountAmount(discountAmount: String(discountAmount))
                     self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(discountAmount))
                     let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) - discountAmount
-                    self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(calcPrice))
+                    self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(format:"%.2f" , calcPrice))
                     self?.totalPrice = String(calcPrice)
                 }
                 
@@ -89,11 +85,6 @@ class PaymentViewController: UIViewController, Storyboarded {
             
         }).disposed(by: disposeBag)
     }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        setUpSelectedAddress()
-    //        setUpSelectedPaymentMethod()
-    //    }
     
     private func setUpIndicator() {
         viewModel?.isLoading

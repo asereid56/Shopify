@@ -92,6 +92,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate , Storyb
             viewModel?.isProductInWishlist { [weak self] yes in
                 let imageName = yes ? "heart.fill" : "heart"
                 self?.wishlistButton.setImage(UIImage(systemName: imageName), for: .normal)
+                self?.wishlistButton.configuration?.baseForegroundColor = .prim
             }
         }
     }

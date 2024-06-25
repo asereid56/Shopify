@@ -42,7 +42,6 @@
 		18FEA7322C13866500F16304 /* AddressesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FEA7312C13866500F16304 /* AddressesViewModel.swift */; };
 		390BD40F2C1EF682007D4609 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BD40E2C1EF682007D4609 /* ProfileViewController.swift */; };
 		390BD4112C1EF691007D4609 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BD4102C1EF691007D4609 /* ProfileViewModel.swift */; };
-		390BD4142C1F0106007D4609 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BD4132C1F0106007D4609 /* OrdersModel.swift */; };
 		391098DE2C1355C1005CEE7B /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391098DD2C1355C1005CEE7B /* ReviewsViewController.swift */; };
 		391098E22C1355DD005CEE7B /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391098DF2C1355DD005CEE7B /* ReviewTableViewCell.swift */; };
 		391098E32C1355DD005CEE7B /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 391098E02C1355DD005CEE7B /* ReviewTableViewCell.xib */; };
@@ -176,7 +175,6 @@
 		18FEA7312C13866500F16304 /* AddressesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewModel.swift; sourceTree = "<group>"; };
 		390BD40E2C1EF682007D4609 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		390BD4102C1EF691007D4609 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		390BD4132C1F0106007D4609 /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
 		391098DD2C1355C1005CEE7B /* ReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		391098DF2C1355DD005CEE7B /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		391098E02C1355DD005CEE7B /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -418,7 +416,6 @@
 		390BD40B2C1EF632007D4609 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				390BD4122C1F00F9007D4609 /* Model */,
 				390BD40D2C1EF64D007D4609 /* ViewModel */,
 				390BD40C2C1EF63E007D4609 /* View */,
 			);
@@ -439,14 +436,6 @@
 				390BD4102C1EF691007D4609 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		390BD4122C1F00F9007D4609 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				390BD4132C1F0106007D4609 /* OrdersModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		391098D82C135588005CEE7B /* Model */ = {
@@ -1203,7 +1192,6 @@
 				4A4A467B2C20C86A0079C05B /* OrdrersTableViewCell.swift in Sources */,
 				4AD192A22C0CEAFA00EF34D0 /* SceneDelegate.swift in Sources */,
 				390BD40F2C1EF682007D4609 /* ProfileViewController.swift in Sources */,
-				390BD4142C1F0106007D4609 /* OrdersModel.swift in Sources */,
 				18DA18DB2C0E6BCE00D82C46 /* ContactUsViewController.swift in Sources */,
 				1877DC3D2C138BC0002F709E /* Address.swift in Sources */,
 				4AD192F72C0CF76B00EF34D0 /* MainCoordinator.swift in Sources */,

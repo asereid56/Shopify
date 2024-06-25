@@ -37,5 +37,5 @@ struct NetworkConstants {
     static let baseURL = "https://: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@mad44-sv-iost2.myshopify.com/admin/api/2024-04"
     static let apiKey = "ff8515d9c1ce9b93b6be04426b3572d6"
     static let currencyBaseURL = "https://api.currencyapi.com/v3/latest"
-    static let currencyApiKey = "cur_live_764UfTxxdbFY0IsxCdsekXhTM8YWptyWn6Ou4zP0-aser"
+    static let currencyApiKey = "cur_live_764UfTxxdbFY0IsxCdsekXhTM8YWptyWn6Ou4zP0"
 }
