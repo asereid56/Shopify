@@ -90,7 +90,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     private func setupCartButtonBinding() {
         btnCart.rx.tap
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.handleCartButtonTap()
             })

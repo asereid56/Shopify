@@ -7,13 +7,92 @@
 
 import Foundation
 
+struct PostOrderWrapper: Codable {
+    var order: PostOrder
+}
+
 struct OrderWrapper: Codable {
     var order: Order
 }
 
+
 struct OrdersWrapper: Codable {
     let orders: [Order]
 }
+
+struct PostOrder: Codable {
+    let id: Int?
+    let contactEmail: String?
+    let createdAt: String?
+    let currency : String?
+    let currentSubtotalPrice: String?
+    let currentSubtotalPriceSet: CurrentSet?
+    let currentTotalDiscounts: String?
+    let currentTotalDiscountsSet: CurrentSet?
+    let currentTotalPrice: String?
+    let province: String?
+    let country: String?
+    
+    var lineItems: [LineItem]?
+    var customer: Customer
+    var billingAddress: Address?
+    var shippingAddress: Address?
+    var financialStatus: String
+    
+    var fulfillmentStatus: String
+    var sendReceipt: Bool
+    var sendFulfillmentReceipt: Bool
+    
+    var discountCodes: [OrderDiscountCode?]?
+    
+    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String, discountCodes : [OrderDiscountCode?]? = nil , fulfillmentStatus: String = "fulfilled" ,sendReceipt: Bool = true ,  sendFulfillmentReceipt: Bool = true) {
+        self.id = nil
+        self.contactEmail = nil
+        self.createdAt = nil
+        self.currency = nil
+        self.currentSubtotalPrice = nil
+        self.currentSubtotalPriceSet = nil
+        self.currentTotalDiscounts = nil
+        self.currentTotalDiscountsSet = nil
+        self.currentTotalPrice = nil
+        self.province = nil
+        self.country = nil
+        self.lineItems = lineItems
+        self.customer = customer
+        self.billingAddress = billingAddress
+        self.shippingAddress = shippingAddress
+        self.financialStatus = financialStatus
+        self.discountCodes = discountCodes
+        self.fulfillmentStatus = fulfillmentStatus
+        self.sendFulfillmentReceipt = sendFulfillmentReceipt
+        self.sendReceipt = sendReceipt
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case contactEmail = "contact_email"
+        case createdAt = "created_at"
+        case currency
+        case currentSubtotalPrice = "current_subtotal_price"
+        case currentSubtotalPriceSet = "current_subtotal_price_set"
+        case currentTotalDiscounts = "current_total_discounts"
+        case currentTotalDiscountsSet = "current_total_discounts_set"
+        case currentTotalPrice = "current_total_price"
+        case province
+        case country
+        case lineItems = "line_items"
+        case customer
+        case billingAddress = "billing_address"
+        case shippingAddress = "shipping_address"
+        case financialStatus = "financial_status"
+        case discountCodes = "discount_codes"
+        case fulfillmentStatus = "fulfillment_status"
+        case sendReceipt = "send_receipt"
+        case sendFulfillmentReceipt = "send_fulfillment_receipt"
+        
+    }
+}
+
 
 struct Order: Codable {
     let id: Int?
@@ -27,12 +106,16 @@ struct Order: Codable {
     let currentTotalPrice: String?
     let province: String?
     let country: String?
- 
+    
     var lineItems: [LineItem]?
     var customer: Customer
     var billingAddress: Address?
     var shippingAddress: Address?
     var financialStatus: String
+    
+//    var fulfillmentStatus: String
+//    var sendReceipt: Bool
+//    var sendFulfillmentReceipt: Bool
     
     var discountCodes: [OrderDiscountCode?]?
     
@@ -74,7 +157,6 @@ struct Order: Codable {
         case shippingAddress = "shipping_address"
         case financialStatus = "financial_status"
         case discountCodes = "discount_codes"
-        
     }
 }
 
@@ -98,13 +180,13 @@ struct Money: Codable {
 
 struct OrderDiscountCode: Codable {
     let code: String
-        let amount: String
-        let type: String // or enum if you have specific types
-
-        enum CodingKeys: String, CodingKey {
-            case code
-            case amount
-            case type
-        }
+    let amount: String
+    let type: String // or enum if you have specific types
+    
+    enum CodingKeys: String, CodingKey {
+        case code
+        case amount
+        case type
+    }
 }
 

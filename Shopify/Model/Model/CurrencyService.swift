@@ -49,6 +49,21 @@ class CurrencyService : CurrencyServiceProtocol{
             return "0.0"
         }
     }
+    
+    static func getPriceAccordingToCurrency( price : String) -> Double{
+        let selectedCurrency = defaults.string(forKey: Constant.SELECTED_CURRENCY) ?? Constant.USD
+        switch selectedCurrency {
+        case Constant.EGP:
+            let priceValue = Double(price) ?? 0.0
+            let rateValue = rate ?? 0.0
+            return Double(priceValue * rateValue)
+        case Constant.USD:
+            let priceValue = Double(price) ?? 0.0
+            return priceValue
+        default:
+            return 0
+        }
+    }
 }
 
 

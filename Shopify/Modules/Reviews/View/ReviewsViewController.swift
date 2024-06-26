@@ -18,10 +18,6 @@ class ReviewsViewController: UIViewController , Storyboarded{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNib()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         bindTableView()
         getReviews()
     }

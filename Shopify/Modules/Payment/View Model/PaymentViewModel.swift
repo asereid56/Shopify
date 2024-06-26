@@ -20,6 +20,8 @@ protocol PaymentViewModelProtocol{
     var quantityAvailable : ReplaySubject<Bool>{get}
     func setShippingAddress(address : Address)
     func getSubTotal() -> String
+    func getTotalPrice() -> String
+    func getTotalTax() -> String
     func loadData() -> Bool
     func startPayment(amount : String) -> PKPaymentRequest
     func handlePaymentAuthorization(_ payment: PKPayment)
@@ -91,12 +93,14 @@ class PaymentViewModel :  PaymentViewModelProtocol{
         isLoading.accept(true)
 
         let customer = Customer(id: Int(customerId) ?? 0)
-        let order = Order(lineItems: draftOrder.lineItems!, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus, discountCodes: [appliedDiscount ?? nil])
-        let orderWrapper = OrderWrapper(order: order)
+        let order = PostOrder(lineItems: draftOrder.lineItems!, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus, discountCodes: [appliedDiscount ?? nil])
+        let orderWrapper = PostOrderWrapper(order: order)
         
         //request
         let endpoint = APIEndpoint.createOrder.rawValue
         network.post(url: NetworkConstants.baseURL, endpoint: endpoint, body: orderWrapper, headers: nil, responseType: OrderWrapper.self).subscribe { [weak self] (success, message , orderWrapper) in
+            print(success)
+            print(message)
             if success {
                 self?.placedOrder = orderWrapper?.order
                 self?.orderPlaced.onNext(true)
@@ -138,6 +142,14 @@ class PaymentViewModel :  PaymentViewModelProtocol{
     
     func getSubTotal() -> String{
         return draftOrder.subtotalPrice ?? ""
+    }
+    
+    func getTotalPrice() -> String {
+        return draftOrder.totalPrice ?? ""
+    }
+    
+    func getTotalTax() -> String {
+        return draftOrder.totalTax ?? ""
     }
     
     func startPayment(amount : String) -> PKPaymentRequest {

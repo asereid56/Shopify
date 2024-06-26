@@ -46,8 +46,8 @@ class PaymentViewController: UIViewController, Storyboarded {
     
     private func setUpUI(){
         subTotal.text = CurrencyService.calculatePriceAccordingToCurrency(price: (viewModel?.getSubTotal())!)
-        deliveryCharge.text =  CurrencyService.calculatePriceAccordingToCurrency(price: "10")
-        totalPrice = String(Double((viewModel?.getSubTotal())!)!)
+        deliveryCharge.text = CurrencyService.calculatePriceAccordingToCurrency(price: (viewModel?.getTotalTax())!)
+        totalPrice = String(Double((viewModel?.getTotalPrice())!)!)
         total.text =  CurrencyService.calculatePriceAccordingToCurrency(price: totalPrice)
     }
     
@@ -74,7 +74,7 @@ class PaymentViewController: UIViewController, Storyboarded {
                     self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(format:"%.2f" ,calcPrice))
                     self?.totalPrice = String(calcPrice)
                 }else if priceRule!.valueType == Constant.PERCENTAGE{
-                    let discountAmount = ((Double(self?.viewModel?.getSubTotal() ?? "") ?? 0.0) * abs(Double(priceRule!.value) ?? 0.0)) / 100
+                    let discountAmount = ((Double(self?.viewModel?.getTotalPrice() ?? "") ?? 0.0) * abs(Double(priceRule!.value) ?? 0.0)) / 100
                     self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(discountAmount))
                     let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) - discountAmount
                     self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(format:"%.2f" , calcPrice))
@@ -167,7 +167,7 @@ class PaymentViewController: UIViewController, Storyboarded {
     }
     
     private func canPayUsingCOD() -> Bool{
-        if Double(totalPrice)! > 10000.00 && viewModel?.getSelectedCurrency() == Constant.EGP{
+        if  CurrencyService.getPriceAccordingToCurrency(price: totalPrice) > 10000.00 && viewModel?.getSelectedCurrency() == Constant.EGP{
             showError(title: "Cash on Delivery is not available for orders exceeding EGP 10000. Please select a different payment method.", duration: 3)
             return false
         } else if  Double(totalPrice)! > 300.00 && viewModel?.getSelectedCurrency() == Constant.USD{

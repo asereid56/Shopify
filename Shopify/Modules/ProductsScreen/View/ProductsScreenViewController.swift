@@ -66,8 +66,6 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        productsCollectionView.delegate = nil
-//        productsCollectionView.dataSource = nil
         
         if checkInternetAndShowToast(vc: self){
             viewModel?.fetchProducts()
@@ -94,11 +92,6 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         sortViewHeight = sortView.frame.height + 12
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        productsCollectionView.dataSource = nil
-//        productsCollectionView.delegate = nil
-    }
     func setUpBinding(){
         
         viewModel?.data
@@ -184,7 +177,7 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     
     private func setupCartButtonBinding() {
         btnCart.rx.tap
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.handleCartButtonTap()
             })

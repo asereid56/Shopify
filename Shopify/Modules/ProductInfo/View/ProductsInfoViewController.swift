@@ -132,10 +132,10 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate , Storyb
     
     private func addToCart() {
         viewModel?.addToCart.subscribe(onNext:  {isAdded in
-            if isAdded {
+            if isAdded.0 {
                 _ = showAlert(message: "Product added to shopping cart", vc: self)
             } else {
-                _ =  showAlert(message: "Product already exists in shopping cart", vc: self)
+                _ =  showAlert(message: isAdded.1, vc: self)
             }
         }).disposed(by: disposeBag)
     }
@@ -150,7 +150,7 @@ class ProductInfoViewController: UIViewController, UIScrollViewDelegate , Storyb
                 isEmailVerified(vc: self) { [weak self] isVerified in
                     if isVerified {
                         let variant = self?.viewModel?.getSelectedVariant(title: (self?.getVariantTitle())!)
-                        self?.viewModel?.fetchDraftOrder(variant: variant!)
+                        self?.viewModel?.checkVariantQuantity(variant: variant!)
                     }
                 }
                 

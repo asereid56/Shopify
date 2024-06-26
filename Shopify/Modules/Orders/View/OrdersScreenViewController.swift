@@ -46,7 +46,7 @@ extension OrdersScreenViewController : UITableViewDelegate , UITableViewDataSour
         cell.createdAt.text = formateTheDate(date: existOrder.createdAt ?? "")
         cell.orderPlace.text = (existOrder.shippingAddress?.city ?? "") + ", " + (existOrder.shippingAddress?.country ?? "")
         cell.totalPrice.text = CurrencyService.calculatePriceAccordingToCurrency(price: String(
-            ( Double (existOrder.currentSubtotalPrice ?? "0" )!)
+            ( Double (existOrder.currentTotalPrice ?? "0" )!)
         ))
         cell.phoneNum.text = existOrder.shippingAddress?.phone
         return cell

@@ -21,7 +21,7 @@ class ProductInfoViewModel {
     var endpoint : String?
     var data = PublishSubject<Bool>()
     var reviewsData = PublishSubject<[Review]>()
-    var addToCart = PublishSubject<Bool>()
+    var addToCart = PublishSubject<(Bool, String)>()
     var reviews: [Review]?
     var product: Product?
     var wishlistItems: [LineItem]?
@@ -103,6 +103,20 @@ class ProductInfoViewModel {
         return variants?[0]
     }
     
+    func checkVariantQuantity(variant : Variant){
+        let endpoint = APIEndpoint.productVariant.rawValue.replacingOccurrences(of: "{variant_id}", with: String(variant.id!) )
+        network.get(url: NetworkConstants.baseURL, endpoint: endpoint, parameters: nil, headers: nil).subscribe(onNext: { [weak self] (variantWrapper : VariantWrapper) in
+            if Int(variantWrapper.variant?.inventoryQuantity ?? 0) > 0 {
+                self?.fetchDraftOrder(variant: variant)
+            }else{
+                self?.addToCart.onNext((false, "Out of stock!"))
+                self?.isLoading.accept(false)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    
+    
     func fetchDraftOrder(variant : Variant){
         isLoading.accept(true)
         network.get(url: NetworkConstants.baseURL, endpoint: endpoint!, parameters: nil, headers: nil).subscribe {[weak self] (draftOrderWrapper : DraftOrderWrapper) in
@@ -116,7 +130,7 @@ class ProductInfoViewModel {
         let lineItems = draftOrder?.lineItems
         for lineItem in lineItems ?? [] {
             if lineItem.variantId == variant.id {
-                addToCart.onNext(false)
+                addToCart.onNext((false , "Product already exists in shopping cart"))
                 self.isLoading.accept(false)
                 return
             }
@@ -129,7 +143,7 @@ class ProductInfoViewModel {
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { [weak self] (success, message, response) in
                 if response != nil {
-                    self?.addToCart.onNext(true)
+                    self?.addToCart.onNext((true, "Product added to shopping cart"))
                     self?.isLoading.accept(false)
                     let realmDraftOrder = response?.draftOrder.map { RealmDraftOrder(draftOrder: $0)}
                     // print(realmDraftOrder?.id)

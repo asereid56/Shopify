@@ -31,6 +31,7 @@ class PaymentMethodViewController:UIViewController, UISheetPresentationControlle
         sheetPresentationController.prefersGrabberVisible = true
         sheetPresentationController.detents = [
             .medium()
+            
         ]
         
         switch viewModel?.getPaymentMethod() {
