@@ -93,14 +93,13 @@ class PaymentViewModel :  PaymentViewModelProtocol{
         isLoading.accept(true)
 
         let customer = Customer(id: Int(customerId) ?? 0)
-        let order = PostOrder(lineItems: draftOrder.lineItems!, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus, discountCodes: [appliedDiscount ?? nil])
+        let draftOrderWithoutFirstItem : [LineItem] = Array(draftOrder.lineItems!.dropFirst())
+        let order = PostOrder(lineItems: draftOrderWithoutFirstItem, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus, discountCodes: [appliedDiscount ?? nil])
         let orderWrapper = PostOrderWrapper(order: order)
         
         //request
         let endpoint = APIEndpoint.createOrder.rawValue
         network.post(url: NetworkConstants.baseURL, endpoint: endpoint, body: orderWrapper, headers: nil, responseType: OrderWrapper.self).subscribe { [weak self] (success, message , orderWrapper) in
-            print(success)
-            print(message)
             if success {
                 self?.placedOrder = orderWrapper?.order
                 self?.orderPlaced.onNext(true)

@@ -53,7 +53,7 @@ class OrderDetailsViewController: UIViewController , Storyboarded {
 
 extension OrderDetailsViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (viewModel?.getOrderDetails().lineItems?.count ?? 0) - 1
+        return (viewModel?.getOrderDetails().lineItems?.count ?? 0) 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,7 +61,7 @@ extension OrderDetailsViewController : UITableViewDelegate , UITableViewDataSour
         
         if let lineItems = viewModel?.getOrderDetails().lineItems {
             
-            let existProduct = lineItems[indexPath.row + 1]
+            let existProduct = lineItems[indexPath.row]
             
             cell.productImage.kf.setImage(with: URL(string: existProduct.properties?.first?.value ?? "") , placeholder: UIImage(named: "placeholder"))
             cell.productPrice.text = existProduct.price

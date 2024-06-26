@@ -45,7 +45,7 @@ struct PostOrder: Codable {
     
     var discountCodes: [OrderDiscountCode?]?
     
-    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String, discountCodes : [OrderDiscountCode?]? = nil , fulfillmentStatus: String = "fulfilled" ,sendReceipt: Bool = true ,  sendFulfillmentReceipt: Bool = true) {
+    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String, discountCodes : [OrderDiscountCode?]? = nil , fulfillmentStatus: String = "unfulfilled" ,sendReceipt: Bool = true ,  sendFulfillmentReceipt: Bool = true) {
         self.id = nil
         self.contactEmail = nil
         self.createdAt = nil
