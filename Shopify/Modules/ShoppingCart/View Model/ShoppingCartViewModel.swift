@@ -56,14 +56,14 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
     
     private func setupBindings() {
         plusAction
-            .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] row, currentQuantity , inventoryQuantity in
                 self?.incrementItem(at: row, currentQuantity: currentQuantity , inventoryQuantity: inventoryQuantity)
             })
             .disposed(by: disposeBag)
         
         minusAction
-            .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] row, currentQuantity in
                 self?.decrementItem(at: row, currentQuantity: currentQuantity)
             })
@@ -105,7 +105,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
                                                 let property = Property(name: "quantity", value: String(quantity))
                                                 if mutableLineItems[i].properties != nil {
                                                     if mutableLineItems[i].properties!.count > 1{
-                                                        mutableLineItems[i].properties?.remove(at: 1)
+                                                        mutableLineItems[i].properties?.remove(at: 2)
                                                     }
                                                     
                                                     mutableLineItems[i].properties?.append(property)
@@ -223,7 +223,7 @@ class ShoppingCartViewModel: ShoppingCartViewModelProtocol{
             return (false,"Shopping cart is empty!")
         }
         for index in 1..<lineItems!.count{
-            let inventoryQuantity = Double(lineItems![index].properties![1].value ?? "")!
+            let inventoryQuantity = Double(lineItems![index].properties![2].value ?? "")!
             if inventoryQuantity <= 0 || lineItems![index].quantity! >  max(1 , Int(0.3 * inventoryQuantity)){
                 return (false,"Oops! Some items in your cart are sold out. Please decrement or remove them.")
             }

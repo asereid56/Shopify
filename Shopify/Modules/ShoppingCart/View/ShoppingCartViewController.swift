@@ -75,7 +75,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded {
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: ShoppingCartTableViewCell.self)){ [weak self](row, model, cell) in
                 var inventoryQuantity = 1
                 if model.properties!.count > 1 {
-                    inventoryQuantity = Int((model.properties?[1].value) ?? "-1") ?? 0
+                    inventoryQuantity = Int((model.properties?[2].value) ?? "-1") ?? 0
                 }
                 
                 self?.emptyImage.isHidden = true
@@ -172,7 +172,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded {
 extension ShoppingCartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let screenHeight = UIScreen.main.bounds.height
-        let cellHeight = screenHeight * 0.18
+        let cellHeight = screenHeight * 0.20
         return cellHeight
     }
 }

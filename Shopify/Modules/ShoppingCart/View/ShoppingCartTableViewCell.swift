@@ -20,7 +20,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var btnMinus: UIImageView!
     @IBOutlet weak var btnPlus: UIImageView!
     @IBOutlet weak var btnDelete: UIImageView!
-    
+    @IBOutlet weak var options: UILabel!
     
     var disposeBag = DisposeBag()
     var plusBtnTapped = PublishSubject<Void>()
@@ -56,6 +56,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     func setUpCell(model : LineItem){
         let url  = URL(string: (model.properties?.first?.value)!)
         productTitle.text = model.title
+        options.text = model.properties![1].value
         productVendor.text = model.vendor
         productPrice.text = CurrencyService.calculatePriceAccordingToCurrency(price: model.price ?? "0.0")
         productQuantity.text = String(model.quantity ?? 0)

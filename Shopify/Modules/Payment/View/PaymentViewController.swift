@@ -74,7 +74,7 @@ class PaymentViewController: UIViewController, Storyboarded {
                     self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(format:"%.2f" ,calcPrice))
                     self?.totalPrice = String(calcPrice)
                 }else if priceRule!.valueType == Constant.PERCENTAGE{
-                    let discountAmount = ((Double(self?.viewModel?.getTotalPrice() ?? "") ?? 0.0) * abs(Double(priceRule!.value) ?? 0.0)) / 100
+                    let discountAmount = ((Double(self?.viewModel?.getSubTotal() ?? "") ?? 0.0) * abs(Double(priceRule!.value) ?? 0.0)) / 100
                     self?.dicount.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(discountAmount))
                     let calcPrice = (Double(self?.totalPrice ?? "") ?? 0.0) - discountAmount
                     self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price:String(format:"%.2f" , calcPrice))
