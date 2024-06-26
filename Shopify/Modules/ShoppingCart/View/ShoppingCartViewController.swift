@@ -95,7 +95,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded {
                         if checkInternetAndShowToast(vc: self!)  {
                             
                             if  currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)){
-                                self?.notAvailableAlert(title: "Out of stock!")
+                                self?.notAvailableAlert(title: "You have reached the maximum quantity for this product!")
                             } else {
                                 self?.total.text =  CurrencyService.calculatePriceAccordingToCurrency(price:self?.viewModel?.calcTotalPrice(operation: "+", at: row + 1) ?? "0.0")
                                 

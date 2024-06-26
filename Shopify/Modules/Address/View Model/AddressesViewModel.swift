@@ -86,8 +86,9 @@ class AddressesViewModel : AddressesViewModelProtocol{
         let deleteEndpoint = APIEndpoint.editOrDeleteAddress.rawValue.replacingOccurrences(of: "{customer_id}", with: customerId).replacingOccurrences(of: "{address_id}", with: String(currentAddresses.id!))
         //Call
         networkService.delete(url: NetworkConstants.baseURL ,endpoint: deleteEndpoint, parameters: nil, headers: nil)
-            .subscribe(onNext: {statusCode in
+            .subscribe(onNext: { [weak self]statusCode in
                 if statusCode == 200 {
+                    self?.isLoading.accept(false)
                     print("Deleted Successfully")
                 }
             }, onError: { error in

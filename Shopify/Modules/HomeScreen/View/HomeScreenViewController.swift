@@ -131,7 +131,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
                 isEmailVerified(vc: self!) { [weak self] isVerified in
                     if isVerified {
                         UIPasteboard.general.string = self?.viewModel?.getCoupons()[indexPath.row].title.replacingOccurrences(of: "%", with: "%25")
-                        let alert = UIAlertController(title: nil, message: "Congratulations! Your discount code has been copied to the clipboard.", preferredStyle: .actionSheet)
+                        let alert = UIAlertController(title: nil, message: "Discount coupon copied to clipboard.", preferredStyle: .actionSheet)
                         self?.present(alert, animated: true)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             alert.dismiss(animated: true)

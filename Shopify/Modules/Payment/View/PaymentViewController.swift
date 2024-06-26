@@ -168,10 +168,14 @@ class PaymentViewController: UIViewController, Storyboarded {
     
     private func canPayUsingCOD() -> Bool{
         if  CurrencyService.getPriceAccordingToCurrency(price: totalPrice) > 10000.00 && viewModel?.getSelectedCurrency() == Constant.EGP{
-            showError(title: "Cash on Delivery is not available for orders exceeding EGP 10000. Please select a different payment method.", duration: 3)
+            let ok = UIAlertAction(title: "Ok", style: .default)
+            _ = showAlert(title: "Amount Exceeded",message: "Cash on Delivery is not available for orders exceeding EGP 10000. Please select a different payment method.", vc: self , actions: [ok] , style: .alert , selfDismiss: false)
+//            showError(title: "Cash on Delivery is not available for orders exceeding EGP 10000. Please select a different payment method.", duration: 3)
             return false
         } else if  Double(totalPrice)! > 300.00 && viewModel?.getSelectedCurrency() == Constant.USD{
-            showError(title: "Cash on Delivery is not available for orders exceeding $300. Please select a different payment method.",duration: 3)
+            let ok = UIAlertAction(title: "Ok", style: .default)
+            _ = showAlert(title: "Amount Exceeded",message:  "Cash on Delivery is not available for orders exceeding $300. Please select a different payment method.", vc: self , actions: [ok] , style: .alert , selfDismiss: false)
+//            showError(title: "Cash on Delivery is not available for orders exceeding $300. Please select a different payment method.",duration: 3)
             return false
         }
         return true
