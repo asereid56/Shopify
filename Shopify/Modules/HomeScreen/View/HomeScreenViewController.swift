@@ -87,7 +87,7 @@ class HomeScreenViewController: UIViewController , Storyboarded {
         
         if isFirstTime {
             if homeScreenSource == "SignUp"{
-                _ = showAlert(message: "Welcome \(viewModel?.getUserName() ?? "")", vc: self ) {
+                _ = showAlert(message: "Welcome \(viewModel?.getUserName().capitalized ?? "")", vc: self ) {
                     let action1 = UIAlertAction(title: "Dismiss", style: .cancel)
                     _ = showAlert(title: "Email Verification Required", message: "We've sent you an email with the link to verify your email", vc: self , actions: [action1], style: .alert, selfDismiss: false)
                 }

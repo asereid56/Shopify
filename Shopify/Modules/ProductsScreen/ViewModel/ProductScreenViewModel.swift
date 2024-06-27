@@ -32,7 +32,7 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
     var dataFetchCompleted = PublishRelay<Void>()
     var isLoading = BehaviorRelay<Bool>(value: false)
     var priceRange = BehaviorRelay<(min: Float, max: Float)>(value: (0, 100))
-   
+    
     
     var data: Driver<[Product]>{
         return dataSubject.asDriver(onErrorJustReturn: [])
@@ -63,8 +63,9 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
                 
                 if let minPrice = response.products?.map({ $0.variants?.first??.price ?? "0" }).compactMap(Float.init).min(),
                    let maxPrice = response.products?.map({ $0.variants?.first??.price ?? "0" }).compactMap(Float.init).max() {
-                    
-                    self?.priceRange.accept((minPrice, maxPrice))
+                    let min = CurrencyService.getPriceAccordingToCurrency(price: String(minPrice))
+                    let max = CurrencyService.getPriceAccordingToCurrency(price: String(maxPrice))
+                    self?.priceRange.accept((Float(min), Float(max)))
                 }
             },
                        onError: {error in
@@ -79,8 +80,9 @@ class ProductScreenViewModel : ProductScreenViewModelProtocol {
     }
     
     func filteredTheProducts(price : Float) {
+        
         let filteredProduct = filteredProducts.filter{ products in
-            Float(products.variants?.first??.price ?? "0") ?? 0 <= price
+            Float(CurrencyService.getPriceAccordingToCurrency(price: products.variants?.first??.price ?? "0") ) <= price
         }
         dataSubject.onNext(filteredProduct)
     }

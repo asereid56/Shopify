@@ -248,8 +248,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func setupUserInfo() {
-        let firstName = UserDefaultsManager.shared.getFirstNameFromUserDefaults() ?? ""
-        let lastName = UserDefaultsManager.shared.getLastNameFromUserDefaults() ?? ""
+        let firstName = UserDefaultsManager.shared.getFirstNameFromUserDefaults()?.capitalized ?? ""
+        let lastName = UserDefaultsManager.shared.getLastNameFromUserDefaults()?.capitalized ?? ""
         let fullName = firstName + " " + lastName
         profileName.text = fullName
         noUserView.isHidden = true

@@ -63,12 +63,12 @@ class ShoppingCartViewController: UIViewController , Storyboarded {
     
     private func bindTableView() {
         viewModel?.data
-            .map{ data in
+            .map{ [weak self ] data in
                 var newData = data
                 
                 if !newData.isEmpty {
                     newData.removeFirst()
-                    self.total.text = CurrencyService.calculatePriceAccordingToCurrency(price: self.viewModel?.getDratOrder().subtotalPrice ?? "-1")
+                    self?.total.text = CurrencyService.calculatePriceAccordingToCurrency(price: self?.viewModel?.getDratOrder().subtotalPrice ?? "-1")
                 }
                 return newData
             }
@@ -92,7 +92,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded {
                 cell.plusBtnTapped
                     .subscribe(onNext: {
                         guard let currentQuantity = Int(cell.productQuantity.text!) else { return }
-                        if checkInternetAndShowToast(vc: self!)  {
+                        if checkInternetAndShowToast(vc: self ?? UIViewController())  {
                             
                             if  currentQuantity == 0 || currentQuantity >= Int(0.3 * Double(inventoryQuantity)){
                                 self?.notAvailableAlert(title: "You have reached the maximum quantity for this product!")
@@ -110,7 +110,7 @@ class ShoppingCartViewController: UIViewController , Storyboarded {
                 
                 cell.minusBtnTapped
                     .subscribe(onNext: {
-                        if checkInternetAndShowToast(vc: self!) {
+                        if checkInternetAndShowToast(vc: self ?? UIViewController()) {
                             guard let currentQuantity = Int(cell.productQuantity.text!), currentQuantity > 1 else { return }
                             cell.updateQuantity(currentQuantity - 1)
                             self?.viewModel?.minusAction.onNext((row +  1, currentQuantity))

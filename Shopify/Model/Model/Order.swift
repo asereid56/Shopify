@@ -32,6 +32,7 @@ struct PostOrder: Codable {
     let currentTotalPrice: String?
     let province: String?
     let country: String?
+    var totalTax: String?
     
     var lineItems: [LineItem]?
     var customer: Customer
@@ -45,7 +46,7 @@ struct PostOrder: Codable {
     
     var discountCodes: [OrderDiscountCode?]?
     
-    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String, discountCodes : [OrderDiscountCode?]? = nil , fulfillmentStatus: String = "unfulfilled" ,sendReceipt: Bool = true ,  sendFulfillmentReceipt: Bool = true) {
+    init(lineItems: [LineItem]? = nil, customer: Customer, billingAddress: Address? = nil, shippingAddress: Address? = nil, financialStatus: String, discountCodes : [OrderDiscountCode?]? = nil , fulfillmentStatus: String = "unfulfilled" ,sendReceipt: Bool = true ,  sendFulfillmentReceipt: Bool = true, totalTax: String?) {
         self.id = nil
         self.contactEmail = nil
         self.createdAt = nil
@@ -66,6 +67,7 @@ struct PostOrder: Codable {
         self.fulfillmentStatus = fulfillmentStatus
         self.sendFulfillmentReceipt = sendFulfillmentReceipt
         self.sendReceipt = sendReceipt
+        self.totalTax = totalTax
     }
     
     enum CodingKeys: String, CodingKey {
@@ -89,7 +91,7 @@ struct PostOrder: Codable {
         case fulfillmentStatus = "fulfillment_status"
         case sendReceipt = "send_receipt"
         case sendFulfillmentReceipt = "send_fulfillment_receipt"
-        
+        case totalTax = "total_tax"
     }
 }
 

@@ -56,6 +56,7 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
                 self?.priceSlider.value = max + 100
                 let maxPriceTxt = Int( max + 100 )
                 self?.priceTxt.text = String(maxPriceTxt)
+                
             })
             .disposed(by: disposeBag)
         

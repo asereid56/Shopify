@@ -94,7 +94,7 @@ class PaymentViewModel :  PaymentViewModelProtocol{
 
         let customer = Customer(id: Int(customerId) ?? 0)
         let draftOrderWithoutFirstItem : [LineItem] = Array(draftOrder.lineItems!.dropFirst())
-        let order = PostOrder(lineItems: draftOrderWithoutFirstItem, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus, discountCodes: [appliedDiscount ?? nil])
+        let order = PostOrder(lineItems: draftOrderWithoutFirstItem, customer: customer, billingAddress: billingAddress!, shippingAddress: ((shippingAddress ?? billingAddress)!) , financialStatus: financialStatus, discountCodes: [appliedDiscount ?? nil], totalTax: draftOrder.totalTax)
         let orderWrapper = PostOrderWrapper(order: order)
         
         //request
