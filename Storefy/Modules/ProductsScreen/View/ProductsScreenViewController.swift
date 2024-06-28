@@ -29,6 +29,8 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     private var sortViewHeight : CGFloat = 0
     var viewModel : ProductScreenViewModelProtocol?
     var coordinator : MainCoordinator?
+    static private let defaults = UserDefaults.standard
+    var selectedCurrency : String = Constant.USD
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +57,12 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
                 self?.priceSlider.maximumValue = max + 100
                 self?.priceSlider.value = max + 100
                 let maxPriceTxt = Int( max + 100 )
-                self?.priceTxt.text = String(maxPriceTxt)
+                if self?.selectedCurrency == Constant.USD {
+                    self?.priceTxt.text = "$ \(maxPriceTxt)"
+                }else {
+                    self?.priceTxt.text = "EGP \(maxPriceTxt)"
+                }
+                
                 
             })
             .disposed(by: disposeBag)
@@ -67,6 +74,7 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        selectedCurrency = ProductsScreenViewController.defaults.string(forKey: Constant.SELECTED_CURRENCY) ?? Constant.USD
         
         if checkInternetAndShowToast(vc: self){
             viewModel?.fetchProducts()
@@ -114,7 +122,13 @@ class ProductsScreenViewController: UIViewController , Storyboarded {
         
         priceSlider.rx.value
             .map { Int($0) }
-            .map { "\($0)" }
+            .map { price in
+                if self.selectedCurrency == Constant.USD {
+                    return "$ \(price)"
+                }else {
+                    return "EGP \(price)"
+                }
+            }
             .bind(to: priceTxt.rx.text)
             .disposed(by: disposeBag)
         

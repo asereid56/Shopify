@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v8N-WW-pPR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v8N-WW-pPR">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,7 +15,7 @@
         <!--Animation View Controller-->
         <scene sceneID="6nU-R9-Uh7">
             <objects>
-                <viewController storyboardIdentifier="AnimationViewController" id="Is5-hg-FQQ" customClass="AnimationViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AnimationViewController" id="Is5-hg-FQQ" customClass="AnimationViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kpG-LG-uhr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
         <!--Products Screen View Controller-->
         <scene sceneID="8wX-sW-vGk">
             <objects>
-                <viewController storyboardIdentifier="ProductsScreenViewController" id="Jel-1i-RZI" customClass="ProductsScreenViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductsScreenViewController" id="Jel-1i-RZI" customClass="ProductsScreenViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Nq-dj-NbM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,7 +94,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="200" minValue="50" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="jnn-mi-eLE">
-                                        <rect key="frame" x="102" y="11" width="253" height="31"/>
+                                        <rect key="frame" x="148" y="11" width="207" height="31"/>
                                         <color key="minimumTrackTintColor" name="PrimColor"/>
                                         <color key="thumbTintColor" name="PrimColor"/>
                                         <connections>
@@ -113,10 +113,10 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdM-ee-6y2">
-                                        <rect key="frame" x="60" y="15" width="34" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EGP 9999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdM-ee-6y2">
+                                        <rect key="frame" x="60" y="15" width="80" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="6XZ-Hh-cJD"/>
+                                            <constraint firstAttribute="width" constant="80" id="6XZ-Hh-cJD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -226,13 +226,13 @@
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="HomeScreenViewController" id="BYZ-38-t0r" customClass="HomeScreenViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeScreenViewController" id="BYZ-38-t0r" customClass="HomeScreenViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6f-cy-d6R">
-                                <rect key="frame" x="16" y="60" width="103" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storefy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6f-cy-d6R">
+                                <rect key="frame" x="16" y="60" width="98" height="35"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -277,7 +277,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="adsCell" id="nrI-ra-sx1" customClass="AdsCollectionCell" customModule="Shopify" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="adsCell" id="nrI-ra-sx1" customClass="AdsCollectionCell" customModule="Storefy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="203"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XYV-8E-67H">
@@ -416,13 +416,13 @@
         <!--Category-->
         <scene sceneID="mAz-ef-FyU">
             <objects>
-                <viewController storyboardIdentifier="CategoryScreenViewController" id="eFd-AP-ZuE" customClass="CategoryScreenViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryScreenViewController" id="eFd-AP-ZuE" customClass="CategoryScreenViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9MN-oM-gw9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2y-PS-q9I">
-                                <rect key="frame" x="16" y="60" width="103" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storefy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2y-PS-q9I">
+                                <rect key="frame" x="16" y="60" width="98" height="35"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -562,7 +562,7 @@
         <!--Tab Bar-->
         <scene sceneID="7Zs-d9-67k">
             <objects>
-                <tabBarController storyboardIdentifier="TabBar" automaticallyAdjustsScrollViewInsets="NO" id="v8N-WW-pPR" customClass="TabBar" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" automaticallyAdjustsScrollViewInsets="NO" id="v8N-WW-pPR" customClass="TabBar" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pmh-gp-pLV">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -583,7 +583,7 @@
         <!--On Boarding Two View Controller-->
         <scene sceneID="7B9-ig-awN">
             <objects>
-                <viewController storyboardIdentifier="OnBoardingTwoViewController" id="uYc-ux-gm0" customClass="OnBoardingTwoViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingTwoViewController" id="uYc-ux-gm0" customClass="OnBoardingTwoViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="glG-oA-2Yz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -657,7 +657,7 @@
         <!--On Boarding Three View Controller-->
         <scene sceneID="y2C-ub-ZW9">
             <objects>
-                <viewController storyboardIdentifier="OnBoardingThreeViewController" id="UrS-OW-2tN" customClass="OnBoardingThreeViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingThreeViewController" id="UrS-OW-2tN" customClass="OnBoardingThreeViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jtb-H6-xJd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -718,7 +718,7 @@
         <!--Orders Screen View Controller-->
         <scene sceneID="Ned-Ql-FKj">
             <objects>
-                <viewController storyboardIdentifier="OrdersScreenViewController" id="j34-JV-sUp" customClass="OrdersScreenViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrdersScreenViewController" id="j34-JV-sUp" customClass="OrdersScreenViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="adF-ol-ZNn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -775,7 +775,7 @@
         <!--Order Details View Controller-->
         <scene sceneID="SZ8-BT-CWM">
             <objects>
-                <viewController storyboardIdentifier="OrderDetailsViewController" id="ior-aG-Z3e" customClass="OrderDetailsViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderDetailsViewController" id="ior-aG-Z3e" customClass="OrderDetailsViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5bs-Ax-irJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -844,25 +844,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="656545646" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-bT-swC">
-                                <rect key="frame" x="300.66666666666669" y="140" width="76.333333333333314" height="20"/>
+                                <rect key="frame" x="300.66666666666669" y="140.33333333333334" width="76.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55646546543" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5F-6d-3c0">
-                                <rect key="frame" x="283.66666666666669" y="168" width="93.333333333333314" height="20"/>
+                                <rect key="frame" x="283.66666666666669" y="168.33333333333334" width="93.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55646546543" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoF-0j-m6b">
-                                <rect key="frame" x="283.66666666666669" y="196" width="93.333333333333314" height="20"/>
+                                <rect key="frame" x="283.66666666666669" y="196.33333333333334" width="93.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55646546543" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31f-aI-asg">
-                                <rect key="frame" x="283.66666666666669" y="224" width="93.333333333333314" height="20"/>
+                                <rect key="frame" x="283.66666666666669" y="224.33333333333334" width="93.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -920,7 +920,7 @@
         <!--On Boarding One View Controller-->
         <scene sceneID="p3g-DD-3kx">
             <objects>
-                <viewController storyboardIdentifier="OnBoardingOneViewController" id="kBz-nD-GTC" customClass="OnBoardingOneViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingOneViewController" id="kBz-nD-GTC" customClass="OnBoardingOneViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hoB-sT-XpR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -994,7 +994,7 @@
         <!--Profile-->
         <scene sceneID="5YY-J7-F79">
             <objects>
-                <viewController storyboardIdentifier="profileViewController" id="FuH-VS-DM9" customClass="ProfileViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profileViewController" id="FuH-VS-DM9" customClass="ProfileViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V22-L3-gSb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1322,8 +1322,8 @@ Nike Sportswear</string>
                                     <color key="baseBackgroundColor" name="ViewBgColor"/>
                                 </buttonConfiguration>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSN-po-E8P">
-                                <rect key="frame" x="16" y="60" width="103" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storefy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSN-po-E8P">
+                                <rect key="frame" x="16" y="60" width="98" height="35"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1388,7 +1388,7 @@ Nike Sportswear</string>
         <!--Sign In Or Guest View Controller-->
         <scene sceneID="uyf-8P-cqG">
             <objects>
-                <viewController storyboardIdentifier="SignInOrGuestViewController" id="Yk6-55-KhX" customClass="SignInOrGuestViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInOrGuestViewController" id="Yk6-55-KhX" customClass="SignInOrGuestViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TDk-Hk-XC8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1408,8 +1408,8 @@ Nike Sportswear</string>
                                     <action selector="signInBtn:" destination="Yk6-55-KhX" eventType="touchUpInside" id="SZX-2U-mSz"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Shopify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmK-YZ-nhe">
-                                <rect key="frame" x="151" y="530.66666666666663" width="91" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Storefy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmK-YZ-nhe">
+                                <rect key="frame" x="153.66666666666666" y="530.66666666666663" width="85.666666666666657" height="33"/>
                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1465,7 +1465,7 @@ Nike Sportswear</string>
         <!--Login With Email View Controller-->
         <scene sceneID="9cb-N1-jfN">
             <objects>
-                <viewController storyboardIdentifier="LoginWithEmailViewController" id="teH-bH-fYC" customClass="LoginWithEmailViewController" customModule="Shopify" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginWithEmailViewController" id="teH-bH-fYC" customClass="LoginWithEmailViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFU-Fp-0fb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1672,7 +1672,7 @@ Nike Sportswear</string>
         <!--Sign Up View Controller-->
         <scene sceneID="Hpo-2D-qN9">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" id="8Y1-Kz-n8t" customClass="SignUpViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="8Y1-Kz-n8t" customClass="SignUpViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uNe-4V-NgP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1893,7 +1893,7 @@ Nike Sportswear</string>
         <!--Reset Passowrd View Controller-->
         <scene sceneID="bQa-cX-cn8">
             <objects>
-                <viewController storyboardIdentifier="ResetPassowrdViewController" id="abC-CZ-RHn" customClass="ResetPassowrdViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResetPassowrdViewController" id="abC-CZ-RHn" customClass="ResetPassowrdViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hCj-Dg-Hg5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1995,7 +1995,7 @@ Nike Sportswear</string>
         <!--Product Info View Controller-->
         <scene sceneID="dOR-LS-KVq">
             <objects>
-                <viewController storyboardIdentifier="ProductInfoViewController" id="Rug-85-u4c" customClass="ProductInfoViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductInfoViewController" id="Rug-85-u4c" customClass="ProductInfoViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WEb-g5-FMB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2361,7 +2361,7 @@ Nike Sportswear</string>
         <!--Reviews View Controller-->
         <scene sceneID="i04-0K-jv6">
             <objects>
-                <viewController storyboardIdentifier="ReviewsViewController" id="XJe-Lx-zZf" customClass="ReviewsViewController" customModule="Shopify" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReviewsViewController" id="XJe-Lx-zZf" customClass="ReviewsViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AQK-je-wQb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2378,10 +2378,10 @@ Nike Sportswear</string>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewsCell" id="2ej-YO-3Ig">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ej-YO-3Ig" id="KCj-n6-BCA">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="ViewBgColor"/>
@@ -2411,7 +2411,7 @@ Nike Sportswear</string>
         <!--Wishlist View Controller-->
         <scene sceneID="tfq-AL-yvy">
             <objects>
-                <viewController storyboardIdentifier="WishlistViewController" id="3QD-pa-r7g" customClass="WishlistViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WishlistViewController" id="3QD-pa-r7g" customClass="WishlistViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Chc-IG-g2c">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2499,7 +2499,7 @@ Nike Sportswear</string>
         <!--Order Confirmed-->
         <scene sceneID="xYG-xw-cun">
             <objects>
-                <viewController storyboardIdentifier="OrderConfirmedViewController" title="Order Confirmed" id="VDW-y7-o1P" customClass="OrderConfirmedViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderConfirmedViewController" title="Order Confirmed" id="VDW-y7-o1P" customClass="OrderConfirmedViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mTz-kD-EVd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2572,7 +2572,7 @@ Nike Sportswear</string>
         <!--Payment Method View Controller-->
         <scene sceneID="YIu-K0-upr">
             <objects>
-                <viewController storyboardIdentifier="PaymentMethodViewController" id="0Fl-0h-Du6" customClass="PaymentMethodViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentMethodViewController" id="0Fl-0h-Du6" customClass="PaymentMethodViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="87d-Hv-EP6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2699,7 +2699,7 @@ Nike Sportswear</string>
         <!--Payment-->
         <scene sceneID="Hbd-Pk-BsM">
             <objects>
-                <viewController storyboardIdentifier="PaymentViewController" title="Payment" id="4bD-vS-aPX" customClass="PaymentViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentViewController" title="Payment" id="4bD-vS-aPX" customClass="PaymentViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Di4-Wd-zRw">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3045,7 +3045,7 @@ Electronic City</string>
         <!--Cart-->
         <scene sceneID="jdi-WV-PPu">
             <objects>
-                <viewController storyboardIdentifier="ShoppingCartViewController" title="Cart" id="kJi-vi-52X" customClass="ShoppingCartViewController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingCartViewController" title="Cart" id="kJi-vi-52X" customClass="ShoppingCartViewController" customModule="Storefy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gsH-Yf-tgS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3100,7 +3100,7 @@ Electronic City</string>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="BackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="164" id="qvr-Dx-dKD" customClass="ShoppingCartTableViewCell" customModule="Shopify" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="164" id="qvr-Dx-dKD" customClass="ShoppingCartTableViewCell" customModule="Storefy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="164"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qvr-Dx-dKD" id="I5K-rE-NQ1">
