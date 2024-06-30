@@ -41,6 +41,12 @@ class MainCoordinator : Coordinator {
         navigationController.pushViewController(animationVC, animated: false)
     }
     
+    func gotoOnBoard(){
+        let onBoardVC = OnBoardingScreenViewController.instantiate(storyboardName: "Main")
+        onBoardVC.coordinator = self
+        navigationController.pushViewController(onBoardVC, animated: true)
+    }
+    
     func goToOnBoardingSecondScreen(){
         let onBoardingTwoScreen = OnBoardingTwoViewController.instantiate(storyboardName: "Main")
         onBoardingTwoScreen.coordinator = self

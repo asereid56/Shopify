@@ -32,7 +32,7 @@ class AnimationViewController: UIViewController, Storyboarded {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
         
             if isFirstTime == true {
-                self.coordinator?.goToOnBoardingFirstScreen()
+                self.coordinator?.gotoOnBoard()
             }else{
                 self.coordinator?.gotoTab()
             }
